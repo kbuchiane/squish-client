@@ -1,16 +1,24 @@
 <!doctype html>
 
-<html lang="en">
 <head>
-  <meta charset="utf-8">
-
-  <title>topclips</title>
-
-  <link rel="stylesheet" href="../src/assets/style.css">
-
+  <title>TOPCLIPS</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
-  <script src="..src/mixins/main.js"></script>
+  <div id="app">
+    {{ message }}
+  </div>
+  <!-- <script src="../src/main.js"></script> -->
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!'
+      }
+    })
+  </script>
+
 </body>
 </html>
