@@ -1,13 +1,8 @@
-import express from 'express';
+import Vue from 'vue'
+import App from './App.vue'
 
-var app = new express();
-var port = 8081;
+Vue.config.productionTip = false
 
-var clientPath = process.env.tcClientPath;
-
-app.get('/', function(request, response) {
-   response.sendFile(clientPath + '/index.html');
-}).listen(port);
-
-// Console will print the message
-console.log('Client running at http://127.0.0.1:' + port + '/');
+new Vue({
+  render: h => h(App),
+}).$mount('#app')
