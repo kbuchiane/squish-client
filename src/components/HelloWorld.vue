@@ -178,11 +178,11 @@
         axios
           .get('http://localhost:3000/connectionCheck')
           .then(response => {
-            alert(this.response);
-            this.talkToServer.response = JSON.stringify(this.response);
+            console.log('response: ' + this.response);
+            this.talkToServer.response = this.response;
           })
           .catch(error => {
-            alert(this.response);
+            console.log('error: ' + this.error);
           });
       }
     }
