@@ -12,7 +12,7 @@
 
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
+          TOPCLIPS
         </h1>
 
         <p class="subheading font-weight-regular">
@@ -87,15 +87,41 @@
           </a>
         </v-row>
       </v-col>
+
+      <v-col
+        class="mb-5"
+        cols="12"
+      >
+        <h2 class="headline font-weight-bold mb-3">
+          Talk to Server
+        </h2>
+
+        <v-row justify="center">
+          <v-btn @click="serverTalk()" color="success">{{ talkToServer.buttonText }}</v-btn>
+        </v-row>
+      </v-col>
+
+      <v-col
+        class="mb-5"
+        cols="12"
+      >
+        <p @change="serverTalk()" class="headline">{{ talkToServer.response }}</p>
+      </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+  import axios from 'axios'
+
   export default {
     name: 'HelloWorld',
-
     data: () => ({
+      talkToServer: {
+        buttonText: 'Speak',
+        response: 'No response yet',
+        error: null
+      },
       ecosystem: [
         {
           text: 'vuetify-loader',
@@ -147,5 +173,18 @@
         },
       ],
     }),
+    methods: {
+      serverTalk: function() {
+        axios
+          .get('http://localhost:3000/connectionCheck')
+          .then(response => {
+            alert(this.response);
+            this.talkToServer.response = JSON.stringify(this.response);
+          })
+          .catch(error => {
+            alert(this.response);
+          });
+      }
+    }
   }
 </script>
