@@ -175,7 +175,7 @@
     }),
     methods: {
       serverTalk: function() {
-        var serverResponse = this.getConnectionCheck()
+        this.getConnectionCheck()
           .then(data => {
             this.talkToServer.response = data;
           });
