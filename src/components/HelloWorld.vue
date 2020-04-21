@@ -171,18 +171,25 @@
           text: 'Frequently Asked Questions',
           href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
         },
-      ],
+      ]
     }),
     methods: {
       serverTalk: function() {
-        axios
+        var serverResponse = this.getConnectionCheck()
+          .then(data => {
+            this.talkToServer.response = data;
+          });
+      },
+      getConnectionCheck: function() {
+        return axios
           .get('http://localhost:3000/connectionCheck')
-          .then(response => {
-            console.log('response: ' + this.response);
-            this.talkToServer.response = this.response;
+          .then(function(response) {
+            return response.data;
           })
-          .catch(error => {
-            console.log('error: ' + this.error);
+          .catch(function(error) {
+            if (error.length > 0) {
+              console.log('error: ' + JSON.stringify(error));
+            }
           });
       }
     }
