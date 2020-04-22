@@ -1,0 +1,45 @@
+.loginColumn {
+    border-right: 1px solid black;
+}
+
+.signupColumn {
+    border-left: 1px solid black;
+}
+
+.landingTextBox {
+    color: black;
+    text-align: center;
+    border: 2px solid black;
+    height: 35px;
+    border-radius: 20px;
+    width: 50%;
+}
+
+.landingTextBox:focus {
+    border: 2px solid green;
+    height: 35px;
+    border-radius: 20px;
+    width: 50%;
+    outline: none;
+}
+
+.logsignButton {
+    width: 50%;
+    height: 35px;
+    border-radius: 20px;
+}
+
+::placeholder {
+    color: grey;
+    text-align: center;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+    supported by Chrome, Opera and Firefox */
+}

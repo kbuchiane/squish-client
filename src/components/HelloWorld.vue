@@ -10,102 +10,58 @@
         />
       </v-col>
 
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
+      <v-col class="mb-4" cols="12">
+        <h1 class="display-2 font-weight-bold mb-3 noselect">
           TOPCLIPS
         </h1>
-
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
-        </p>
       </v-col>
 
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          What's next?
+      <v-col class="mb-5 loginColumn" cols="6">
+        <h2 class="headline font-weight-bold mb-3 noselect">
+          Log In
         </h2>
+        <p></p>
 
         <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ next.text }}
-          </a>
+          <input v-model="userIdLogin" placeholder="Username or Email" class='landingTextBox'>
+        </v-row>
+        <p></p>
+        <v-row justify="center">
+          <input v-model="passwordLogin" placeholder="Password" class='landingTextBox'>
+        </v-row>
+        <p></p>
+        <v-row justify="center">
+          <v-btn color='green' class='logsignButton'>Log In</v-btn>
+        </v-row>
+        <p></p>
+        <v-row justify="center">
+          <v-btn color='orange' class='logsignButton'>Forgot Password</v-btn>
         </v-row>
       </v-col>
 
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
+      <v-col class="mb-5 signupColumn" cols="6">
+        <h2 class="headline font-weight-bold mb-3 noselect">
+          Sign Up
         </h2>
-
         <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
+          <input v-model="usernameSignup" placeholder="Username" class='landingTextBox'>
         </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
-
+        <p></p>
         <v-row justify="center">
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
+          <input v-model="emailSignup" placeholder="Email" class='landingTextBox'>
         </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Talk to Server
-        </h2>
-
+        <p></p>
         <v-row justify="center">
-          <v-btn @click="serverTalk()" color="success">{{ talkToServer.buttonText }}</v-btn>
+          <input v-model="passwordSignup" placeholder="Password" class='landingTextBox'>
         </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <p @change="serverTalk()" class="headline">{{ talkToServer.response }}</p>
+        <p></p>
+        <v-row justify="center">
+          <input v-model="passwordSignupConfirm" placeholder="Confirm Password" class='landingTextBox'>
+        </v-row>
+        <p></p>
+        <v-row justify="center">
+          <v-btn @click="serverTalk()" color='green' class='logsignButton'>Sign Up</v-btn>
+        </v-row>
       </v-col>
     </v-row>
   </v-container>
@@ -122,56 +78,6 @@
         response: 'No response yet',
         error: null
       },
-      ecosystem: [
-        {
-          text: 'vuetify-loader',
-          href: 'https://github.com/vuetifyjs/vuetify-loader',
-        },
-        {
-          text: 'github',
-          href: 'https://github.com/vuetifyjs/vuetify',
-        },
-        {
-          text: 'awesome-vuetify',
-          href: 'https://github.com/vuetifyjs/awesome-vuetify',
-        },
-      ],
-      importantLinks: [
-        {
-          text: 'Documentation',
-          href: 'https://vuetifyjs.com',
-        },
-        {
-          text: 'Chat',
-          href: 'https://community.vuetifyjs.com',
-        },
-        {
-          text: 'Made with Vuetify',
-          href: 'https://madewithvuejs.com/vuetify',
-        },
-        {
-          text: 'Twitter',
-          href: 'https://twitter.com/vuetifyjs',
-        },
-        {
-          text: 'Articles',
-          href: 'https://medium.com/vuetify',
-        },
-      ],
-      whatsNext: [
-        {
-          text: 'Explore components',
-          href: 'https://vuetifyjs.com/components/api-explorer',
-        },
-        {
-          text: 'Select a layout',
-          href: 'https://vuetifyjs.com/layout/pre-defined',
-        },
-        {
-          text: 'Frequently Asked Questions',
-          href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
-        },
-      ]
     }),
     methods: {
       serverTalk: function() {
@@ -195,3 +101,5 @@
     }
   }
 </script>
+
+<style scoped src='../assets/styles/landingPage.css'></style>
