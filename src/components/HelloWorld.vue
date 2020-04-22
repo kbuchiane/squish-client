@@ -56,11 +56,11 @@
         </v-row>
         <p></p>
         <v-row justify="center">
-          <input v-model="passwordSignupConfirm" placeholder="Confirm Password" class='landingTextBox'>
+          <input v-model="passwordConfirmSignup" placeholder="Confirm Password" class='landingTextBox'>
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn @click="serverTalk()" color='green' class='logsignButton'>Sign Up</v-btn>
+          <v-btn color='green' class='logsignButton'>Sign Up</v-btn>
         </v-row>
       </v-col>
     </v-row>
