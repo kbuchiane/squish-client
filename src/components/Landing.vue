@@ -35,7 +35,7 @@
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn color='orange' class='logsignButton'>Forgot Password</v-btn>
+          <v-btn @click='forgotPassword(userIdLogin)' color='orange' class='logsignButton'>Forgot Password</v-btn>
         </v-row>
       </v-col>
 
@@ -60,7 +60,7 @@
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn color='green' class='logsignButton'>Sign Up</v-btn>
+          <v-btn @click='signup(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup)' color='green' class='logsignButton'>Sign Up</v-btn>
         </v-row>
       </v-col>
     </v-row>
@@ -73,13 +73,15 @@
   export default {
     name: 'Landing',
     data: () => ({
+      serverUrl: 'http://localhost:3000',
       userIdLogin: '',
       passwordLogin: '',
       usernameSignup: '',
       emailSignup: '',
       passwordSignup: '',
       passwordConfirmSignup: '',
-      loginError: '',
+      loginMessage: '',
+      signupMessage: '',
       userData: {
         username: '',
         email: ''
@@ -88,21 +90,86 @@
     methods: {
       login: function(userIdLogin, passwordLogin) {
         if (userIdLogin.length <= 0) {
-          this.loginError = 'Please enter a username or email';
+          this.loginMessage = 'Please enter a username or email';
         } else if (passwordLogin.length < 6) {
-          this.loginError = 'Password was incorrect';
+          this.loginMessage = 'Password must be more than 6 characters';
         } else {
           this.serverLogin(userIdLogin, passwordLogin)
           .then(data => {
-            this.userData = data;
+            if (data.success) {
+              this.userData = data.userData;
+              console.log('success: ' + this.userData);
+            } else {
+              this.loginMessage = 'Incorrect login credentials';
+            }
           })
         }
       },
       serverLogin: function(username, password) {
         return axios
-          .get('http://localhost:3000/login', {
+          .get(this.serverUrl + '/login', {
             params: {
               username: username,
+              password: password
+            }
+          })
+          .then(function(response) {
+            return response.data;
+          });
+      },
+      forgotPassword: function(userId) {
+        if (userId.length <= 0) {
+          this.loginMessage = 'Please enter a username or email';
+        } else {
+          this.serverForgotPassword(userId)
+          .then(data => {
+            if (data.success) {
+              this.loginMessage = 'An email was sent to ' + data.emailForgot;
+              console.log('success: ' + data.emailForgot);
+            } else {
+              this.loginMessage = 'Username or email was incorrect';
+            }
+          })
+        }
+      },
+      serverForgotPassword: function(userIdForgot) {
+        return axios
+          .get(this.serverUrl + '/forgotPassword', {
+            params: {
+              userIdForgot: userIdForgot
+            }
+          })
+          .then(function(response) {
+            return response.data;
+          });
+      },
+      signup: function(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup) {
+        if (usernameSignup.length <= 0) {
+          this.signupMessage = 'Please enter a username';
+        } else if (emailSignup.length <= 0) {
+          this.signupMessage = 'Please enter an email';
+        } else if (passwordSignup.length < 6) {
+          this.signupMessage = 'Password must be more than 6 characters';
+        } else if (passwordSignup != passwordConfirmSignup) {
+          this.signupMessage = 'Passwords do not match, please try again';
+        } else {
+          this.serverSignup(usernameSignup, emailSignup, passwordSignup)
+          .then(data => {
+            if (data.success) {
+              this.userData = data.userData;
+              console.log('success: ' + this.userData);
+            } else {
+              this.signupMessage = 'There was an issue signing you up, please try again';
+            }
+          })
+        }
+      },
+      serverSignup: function(username, email, password) {
+        return axios
+          .get(this.serverUrl + '/signup', {
+            params: {
+              username: username,
+              email: email,
               password: password
             }
           })
