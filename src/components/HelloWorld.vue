@@ -31,7 +31,7 @@
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn color='green' class='logsignButton'>Log In</v-btn>
+          <v-btn @click='login(userIdLogin, passwordLogin)' color='green' class='logsignButton'>Log In</v-btn>
         </v-row>
         <p></p>
         <v-row justify="center">
@@ -73,29 +73,41 @@
   export default {
     name: 'HelloWorld',
     data: () => ({
-      talkToServer: {
-        buttonText: 'Speak',
-        response: 'No response yet',
-        error: null
-      },
+      userIdLogin: '',
+      passwordLogin: '',
+      usernameSignup: '',
+      emailSignup: '',
+      passwordSignup: '',
+      passwordConfirmSignup: '',
+      loginError: '',
+      userData: {
+        username: '',
+        email: ''
+      }
     }),
     methods: {
-      serverTalk: function() {
-        this.getConnectionCheck()
+      login: function(userIdLogin, passwordLogin) {
+        if (userIdLogin.length <= 0) {
+          this.loginError = 'Please enter a username or email';
+        } else if (passwordLogin.length < 6) {
+          this.loginError = 'Password was incorrect';
+        } else {
+          this.serverLogin(userIdLogin, passwordLogin)
           .then(data => {
-            this.talkToServer.response = data;
-          });
+            this.userData = data;
+          })
+        }
       },
-      getConnectionCheck: function() {
+      serverLogin: function(username, password) {
         return axios
-          .get('http://localhost:3000/connectionCheck')
+          .get('http://localhost:3000/login', {
+            params: {
+              username: username,
+              password: password
+            }
+          })
           .then(function(response) {
             return response.data;
-          })
-          .catch(function(error) {
-            if (error.length > 0) {
-              console.log('error: ' + JSON.stringify(error));
-            }
           });
       }
     }
