@@ -71,7 +71,7 @@
   import axios from 'axios'
 
   export default {
-    name: 'HelloWorld',
+    name: 'Landing',
     data: () => ({
       userIdLogin: '',
       passwordLogin: '',
@@ -114,4 +114,4 @@
   }
 </script>
 
-<style scoped src='../assets/styles/landingPage.css'></style>
+<style scoped src='../assets/styles/landing.css'></style>
