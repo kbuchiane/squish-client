@@ -29,6 +29,10 @@
     border-radius: 20px;
 }
 
+.landingMessage {
+    color: dodgerblue;
+}
+
 ::placeholder {
     color: grey;
     text-align: center;

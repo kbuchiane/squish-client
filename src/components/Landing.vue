@@ -37,6 +37,10 @@
         <v-row justify="center">
           <v-btn @click='forgotPassword(userIdLogin)' color='orange' class='logsignButton'>Forgot Password</v-btn>
         </v-row>
+        <p></p>
+        <v-row justify="center">
+          <p class="landingMessage">{{ loginMessage }}</p>
+        </v-row>
       </v-col>
 
       <v-col class="mb-5 signupColumn" cols="6">
@@ -61,6 +65,10 @@
         <p></p>
         <v-row justify="center">
           <v-btn @click='signup(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup)' color='green' class='logsignButton'>Sign Up</v-btn>
+        </v-row>
+        <p></p>
+        <v-row justify="center">
+          <p class="landingMessage">{{ signupMessage }}</p>
         </v-row>
       </v-col>
     </v-row>
@@ -98,7 +106,7 @@
           .then(data => {
             if (data.success) {
               this.userData = data.userData;
-              console.log('success: ' + this.userData);
+              this.loginMessage = this.userData;
             } else {
               this.loginMessage = 'Incorrect login credentials';
             }
@@ -125,7 +133,6 @@
           .then(data => {
             if (data.success) {
               this.loginMessage = 'An email was sent to ' + data.emailForgot;
-              console.log('success: ' + data.emailForgot);
             } else {
               this.loginMessage = 'Username or email was incorrect';
             }
@@ -157,7 +164,7 @@
           .then(data => {
             if (data.success) {
               this.userData = data.userData;
-              console.log('success: ' + this.userData);
+              this.signupMessage = this.userData;
             } else {
               this.signupMessage = 'There was an issue signing you up, please try again';
             }
