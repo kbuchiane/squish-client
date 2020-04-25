@@ -1,4 +1,4 @@
-# topclips client
+# Squish client
 
 ## Project setup
 ```

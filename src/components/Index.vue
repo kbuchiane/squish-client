@@ -6,7 +6,7 @@
       </v-col>
 
       <v-col class="mb-4" cols="12">
-        <h1 class="display-2 font-weight-bold mb-3 noselect">TOPCLIPS</h1>
+        <h1 class="display-2 font-weight-bold mb-3 noselect">Squish</h1>
       </v-col>
 
       <v-col class="mb-5 loginColumn" cols="6">
