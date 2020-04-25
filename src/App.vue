@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -26,26 +22,63 @@
       </div>
 
       <v-spacer></v-spacer>
+      <p
+        @userlogin="setUsername()"
+        @usersignup="setUsername()"
+        class="bannerUsername noselect"
+      >{{ userData.username }}</p>
+      <v-btn
+        v-if="userData.username.length > 0"
+        @click="logout()"
+        color="orange"
+        class="bannerLogoutButton"
+      >Log Out</v-btn>
     </v-app-bar>
 
     <v-content>
-      <Landing/>
+      <Index @updateUsername="updateUsername" />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Landing from './components/Landing';
+import Index from "./components/Index";
+import axios from "axios";
 
 export default {
-  name: 'App',
-
+  name: "App",
   components: {
-    Landing,
+    Index
   },
-
   data: () => ({
-    //
+    serverUrl: "http://localhost:3000",
+    userData: {
+      username: "",
+      email: ""
+    }
   }),
+  methods: {
+    updateUsername: function(username) {
+      this.userData.username = username;
+    },
+    logout: function() {
+      this.serverLogout(this.userData.username).then(data => {
+        this.userData.username = "";
+      });
+    },
+    serverLogout: function(username) {
+      return axios
+        .get(this.serverUrl + "/logout", {
+          params: {
+            username: username
+          }
+        })
+        .then(function(response) {
+          return response.data;
+        });
+    }
+  }
 };
 </script>
+
+<style scoped src='./assets/styles/app.css'></style>
