@@ -25,13 +25,18 @@
       <p
         @userlogin="setUsername()"
         @usersignup="setUsername()"
-        class="bannerUsername"
+        class="bannerUsername noselect"
       >{{ userData.username }}</p>
-      <v-btn @click="logout()" color="orange" class="bannerLogoutButton">Log Out</v-btn>
+      <v-btn
+        v-if="userData.username.length > 0"
+        @click="logout()"
+        color="orange"
+        class="bannerLogoutButton"
+      >Log Out</v-btn>
     </v-app-bar>
 
     <v-content>
-      <Index />
+      <Index @updateUsername="updateUsername" />
     </v-content>
   </v-app>
 </template>
@@ -48,11 +53,14 @@ export default {
   data: () => ({
     serverUrl: "http://localhost:3000",
     userData: {
-      username: "username",
+      username: "",
       email: ""
     }
   }),
   methods: {
+    updateUsername: function(username) {
+      this.userData.username = username;
+    },
     logout: function() {
       this.serverLogout(this.userData.username).then(data => {
         this.userData.username = "";

@@ -38,7 +38,7 @@
         </v-row>
         <p></p>
         <v-row justify="center">
-          <p class="indexMessage">{{ loginMessage }}</p>
+          <p class="indexMessage noselect">{{ loginMessage }}</p>
         </v-row>
       </v-col>
 
@@ -73,7 +73,7 @@
         </v-row>
         <p></p>
         <v-row justify="center">
-          <p class="indexMessage">{{ signupMessage }}</p>
+          <p class="indexMessage noselect">{{ signupMessage }}</p>
         </v-row>
       </v-col>
     </v-row>
@@ -110,6 +110,7 @@ export default {
         this.serverLogin(userIdLogin, passwordLogin).then(data => {
           if (data.success) {
             this.userData = data.userData;
+            this.$emit("updateUsername", this.userData.username);
             this.loginMessage = this.userData.username + " logged in";
           } else {
             this.loginMessage = "Incorrect login credentials";
