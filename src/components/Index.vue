@@ -173,6 +173,7 @@ export default {
           data => {
             if (data.success) {
               this.userData = data.userData;
+              this.$emit("updateUsername", this.userData.username);
               this.signupMessage = this.userData.username + " logged in";
             } else {
               this.signupMessage =

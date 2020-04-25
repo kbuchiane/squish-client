@@ -22,11 +22,7 @@
       </div>
 
       <v-spacer></v-spacer>
-      <p
-        @userlogin="setUsername()"
-        @usersignup="setUsername()"
-        class="bannerUsername noselect"
-      >{{ userData.username }}</p>
+      <p class="bannerUsername noselect">{{ userData.username }}</p>
       <v-btn
         v-if="userData.username.length > 0"
         @click="logout()"
