@@ -94,11 +94,7 @@ export default {
     passwordSignup: "",
     passwordConfirmSignup: "",
     loginMessage: "",
-    signupMessage: "",
-    userData: {
-      username: "",
-      email: ""
-    }
+    signupMessage: ""
   }),
   methods: {
     login: function(userIdLogin, passwordLogin) {
@@ -109,9 +105,8 @@ export default {
       } else {
         this.serverLogin(userIdLogin, passwordLogin).then(data => {
           if (data.success) {
-            this.userData = data.userData;
-            this.$emit("updateUsername", this.userData.username);
-            this.loginMessage = this.userData.username + " logged in";
+            this.$emit("updateUsername", data.user.username);
+            this.clearEntriesOnLogIn();
           } else {
             this.loginMessage = "Incorrect login credentials";
           }
@@ -172,9 +167,8 @@ export default {
         this.serverSignup(usernameSignup, emailSignup, passwordSignup).then(
           data => {
             if (data.success) {
-              this.userData = data.userData;
-              this.$emit("updateUsername", this.userData.username);
-              this.signupMessage = this.userData.username + " logged in";
+              this.$emit("updateUsername", data.user.username);
+              this.clearEntriesOnLogIn();
             } else {
               this.signupMessage =
                 "There was an issue signing you up, please try again";
@@ -195,6 +189,16 @@ export default {
         .then(function(response) {
           return response.data;
         });
+    },
+    clearEntriesOnLogIn: function() {
+      this. userIdLogin = "";
+      this.passwordLogin = "";
+      this.usernameSignup = "";
+      this.emailSignup = "";
+      this.passwordSignup = "";
+      this.passwordConfirmSignup = "";
+      this.loginMessage = "";
+      this.signupMessage = "";
     }
   }
 };

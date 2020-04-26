@@ -22,9 +22,9 @@
       </div>
 
       <v-spacer></v-spacer>
-      <p class="bannerUsername noselect">{{ userData.username }}</p>
+      <p class="bannerUsername noselect">{{ user.username }}</p>
       <v-btn
-        v-if="userData.username.length > 0"
+        v-if="user.username.length > 0"
         @click="logout()"
         color="orange"
         class="bannerLogoutButton"
@@ -48,18 +48,21 @@ export default {
   },
   data: () => ({
     serverUrl: "http://localhost:3000",
-    userData: {
+    user: {
       username: "",
-      email: ""
+      email: "",
+      userIcon: ''
     }
   }),
   methods: {
     updateUsername: function(username) {
-      this.userData.username = username;
+      this.user.username = username;
     },
     logout: function() {
-      this.serverLogout(this.userData.username).then(data => {
-        this.userData.username = "";
+      this.serverLogout(this.user.username).then(data => {
+        if (data.success) {
+          this.clearUserData();
+        }
       });
     },
     serverLogout: function(username) {
@@ -72,6 +75,11 @@ export default {
         .then(function(response) {
           return response.data;
         });
+    },
+    clearUserData: function() {
+      this.user.username = "";
+      this.user.email = "";
+      this.user.userIcon = "";
     }
   }
 };
