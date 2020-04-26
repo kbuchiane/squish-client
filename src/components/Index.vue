@@ -191,7 +191,7 @@ export default {
         });
     },
     clearEntriesOnLogIn: function() {
-      this. userIdLogin = "";
+      this.userIdLogin = "";
       this.passwordLogin = "";
       this.usernameSignup = "";
       this.emailSignup = "";

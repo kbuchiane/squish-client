@@ -50,8 +50,35 @@ export default {
     serverUrl: "http://localhost:3000",
     user: {
       username: "",
-      email: "",
-      userIcon: ''
+      icon: "",
+      usersFollowing: [],
+      gamesFollowing: []
+    },
+    clip: {
+      username: "",
+      video: "",
+      title: "",
+      gameTitle: "",
+      duration: "",
+      dateCreated: "",
+      thumbnail: "",
+      viewCount: "",
+      likes: [],
+      comments: []
+    },
+    comment: {
+      username: "",
+      text: "",
+      dateCreated: "",
+      likes: [],
+      comments: []
+    },
+    like: {
+      username: ""
+    },
+    game: {
+      title: "",
+      icon: ""
     }
   }),
   methods: {
@@ -78,8 +105,9 @@ export default {
     },
     clearUserData: function() {
       this.user.username = "";
-      this.user.email = "";
       this.user.userIcon = "";
+      this.usersFollowing = [];
+      this.gamesFollowing = [];
     }
   }
 };
