@@ -106,7 +106,7 @@ export default {
         this.serverLogin(userIdLogin, passwordLogin).then(data => {
           if (data.success) {
             this.$emit("updateUsername", data.user.username);
-            this.clearEntriesOnLogIn();
+            this.clearEntries();
           } else {
             this.loginMessage = "Incorrect login credentials";
           }
@@ -164,17 +164,20 @@ export default {
       } else if (passwordSignup != passwordConfirmSignup) {
         this.signupMessage = "Passwords do not match, please try again";
       } else {
-        this.serverSignup(usernameSignup, emailSignup, passwordSignup).then(
-          data => {
-            if (data.success) {
-              this.$emit("updateUsername", data.user.username);
-              this.clearEntriesOnLogIn();
-            } else {
-              this.signupMessage =
-                "There was an issue signing you up, please try again";
-            }
+        this.serverSignup(
+          usernameSignup,
+          emailSignup,
+          passwordSignup
+        ).then(data => {
+          if (data.success) {
+            // this.$emit("updateUsername", data.user.username);
+            this.clearEntries();
+            this.signupMessage = data.message;
+          } else {
+            this.signupMessage =
+              "There was an issue signing you up, please try again";
           }
-        );
+        });
       }
     },
     serverSignup: function(username, email, password) {
@@ -190,7 +193,7 @@ export default {
           return response.data;
         });
     },
-    clearEntriesOnLogIn: function() {
+    clearEntries: function() {
       this.userIdLogin = "";
       this.passwordLogin = "";
       this.usernameSignup = "";
