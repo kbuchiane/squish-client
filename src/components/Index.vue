@@ -100,6 +100,8 @@ export default {
     login: function(userIdLogin, passwordLogin) {
       if (userIdLogin.length <= 0) {
         this.loginMessage = "Please enter a username or email";
+      } else if (/\s/.test(userIdLogin)) {
+        this.loginMessage = "Username can not include spaces";
       } else if (passwordLogin.length < 6) {
         this.loginMessage = "Password must be more than 6 characters";
       } else {
@@ -108,7 +110,7 @@ export default {
             this.$emit("updateUsername", data.user.username);
             this.clearEntries();
           } else {
-            this.loginMessage = "Incorrect login credentials";
+            this.loginMessage = data.message;
           }
         });
       }
@@ -128,6 +130,8 @@ export default {
     forgotPassword: function(userId) {
       if (userId.length <= 0) {
         this.loginMessage = "Please enter a username or email";
+      } else if (/\s/.test(userId)) {
+        this.loginMessage = "Username or email can not include spaces";
       } else {
         this.serverForgotPassword(userId).then(data => {
           if (data.success) {
@@ -157,27 +161,28 @@ export default {
     ) {
       if (usernameSignup.length <= 0) {
         this.signupMessage = "Please enter a username";
+      } else if (/\s/.test(usernameSignup)) {
+        this.signupMessage = "Username can not include spaces";
       } else if (emailSignup.length <= 0) {
         this.signupMessage = "Please enter an email";
+      } else if (/\s/.test(emailSignup)) {
+        this.signupMessage = "Email can not include spaces";
       } else if (passwordSignup.length < 6) {
         this.signupMessage = "Password must be more than 6 characters";
       } else if (passwordSignup != passwordConfirmSignup) {
         this.signupMessage = "Passwords do not match, please try again";
       } else {
-        this.serverSignup(
-          usernameSignup,
-          emailSignup,
-          passwordSignup
-        ).then(data => {
-          if (data.success) {
-            // this.$emit("updateUsername", data.user.username);
-            this.clearEntries();
-            this.signupMessage = data.message;
-          } else {
-            this.signupMessage =
-              "There was an issue signing you up, please try again";
+        this.serverSignup(usernameSignup, emailSignup, passwordSignup).then(
+          data => {
+            if (data.success) {
+              // this.$emit("updateUsername", data.user.username);
+              this.clearEntries();
+              this.signupMessage = data.message;
+            } else {
+              this.signupMessage = data.message;
+            }
           }
-        });
+        );
       }
     },
     serverSignup: function(username, email, password) {
