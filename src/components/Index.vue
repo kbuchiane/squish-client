@@ -43,38 +43,84 @@
       </v-col>
 
       <v-col class="mb-5 signupColumn" cols="6">
-        <h2 class="headline font-weight-bold mb-3 noselect">Sign Up</h2>
-        <v-row justify="center">
-          <input v-model="usernameSignup" placeholder="Username" class="indexTextBox" />
-        </v-row>
-        <p></p>
-        <v-row justify="center">
-          <input v-model="emailSignup" placeholder="Email" class="indexTextBox" />
-        </v-row>
-        <p></p>
-        <v-row justify="center">
-          <input v-model="passwordSignup" placeholder="Password" class="indexTextBox" />
-        </v-row>
-        <p></p>
-        <v-row justify="center">
-          <input
-            v-model="passwordConfirmSignup"
-            placeholder="Confirm Password"
-            class="indexTextBox"
-          />
-        </v-row>
-        <p></p>
-        <v-row justify="center">
-          <v-btn
-            @click="signup(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup)"
-            color="green"
-            class="logsignButton"
-          >Sign Up</v-btn>
-        </v-row>
-        <p></p>
-        <v-row justify="center">
-          <p class="indexMessage noselect">{{ signupMessage }}</p>
-        </v-row>
+        <div v-if="!verifyStep">
+          <h2 class="headline font-weight-bold mb-3 noselect">Sign Up</h2>
+          <p></p>
+          <v-row justify="center">
+            <input v-model="usernameSignup" placeholder="Username" class="indexTextBox" />
+          </v-row>
+          <p></p>
+          <v-row justify="center">
+            <input v-model="emailSignup" placeholder="Email" class="indexTextBox" />
+          </v-row>
+          <p></p>
+          <v-row justify="center">
+            <input v-model="passwordSignup" placeholder="Password" class="indexTextBox" />
+          </v-row>
+          <p></p>
+          <v-row justify="center">
+            <input
+              v-model="passwordConfirmSignup"
+              placeholder="Confirm Password"
+              class="indexTextBox"
+            />
+          </v-row>
+          <p></p>
+          <v-row justify="center">
+            <v-btn
+              @click="signup(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup)"
+              color="green"
+              class="logsignButton"
+            >Sign Up</v-btn>
+          </v-row>
+          <p></p>
+          <v-row justify="center">
+            <v-btn
+              @click="verifyStep = true; verificationCode = ''"
+              color="orange"
+              class="logsignButton"
+            >I Already Have a Verification Code</v-btn>
+          </v-row>
+          <p></p>
+          <v-row justify="center">
+            <p class="indexMessage noselect">{{ signupMessage }}</p>
+          </v-row>
+        </div>
+        <div v-if="verifyStep">
+          <h2 class="headline font-weight-bold mb-3 noselect">Verify Email</h2>
+          <p></p>
+          <v-row justify="center">
+            <input v-model="emailSignup" placeholder="Email" class="indexTextBox" />
+          </v-row>
+          <p></p>
+          <v-row justify="center">
+            <input v-model="verificationCode" placeholder="Verification Code" class="indexTextBox" />
+          </v-row>
+          <p></p>
+          <v-row justify="center">
+            <v-btn
+              @click="confirmUser(emailSignup, verificationCode)"
+              color="green"
+              class="logsignButton"
+            >Verify</v-btn>
+          </v-row>
+          <p></p>
+          <v-row justify="center">
+            <v-btn
+              @click="resendCode(emailSignup, verificationCode)"
+              color="orange"
+              class="logsignButton"
+            >Resend Code</v-btn>
+          </v-row>
+          <p></p>
+          <v-row justify="center">
+            <v-btn @click="verifyStep = false" color="blue" class="logsignButton">Back To Sign Up</v-btn>
+          </v-row>
+          <p></p>
+          <v-row justify="center">
+            <p class="indexMessage noselect">{{ verifyMessage }}</p>
+          </v-row>
+        </div>
       </v-col>
     </v-row>
   </v-container>
@@ -94,7 +140,10 @@ export default {
     passwordSignup: "",
     passwordConfirmSignup: "",
     loginMessage: "",
-    signupMessage: ""
+    signupMessage: "",
+    verifyStep: false,
+    verifyMessage: "",
+    verificationCode: ""
   }),
   methods: {
     login: function(userIdLogin, passwordLogin) {
@@ -175,9 +224,10 @@ export default {
         this.serverSignup(usernameSignup, emailSignup, passwordSignup).then(
           data => {
             if (data.success) {
-              // this.$emit("updateUsername", data.user.username);
+              this.verifyMessage = data.message;
+              this.verifyStep = true;
+              this.verificationCode = "";
               this.clearEntries();
-              this.signupMessage = data.message;
             } else {
               this.signupMessage = data.message;
             }
@@ -198,15 +248,50 @@ export default {
           return response.data;
         });
     },
+    confirmUser: function(emailSignup, verificationCode) {
+      if (emailSignup.length <= 0) {
+        this.verifyMessage = "Please enter an email to be verified";
+      } else if (/\s/.test(emailSignup)) {
+        this.verifyMessage = "Email can not include spaces";
+      } else if (verificationCode.length != 8) {
+        this.verifyMessage = "Verification code should be 8 characters";
+      } else {
+        this.serverConfirmUser(emailSignup, verificationCode).then(data => {
+          if (data.success) {
+            this.clearAllEntries();
+            this.$emit("updateUsername", data.user.username);
+          } else {
+            this.signupMessage = data.message;
+          }
+        });
+      }
+    },
+    serverConfirmUser: function(email, verificationCode) {
+      return axios
+        .get(this.serverUrl + "/signup/confirmUser", {
+          params: {
+            email: email,
+            confirmId: verificationCode
+          }
+        })
+        .then(function(response) {
+          return response.data;
+        });
+    },
     clearEntries: function() {
       this.userIdLogin = "";
       this.passwordLogin = "";
       this.usernameSignup = "";
-      this.emailSignup = "";
       this.passwordSignup = "";
       this.passwordConfirmSignup = "";
       this.loginMessage = "";
       this.signupMessage = "";
+    },
+    clearAllEntries: function() {
+      this.clearEntries();
+      this.emailSignup = "";
+      this.verifyMessage = "";
+      this.verificationCode = "";
     }
   }
 };

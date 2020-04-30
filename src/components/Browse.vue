@@ -1,4 +1,7 @@
 <template>
+  <v-container>
+    Hello
+  </v-container>
 </template>
 
 <script>
@@ -12,4 +15,4 @@ export default {
 };
 </script>
 
-<style scoped src='./assets/styles/browse.css'></style>
+<style scoped src='../assets/styles/browse.css'></style>

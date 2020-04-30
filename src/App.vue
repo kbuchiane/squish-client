@@ -32,19 +32,24 @@
     </v-app-bar>
 
     <v-content>
-      <Index @updateUsername="updateUsername" />
+      <Index v-if="user.username.length <= 0" @updateUsername="updateUsername"/>
+    </v-content>
+    <v-content>
+      <Browse v-if="user.username.length > 0"/>
     </v-content>
   </v-app>
 </template>
 
 <script>
 import Index from "./components/Index";
+import Browse from "./components/Browse";
 import axios from "axios";
 
 export default {
   name: "App",
   components: {
-    Index
+    Index,
+    Browse
   },
   data: () => ({
     serverUrl: "http://localhost:3000",
