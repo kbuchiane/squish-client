@@ -259,7 +259,7 @@ export default {
         this.serverConfirmUser(emailSignup, verificationCode).then(data => {
           if (data.success) {
             this.clearAllEntries();
-            this.$emit("updateUsername", data.user.username);
+            this.$emit("updateUsername", data.message);
           } else {
             this.signupMessage = data.message;
           }
