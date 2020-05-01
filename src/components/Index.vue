@@ -261,7 +261,7 @@ export default {
             this.clearAllEntries();
             this.$emit("updateUsername", data.message);
           } else {
-            this.signupMessage = data.message;
+            this.verifyMessage = data.message;
           }
         });
       }
