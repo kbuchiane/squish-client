@@ -106,11 +106,7 @@
           </v-row>
           <p></p>
           <v-row justify="center">
-            <v-btn
-              @click="resendCode(emailSignup, verificationCode)"
-              color="orange"
-              class="logsignButton"
-            >Resend Code</v-btn>
+            <v-btn @click="resendCode(emailSignup)" color="orange" class="logsignButton">Resend Code</v-btn>
           </v-row>
           <p></p>
           <v-row justify="center">
@@ -272,6 +268,33 @@ export default {
           params: {
             email: email,
             confirmId: verificationCode
+          }
+        })
+        .then(function(response) {
+          return response.data;
+        });
+    },
+    resendCode: function(emailSignup) {
+      if (emailSignup.length <= 0) {
+        this.verifyMessage = "Please enter an email to be verified";
+      } else if (/\s/.test(emailSignup)) {
+        this.verifyMessage = "Email can not include spaces";
+      } else {
+        this.serverResendCode(emailSignup).then(data => {
+          if (data.success) {
+            this.clearEntries();
+            this.verifyMessage = data.message;
+          } else {
+            this.verifyMessage = data.message;
+          }
+        });
+      }
+    },
+    serverResendCode: function(email) {
+      return axios
+        .get(this.serverUrl + "/signup/resendCode", {
+          params: {
+            email: email
           }
         })
         .then(function(response) {
