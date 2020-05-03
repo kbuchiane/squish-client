@@ -14,11 +14,11 @@
         <p></p>
 
         <v-row justify="center">
-          <input v-model="userIdLogin" placeholder="Username or Email" class="indexTextBox" />
+          <input v-model="userIdLogin" placeholder="Username or Email" class="logSignTextBox" />
         </v-row>
         <p></p>
         <v-row justify="center">
-          <input v-model="passwordLogin" placeholder="Password" class="indexTextBox" />
+          <input v-model="passwordLogin" placeholder="Password" class="logSignTextBox" />
         </v-row>
         <p></p>
         <v-row justify="center">
@@ -38,7 +38,7 @@
         </v-row>
         <p></p>
         <v-row justify="center">
-          <p class="indexMessage noselect">{{ loginMessage }}</p>
+          <p class="logSignMessage noselect">{{ loginMessage }}</p>
         </v-row>
       </v-col>
 
@@ -47,22 +47,22 @@
           <h2 class="headline font-weight-bold mb-3 noselect">Sign Up</h2>
           <p></p>
           <v-row justify="center">
-            <input v-model="usernameSignup" placeholder="Username" class="indexTextBox" />
+            <input v-model="usernameSignup" placeholder="Username" class="logSignTextBox" />
           </v-row>
           <p></p>
           <v-row justify="center">
-            <input v-model="emailSignup" placeholder="Email" class="indexTextBox" />
+            <input v-model="emailSignup" placeholder="Email" class="logSignTextBox" />
           </v-row>
           <p></p>
           <v-row justify="center">
-            <input v-model="passwordSignup" placeholder="Password" class="indexTextBox" />
+            <input v-model="passwordSignup" placeholder="Password" class="logSignTextBox" />
           </v-row>
           <p></p>
           <v-row justify="center">
             <input
               v-model="passwordConfirmSignup"
               placeholder="Confirm Password"
-              class="indexTextBox"
+              class="logSignTextBox"
             />
           </v-row>
           <p></p>
@@ -83,18 +83,18 @@
           </v-row>
           <p></p>
           <v-row justify="center">
-            <p class="indexMessage noselect">{{ signupMessage }}</p>
+            <p class="logSignMessage noselect">{{ signupMessage }}</p>
           </v-row>
         </div>
         <div v-if="verifyStep">
           <h2 class="headline font-weight-bold mb-3 noselect">Verify Email</h2>
           <p></p>
           <v-row justify="center">
-            <input v-model="emailSignup" placeholder="Email" class="indexTextBox" />
+            <input v-model="emailSignup" placeholder="Email" class="logSignTextBox" />
           </v-row>
           <p></p>
           <v-row justify="center">
-            <input v-model="verificationCode" placeholder="Verification Code" class="indexTextBox" />
+            <input v-model="verificationCode" placeholder="Verification Code" class="logSignTextBox" />
           </v-row>
           <p></p>
           <v-row justify="center">
@@ -114,7 +114,7 @@
           </v-row>
           <p></p>
           <v-row justify="center">
-            <p class="indexMessage noselect">{{ verifyMessage }}</p>
+            <p class="logSignMessage noselect">{{ verifyMessage }}</p>
           </v-row>
         </div>
       </v-col>
@@ -126,7 +126,7 @@
 import axios from "axios";
 
 export default {
-  name: "Index",
+  name: "LoginSignup",
   data: () => ({
     serverUrl: "http://localhost:3000",
     userIdLogin: "",
@@ -320,4 +320,4 @@ export default {
 };
 </script>
 
-<style scoped src='../assets/styles/index.css'></style>
+<style scoped src='../assets/styles/loginSignup.css'></style>

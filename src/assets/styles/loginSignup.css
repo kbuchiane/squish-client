@@ -6,7 +6,7 @@
     border-left: 1px solid black;
 }
 
-.indexTextBox {
+.logSignTextBox {
     color: black;
     text-align: center;
     border: 2px solid black;
@@ -15,7 +15,7 @@
     width: 50%;
 }
 
-.indexTextBox:focus {
+.logSignTextBox:focus {
     border: 2px solid green;
     height: 35px;
     border-radius: 20px;
@@ -29,7 +29,7 @@
     border-radius: 20px;
 }
 
-.indexMessage {
+.logSignMessage {
     color: dodgerblue;
     width: 50%;
 }
