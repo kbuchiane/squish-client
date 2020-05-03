@@ -78,13 +78,13 @@ export default {
           return response.data;
         });
     },
-    forgotPassword: function(userId) {
-      if (userId.length <= 0) {
+    forgotPassword: function(userIdForgot) {
+      if (userIdForgot.length <= 0) {
         this.loginMessage = "Please enter a username or email";
-      } else if (/\s/.test(userId)) {
+      } else if (/\s/.test(userIdForgot)) {
         this.loginMessage = "Username or email can not include spaces";
       } else {
-        this.serverForgotPassword(userId).then(data => {
+        this.serverForgotPassword(userIdForgot).then(data => {
           if (data.success) {
             this.loginMessage = "An email was sent to " + data.emailForgot;
           } else {

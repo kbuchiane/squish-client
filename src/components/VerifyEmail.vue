@@ -80,7 +80,7 @@ export default {
     },
     resendCode: function(verifyEmail) {
       if (verifyEmail.length <= 0) {
-        this.verifyMessage = "Please enter an email to be verified";
+        this.verifyMessage = "Please enter an email to get a new code";
       } else if (/\s/.test(verifyEmail)) {
         this.verifyMessage = "Email can not include spaces";
       } else {
