@@ -33,7 +33,11 @@
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn color="orange" class="logsignButton">I Already Have a Verification Code</v-btn>
+          <v-btn
+            to="/verifyEmail"
+            color="orange"
+            class="logsignButton"
+          >I Already Have a Verification Code</v-btn>
         </v-row>
         <p></p>
         <v-row justify="center">

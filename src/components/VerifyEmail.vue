@@ -25,7 +25,7 @@
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn color="blue" class="logsignButton">Back To Sign Up</v-btn>
+          <v-btn to="/signup" color="blue" class="logsignButton">Back To Sign Up</v-btn>
         </v-row>
         <p></p>
         <v-row justify="center">
