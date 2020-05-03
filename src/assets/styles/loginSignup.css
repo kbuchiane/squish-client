@@ -1,9 +1,5 @@
-.loginColumn {
-    border-right: 1px solid black;
-}
-
-.signupColumn {
-    border-left: 1px solid black;
+.logSignColumn {
+    margin-top: 50px;
 }
 
 .logSignTextBox {
@@ -12,26 +8,26 @@
     border: 2px solid black;
     height: 35px;
     border-radius: 20px;
-    width: 50%;
+    width: 450px;
 }
 
 .logSignTextBox:focus {
     border: 2px solid green;
     height: 35px;
     border-radius: 20px;
-    width: 50%;
+    width: 450px;
     outline: none;
 }
 
 .logsignButton {
-    width: 50%;
+    width: 450px;
     height: 35px;
     border-radius: 20px;
 }
 
 .logSignMessage {
     color: dodgerblue;
-    width: 50%;
+    width: 450px;
 }
 
 ::placeholder {

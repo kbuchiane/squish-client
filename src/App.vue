@@ -32,7 +32,7 @@
     </v-app-bar>
 
     <v-content>
-      <LoginSignup v-if="user.username.length <= 0" @updateUsername="updateUsername"/>
+      <Signup v-if="user.username.length <= 0" @updateUsername="updateUsername"/>
     </v-content>
     <v-content>
       <Browse v-if="user.username.length > 0"/>
@@ -41,14 +41,18 @@
 </template>
 
 <script>
-import LoginSignup from "./components/LoginSignup";
+import Signup from "./components/Signup";
+import VerifyEmail from "./components/VerifyEmail";
+import Login from "./components/Login";
 import Browse from "./components/Browse";
 import axios from "axios";
 
 export default {
   name: "App",
   components: {
-    LoginSignup,
+    Signup,
+    VerifyEmail,
+    Login,
     Browse
   },
   data: () => ({
