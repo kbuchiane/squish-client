@@ -58,8 +58,8 @@ export default {
       } else {
         this.serverLogin(userIdLogin, passwordLogin).then(data => {
           if (data.success) {
-            this.$emit("updateUsername", data.user.username);
             this.clearEntries();
+            this.$emit("userLogin", data.user.username);
           } else {
             this.loginMessage = data.message;
           }

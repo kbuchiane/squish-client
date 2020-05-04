@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app v-on:userLogin="userLogin($event)">
     <v-app-bar app color="green" dark>
       <router-link to="/browse" class="d-flex align-center">
         <v-img
@@ -32,7 +32,7 @@
       </div>
     </v-app-bar>
 
-    <router-view/>
+    <router-view />
   </v-app>
 </template>
 
@@ -88,7 +88,7 @@ export default {
     }
   }),
   methods: {
-    updateUsername: function(username) {
+    userLogin: function(username) {
       this.user.loggedIn = true;
       this.user.username = username;
     },
