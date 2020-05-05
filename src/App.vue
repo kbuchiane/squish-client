@@ -32,6 +32,7 @@
       </div>
     </v-app-bar>
 
+    <!-- Event listeners from child components -->
     <router-view
       @userLogin="setUserLogin"
       @userVerify="setUserVerify"
