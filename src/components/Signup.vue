@@ -92,6 +92,8 @@ export default {
         this.signupMessage = "Please enter a username";
       } else if (/\s/.test(usernameSignup)) {
         this.signupMessage = "Username can not include spaces";
+      } else if (!/^[a-z0-9]+$/i.test(usernameSignup)) {
+        this.signupMessage = "Username can not include special characters";
       } else if (emailSignup.length <= 0) {
         this.signupMessage = "Please enter an email";
       } else if (/\s/.test(emailSignup)) {
