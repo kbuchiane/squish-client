@@ -71,7 +71,7 @@ export default {
           if (data.success) {
             this.clearEntries();
             this.$emit("userLogin", data.message);
-            this.$router.push("Browse");
+            this.$router.push("browse");
           } else {
             this.verify.message = data.message;
           }
