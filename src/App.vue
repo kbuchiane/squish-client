@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
+    <v-app-bar app color="green" dark>
+      <router-link to="/browse" class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
           class="shrink mr-2"
@@ -19,45 +19,55 @@
           src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
           width="100"
         />
-      </div>
+      </router-link>
 
       <v-spacer></v-spacer>
-      <p class="bannerUsername noselect">{{ user.username }}</p>
-      <v-btn
-        v-if="user.username.length > 0"
-        @click="logout()"
-        color="orange"
-        class="bannerLogoutButton"
-      >Log Out</v-btn>
+      <div v-if="user.loggedIn" class="bannerOptions">
+        <p class="bannerUsername noselect">{{ user.username }}</p>
+        <v-btn @click="logout()" color="orange" class="bannerLogoutButton">Log Out</v-btn>
+      </div>
+      <div v-if="!user.loggedIn" class="bannerOptions">
+        <v-btn to="/login" color="blue" class="bannerLoginButton">Log In</v-btn>
+        <v-btn to="/signup" color="orange" class="bannerSignupButton">Sign Up</v-btn>
+      </div>
     </v-app-bar>
 
-    <v-content>
-      <Index v-if="user.username.length <= 0" @updateUsername="updateUsername"/>
-    </v-content>
-    <v-content>
-      <Browse v-if="user.username.length > 0"/>
-    </v-content>
+    <router-view
+      @userLogin="setUserLogin"
+      @userVerify="setUserVerify"
+      @clearVerify="clearVerify"
+      :verify="verify"
+    />
   </v-app>
 </template>
 
 <script>
-import Index from "./components/Index";
 import Browse from "./components/Browse";
+import Signup from "./components/Signup";
+import VerifyEmail from "./components/VerifyEmail";
+import Login from "./components/Login";
 import axios from "axios";
 
 export default {
   name: "App",
   components: {
-    Index,
-    Browse
+    Browse,
+    Signup,
+    VerifyEmail,
+    Login
   },
   data: () => ({
     serverUrl: "http://localhost:3000",
     user: {
+      loggedIn: false,
       username: "",
       icon: "",
       usersFollowing: [],
       gamesFollowing: []
+    },
+    verify: {
+      email: "",
+      message: ""
     },
     clip: {
       username: "",
@@ -87,8 +97,17 @@ export default {
     }
   }),
   methods: {
-    updateUsername: function(username) {
+    setUserLogin: function(username) {
+      this.user.loggedIn = true;
       this.user.username = username;
+    },
+    setUserVerify: function(verifyData) {
+      this.verify.email = verifyData.email;
+      this.verify.message = verifyData.message;
+    },
+    clearVerify: function() {
+      this.verify.email = "";
+      this.verify.message = "";
     },
     logout: function() {
       this.serverLogout(this.user.username).then(data => {
@@ -109,6 +128,7 @@ export default {
         });
     },
     clearUserData: function() {
+      this.user.loggedIn = false;
       this.user.username = "";
       this.user.userIcon = "";
       this.usersFollowing = [];
