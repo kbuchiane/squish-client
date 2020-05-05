@@ -27,7 +27,7 @@ export default new Router({
             component: Signup
         },
         {
-            path: '/verifyEmail',
+            path: '/verifyemail',
             name: 'VerifyEmail',
             component: VerifyEmail
         },
