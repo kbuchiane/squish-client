@@ -32,7 +32,7 @@
       </div>
     </v-app-bar>
 
-    <router-view @userLogin="setUserLogin" @userVerify="setUserVerify" />
+    <router-view @userLogin="setUserLogin" @userVerify="setUserVerify" :verify="verify" />
   </v-app>
 </template>
 
