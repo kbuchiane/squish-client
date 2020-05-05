@@ -5,16 +5,27 @@
         <h2 class="headline font-weight-bold mb-3 noselect">Sign Up</h2>
         <p></p>
         <v-row justify="center">
-          <input v-model="usernameSignup" placeholder="Username" class="logSignTextBox" />
+          <input
+            v-model="usernameSignup"
+            v-on:keyup.enter="signup(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup)"
+            placeholder="Username"
+            class="logSignTextBox"
+          />
         </v-row>
         <p></p>
         <v-row justify="center">
-          <input v-model="emailSignup" placeholder="Email" class="logSignTextBox" />
+          <input
+            v-model="emailSignup"
+            v-on:keyup.enter="signup(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup)"
+            placeholder="Email"
+            class="logSignTextBox"
+          />
         </v-row>
         <p></p>
         <v-row justify="center">
           <input
             v-model="passwordSignup"
+            v-on:keyup.enter="signup(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup)"
             placeholder="Password"
             class="logSignTextBox"
             type="password"
@@ -24,6 +35,7 @@
         <v-row justify="center">
           <input
             v-model="passwordConfirmSignup"
+            v-on:keyup.enter="signup(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup)"
             placeholder="Confirm Password"
             class="logSignTextBox"
             type="password"

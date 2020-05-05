@@ -5,11 +5,21 @@
         <h2 class="headline font-weight-bold mb-3 noselect">Verify Email</h2>
         <p></p>
         <v-row justify="center">
-          <input v-model="verify.email" placeholder="Email" class="logSignTextBox" />
+          <input
+            v-model="verify.email"
+            v-on:keyup.enter="confirmUser(verify.email, verifyCode)"
+            placeholder="Email"
+            class="logSignTextBox"
+          />
         </v-row>
         <p></p>
         <v-row justify="center">
-          <input v-model="verifyCode" placeholder="Verification Code" class="logSignTextBox" />
+          <input
+            v-model="verifyCode"
+            v-on:keyup.enter="confirmUser(verify.email, verifyCode)"
+            placeholder="Verification Code"
+            class="logSignTextBox"
+          />
         </v-row>
         <p></p>
         <v-row justify="center">

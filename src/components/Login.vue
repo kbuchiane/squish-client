@@ -5,12 +5,18 @@
         <h2 class="headline font-weight-bold mb-3 noselect">Log In</h2>
         <p></p>
         <v-row justify="center">
-          <input v-model="userIdLogin" placeholder="Username or Email" class="logSignTextBox" />
+          <input
+            v-model="userIdLogin"
+            v-on:keyup.enter="login(userIdLogin, passwordLogin)"
+            placeholder="Username or Email"
+            class="logSignTextBox"
+          />
         </v-row>
         <p></p>
         <v-row justify="center">
           <input
             v-model="passwordLogin"
+            v-on:keyup.enter="login(userIdLogin, passwordLogin)"
             placeholder="Password"
             class="logSignTextBox"
             type="password"
