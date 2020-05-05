@@ -60,6 +60,7 @@ export default {
           if (data.success) {
             this.clearEntries();
             this.$emit("userLogin", data.user.username);
+            this.$router.push("Browse");
           } else {
             this.loginMessage = data.message;
           }

@@ -10,6 +10,12 @@ Vue.use(Router);
 export default new Router({
     routes: [
         {
+            path: '/',
+            redirect: {
+                name: "Browse"
+            }
+        },
+        {
             path: '/browse',
             name: 'Browse',
             component: Browse

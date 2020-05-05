@@ -85,6 +85,14 @@ export default {
           data => {
             if (data.success) {
               this.clearEntries();
+
+              var verifyData = {
+                email: emailSignup,
+                message: data.message
+              };
+
+              this.$emit("userVerify", verifyData);
+              this.$router.push("VerifyEmail");
             } else {
               this.signupMessage = data.message;
             }

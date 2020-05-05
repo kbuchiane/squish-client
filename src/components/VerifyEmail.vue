@@ -47,6 +47,7 @@ export default {
     verifyCode: "",
     verifyMessage: ""
   }),
+  props: ["verify"],
   methods: {
     confirmUser: function(verifyEmail, verifyCode) {
       if (verifyEmail.length <= 0) {
@@ -59,7 +60,8 @@ export default {
         this.serverConfirmUser(verifyEmail, verifyCode).then(data => {
           if (data.success) {
             this.clearEntries();
-            this.$emit("updateUsername", data.message);
+            this.$emit("userLogin", data.message);
+            this.$router.push("Browse");
           } else {
             this.verifyMessage = data.message;
           }

@@ -1,5 +1,5 @@
 <template>
-  <v-app v-on:userLogin="userLogin($event)">
+  <v-app>
     <v-app-bar app color="green" dark>
       <router-link to="/browse" class="d-flex align-center">
         <v-img
@@ -32,7 +32,7 @@
       </div>
     </v-app-bar>
 
-    <router-view />
+    <router-view @userLogin="setUserLogin" @userVerify="setUserVerify" />
   </v-app>
 </template>
 
@@ -59,6 +59,10 @@ export default {
       icon: "",
       usersFollowing: [],
       gamesFollowing: []
+    },
+    verify: {
+      email: "",
+      message: ""
     },
     clip: {
       username: "",
@@ -88,9 +92,13 @@ export default {
     }
   }),
   methods: {
-    userLogin: function(username) {
+    setUserLogin: function(username) {
       this.user.loggedIn = true;
       this.user.username = username;
+    },
+    setUserVerify: function(verifyData) {
+      this.verify.email = verifyData.email;
+      this.verify.message = verifyData.message;
     },
     logout: function() {
       this.serverLogout(this.user.username).then(data => {
