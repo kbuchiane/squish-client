@@ -122,7 +122,7 @@ export default {
     },
     backToSignup: function() {
       this.clearEntries();
-      this.$router.push("Signup");
+      this.$router.push("signup");
     }
   }
 };
