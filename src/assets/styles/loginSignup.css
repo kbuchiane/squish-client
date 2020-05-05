@@ -1,0 +1,46 @@
+.logSignColumn {
+    margin-top: 100px;
+}
+
+.logSignTextBox {
+    color: black;
+    text-align: center;
+    border: 2px solid black;
+    height: 35px;
+    border-radius: 20px;
+    width: 450px;
+}
+
+.logSignTextBox:focus {
+    border: 2px solid green;
+    height: 35px;
+    border-radius: 20px;
+    width: 450px;
+    outline: none;
+}
+
+.logsignButton {
+    width: 450px;
+    height: 35px;
+    border-radius: 20px;
+}
+
+.logSignMessage {
+    color: dodgerblue;
+    width: 450px;
+}
+
+::placeholder {
+    color: grey;
+    text-align: center;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+    supported by Chrome, Opera and Firefox */
+}
