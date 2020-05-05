@@ -13,7 +13,12 @@
         </v-row>
         <p></p>
         <v-row justify="center">
-          <input v-model="passwordSignup" placeholder="Password" class="logSignTextBox" />
+          <input
+            v-model="passwordSignup"
+            placeholder="Password"
+            class="logSignTextBox"
+            type="password"
+          />
         </v-row>
         <p></p>
         <v-row justify="center">
@@ -21,6 +26,7 @@
             v-model="passwordConfirmSignup"
             placeholder="Confirm Password"
             class="logSignTextBox"
+            type="password"
           />
         </v-row>
         <p></p>

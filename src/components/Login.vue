@@ -9,7 +9,12 @@
         </v-row>
         <p></p>
         <v-row justify="center">
-          <input v-model="passwordLogin" placeholder="Password" class="logSignTextBox" />
+          <input
+            v-model="passwordLogin"
+            placeholder="Password"
+            class="logSignTextBox"
+            type="password"
+          />
         </v-row>
         <p></p>
         <v-row justify="center">
