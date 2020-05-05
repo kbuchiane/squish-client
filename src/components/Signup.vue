@@ -34,7 +34,7 @@
         <p></p>
         <v-row justify="center">
           <v-btn
-            to="/verifyEmail"
+            to="/verifyemail"
             color="orange"
             class="logsignButton"
           >I Already Have a Verification Code</v-btn>
@@ -92,7 +92,7 @@ export default {
               };
 
               this.$emit("userVerify", verifyData);
-              this.$router.push("VerifyEmail");
+              this.$router.push("verifyemail");
             } else {
               this.signupMessage = data.message;
             }
