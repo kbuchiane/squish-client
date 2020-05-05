@@ -71,7 +71,7 @@ export default {
         this.serverLogin(userIdLogin, passwordLogin).then(data => {
           if (data.success) {
             this.clearEntries();
-            this.$emit("userLogin", data.user.username);
+            this.$emit("userLogin", data.message);
             this.$router.push("browse");
           } else {
             this.loginMessage = data.message;
@@ -79,11 +79,11 @@ export default {
         });
       }
     },
-    serverLogin: function(username, password) {
+    serverLogin: function(userId, password) {
       return axios
         .get(this.serverUrl + "/login", {
           params: {
-            username: username,
+            userId: userId,
             password: password
           }
         })
