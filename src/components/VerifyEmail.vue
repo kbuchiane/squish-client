@@ -5,7 +5,7 @@
         <h2 class="headline font-weight-bold mb-3 noselect">Verify Email</h2>
         <p></p>
         <v-row justify="center">
-          <input v-model="verifyEmail" placeholder="Email" class="logSignTextBox" />
+          <input v-model="verify.email" placeholder="Email" class="logSignTextBox" />
         </v-row>
         <p></p>
         <v-row justify="center">
@@ -14,22 +14,22 @@
         <p></p>
         <v-row justify="center">
           <v-btn
-            @click="confirmUser(verifyEmail, verifyCode)"
+            @click="confirmUser(verify.email, verifyCode)"
             color="green"
             class="logsignButton"
           >Verify</v-btn>
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn @click="resendCode(verifyEmail)" color="orange" class="logsignButton">Resend Code</v-btn>
+          <v-btn @click="resendCode(verify.email)" color="orange" class="logsignButton">Resend Code</v-btn>
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn to="/signup" color="blue" class="logsignButton">Back To Sign Up</v-btn>
+          <v-btn @click="backToSignup()" color="blue" class="logsignButton">Back To Sign Up</v-btn>
         </v-row>
         <p></p>
         <v-row justify="center">
-          <p class="logSignMessage noselect">{{ verifyMessage }}</p>
+          <p class="logSignMessage noselect">{{ verify.message }}</p>
         </v-row>
       </v-col>
     </v-row>
@@ -43,19 +43,17 @@ export default {
   name: "VerifyEmail",
   data: () => ({
     serverUrl: "http://localhost:3000",
-    verifyEmail: "",
-    verifyCode: "",
-    verifyMessage: ""
+    verifyCode: ""
   }),
   props: ["verify"],
   methods: {
     confirmUser: function(verifyEmail, verifyCode) {
       if (verifyEmail.length <= 0) {
-        this.verifyMessage = "Please enter an email to be verified";
+        this.verify.message = "Please enter an email to be verified";
       } else if (/\s/.test(verifyEmail)) {
-        this.verifyMessage = "Email can not include spaces";
+        this.verify.message = "Email can not include spaces";
       } else if (verifyCode.length != 8) {
-        this.verifyMessage = "Verification code should be 8 characters";
+        this.verify.message = "Verification code should be 8 characters";
       } else {
         this.serverConfirmUser(verifyEmail, verifyCode).then(data => {
           if (data.success) {
@@ -63,7 +61,7 @@ export default {
             this.$emit("userLogin", data.message);
             this.$router.push("Browse");
           } else {
-            this.verifyMessage = data.message;
+            this.verify.message = data.message;
           }
         });
       }
@@ -82,15 +80,15 @@ export default {
     },
     resendCode: function(verifyEmail) {
       if (verifyEmail.length <= 0) {
-        this.verifyMessage = "Please enter an email to get a new code";
+        this.verify.message = "Please enter an email to get a new code";
       } else if (/\s/.test(verifyEmail)) {
-        this.verifyMessage = "Email can not include spaces";
+        this.verify.message = "Email can not include spaces";
       } else {
         this.serverResendCode(verifyEmail).then(data => {
           if (data.success) {
-            this.verifyMessage = data.message;
+            this.verify.message = data.message;
           } else {
-            this.verifyMessage = data.message;
+            this.verify.message = data.message;
           }
         });
       }
@@ -107,9 +105,12 @@ export default {
         });
     },
     clearEntries: function() {
-      this.verifyEmail = "";
       this.verifyCode = "";
-      this.verifyMessage = "";
+      this.$emit("clearVerify");
+    },
+    backToSignup: function() {
+      this.clearEntries();
+      this.$router.push("Signup");
     }
   }
 };

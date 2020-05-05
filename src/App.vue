@@ -32,7 +32,12 @@
       </div>
     </v-app-bar>
 
-    <router-view @userLogin="setUserLogin" @userVerify="setUserVerify" :verify="verify" />
+    <router-view
+      @userLogin="setUserLogin"
+      @userVerify="setUserVerify"
+      @clearVerify="clearVerify"
+      :verify="verify"
+    />
   </v-app>
 </template>
 
@@ -99,6 +104,10 @@ export default {
     setUserVerify: function(verifyData) {
       this.verify.email = verifyData.email;
       this.verify.message = verifyData.message;
+    },
+    clearVerify: function() {
+      this.verify.email = "";
+      this.verify.message = "";
     },
     logout: function() {
       this.serverLogout(this.user.username).then(data => {
