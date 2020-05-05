@@ -60,6 +60,7 @@ export default {
   }),
   methods: {
     login: function(userIdLogin, passwordLogin) {
+      userIdLogin = userIdLogin.trim();
       if (userIdLogin.length <= 0) {
         this.loginMessage = "Please enter a username or email";
       } else if (/\s/.test(userIdLogin)) {

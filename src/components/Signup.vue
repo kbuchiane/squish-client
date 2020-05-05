@@ -86,6 +86,8 @@ export default {
       passwordSignup,
       passwordConfirmSignup
     ) {
+      usernameSignup = usernameSignup.trim();
+      emailSignup = emailSignup.trim();
       if (usernameSignup.length <= 0) {
         this.signupMessage = "Please enter a username";
       } else if (/\s/.test(usernameSignup)) {

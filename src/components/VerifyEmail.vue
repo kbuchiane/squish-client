@@ -58,6 +58,8 @@ export default {
   props: ["verify"],
   methods: {
     confirmUser: function(verifyEmail, verifyCode) {
+      verifyEmail = verifyEmail.trim();
+      verifyCode = verifyCode.trim();
       if (verifyEmail.length <= 0) {
         this.verify.message = "Please enter an email to be verified";
       } else if (/\s/.test(verifyEmail)) {
