@@ -82,8 +82,8 @@ export default {
     },
     serverConfirmUser: function(email, verifyCode) {
       return axios
-        .get(this.serverUrl + "/signup/confirmUser", {
-          params: {
+        .post(this.serverUrl + "/signup/confirmUser", {
+          auth: {
             email: email,
             confirmId: verifyCode
           }
@@ -109,8 +109,8 @@ export default {
     },
     serverResendCode: function(email) {
       return axios
-        .get(this.serverUrl + "/signup/resendCode", {
-          params: {
+        .post(this.serverUrl + "/signup/resendCode", {
+          auth: {
             email: email
           }
         })

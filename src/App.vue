@@ -119,8 +119,8 @@ export default {
     },
     serverLogout: function(username) {
       return axios
-        .get(this.serverUrl + "/logout", {
-          params: {
+        .post(this.serverUrl + "/logout", {
+          auth: {
             username: username
           }
         })

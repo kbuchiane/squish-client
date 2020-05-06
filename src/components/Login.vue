@@ -83,8 +83,8 @@ export default {
     },
     serverLogin: function(userId, password) {
       return axios
-        .get(this.serverUrl + "/login", {
-          params: {
+        .post(this.serverUrl + "/login", {
+          auth: {
             userId: userId,
             password: password
           }
@@ -110,8 +110,8 @@ export default {
     },
     serverForgotPassword: function(userIdForgot) {
       return axios
-        .get(this.serverUrl + "/forgotPassword", {
-          params: {
+        .post(this.serverUrl + "/forgotPassword", {
+          auth: {
             userIdForgot: userIdForgot
           }
         })

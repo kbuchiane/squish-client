@@ -128,8 +128,8 @@ export default {
     },
     serverSignup: function(username, email, password) {
       return axios
-        .get(this.serverUrl + "/signup", {
-          params: {
+        .post(this.serverUrl + "/signup", {
+          auth: {
             username: username,
             email: email,
             password: password
