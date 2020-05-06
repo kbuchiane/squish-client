@@ -94,10 +94,14 @@ export default {
         this.signupMessage = "Username can not include spaces";
       } else if (!/^[a-z0-9]+$/i.test(usernameSignup)) {
         this.signupMessage = "Username can not include special characters";
+      } else if (usernameSignup.length > 45) {
+        this.signupMessage = "Username can not exceed 45 characters";
       } else if (emailSignup.length <= 0) {
         this.signupMessage = "Please enter an email";
       } else if (/\s/.test(emailSignup)) {
         this.signupMessage = "Email can not include spaces";
+      } else if (emailSignup.length > 255) {
+        this.signupMessage = "Email can not exceed 255 characters";
       } else if (passwordSignup.length < 6) {
         this.signupMessage = "Password must be more than 6 characters";
       } else if (passwordSignup != passwordConfirmSignup) {

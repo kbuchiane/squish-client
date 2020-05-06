@@ -64,6 +64,8 @@ export default {
         this.verify.message = "Please enter an email to be verified";
       } else if (/\s/.test(verifyEmail)) {
         this.verify.message = "Email can not include spaces";
+      } else if (verifyEmail.length > 255) {
+        this.verify.message = "Email can not exceed 255 characters";
       } else if (verifyCode.length != 8) {
         this.verify.message = "Verification code should be 8 characters";
       } else {

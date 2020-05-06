@@ -65,6 +65,8 @@ export default {
         this.loginMessage = "Please enter a username or email";
       } else if (/\s/.test(userIdLogin)) {
         this.loginMessage = "Username can not include spaces";
+      } else if (userIdLogin.length > 255) {
+        this.loginMessage = "Email can not exceed 255 characters";
       } else if (passwordLogin.length < 6) {
         this.loginMessage = "Password must be more than 6 characters";
       } else {
