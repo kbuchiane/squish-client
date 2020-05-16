@@ -59,18 +59,18 @@ export default {
     loginMessage: ""
   }),
   methods: {
-    login: function(userIdLogin, passwordLogin) {
-      userIdLogin = userIdLogin.trim();
-      if (userIdLogin.length <= 0) {
-        this.loginMessage = "Please enter a username or email";
-      } else if (/\s/.test(userIdLogin)) {
-        this.loginMessage = "Username can not include spaces";
-      } else if (userIdLogin.length > 255) {
-        this.loginMessage = "Email can not exceed 255 characters";
-      } else if (passwordLogin.length < 6) {
+    login: function(userId, password) {
+      userId = userId.trim();
+      if (userId.length <= 0) {
+        this.loginMessage = "Please enter an email or username";
+      } else if (/\s/.test(userId)) {
+        this.loginMessage = "Email or username can not include spaces";
+      } else if (userId.length > 255) {
+        this.loginMessage = "Email or username can not exceed 255 characters";
+      } else if (password.length < 6) {
         this.loginMessage = "Password must be more than 6 characters";
       } else {
-        this.serverLogin(userIdLogin, passwordLogin).then(data => {
+        this.serverLogin(userId, password).then(data => {
           if (data.success) {
             this.clearEntries();
             this.$emit("userLogin", data.message);
@@ -93,26 +93,26 @@ export default {
           return response.data;
         });
     },
-    forgotPassword: function(userIdForgot) {
-      if (userIdForgot.length <= 0) {
-        this.loginMessage = "Please enter a username or email";
-      } else if (/\s/.test(userIdForgot)) {
-        this.loginMessage = "Username or email can not include spaces";
+    forgotPassword: function(userId) {
+      if (userId.length <= 0) {
+        this.loginMessage = "Please enter an email or username";
+      } else if (/\s/.test(userId)) {
+        this.loginMessage = "Email or username can not include spaces";
       } else {
-        this.serverForgotPassword(userIdForgot).then(data => {
+        this.serverForgotPassword(userId).then(data => {
           if (data.success) {
             this.loginMessage = "An email was sent to " + data.emailForgot;
           } else {
-            this.loginMessage = "Username or email was incorrect";
+            this.loginMessage = "Email or username was incorrect";
           }
         });
       }
     },
-    serverForgotPassword: function(userIdForgot) {
+    serverForgotPassword: function(userId) {
       return axios
         .post(this.serverUrl + "/forgotPassword", {
           auth: {
-            userIdForgot: userIdForgot
+            userId: userId
           }
         })
         .then(function(response) {

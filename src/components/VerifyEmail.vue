@@ -57,19 +57,19 @@ export default {
   }),
   props: ["verify"],
   methods: {
-    confirmUser: function(verifyEmail, verifyCode) {
-      verifyEmail = verifyEmail.trim();
+    confirmUser: function(email, verifyCode) {
+      email = email.trim();
       verifyCode = verifyCode.trim();
-      if (verifyEmail.length <= 0) {
+      if (email.length <= 0) {
         this.verify.message = "Please enter an email to be verified";
-      } else if (/\s/.test(verifyEmail)) {
+      } else if (/\s/.test(email)) {
         this.verify.message = "Email can not include spaces";
-      } else if (verifyEmail.length > 255) {
+      } else if (email.length > 255) {
         this.verify.message = "Email can not exceed 255 characters";
       } else if (verifyCode.length != 8) {
-        this.verify.message = "Verification code should be 8 characters";
+        this.verify.message = "Verification code must be 8 characters";
       } else {
-        this.serverConfirmUser(verifyEmail, verifyCode).then(data => {
+        this.serverConfirmUser(email, verifyCode).then(data => {
           if (data.success) {
             this.clearEntries();
             this.$emit("userLogin", data.message);
@@ -92,13 +92,13 @@ export default {
           return response.data;
         });
     },
-    resendCode: function(verifyEmail) {
-      if (verifyEmail.length <= 0) {
+    resendCode: function(email) {
+      if (email.length <= 0) {
         this.verify.message = "Please enter an email to get a new code";
-      } else if (/\s/.test(verifyEmail)) {
+      } else if (/\s/.test(email)) {
         this.verify.message = "Email can not include spaces";
       } else {
-        this.serverResendCode(verifyEmail).then(data => {
+        this.serverResendCode(email).then(data => {
           if (data.success) {
             this.verify.message = data.message;
           } else {

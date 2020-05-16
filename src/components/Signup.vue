@@ -80,50 +80,43 @@ export default {
     signupMessage: ""
   }),
   methods: {
-    signup: function(
-      usernameSignup,
-      emailSignup,
-      passwordSignup,
-      passwordConfirmSignup
-    ) {
-      usernameSignup = usernameSignup.trim();
-      emailSignup = emailSignup.trim();
-      if (usernameSignup.length <= 0) {
+    signup: function(username, email, password, passwordConfirm) {
+      username = username.trim();
+      email = email.trim();
+      if (username.length <= 0) {
         this.signupMessage = "Please enter a username";
-      } else if (/\s/.test(usernameSignup)) {
+      } else if (/\s/.test(username)) {
         this.signupMessage = "Username can not include spaces";
-      } else if (!/^[a-z0-9]+$/i.test(usernameSignup)) {
+      } else if (!/^[a-z0-9]+$/i.test(username)) {
         this.signupMessage = "Username can not include special characters";
-      } else if (usernameSignup.length > 45) {
+      } else if (username.length > 45) {
         this.signupMessage = "Username can not exceed 45 characters";
-      } else if (emailSignup.length <= 0) {
+      } else if (email.length <= 0) {
         this.signupMessage = "Please enter an email";
-      } else if (/\s/.test(emailSignup)) {
+      } else if (/\s/.test(email)) {
         this.signupMessage = "Email can not include spaces";
-      } else if (emailSignup.length > 255) {
+      } else if (email.length > 255) {
         this.signupMessage = "Email can not exceed 255 characters";
-      } else if (passwordSignup.length < 6) {
+      } else if (password.length < 6) {
         this.signupMessage = "Password must be more than 6 characters";
-      } else if (passwordSignup != passwordConfirmSignup) {
+      } else if (password != passwordConfirm) {
         this.signupMessage = "Passwords do not match, please try again";
       } else {
-        this.serverSignup(usernameSignup, emailSignup, passwordSignup).then(
-          data => {
-            if (data.success) {
-              this.clearEntries();
+        this.serverSignup(username, email, password).then(data => {
+          if (data.success) {
+            this.clearEntries();
 
-              var verifyData = {
-                email: emailSignup,
-                message: data.message
-              };
+            var verifyData = {
+              email: email,
+              message: data.message
+            };
 
-              this.$emit("userVerify", verifyData);
-              this.$router.push("verifyemail");
-            } else {
-              this.signupMessage = data.message;
-            }
+            this.$emit("userVerify", verifyData);
+            this.$router.push("verifyemail");
+          } else {
+            this.signupMessage = data.message;
           }
-        );
+        });
       }
     },
     serverSignup: function(username, email, password) {
