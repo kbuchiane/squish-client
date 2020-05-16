@@ -48,6 +48,7 @@ import Signup from "./components/Signup";
 import VerifyEmail from "./components/VerifyEmail";
 import Login from "./components/Login";
 import axios from "axios";
+import privateConfig from "./config/private.config";
 
 export default {
   name: "App",
@@ -58,7 +59,7 @@ export default {
     Login
   },
   data: () => ({
-    serverUrl: "http://localhost:3000",
+    serverUrl: privateConfig.SERVER_URL,
     user: {
       loggedIn: false,
       username: "",

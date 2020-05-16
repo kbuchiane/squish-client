@@ -48,11 +48,12 @@
 
 <script>
 import axios from "axios";
+import privateConfig from "./config/private.config";
 
 export default {
   name: "VerifyEmail",
   data: () => ({
-    serverUrl: "http://localhost:3000",
+    serverUrl: privateConfig.SERVER_URL,
     verifyCode: ""
   }),
   props: ["verify"],
