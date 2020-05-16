@@ -49,7 +49,7 @@
 
 <script>
 import axios from "axios";
-import privateConfig from "./config/private.config";
+import privateConfig from "../config/private.config";
 
 export default {
   name: "Login",
