@@ -103,19 +103,19 @@ export default {
       } else if (password != passwordConfirm) {
         this.signupMessage = "Passwords do not match, please try again";
       } else {
-        this.serverSignup(username, email, password).then(data => {
-          if (data.success) {
+        this.serverSignup(username, email, password).then(response => {
+          if (response.status === 200) {
             this.clearEntries();
 
             var verifyData = {
               email: email,
-              message: data.message
+              message: response.data.message
             };
 
             this.$emit("userVerify", verifyData);
             this.$router.push("verifyemail");
           } else {
-            this.signupMessage = data.message;
+            this.signupMessage = response.data.message;
           }
         });
       }
@@ -130,7 +130,7 @@ export default {
           }
         })
         .then(function(response) {
-          return response.data;
+          return response;
         });
     },
     clearEntries: function() {

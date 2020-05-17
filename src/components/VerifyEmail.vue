@@ -70,13 +70,19 @@ export default {
       } else if (verifyCode.length != 8) {
         this.verify.message = "Verification code must be 8 characters";
       } else {
-        this.serverConfirmUser(email, verifyCode).then(data => {
-          if (data.success) {
-            this.clearEntries();
-            this.$emit("userLogin", data.message);
-            this.$router.push("browse");
+        this.serverConfirmUser(email, verifyCode).then(response => {
+          if (response.status === 200) {
+            if (response.data.accessToken) {
+              localStorage.setItem("user", JSON.stringify(response.data));
+
+              this.clearEntries();
+              this.$emit("userLogin", response.data.message);
+              this.$router.push("browse");
+            } else {
+              this.verify.message = "Unable to verify code, please try again";
+            }
           } else {
-            this.verify.message = data.message;
+            this.verify.message = response.data.message;
           }
         });
       }
@@ -90,7 +96,7 @@ export default {
           }
         })
         .then(function(response) {
-          return response.data;
+          return response;
         });
     },
     resendCode: function(email) {
@@ -99,12 +105,8 @@ export default {
       } else if (/\s/.test(email)) {
         this.verify.message = "Email can not include spaces";
       } else {
-        this.serverResendCode(email).then(data => {
-          if (data.success) {
-            this.verify.message = data.message;
-          } else {
-            this.verify.message = data.message;
-          }
+        this.serverResendCode(email).then(response => {
+          this.verify.message = response.data.message;
         });
       }
     },
@@ -116,7 +118,7 @@ export default {
           }
         })
         .then(function(response) {
-          return response.data;
+          return response;
         });
     },
     clearEntries: function() {

@@ -71,13 +71,19 @@ export default {
       } else if (password.length < 6) {
         this.loginMessage = "Password must be more than 6 characters";
       } else {
-        this.serverLogin(userId, password).then(data => {
-          if (data.success) {
-            this.clearEntries();
-            this.$emit("userLogin", data.message);
-            this.$router.push("browse");
+        this.serverLogin(userId, password).then(response => {
+          if (response.status === 200) {
+            if (response.data.accessToken) {
+              localStorage.setItem("user", JSON.stringify(response.data));
+
+              this.clearEntries();
+              this.$emit("userLogin", response.data.message);
+              this.$router.push("browse");
+            } else {
+              this.loginMessage = "Unable to log in, please try again";
+            }
           } else {
-            this.loginMessage = data.message;
+            this.loginMessage = response.data.message;
           }
         });
       }
@@ -91,7 +97,7 @@ export default {
           }
         })
         .then(function(response) {
-          return response.data;
+          return response;
         });
     },
     forgotPassword: function(userId) {
@@ -100,9 +106,9 @@ export default {
       } else if (/\s/.test(userId)) {
         this.loginMessage = "Email or username can not include spaces";
       } else {
-        this.serverForgotPassword(userId).then(data => {
-          if (data.success) {
-            this.loginMessage = "An email was sent to " + data.emailForgot;
+        this.serverForgotPassword(userId).then(response => {
+          if (response.status === 200) {
+            this.loginMessage = "An email was sent to " + response.data.message;
           } else {
             this.loginMessage = "Email or username was incorrect";
           }
@@ -117,7 +123,7 @@ export default {
           }
         })
         .then(function(response) {
-          return response.data;
+          return response;
         });
     },
     clearEntries: function() {

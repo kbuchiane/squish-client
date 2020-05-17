@@ -112,8 +112,9 @@ export default {
       this.verify.message = "";
     },
     logout: function() {
-      this.serverLogout(this.user.username).then(data => {
-        if (data.success) {
+      this.serverLogout(this.user.username).then(response => {
+        if (response.status === 200) {
+          localStorage.removeItem("user");
           this.clearUserData();
         }
       });
@@ -126,7 +127,7 @@ export default {
           }
         })
         .then(function(response) {
-          return response.data;
+          return response;
         });
     },
     clearUserData: function() {
