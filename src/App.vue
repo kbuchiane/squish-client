@@ -128,6 +128,8 @@ export default {
         })
         .then(function(response) {
           return response;
+        }).catch(error => {
+          return error.response;
         });
     },
     clearUserData: function() {

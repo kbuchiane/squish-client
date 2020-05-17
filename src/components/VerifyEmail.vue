@@ -97,6 +97,9 @@ export default {
         })
         .then(function(response) {
           return response;
+        })
+        .catch(error => {
+          return error.response;
         });
     },
     resendCode: function(email) {
@@ -119,6 +122,8 @@ export default {
         })
         .then(function(response) {
           return response;
+        }).catch(error => {
+          return error.response;
         });
     },
     clearEntries: function() {

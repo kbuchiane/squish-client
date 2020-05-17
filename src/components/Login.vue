@@ -98,6 +98,8 @@ export default {
         })
         .then(function(response) {
           return response;
+        }).catch(error => {
+          return error.response;
         });
     },
     forgotPassword: function(userId) {
@@ -124,6 +126,8 @@ export default {
         })
         .then(function(response) {
           return response;
+        }).catch(error => {
+          return error.response;
         });
     },
     clearEntries: function() {
