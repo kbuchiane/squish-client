@@ -125,10 +125,15 @@ export default {
           auth: {
             username: username
           }
+        }, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("user")
+          }
         })
         .then(function(response) {
           return response;
-        }).catch(error => {
+        })
+        .catch(error => {
           return error.response;
         });
     },

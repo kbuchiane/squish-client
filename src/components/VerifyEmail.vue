@@ -10,6 +10,7 @@
             v-on:keyup.enter="confirmUser(verify.email, verifyCode)"
             placeholder="Email"
             class="logSignTextBox"
+            type="email"
           />
         </v-row>
         <p></p>

@@ -19,6 +19,7 @@
             v-on:keyup.enter="signup(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup)"
             placeholder="Email"
             class="logSignTextBox"
+            type="email"
           />
         </v-row>
         <p></p>
@@ -131,7 +132,8 @@ export default {
         })
         .then(function(response) {
           return response;
-        }).catch(error => {
+        })
+        .catch(error => {
           return error.response;
         });
     },
