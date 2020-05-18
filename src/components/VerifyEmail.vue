@@ -76,7 +76,7 @@ export default {
               localStorage.setItem("user", JSON.stringify(response.data));
 
               this.clearEntries();
-              this.$emit("userLogin", response.data.message);
+              this.$emit("userLogin", response.data.username);
               this.$router.push("browse");
             } else {
               this.verify.message = "Unable to verify code, please try again";
@@ -122,7 +122,8 @@ export default {
         })
         .then(function(response) {
           return response;
-        }).catch(error => {
+        })
+        .catch(error => {
           return error.response;
         });
     },

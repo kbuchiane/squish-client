@@ -77,7 +77,7 @@ export default {
               localStorage.setItem("user", JSON.stringify(response.data));
 
               this.clearEntries();
-              this.$emit("userLogin", response.data.message);
+              this.$emit("userLogin", response.data.username);
               this.$router.push("browse");
             } else {
               this.loginMessage = "Unable to log in, please try again";
@@ -98,7 +98,8 @@ export default {
         })
         .then(function(response) {
           return response;
-        }).catch(error => {
+        })
+        .catch(error => {
           return error.response;
         });
     },
@@ -126,7 +127,8 @@ export default {
         })
         .then(function(response) {
           return response;
-        }).catch(error => {
+        })
+        .catch(error => {
           return error.response;
         });
     },
