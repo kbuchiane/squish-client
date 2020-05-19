@@ -62,6 +62,7 @@ export default {
     serverUrl: privateConfig.SERVER_URL,
     user: {
       loggedIn: false,
+      jwtToken: "",
       username: "",
       icon: "",
       usersFollowing: [],
@@ -99,8 +100,9 @@ export default {
     }
   }),
   methods: {
-    setUserLogin: function(username) {
+    setUserLogin: function(token, username) {
       this.user.loggedIn = true;
+      this.user.jwtToken = token;
       this.user.username = username;
     },
     setUserVerify: function(verifyData) {
@@ -113,23 +115,24 @@ export default {
     },
     logout: function() {
       this.serverLogout(this.user.username).then(response => {
-        if (response.status === 200) {
-          localStorage.removeItem("user");
-          this.clearUserData();
-        }
+        this.clearUserData();
       });
     },
     serverLogout: function(username) {
       return axios
-        .post(this.serverUrl + "/logout", {
-          auth: {
-            username: username
+        .post(
+          this.serverUrl + "/logout",
+          {
+            auth: {
+              username: username
+            }
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + this.user.jwtToken
+            }
           }
-        }, {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("user")
-          }
-        })
+        )
         .then(function(response) {
           return response;
         })
@@ -139,6 +142,7 @@ export default {
     },
     clearUserData: function() {
       this.user.loggedIn = false;
+      this.user.jwtToken = "";
       this.user.username = "";
       this.user.userIcon = "";
       this.usersFollowing = [];

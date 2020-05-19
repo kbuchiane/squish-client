@@ -74,10 +74,13 @@ export default {
         this.serverConfirmUser(email, verifyCode).then(response => {
           if (response.status === 200) {
             if (response.data.accessToken) {
-              localStorage.setItem("user", JSON.stringify(response.data));
-
               this.clearEntries();
-              this.$emit("userLogin", response.data.username);
+              this.$emit(
+                "userLogin",
+                response.data.accessToken,
+                response.data.username
+              );
+
               this.$router.push("browse");
             } else {
               this.verify.message = "Unable to verify code, please try again";

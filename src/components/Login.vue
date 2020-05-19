@@ -74,10 +74,13 @@ export default {
         this.serverLogin(userId, password).then(response => {
           if (response.status === 200) {
             if (response.data.accessToken) {
-              localStorage.setItem("user", JSON.stringify(response.data));
-
               this.clearEntries();
-              this.$emit("userLogin", response.data.username);
+              this.$emit(
+                "userLogin",
+                response.data.accessToken,
+                response.data.username
+              );
+
               this.$router.push("browse");
             } else {
               this.loginMessage = "Unable to log in, please try again";
