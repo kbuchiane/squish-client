@@ -62,7 +62,8 @@ export default {
     serverUrl: privateConfig.SERVER_URL,
     user: {
       loggedIn: false,
-      jwtToken: "",
+      accessToken: "",
+      refreshToken: "",
       username: "",
       icon: "",
       usersFollowing: [],
@@ -100,9 +101,10 @@ export default {
     }
   }),
   methods: {
-    setUserLogin: function(token, username) {
+    setUserLogin: function(accessToken, refreshToken, username) {
       this.user.loggedIn = true;
-      this.user.jwtToken = token;
+      this.user.accessToken = accessToken;
+      this.user.refreshToken = refreshToken;
       this.user.username = username;
     },
     setUserVerify: function(verifyData) {
@@ -129,7 +131,7 @@ export default {
           },
           {
             headers: {
-              Authorization: "Bearer " + this.user.jwtToken
+              Authorization: "Bearer " + this.user.accessToken
             }
           }
         )
@@ -142,7 +144,8 @@ export default {
     },
     clearUserData: function() {
       this.user.loggedIn = false;
-      this.user.jwtToken = "";
+      this.user.accessToken = "";
+      this.user.refreshToken = "";
       this.user.username = "";
       this.user.userIcon = "";
       this.usersFollowing = [];

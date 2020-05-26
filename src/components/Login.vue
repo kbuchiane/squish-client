@@ -73,11 +73,12 @@ export default {
       } else {
         this.serverLogin(userId, password).then(response => {
           if (response.status === 200) {
-            if (response.data.accessToken) {
+            if (response.data.accessToken && response.data.refreshToken) {
               this.clearEntries();
               this.$emit(
                 "userLogin",
                 response.data.accessToken,
+                response.data.refreshToken,
                 response.data.username
               );
 
