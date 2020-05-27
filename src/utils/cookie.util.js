@@ -2,8 +2,6 @@ exports.getCookie = (cookieName) => {
     var name = cookieName + "=";
     var cookieArray = document.cookie.split(";");
 
-    console.log("cookieArray: " + cookieArray);
-
     for (var i = 0; i < cookieArray.length; i++) {
         var cookie = cookieArray[i];
         while (cookie.charAt(0) == " ") {
@@ -20,9 +18,6 @@ exports.getCookie = (cookieName) => {
 
 exports.cookieExists = (cookieName) => {
     var cookie = this.getCookie(cookieName);
-
-    console.log("cookie: " + cookie);
-
     if (cookie.length != "") {
         return true;
     }

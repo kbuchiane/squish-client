@@ -77,12 +77,10 @@ export default {
         this.loginMessage = "Password can not include ':'";
       } else {
         this.serverLogin(userId, password).then(response => {
-          console.log("response: " + JSON.stringify(response));
-
           if (response.status === 200) {
             if (
               response.data.accessToken &&
-              cookieUtil.cookieExists("Refresh-Token")
+              cookieUtil.cookieExists("refresh-token")
             ) {
               this.clearEntries();
               this.$emit(
@@ -110,7 +108,8 @@ export default {
             auth: {
               username: userId,
               password: password
-            }
+            },
+            withCredentials: true
           }
         )
         .then(function(response) {

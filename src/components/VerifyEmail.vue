@@ -77,12 +77,10 @@ export default {
         this.verify.message = "Verification code must be 8 characters";
       } else {
         this.serverConfirmUser(email, verifyCode).then(response => {
-          console.log("response: " + JSON.stringify(response));
-
           if (response.status === 200) {
             if (
               response.data.accessToken &&
-              cookieUtil.cookieExists("Refresh-Token")
+              cookieUtil.cookieExists("refresh-token")
             ) {
               this.clearEntries();
               this.$emit(
@@ -111,7 +109,8 @@ export default {
           {
             auth: {
               username: email
-            }
+            },
+            withCredentials: true
           }
         )
         .then(function(response) {
