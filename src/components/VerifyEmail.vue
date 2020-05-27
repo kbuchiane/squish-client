@@ -50,6 +50,7 @@
 <script>
 import axios from "axios";
 import privateConfig from "../config/private.config";
+import cookieUtil from "../utils/cookie.util";
 
 export default {
   name: "VerifyEmail",
@@ -68,17 +69,25 @@ export default {
         this.verify.message = "Email can not include spaces";
       } else if (email.length > 255) {
         this.verify.message = "Email can not exceed 255 characters";
+      } else if (email.includes(":")) {
+        this.verify.message = "Email can not include ':'";
+      } else if (!email.includes("@")) {
+        this.verify.message = "Email must include '@'";
       } else if (verifyCode.length != 8) {
         this.verify.message = "Verification code must be 8 characters";
       } else {
         this.serverConfirmUser(email, verifyCode).then(response => {
+          console.log("response: " + JSON.stringify(response));
+
           if (response.status === 200) {
-            if (response.data.accessToken && response.data.refreshToken) {
+            if (
+              response.data.accessToken &&
+              cookieUtil.cookieExists("Refresh-Token")
+            ) {
               this.clearEntries();
               this.$emit(
                 "userLogin",
                 response.data.accessToken,
-                response.data.refreshToken,
                 response.data.username
               );
 
@@ -94,12 +103,17 @@ export default {
     },
     serverConfirmUser: function(email, verifyCode) {
       return axios
-        .post(this.serverUrl + "/signup/confirmUser", {
-          auth: {
-            email: email,
+        .post(
+          this.serverUrl + "/signup/confirmUser",
+          {
             confirmId: verifyCode
+          },
+          {
+            auth: {
+              username: email
+            }
           }
-        })
+        )
         .then(function(response) {
           return response;
         })
@@ -112,6 +126,12 @@ export default {
         this.verify.message = "Please enter an email to get a new code";
       } else if (/\s/.test(email)) {
         this.verify.message = "Email can not include spaces";
+      } else if (email.length > 255) {
+        this.verify.message = "Email can not exceed 255 characters";
+      } else if (email.includes(":")) {
+        this.verify.message = "Email can not include ':'";
+      } else if (!email.includes("@")) {
+        this.verify.message = "Email must include '@'";
       } else {
         this.serverResendCode(email).then(response => {
           this.verify.message = response.data.message;
@@ -120,11 +140,15 @@ export default {
     },
     serverResendCode: function(email) {
       return axios
-        .post(this.serverUrl + "/signup/resendCode", {
-          auth: {
-            email: email
+        .post(
+          this.serverUrl + "/signup/resendCode",
+          {},
+          {
+            auth: {
+              username: email
+            }
           }
-        })
+        )
         .then(function(response) {
           return response;
         })

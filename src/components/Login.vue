@@ -50,6 +50,7 @@
 <script>
 import axios from "axios";
 import privateConfig from "../config/private.config";
+import cookieUtil from "../utils/cookie.util";
 
 export default {
   name: "Login",
@@ -68,17 +69,25 @@ export default {
         this.loginMessage = "Email or username can not include spaces";
       } else if (userId.length > 255) {
         this.loginMessage = "Email or username can not exceed 255 characters";
+      } else if (userId.includes(":")) {
+        this.loginMessage = "Email or username can not include ':'";
       } else if (password.length < 6) {
         this.loginMessage = "Password must be more than 6 characters";
+      } else if (password.includes(":")) {
+        this.loginMessage = "Password can not include ':'";
       } else {
         this.serverLogin(userId, password).then(response => {
+          console.log("response: " + JSON.stringify(response));
+
           if (response.status === 200) {
-            if (response.data.accessToken && response.data.refreshToken) {
+            if (
+              response.data.accessToken &&
+              cookieUtil.cookieExists("Refresh-Token")
+            ) {
               this.clearEntries();
               this.$emit(
                 "userLogin",
                 response.data.accessToken,
-                response.data.refreshToken,
                 response.data.username
               );
 
@@ -94,12 +103,16 @@ export default {
     },
     serverLogin: function(userId, password) {
       return axios
-        .post(this.serverUrl + "/login", {
-          auth: {
-            userId: userId,
-            password: password
+        .post(
+          this.serverUrl + "/login",
+          {},
+          {
+            auth: {
+              username: userId,
+              password: password
+            }
           }
-        })
+        )
         .then(function(response) {
           return response;
         })
@@ -112,6 +125,8 @@ export default {
         this.loginMessage = "Please enter an email or username";
       } else if (/\s/.test(userId)) {
         this.loginMessage = "Email or username can not include spaces";
+      } else if (userId.includes(":")) {
+        this.loginMessage = "Email or username can not include ':'";
       } else {
         this.serverForgotPassword(userId).then(response => {
           if (response.status === 200) {
@@ -124,11 +139,15 @@ export default {
     },
     serverForgotPassword: function(userId) {
       return axios
-        .post(this.serverUrl + "/forgotPassword", {
-          auth: {
-            userId: userId
+        .post(
+          this.serverUrl + "/forgotPassword",
+          {},
+          {
+            auth: {
+              username: userId
+            }
           }
-        })
+        )
         .then(function(response) {
           return response;
         })

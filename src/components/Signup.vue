@@ -99,8 +99,14 @@ export default {
         this.signupMessage = "Email can not include spaces";
       } else if (email.length > 255) {
         this.signupMessage = "Email can not exceed 255 characters";
+      } else if (email.includes(":")) {
+        this.signupMessage = "Email can not include ':'";
+      } else if (!email.includes("@")) {
+        this.signupMessage = "Email must include '@'";
       } else if (password.length < 6) {
         this.signupMessage = "Password must be more than 6 characters";
+      } else if (password.includes(":")) {
+        this.signupMessage = "Password can not include ':'";
       } else if (password != passwordConfirm) {
         this.signupMessage = "Passwords do not match, please try again";
       } else {
@@ -123,13 +129,18 @@ export default {
     },
     serverSignup: function(username, email, password) {
       return axios
-        .post(this.serverUrl + "/signup", {
-          auth: {
-            username: username,
-            email: email,
-            password: password
+        .post(
+          this.serverUrl + "/signup",
+          {
+            email: email
+          },
+          {
+            auth: {
+              username: username,
+              password: password
+            }
           }
-        })
+        )
         .then(function(response) {
           return response;
         })

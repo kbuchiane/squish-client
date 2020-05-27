@@ -63,7 +63,6 @@ export default {
     user: {
       loggedIn: false,
       accessToken: "",
-      refreshToken: "",
       username: "",
       icon: "",
       usersFollowing: [],
@@ -101,10 +100,9 @@ export default {
     }
   }),
   methods: {
-    setUserLogin: function(accessToken, refreshToken, username) {
+    setUserLogin: function(accessToken, username) {
       this.user.loggedIn = true;
       this.user.accessToken = accessToken;
-      this.user.refreshToken = refreshToken;
       this.user.username = username;
     },
     setUserVerify: function(verifyData) {
@@ -145,7 +143,6 @@ export default {
     clearUserData: function() {
       this.user.loggedIn = false;
       this.user.accessToken = "";
-      this.user.refreshToken = "";
       this.user.username = "";
       this.user.userIcon = "";
       this.usersFollowing = [];
