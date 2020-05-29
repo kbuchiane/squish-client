@@ -116,14 +116,19 @@ export default {
       this.verify.message = "";
     },
     silentRefresh: function() {
-      if (this.user.loggedIn && cookieUtil.cookieExists("refresh-token")) {
+      if (cookieUtil.cookieExists("refresh-token")) {
         this.serverSilentRefresh().then(response => {
           if (response.status === 200) {
-            this.user.accessToken = response.data.accessToken;
+            this.setUserLogin(
+              response.data.accessToken,
+              response.data.username
+            );
           } else {
             this.logout();
           }
         });
+      } else {
+        this.logout();
       }
     },
     serverSilentRefresh: function() {
