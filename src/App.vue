@@ -49,6 +49,8 @@ import VerifyEmail from "./components/VerifyEmail";
 import Login from "./components/Login";
 import axios from "axios";
 import privateConfig from "./config/private.config";
+import publicConfig from "./config/public.config";
+import cookieUtil, { cookieExists } from "./utils/cookie.util";
 
 export default {
   name: "App",
@@ -113,24 +115,44 @@ export default {
       this.verify.email = "";
       this.verify.message = "";
     },
+    silentRefresh: function() {
+      if (this.user.loggedIn && cookieUtil.cookieExists("refresh-token")) {
+        this.serverSilentRefresh().then(response => {
+          if (response.status === 200) {
+            this.user.accessToken = response.data.accessToken;
+          } else {
+            this.logout();
+          }
+        });
+      }
+    },
+    serverSilentRefresh: function() {
+      return axios
+        .get(this.serverUrl + "/refreshToken", {
+          withCredentials: true
+        })
+        .then(function(response) {
+          return response;
+        })
+        .catch(error => {
+          return error.response;
+        });
+    },
     logout: function() {
-      this.serverLogout(this.user.username).then(response => {
+      this.serverLogout().then(response => {
         this.clearUserData();
       });
     },
-    serverLogout: function(username) {
+    serverLogout: function() {
       return axios
         .post(
           this.serverUrl + "/logout",
-          {
-            auth: {
-              username: username
-            }
-          },
+          {},
           {
             headers: {
               Authorization: "Bearer " + this.user.accessToken
-            }
+            },
+            withCredentials: true
           }
         )
         .then(function(response) {
@@ -147,7 +169,12 @@ export default {
       this.user.userIcon = "";
       this.usersFollowing = [];
       this.gamesFollowing = [];
+      cookieUtil.deleteCookie("refresh-token");
     }
+  },
+  mounted: function() {
+    this.silentRefresh();
+    setInterval(this.silentRefresh, publicConfig.REFRESH_INTERVAL);
   }
 };
 </script>
