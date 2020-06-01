@@ -1,9 +1,9 @@
 exports.getCookie = (cookieName) => {
-    var name = cookieName + "=";
-    var cookieArray = document.cookie.split(";");
+    let name = cookieName + "=";
+    let cookieArray = document.cookie.split(";");
 
-    for (var i = 0; i < cookieArray.length; i++) {
-        var cookie = cookieArray[i];
+    for (let i = 0; i < cookieArray.length; i++) {
+        let cookie = cookieArray[i];
         while (cookie.charAt(0) == " ") {
             cookie = cookie.substring(1);
         }
@@ -17,7 +17,7 @@ exports.getCookie = (cookieName) => {
 };
 
 exports.cookieExists = (cookieName) => {
-    var cookie = this.getCookie(cookieName);
+    let cookie = this.getCookie(cookieName);
     if (cookie.length != "") {
         return true;
     }
