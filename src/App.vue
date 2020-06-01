@@ -116,7 +116,7 @@ export default {
       this.verify.message = "";
     },
     silentRefresh: function() {
-      if (cookieUtil.cookieExists("refresh-token")) {
+      if (cookieUtil.cookieExists(publicConfig.REFRESH_TOKEN)) {
         this.serverSilentRefresh().then(response => {
           if (response.status === 200) {
             this.setUserLogin(
@@ -174,7 +174,7 @@ export default {
       this.user.userIcon = "";
       this.usersFollowing = [];
       this.gamesFollowing = [];
-      cookieUtil.deleteCookie("refresh-token");
+      cookieUtil.deleteCookie(publicConfig.REFRESH_TOKEN);
     }
   },
   mounted: function() {

@@ -51,6 +51,7 @@
 <script>
 import axios from "axios";
 import privateConfig from "../config/private.config";
+import publicConfig from "../config/public.config";
 import cookieUtil from "../utils/cookie.util";
 
 export default {
@@ -81,7 +82,7 @@ export default {
           if (response.status === 200) {
             if (
               response.data.accessToken &&
-              cookieUtil.cookieExists("refresh-token")
+              cookieUtil.cookieExists(publicConfig.REFRESH_TOKEN)
             ) {
               this.clearEntries();
               this.$emit(
