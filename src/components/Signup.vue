@@ -10,6 +10,7 @@
             v-on:keyup.enter="signup(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup)"
             placeholder="Username"
             class="logSignTextBox"
+            ref="usernameInput"
           />
         </v-row>
         <p></p>
@@ -155,6 +156,9 @@ export default {
       this.passwordConfirmSignup = "";
       this.signupMessage = "";
     }
+  },
+  mounted: function() {
+    this.$refs.usernameInput.focus();
   }
 };
 </script>

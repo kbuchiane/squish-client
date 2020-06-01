@@ -10,6 +10,7 @@
             v-on:keyup.enter="login(userIdLogin, passwordLogin)"
             placeholder="Username or Email"
             class="logSignTextBox"
+            ref="userIdInput"
           />
         </v-row>
         <p></p>
@@ -159,6 +160,9 @@ export default {
       this.passwordLogin = "";
       this.loginMessage = "";
     }
+  },
+  mounted: function() {
+    this.$refs.userIdInput.focus();
   }
 };
 </script>

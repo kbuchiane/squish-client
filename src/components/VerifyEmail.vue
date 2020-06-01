@@ -11,6 +11,7 @@
             placeholder="Email"
             class="logSignTextBox"
             type="email"
+            ref="emailInput"
           />
         </v-row>
         <p></p>
@@ -163,6 +164,9 @@ export default {
       this.clearEntries();
       this.$router.push("signup");
     }
+  },
+  mounted: function() {
+    this.$refs.emailInput.focus();
   }
 };
 </script>
