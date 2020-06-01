@@ -128,7 +128,7 @@ export default {
           }
         });
       } else {
-        this.logout();
+        this.clearUserData();
       }
     },
     serverSilentRefresh: function() {
