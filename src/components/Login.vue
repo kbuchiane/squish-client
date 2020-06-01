@@ -49,74 +49,109 @@
 
 <script>
 import axios from "axios";
+import privateConfig from "../config/private.config";
+import cookieUtil from "../utils/cookie.util";
 
 export default {
   name: "Login",
   data: () => ({
-    serverUrl: "http://localhost:3000",
+    serverUrl: privateConfig.SERVER_URL,
     userIdLogin: "",
     passwordLogin: "",
     loginMessage: ""
   }),
   methods: {
-    login: function(userIdLogin, passwordLogin) {
-      userIdLogin = userIdLogin.trim();
-      if (userIdLogin.length <= 0) {
-        this.loginMessage = "Please enter a username or email";
-      } else if (/\s/.test(userIdLogin)) {
-        this.loginMessage = "Username can not include spaces";
-      } else if (userIdLogin.length > 255) {
-        this.loginMessage = "Email can not exceed 255 characters";
-      } else if (passwordLogin.length < 6) {
+    login: function(userId, password) {
+      userId = userId.trim();
+      if (userId.length <= 0) {
+        this.loginMessage = "Please enter an email or username";
+      } else if (/\s/.test(userId)) {
+        this.loginMessage = "Email or username can not include spaces";
+      } else if (userId.length > 255) {
+        this.loginMessage = "Email or username can not exceed 255 characters";
+      } else if (userId.includes(":")) {
+        this.loginMessage = "Email or username can not include ':'";
+      } else if (password.length < 6) {
         this.loginMessage = "Password must be more than 6 characters";
+      } else if (password.includes(":")) {
+        this.loginMessage = "Password can not include ':'";
       } else {
-        this.serverLogin(userIdLogin, passwordLogin).then(data => {
-          if (data.success) {
-            this.clearEntries();
-            this.$emit("userLogin", data.message);
-            this.$router.push("browse");
+        this.serverLogin(userId, password).then(response => {
+          if (response.status === 200) {
+            if (
+              response.data.accessToken &&
+              cookieUtil.cookieExists("refresh-token")
+            ) {
+              this.clearEntries();
+              this.$emit(
+                "userLogin",
+                response.data.accessToken,
+                response.data.username
+              );
+
+              this.$router.push("browse");
+            } else {
+              this.loginMessage = "Unable to log in, please try again";
+            }
           } else {
-            this.loginMessage = data.message;
+            this.loginMessage = response.data.message;
           }
         });
       }
     },
     serverLogin: function(userId, password) {
       return axios
-        .post(this.serverUrl + "/login", {
-          auth: {
-            userId: userId,
-            password: password
+        .post(
+          this.serverUrl + "/login",
+          {},
+          {
+            auth: {
+              username: userId,
+              password: password
+            },
+            withCredentials: true
           }
-        })
+        )
         .then(function(response) {
-          return response.data;
+          return response;
+        })
+        .catch(error => {
+          return error.response;
         });
     },
-    forgotPassword: function(userIdForgot) {
-      if (userIdForgot.length <= 0) {
-        this.loginMessage = "Please enter a username or email";
-      } else if (/\s/.test(userIdForgot)) {
-        this.loginMessage = "Username or email can not include spaces";
+    forgotPassword: function(userId) {
+      if (userId.length <= 0) {
+        this.loginMessage = "Please enter an email or username";
+      } else if (/\s/.test(userId)) {
+        this.loginMessage = "Email or username can not include spaces";
+      } else if (userId.includes(":")) {
+        this.loginMessage = "Email or username can not include ':'";
       } else {
-        this.serverForgotPassword(userIdForgot).then(data => {
-          if (data.success) {
-            this.loginMessage = "An email was sent to " + data.emailForgot;
+        this.serverForgotPassword(userId).then(response => {
+          if (response.status === 200) {
+            this.loginMessage = "An email was sent to " + response.data.message;
           } else {
-            this.loginMessage = "Username or email was incorrect";
+            this.loginMessage = "Email or username was incorrect";
           }
         });
       }
     },
-    serverForgotPassword: function(userIdForgot) {
+    serverForgotPassword: function(userId) {
       return axios
-        .post(this.serverUrl + "/forgotPassword", {
-          auth: {
-            userIdForgot: userIdForgot
+        .post(
+          this.serverUrl + "/forgotPassword",
+          {},
+          {
+            auth: {
+              username: userId
+            }
           }
-        })
+        )
         .then(function(response) {
-          return response.data;
+          return response;
+        })
+        .catch(error => {
+          return error.response;
         });
     },
     clearEntries: function() {
