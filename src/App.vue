@@ -32,6 +32,7 @@
       </div>
     </v-app-bar>
 
+    <!-- Event listeners from child components -->
     <router-view
       @userLogin="setUserLogin"
       @userVerify="setUserVerify"
@@ -47,6 +48,9 @@ import Signup from "./components/Signup";
 import VerifyEmail from "./components/VerifyEmail";
 import Login from "./components/Login";
 import axios from "axios";
+import privateConfig from "./config/private.config";
+import publicConfig from "./config/public.config";
+import cookieUtil, { cookieExists } from "./utils/cookie.util";
 
 export default {
   name: "App",
@@ -57,9 +61,10 @@ export default {
     Login
   },
   data: () => ({
-    serverUrl: "http://localhost:3000",
+    serverUrl: privateConfig.SERVER_URL,
     user: {
       loggedIn: false,
+      accessToken: "",
       username: "",
       icon: "",
       usersFollowing: [],
@@ -97,8 +102,9 @@ export default {
     }
   }),
   methods: {
-    setUserLogin: function(username) {
+    setUserLogin: function(accessToken, username) {
       this.user.loggedIn = true;
+      this.user.accessToken = accessToken;
       this.user.username = username;
     },
     setUserVerify: function(verifyData) {
@@ -109,31 +115,71 @@ export default {
       this.verify.email = "";
       this.verify.message = "";
     },
-    logout: function() {
-      this.serverLogout(this.user.username).then(data => {
-        if (data.success) {
-          this.clearUserData();
-        }
-      });
-    },
-    serverLogout: function(username) {
-      return axios
-        .get(this.serverUrl + "/logout", {
-          params: {
-            username: username
+    silentRefresh: function() {
+      if (cookieUtil.cookieExists("refresh-token")) {
+        this.serverSilentRefresh().then(response => {
+          if (response.status === 200) {
+            this.setUserLogin(
+              response.data.accessToken,
+              response.data.username
+            );
+          } else {
+            this.logout();
           }
+        });
+      } else {
+        this.clearUserData();
+      }
+    },
+    serverSilentRefresh: function() {
+      return axios
+        .get(this.serverUrl + "/refreshToken", {
+          withCredentials: true
         })
         .then(function(response) {
-          return response.data;
+          return response;
+        })
+        .catch(error => {
+          return error.response;
+        });
+    },
+    logout: function() {
+      this.serverLogout().then(response => {
+        this.clearUserData();
+      });
+    },
+    serverLogout: function() {
+      return axios
+        .post(
+          this.serverUrl + "/logout",
+          {},
+          {
+            headers: {
+              Authorization: "Bearer " + this.user.accessToken
+            },
+            withCredentials: true
+          }
+        )
+        .then(function(response) {
+          return response;
+        })
+        .catch(error => {
+          return error.response;
         });
     },
     clearUserData: function() {
       this.user.loggedIn = false;
+      this.user.accessToken = "";
       this.user.username = "";
       this.user.userIcon = "";
       this.usersFollowing = [];
       this.gamesFollowing = [];
+      cookieUtil.deleteCookie("refresh-token");
     }
+  },
+  mounted: function() {
+    this.silentRefresh();
+    setInterval(this.silentRefresh, publicConfig.REFRESH_INTERVAL);
   }
 };
 </script>

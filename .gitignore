@@ -2,6 +2,7 @@
 node_modules
 .vs
 /dist
+config/private.config.js
 
 # local env files
 .env.local

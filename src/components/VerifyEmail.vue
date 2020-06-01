@@ -5,11 +5,22 @@
         <h2 class="headline font-weight-bold mb-3 noselect">Verify Email</h2>
         <p></p>
         <v-row justify="center">
-          <input v-model="verify.email" placeholder="Email" class="logSignTextBox" />
+          <input
+            v-model="verify.email"
+            v-on:keyup.enter="confirmUser(verify.email, verifyCode)"
+            placeholder="Email"
+            class="logSignTextBox"
+            type="email"
+          />
         </v-row>
         <p></p>
         <v-row justify="center">
-          <input v-model="verifyCode" placeholder="Verification Code" class="logSignTextBox" />
+          <input
+            v-model="verifyCode"
+            v-on:keyup.enter="confirmUser(verify.email, verifyCode)"
+            placeholder="Verification Code"
+            class="logSignTextBox"
+          />
         </v-row>
         <p></p>
         <v-row justify="center">
@@ -38,70 +49,110 @@
 
 <script>
 import axios from "axios";
+import privateConfig from "../config/private.config";
+import cookieUtil from "../utils/cookie.util";
 
 export default {
   name: "VerifyEmail",
   data: () => ({
-    serverUrl: "http://localhost:3000",
+    serverUrl: privateConfig.SERVER_URL,
     verifyCode: ""
   }),
   props: ["verify"],
   methods: {
-    confirmUser: function(verifyEmail, verifyCode) {
-      if (verifyEmail.length <= 0) {
+    confirmUser: function(email, verifyCode) {
+      email = email.trim();
+      verifyCode = verifyCode.trim();
+      if (email.length <= 0) {
         this.verify.message = "Please enter an email to be verified";
-      } else if (/\s/.test(verifyEmail)) {
+      } else if (/\s/.test(email)) {
         this.verify.message = "Email can not include spaces";
+      } else if (email.length > 255) {
+        this.verify.message = "Email can not exceed 255 characters";
+      } else if (email.includes(":")) {
+        this.verify.message = "Email can not include ':'";
+      } else if (!email.includes("@")) {
+        this.verify.message = "Email must include '@'";
       } else if (verifyCode.length != 8) {
-        this.verify.message = "Verification code should be 8 characters";
+        this.verify.message = "Verification code must be 8 characters";
       } else {
-        this.serverConfirmUser(verifyEmail, verifyCode).then(data => {
-          if (data.success) {
-            this.clearEntries();
-            this.$emit("userLogin", data.message);
-            this.$router.push("Browse");
+        this.serverConfirmUser(email, verifyCode).then(response => {
+          if (response.status === 200) {
+            if (
+              response.data.accessToken &&
+              cookieUtil.cookieExists("refresh-token")
+            ) {
+              this.clearEntries();
+              this.$emit(
+                "userLogin",
+                response.data.accessToken,
+                response.data.username
+              );
+
+              this.$router.push("browse");
+            } else {
+              this.verify.message = "Unable to verify code, please try again";
+            }
           } else {
-            this.verify.message = data.message;
+            this.verify.message = response.data.message;
           }
         });
       }
     },
     serverConfirmUser: function(email, verifyCode) {
       return axios
-        .get(this.serverUrl + "/signup/confirmUser", {
-          params: {
-            email: email,
+        .post(
+          this.serverUrl + "/signup/confirmUser",
+          {
             confirmId: verifyCode
+          },
+          {
+            auth: {
+              username: email
+            },
+            withCredentials: true
           }
-        })
+        )
         .then(function(response) {
-          return response.data;
+          return response;
+        })
+        .catch(error => {
+          return error.response;
         });
     },
-    resendCode: function(verifyEmail) {
-      if (verifyEmail.length <= 0) {
+    resendCode: function(email) {
+      if (email.length <= 0) {
         this.verify.message = "Please enter an email to get a new code";
-      } else if (/\s/.test(verifyEmail)) {
+      } else if (/\s/.test(email)) {
         this.verify.message = "Email can not include spaces";
+      } else if (email.length > 255) {
+        this.verify.message = "Email can not exceed 255 characters";
+      } else if (email.includes(":")) {
+        this.verify.message = "Email can not include ':'";
+      } else if (!email.includes("@")) {
+        this.verify.message = "Email must include '@'";
       } else {
-        this.serverResendCode(verifyEmail).then(data => {
-          if (data.success) {
-            this.verify.message = data.message;
-          } else {
-            this.verify.message = data.message;
-          }
+        this.serverResendCode(email).then(response => {
+          this.verify.message = response.data.message;
         });
       }
     },
     serverResendCode: function(email) {
       return axios
-        .get(this.serverUrl + "/signup/resendCode", {
-          params: {
-            email: email
+        .post(
+          this.serverUrl + "/signup/resendCode",
+          {},
+          {
+            auth: {
+              username: email
+            }
           }
-        })
+        )
         .then(function(response) {
-          return response.data;
+          return response;
+        })
+        .catch(error => {
+          return error.response;
         });
     },
     clearEntries: function() {
@@ -110,7 +161,7 @@ export default {
     },
     backToSignup: function() {
       this.clearEntries();
-      this.$router.push("Signup");
+      this.$router.push("signup");
     }
   }
 };

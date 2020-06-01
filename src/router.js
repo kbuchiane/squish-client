@@ -8,6 +8,7 @@ import Login from './components/Login';
 Vue.use(Router);
 
 export default new Router({
+    mode: "history",
     routes: [
         {
             path: '/',
@@ -26,7 +27,7 @@ export default new Router({
             component: Signup
         },
         {
-            path: '/verifyEmail',
+            path: '/verifyemail',
             name: 'VerifyEmail',
             component: VerifyEmail
         },
@@ -34,6 +35,12 @@ export default new Router({
             path: '/login',
             name: 'Login',
             component: Login
+        },
+        {
+            path: '*',
+            redirect: {
+                name: "Browse"
+            }
         }
     ]
 });
