@@ -116,20 +116,13 @@ export default {
       this.verify.message = "";
     },
     silentRefresh: function() {
-      if (cookieUtil.cookieExists(publicConfig.REFRESH_TOKEN)) {
-        this.serverSilentRefresh().then(response => {
-          if (response.status === 200) {
-            this.setUserLogin(
-              response.data.accessToken,
-              response.data.username
-            );
-          } else {
-            this.logout();
-          }
-        });
-      } else {
-        this.clearUserData();
-      }
+      this.serverSilentRefresh().then(response => {
+        if (response.status === 200 && response.data.message != false) {
+          this.setUserLogin(response.data.accessToken, response.data.username);
+        } else {
+          this.logout();
+        }
+      });
     },
     serverSilentRefresh: function() {
       return axios
@@ -154,9 +147,6 @@ export default {
           this.serverUrl + "/logout",
           {},
           {
-            headers: {
-              Authorization: "Bearer " + this.user.accessToken
-            },
             withCredentials: true
           }
         )
@@ -174,7 +164,6 @@ export default {
       this.user.userIcon = "";
       this.usersFollowing = [];
       this.gamesFollowing = [];
-      cookieUtil.deleteCookie(publicConfig.REFRESH_TOKEN);
     }
   },
   mounted: function() {

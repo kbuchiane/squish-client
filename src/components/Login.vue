@@ -80,10 +80,7 @@ export default {
       } else {
         this.serverLogin(userId, password).then(response => {
           if (response.status === 200) {
-            if (
-              response.data.accessToken &&
-              cookieUtil.cookieExists(publicConfig.REFRESH_TOKEN)
-            ) {
+            if (response.data.accessToken) {
               this.clearEntries();
               this.$emit(
                 "userLogin",
