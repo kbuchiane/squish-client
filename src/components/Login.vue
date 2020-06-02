@@ -53,6 +53,7 @@ import axios from "axios";
 import privateConfig from "../config/private.config";
 import publicConfig from "../config/public.config";
 import cookieUtil from "../utils/cookie.util";
+import userEntryUtil from "../utils/userEntry.util";
 
 export default {
   name: "Login",
@@ -65,18 +66,13 @@ export default {
   methods: {
     login: function(userId, password) {
       userId = userId.trim();
-      if (userId.length <= 0) {
-        this.loginMessage = "Please enter an email or username";
-      } else if (/\s/.test(userId)) {
-        this.loginMessage = "Email or username can not include spaces";
-      } else if (userId.length > 255) {
-        this.loginMessage = "Email or username can not exceed 255 characters";
-      } else if (userId.includes(":")) {
-        this.loginMessage = "Email or username can not include ':'";
-      } else if (password.length < 6) {
-        this.loginMessage = "Password must be more than 6 characters";
-      } else if (password.includes(":")) {
-        this.loginMessage = "Password can not include ':'";
+      let userIdMessage = userEntryUtil.checkUserId(userId);
+      let passwordMessage = userEntryUtil.checkPassword(password);
+
+      if (userIdMessage) {
+        this.loginMessage = userIdMessage;
+      } else if (passwordMessage) {
+        this.loginMessage = passwordMessage;
       } else {
         this.serverLogin(userId, password).then(response => {
           if (response.status === 200) {

@@ -71,6 +71,7 @@
 <script>
 import axios from "axios";
 import privateConfig from "../config/private.config";
+import userEntryUtil from "../utils/userEntry.util";
 
 export default {
   name: "Signup",
@@ -86,28 +87,16 @@ export default {
     signup: function(username, email, password, passwordConfirm) {
       username = username.trim();
       email = email.trim();
-      if (username.length <= 0) {
-        this.signupMessage = "Please enter a username";
-      } else if (/\s/.test(username)) {
-        this.signupMessage = "Username can not include spaces";
-      } else if (!/^[a-z0-9]+$/i.test(username)) {
-        this.signupMessage = "Username can not include special characters";
-      } else if (username.length > 45) {
-        this.signupMessage = "Username can not exceed 45 characters";
-      } else if (email.length <= 0) {
-        this.signupMessage = "Please enter an email";
-      } else if (/\s/.test(email)) {
-        this.signupMessage = "Email can not include spaces";
-      } else if (email.length > 255) {
-        this.signupMessage = "Email can not exceed 255 characters";
-      } else if (email.includes(":")) {
-        this.signupMessage = "Email can not include ':'";
-      } else if (!email.includes("@")) {
-        this.signupMessage = "Email must include '@'";
-      } else if (password.length < 6) {
-        this.signupMessage = "Password must be more than 6 characters";
-      } else if (password.includes(":")) {
-        this.signupMessage = "Password can not include ':'";
+      let usernameMessage = userEntryUtil.checkUsername(username);
+      let emailMessage = userEntryUtil.checkEmail(email);
+      let passwordMessage = userEntryUtil.checkPassword(password);
+
+      if (usernameMessage) {
+        this.signupMessage = usernameMessage;
+      } else if (emailMessage) {
+        this.signupMessage = emailMessage;
+      } else if (passwordMessage) {
+        this.signupMessage = passwordMessage;
       } else if (password != passwordConfirm) {
         this.signupMessage = "Passwords do not match, please try again";
       } else {
