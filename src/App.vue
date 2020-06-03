@@ -48,8 +48,7 @@ import Signup from "./components/Signup";
 import VerifyEmail from "./components/VerifyEmail";
 import Login from "./components/Login";
 import axios from "axios";
-import privateConfig from "./config/private.config";
-import publicConfig from "./config/public.config";
+import appConfig from "./config/app.config";
 import cookieUtil, { cookieExists } from "./utils/cookie.util";
 
 export default {
@@ -61,7 +60,7 @@ export default {
     Login
   },
   data: () => ({
-    serverUrl: privateConfig.SERVER_URL,
+    serverUrl: appConfig.SERVER_URL,
     user: {
       loggedIn: false,
       accessToken: "",
@@ -168,7 +167,7 @@ export default {
   },
   mounted: function() {
     this.silentRefresh();
-    setInterval(this.silentRefresh, publicConfig.REFRESH_INTERVAL);
+    setInterval(this.silentRefresh, appConfig.REFRESH_INTERVAL);
   }
 };
 </script>

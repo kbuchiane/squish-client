@@ -50,15 +50,14 @@
 
 <script>
 import axios from "axios";
-import privateConfig from "../config/private.config";
-import publicConfig from "../config/public.config";
+import appConfig from "../config/app.config";
 import cookieUtil from "../utils/cookie.util";
 import userEntryUtil from "../utils/userEntry.util";
 
 export default {
   name: "VerifyEmail",
   data: () => ({
-    serverUrl: privateConfig.SERVER_URL,
+    serverUrl: appConfig.SERVER_URL,
     verifyCode: ""
   }),
   props: ["verify"],

@@ -70,13 +70,13 @@
 
 <script>
 import axios from "axios";
-import privateConfig from "../config/private.config";
+import appConfig from "../config/app.config";
 import userEntryUtil from "../utils/userEntry.util";
 
 export default {
   name: "Signup",
   data: () => ({
-    serverUrl: privateConfig.SERVER_URL,
+    serverUrl: appConfig.SERVER_URL,
     usernameSignup: "",
     emailSignup: "",
     passwordSignup: "",
