@@ -104,12 +104,12 @@ export default {
           if (response.status === 200) {
             this.clearEntries();
 
-            var verifyData = {
+            let verifyData = {
               email: email,
               message: response.data.message
             };
 
-            this.$emit("userVerify", verifyData);
+            this.$emit("setVerifyData", verifyData);
             this.$router.push("verifyemail");
           } else {
             this.signupMessage = response.data.message;

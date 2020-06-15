@@ -2,12 +2,12 @@
   <v-container>
     <v-row class="text-center">
       <v-col class="mb-5 logSignColumn" cols="12">
-        <h2 class="headline font-weight-bold mb-3 noselect">Verify Email</h2>
+        <h2 class="headline font-weight-bold mb-3 noselect">Reset Password</h2>
         <p></p>
         <v-row justify="center">
           <input
-            v-model="verify.email"
-            v-on:keyup.enter="confirmUser(verify.email, verifyCode)"
+            v-model="resetPassword.email"
+            v-on:keyup.enter="confirmResetPassword(resetPassword.email, resetPasswordCode)"
             placeholder="Email"
             class="logSignTextBox"
             type="email"
@@ -17,31 +17,35 @@
         <p></p>
         <v-row justify="center">
           <input
-            v-model="verifyCode"
-            v-on:keyup.enter="confirmUser(verify.email, verifyCode)"
-            placeholder="Verification Code"
+            v-model="resetPasswordCode"
+            v-on:keyup.enter="confirmResetPassword(resetPassword.email, resetPasswordCode)"
+            placeholder="Reset Password Code"
             class="logSignTextBox"
           />
         </v-row>
         <p></p>
         <v-row justify="center">
           <v-btn
-            @click="confirmUser(verify.email, verifyCode)"
+            @click="confirmResetPassword(resetPassword.email, resetPasswordCode)"
             color="green"
             class="logsignButton"
-          >Verify</v-btn>
+          >Reset</v-btn>
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn @click="resendCode(verify.email)" color="orange" class="logsignButton">Resend Code</v-btn>
+          <v-btn
+            @click="resendCode(resetPassword.email)"
+            color="orange"
+            class="logsignButton"
+          >Resend Code</v-btn>
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn @click="backToSignup()" color="blue" class="logsignButton">Back To Sign Up</v-btn>
+          <v-btn @click="backToLogin()" color="blue" class="logsignButton">Back To Log In</v-btn>
         </v-row>
         <p></p>
         <v-row justify="center">
-          <p class="logSignMessage noselect">{{ verify.message }}</p>
+          <p class="logSignMessage noselect">{{ resetPassword.message }}</p>
         </v-row>
       </v-col>
     </v-row>
@@ -55,50 +59,46 @@ import cookieUtil from "../utils/cookie.util";
 import userEntryUtil from "../utils/userEntry.util";
 
 export default {
-  name: "VerifyEmail",
+  name: "ResetPassword",
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
-    verifyCode: ""
+    resetPasswordCode: ""
   }),
-  props: ["verify"],
+  props: ["resetPassword"],
   methods: {
-    confirmUser: function(email, verifyCode) {
+    confirmResetPassword: function(email, resetPasswordCode) {
       email = email.trim();
-      verifyCode = verifyCode.trim();
+      resetPasswordCode = resetPasswordCode.trim();
       let emailMessage = userEntryUtil.checkEmail(email);
-      let codeMessage = userEntryUtil.checkCode(verifyCode);
+      let codeMessage = userEntryUtil.checkCode(resetPasswordCode);
 
       if (emailMessage) {
-        this.verify.message = emailMessage;
+        this.resetPassword.message = emailMessage;
       } else if (codeMessage) {
-        this.verify.message = codeMessage;
+        this.resetPassword.message = codeMessage;
       } else {
-        this.serverConfirmUser(email, verifyCode).then(response => {
-          if (response.status === 200) {
-            if (response.data.accessToken) {
-              this.clearEntries();
-              this.$emit(
-                "setUserData",
-                response.data.accessToken,
-                response.data.username
-              );
-
-              this.$router.push("browse");
+        this.serverConfirmResetPassword(email, resetPasswordCode).then(
+          response => {
+            if (response.status === 200) {
+              if (response.data.accessToken) {
+                this.clearEntries();
+              } else {
+                this.resetPassword.message =
+                  "Unable to reset password, please try again";
+              }
             } else {
-              this.verify.message = "Unable to verify code, please try again";
+              this.resetPassword.message = response.data.message;
             }
-          } else {
-            this.verify.message = response.data.message;
           }
-        });
+        );
       }
     },
-    serverConfirmUser: function(email, verifyCode) {
+    serverConfirmResetPassword: function(email, resetPasswordCode) {
       return axios
         .post(
           this.serverUrl + "/signup/confirmUser",
           {
-            confirmId: verifyCode
+            confirmId: resetPasswordCode
           },
           {
             auth: {
@@ -119,10 +119,10 @@ export default {
       let emailMessage = userEntryUtil.checkEmail(email);
 
       if (emailMessage) {
-        this.verify.message = emailMessage;
+        this.resetPassword.message = emailMessage;
       } else {
         this.serverResendCode(email).then(response => {
-          this.verify.message = response.data.message;
+          this.resetPassword.message = response.data.message;
         });
       }
     },
@@ -146,11 +146,11 @@ export default {
     },
     clearEntries: function() {
       this.verifyCode = "";
-      this.$emit("clearVerifyData");
+      this.$emit("clearResetPasswordData");
     },
-    backToSignup: function() {
+    backToLogin: function() {
       this.clearEntries();
-      this.$router.push("signup");
+      this.$router.push("login");
     }
   },
   mounted: function() {

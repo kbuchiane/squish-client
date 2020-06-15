@@ -34,10 +34,18 @@
         <p></p>
         <v-row justify="center">
           <v-btn
-            @click="forgotPassword(userIdLogin)"
+            @click="resetPassword(userIdLogin)"
             color="orange"
             class="logsignButton"
-          >Forgot Password</v-btn>
+          >Forgot/Reset Password</v-btn>
+        </v-row>
+        <p></p>
+        <v-row justify="center">
+          <v-btn
+            to="/resetpassword"
+            color="orange"
+            class="logsignButton"
+          >I Already Have a Password Reset Code</v-btn>
         </v-row>
         <p></p>
         <v-row justify="center">
@@ -78,7 +86,7 @@ export default {
             if (response.data.accessToken) {
               this.clearEntries();
               this.$emit(
-                "userLogin",
+                "setUserData",
                 response.data.accessToken,
                 response.data.username
               );
@@ -113,27 +121,34 @@ export default {
           return error.response;
         });
     },
-    forgotPassword: function(userId) {
-      if (userId.length <= 0) {
-        this.loginMessage = "Please enter an email or username";
-      } else if (/\s/.test(userId)) {
-        this.loginMessage = "Email or username can not include spaces";
-      } else if (userId.includes(":")) {
-        this.loginMessage = "Email or username can not include ':'";
+    resetPassword: function(userId) {
+      userId = userId.trim();
+      let userIdMessage = userEntryUtil.checkUserId(userId);
+
+      if (userIdMessage) {
+        this.loginMessage = userIdMessage;
       } else {
-        this.serverForgotPassword(userId).then(response => {
+        this.serverResetPassword(userId).then(response => {
           if (response.status === 200) {
-            this.loginMessage = "An email was sent to " + response.data.message;
+            this.clearEntries();
+
+            let resetPasswordData = {
+              email: response.data.email,
+              message: response.data.message
+            };
+
+            this.$emit("resetPasswordData", resetPasswordData);
+            this.$router.push("resetpassword");
           } else {
-            this.loginMessage = "Email or username was incorrect";
+            this.loginMessage = response.data.message;
           }
         });
       }
     },
-    serverForgotPassword: function(userId) {
+    serverResetPassword: function(userId) {
       return axios
         .post(
-          this.serverUrl + "/forgotPassword",
+          this.serverUrl + "/resetPassword",
           {},
           {
             auth: {
