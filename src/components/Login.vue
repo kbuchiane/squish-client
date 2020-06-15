@@ -45,7 +45,7 @@
             to="/resetpassword"
             color="orange"
             class="logsignButton"
-          >I Already Have a Password Reset Code</v-btn>
+          >I Already Have a Reset Password Code</v-btn>
         </v-row>
         <p></p>
         <v-row justify="center">
