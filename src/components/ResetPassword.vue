@@ -7,7 +7,7 @@
         <v-row justify="center">
           <input
             v-model="resetPassword.email"
-            v-on:keyup.enter="confirmResetPassword(resetPassword.email, resetPasswordCode)"
+            v-on:keyup.enter="confirmResetPassword(resetPassword.email, resetPasswordCode, newPassword, newPasswordConfirm)"
             placeholder="Email"
             class="logSignTextBox"
             type="email"
@@ -18,18 +18,38 @@
         <v-row justify="center">
           <input
             v-model="resetPasswordCode"
-            v-on:keyup.enter="confirmResetPassword(resetPassword.email, resetPasswordCode)"
+            v-on:keyup.enter="confirmResetPassword(resetPassword.email, resetPasswordCode, newPassword, newPasswordConfirm)"
             placeholder="Reset Password Code"
             class="logSignTextBox"
           />
         </v-row>
         <p></p>
         <v-row justify="center">
+          <input
+            v-model="newPassword"
+            v-on:keyup.enter="confirmResetPassword(resetPassword.email, resetPasswordCode, newPassword, newPasswordConfirm)"
+            placeholder="New Password"
+            class="logSignTextBox"
+            type="password"
+          />
+        </v-row>
+        <p></p>
+        <v-row justify="center">
+          <input
+            v-model="newPasswordConfirm"
+            v-on:keyup.enter="confirmResetPassword(resetPassword.email, resetPasswordCode, newPassword, newPasswordConfirm)"
+            placeholder="Confirm New Password"
+            class="logSignTextBox"
+            type="password"
+          />
+        </v-row>
+        <p></p>
+        <v-row justify="center">
           <v-btn
-            @click="confirmResetPassword(resetPassword.email, resetPasswordCode)"
+            @click="confirmResetPassword(resetPassword.email, resetPasswordCode, newPassword, newPasswordConfirm)"
             color="green"
             class="logsignButton"
-          >Reset</v-btn>
+          >Reset Password</v-btn>
         </v-row>
         <p></p>
         <v-row justify="center">
@@ -62,49 +82,62 @@ export default {
   name: "ResetPassword",
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
-    resetPasswordCode: ""
+    resetPasswordCode: "",
+    newPassword: "",
+    newPasswordConfirm: ""
   }),
   props: ["resetPassword"],
   methods: {
-    confirmResetPassword: function(email, resetPasswordCode) {
+    confirmResetPassword: function(
+      email,
+      resetPasswordCode,
+      newPassword,
+      newPasswordConfirm
+    ) {
       email = email.trim();
       resetPasswordCode = resetPasswordCode.trim();
       let emailMessage = userEntryUtil.checkEmail(email);
       let codeMessage = userEntryUtil.checkCode(resetPasswordCode);
+      let passwordMessage = userEntryUtil.checkPassword(newPassword);
 
       if (emailMessage) {
         this.resetPassword.message = emailMessage;
       } else if (codeMessage) {
         this.resetPassword.message = codeMessage;
+      } else if (passwordMessage) {
+        this.resetPassword.message = passwordMessage;
+      } else if (newPassword !== newPasswordConfirm) {
+        this.resetPassword.message = "Passwords do not match, please try again";
       } else {
-        this.serverConfirmResetPassword(email, resetPasswordCode).then(
-          response => {
-            if (response.status === 200) {
-              if (response.data.accessToken) {
-                this.clearEntries();
-              } else {
-                this.resetPassword.message =
-                  "Unable to reset password, please try again";
-              }
-            } else {
-              this.resetPassword.message = response.data.message;
-            }
+        this.serverConfirmResetPassword(
+          email,
+          resetPasswordCode,
+          newPassword
+        ).then(response => {
+          if (response.status === 200) {
+            console.log("200 response: " + JSON.stringify(response));
+          } else {
+            this.resetPassword.message = response.data.message;
           }
-        );
+        });
       }
     },
-    serverConfirmResetPassword: function(email, resetPasswordCode) {
+    serverConfirmResetPassword: function(
+      email,
+      resetPasswordCode,
+      newPassword
+    ) {
       return axios
         .post(
-          this.serverUrl + "/resetPassword/confirmReset",
+          this.serverUrl + "/resetPassword/confirmResetPassword",
           {
             confirmId: resetPasswordCode
           },
           {
             auth: {
-              username: email
-            },
-            withCredentials: true
+              username: email,
+              password: newPassword
+            }
           }
         )
         .then(function(response) {
@@ -129,7 +162,7 @@ export default {
     serverResendCode: function(email) {
       return axios
         .post(
-          this.serverUrl + "/resetPassword/resendCode",
+          this.serverUrl + "/resetPassword/resendResetCode",
           {},
           {
             auth: {
@@ -145,7 +178,9 @@ export default {
         });
     },
     clearEntries: function() {
-      this.verifyCode = "";
+      this.resetPasswordCode = "";
+      this.newPassword = "";
+      this.newPasswordConfirm = "";
       this.$emit("clearResetPasswordData");
     },
     backToLogin: function() {

@@ -97,7 +97,7 @@ export default {
         this.signupMessage = emailMessage;
       } else if (passwordMessage) {
         this.signupMessage = passwordMessage;
-      } else if (password != passwordConfirm) {
+      } else if (password !== passwordConfirm) {
         this.signupMessage = "Passwords do not match, please try again";
       } else {
         this.serverSignup(username, email, password).then(response => {
