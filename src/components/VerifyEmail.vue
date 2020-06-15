@@ -11,6 +11,7 @@
             placeholder="Email"
             class="logSignTextBox"
             type="email"
+            ref="emailInput"
           />
         </v-row>
         <p></p>
@@ -49,13 +50,14 @@
 
 <script>
 import axios from "axios";
-import privateConfig from "../config/private.config";
+import appConfig from "../config/app.config";
 import cookieUtil from "../utils/cookie.util";
+import userEntryUtil from "../utils/userEntry.util";
 
 export default {
   name: "VerifyEmail",
   data: () => ({
-    serverUrl: privateConfig.SERVER_URL,
+    serverUrl: appConfig.SERVER_URL,
     verifyCode: ""
   }),
   props: ["verify"],
@@ -63,28 +65,20 @@ export default {
     confirmUser: function(email, verifyCode) {
       email = email.trim();
       verifyCode = verifyCode.trim();
-      if (email.length <= 0) {
-        this.verify.message = "Please enter an email to be verified";
-      } else if (/\s/.test(email)) {
-        this.verify.message = "Email can not include spaces";
-      } else if (email.length > 255) {
-        this.verify.message = "Email can not exceed 255 characters";
-      } else if (email.includes(":")) {
-        this.verify.message = "Email can not include ':'";
-      } else if (!email.includes("@")) {
-        this.verify.message = "Email must include '@'";
-      } else if (verifyCode.length != 8) {
-        this.verify.message = "Verification code must be 8 characters";
+      let emailMessage = userEntryUtil.checkEmail(email);
+      let codeMessage = userEntryUtil.checkCode(verifyCode);
+
+      if (emailMessage) {
+        this.verify.message = emailMessage;
+      } else if (codeMessage) {
+        this.verify.message = codeMessage;
       } else {
         this.serverConfirmUser(email, verifyCode).then(response => {
           if (response.status === 200) {
-            if (
-              response.data.accessToken &&
-              cookieUtil.cookieExists("refresh-token")
-            ) {
+            if (response.data.accessToken) {
               this.clearEntries();
               this.$emit(
-                "userLogin",
+                "setUserData",
                 response.data.accessToken,
                 response.data.username
               );
@@ -121,16 +115,11 @@ export default {
         });
     },
     resendCode: function(email) {
-      if (email.length <= 0) {
-        this.verify.message = "Please enter an email to get a new code";
-      } else if (/\s/.test(email)) {
-        this.verify.message = "Email can not include spaces";
-      } else if (email.length > 255) {
-        this.verify.message = "Email can not exceed 255 characters";
-      } else if (email.includes(":")) {
-        this.verify.message = "Email can not include ':'";
-      } else if (!email.includes("@")) {
-        this.verify.message = "Email must include '@'";
+      email = email.trim();
+      let emailMessage = userEntryUtil.checkEmail(email);
+
+      if (emailMessage) {
+        this.verify.message = emailMessage;
       } else {
         this.serverResendCode(email).then(response => {
           this.verify.message = response.data.message;
@@ -157,12 +146,16 @@ export default {
     },
     clearEntries: function() {
       this.verifyCode = "";
-      this.$emit("clearVerify");
+      this.verify.message = "";
+      this.$emit("clearVerifyData");
     },
     backToSignup: function() {
       this.clearEntries();
       this.$router.push("signup");
     }
+  },
+  mounted: function() {
+    this.$refs.emailInput.focus();
   }
 };
 </script>
