@@ -115,10 +115,10 @@ export default {
           newPassword
         ).then(response => {
           if (response.status === 200) {
-            console.log("200 response: " + JSON.stringify(response));
-          } else {
-            this.resetPassword.message = response.data.message;
+            this.clearEntries();
           }
+
+          this.resetPassword.message = response.data.message;
         });
       }
     },
@@ -181,6 +181,7 @@ export default {
       this.resetPasswordCode = "";
       this.newPassword = "";
       this.newPasswordConfirm = "";
+      this.resetPassword.message = "";
       this.$emit("clearResetPasswordData");
     },
     backToLogin: function() {

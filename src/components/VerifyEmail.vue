@@ -146,6 +146,7 @@ export default {
     },
     clearEntries: function() {
       this.verifyCode = "";
+      this.verify.message = "";
       this.$emit("clearVerifyData");
     },
     backToSignup: function() {
