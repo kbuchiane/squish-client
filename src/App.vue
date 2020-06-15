@@ -38,6 +38,8 @@
       @setVerifyData="setVerifyData"
       @clearVerifyData="clearVerifyData"
       :verify="verify"
+      @setResetPasswordData="setResetPasswordData"
+      @clearResetPasswordData="clearResetPasswordData"
       :resetPassword="resetPassword"
     />
   </v-app>
@@ -120,6 +122,14 @@ export default {
     clearVerifyData: function() {
       this.verify.email = "";
       this.verify.message = "";
+    },
+    setResetPasswordData: function(resetPasswordData) {
+      this.resetPassword.email = resetPasswordData.email;
+      this.resetPassword.message = resetPasswordData.message;
+    },
+    clearResetPasswordData: function() {
+      this.resetPassword.email = "";
+      this.resetPassword.message = "";
     },
     silentRefresh: function() {
       this.serverSilentRefresh().then(response => {

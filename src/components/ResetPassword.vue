@@ -96,7 +96,7 @@ export default {
     serverConfirmResetPassword: function(email, resetPasswordCode) {
       return axios
         .post(
-          this.serverUrl + "/signup/confirmUser",
+          this.serverUrl + "/resetPassword/confirmReset",
           {
             confirmId: resetPasswordCode
           },
@@ -129,7 +129,7 @@ export default {
     serverResendCode: function(email) {
       return axios
         .post(
-          this.serverUrl + "/signup/resendCode",
+          this.serverUrl + "/resetPassword/resendCode",
           {},
           {
             auth: {

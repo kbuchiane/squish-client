@@ -137,7 +137,7 @@ export default {
               message: response.data.message
             };
 
-            this.$emit("resetPasswordData", resetPasswordData);
+            this.$emit("setResetPasswordData", resetPasswordData);
             this.$router.push("resetpassword");
           } else {
             this.loginMessage = response.data.message;
