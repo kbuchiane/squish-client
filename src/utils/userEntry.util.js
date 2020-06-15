@@ -54,7 +54,7 @@ exports.checkPassword = (password) => {
 
 exports.checkCode = (code) => {
     if (code.length != 8) {
-        return "Verification code must be 8 characters";
+        return "Code must be 8 characters";
     } else {
         return "";
     }

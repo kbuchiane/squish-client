@@ -97,19 +97,19 @@ export default {
         this.signupMessage = emailMessage;
       } else if (passwordMessage) {
         this.signupMessage = passwordMessage;
-      } else if (password != passwordConfirm) {
+      } else if (password !== passwordConfirm) {
         this.signupMessage = "Passwords do not match, please try again";
       } else {
         this.serverSignup(username, email, password).then(response => {
           if (response.status === 200) {
             this.clearEntries();
 
-            var verifyData = {
+            let verifyData = {
               email: email,
               message: response.data.message
             };
 
-            this.$emit("userVerify", verifyData);
+            this.$emit("setVerifyData", verifyData);
             this.$router.push("verifyemail");
           } else {
             this.signupMessage = response.data.message;

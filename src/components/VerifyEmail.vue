@@ -78,7 +78,7 @@ export default {
             if (response.data.accessToken) {
               this.clearEntries();
               this.$emit(
-                "userLogin",
+                "setUserData",
                 response.data.accessToken,
                 response.data.username
               );
@@ -115,16 +115,11 @@ export default {
         });
     },
     resendCode: function(email) {
-      if (email.length <= 0) {
-        this.verify.message = "Please enter an email to get a new code";
-      } else if (/\s/.test(email)) {
-        this.verify.message = "Email can not include spaces";
-      } else if (email.length > 255) {
-        this.verify.message = "Email can not exceed 255 characters";
-      } else if (email.includes(":")) {
-        this.verify.message = "Email can not include ':'";
-      } else if (!email.includes("@")) {
-        this.verify.message = "Email must include '@'";
+      email = email.trim();
+      let emailMessage = userEntryUtil.checkEmail(email);
+
+      if (emailMessage) {
+        this.verify.message = emailMessage;
       } else {
         this.serverResendCode(email).then(response => {
           this.verify.message = response.data.message;
@@ -151,7 +146,8 @@ export default {
     },
     clearEntries: function() {
       this.verifyCode = "";
-      this.$emit("clearVerify");
+      this.verify.message = "";
+      this.$emit("clearVerifyData");
     },
     backToSignup: function() {
       this.clearEntries();

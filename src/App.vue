@@ -34,10 +34,13 @@
 
     <!-- Event listeners from child components -->
     <router-view
-      @userLogin="setUserLogin"
-      @userVerify="setUserVerify"
-      @clearVerify="clearVerify"
+      @setUserData="setUserData"
+      @setVerifyData="setVerifyData"
+      @clearVerifyData="clearVerifyData"
       :verify="verify"
+      @setResetPasswordData="setResetPasswordData"
+      @clearResetPasswordData="clearResetPasswordData"
+      :resetPassword="resetPassword"
     />
   </v-app>
 </template>
@@ -47,6 +50,7 @@ import Browse from "./components/Browse";
 import Signup from "./components/Signup";
 import VerifyEmail from "./components/VerifyEmail";
 import Login from "./components/Login";
+import ResetPassword from "./components/ResetPassword";
 import axios from "axios";
 import appConfig from "./config/app.config";
 import cookieUtil, { cookieExists } from "./utils/cookie.util";
@@ -57,7 +61,8 @@ export default {
     Browse,
     Signup,
     VerifyEmail,
-    Login
+    Login,
+    ResetPassword
   },
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
@@ -70,6 +75,10 @@ export default {
       gamesFollowing: []
     },
     verify: {
+      email: "",
+      message: ""
+    },
+    resetPassword: {
       email: "",
       message: ""
     },
@@ -101,23 +110,31 @@ export default {
     }
   }),
   methods: {
-    setUserLogin: function(accessToken, username) {
+    setUserData: function(accessToken, username) {
       this.user.loggedIn = true;
       this.user.accessToken = accessToken;
       this.user.username = username;
     },
-    setUserVerify: function(verifyData) {
+    setVerifyData: function(verifyData) {
       this.verify.email = verifyData.email;
       this.verify.message = verifyData.message;
     },
-    clearVerify: function() {
+    clearVerifyData: function() {
       this.verify.email = "";
       this.verify.message = "";
+    },
+    setResetPasswordData: function(resetPasswordData) {
+      this.resetPassword.email = resetPasswordData.email;
+      this.resetPassword.message = resetPasswordData.message;
+    },
+    clearResetPasswordData: function() {
+      this.resetPassword.email = "";
+      this.resetPassword.message = "";
     },
     silentRefresh: function() {
       this.serverSilentRefresh().then(response => {
         if (response.status === 200 && response.data.message != false) {
-          this.setUserLogin(response.data.accessToken, response.data.username);
+          this.setUserData(response.data.accessToken, response.data.username);
         } else {
           this.logout();
         }
