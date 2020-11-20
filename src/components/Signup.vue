@@ -2,7 +2,7 @@
   <v-container>
     <v-row class="text-center">
       <v-col class="mb-5 logSignColumn" cols="12">
-        <h2 class="headline font-weight-bold mb-3 noselect">Sign Up</h2>
+        <h2 class="mb-3 noselect">Sign Up</h2>
         <p></p>
         <v-row justify="center">
           <input

@@ -43,6 +43,10 @@
     border-radius: 20px;
 }
 
+.v-application {
+    font-family: Verdana, Helvetica, Arial;
+}
+
 .noselect {
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
