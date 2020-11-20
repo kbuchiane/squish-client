@@ -27,17 +27,17 @@
         <v-row justify="center">
           <v-btn
             @click="confirmUser(verify.email, verifyCode)"
-            color="green"
+            color="#40a0e0"
             class="logsignButton"
           >Verify</v-btn>
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn @click="resendCode(verify.email)" color="orange" class="logsignButton">Resend Code</v-btn>
+          <v-btn @click="resendCode(verify.email)" color="#40a0e0" class="logsignButton">Resend Code</v-btn>
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn @click="backToSignup()" color="blue" class="logsignButton">Back To Sign Up</v-btn>
+          <v-btn @click="backToSignup()" color="#40a0e0" class="logsignButton">Back To Sign Up</v-btn>
         </v-row>
         <p></p>
         <v-row justify="center">

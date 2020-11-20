@@ -1,3 +1,8 @@
+:root {
+    --green: #32cd32;
+    --blue: #40a0e0;
+}
+
 .bannerOptions {
     height: 100%;
     width: 600px;
@@ -7,7 +12,7 @@
     position: absolute;
     font-size: 20px;
     right: 150px;
-    margin-top: 13px;
+    margin-top: 14px;
     color: white;
 }
 

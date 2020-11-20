@@ -27,7 +27,7 @@
         <v-row justify="center">
           <v-btn
             @click="login(userIdLogin, passwordLogin)"
-            color="green"
+            color="#40a0e0"
             class="logsignButton"
           >Log In</v-btn>
         </v-row>
@@ -35,7 +35,7 @@
         <v-row justify="center">
           <v-btn
             @click="resetPassword(userIdLogin)"
-            color="orange"
+            color="#40a0e0"
             class="logsignButton"
           >Forgot/Reset Password</v-btn>
         </v-row>
@@ -43,7 +43,7 @@
         <v-row justify="center">
           <v-btn
             to="/resetpassword"
-            color="orange"
+            color="#40a0e0"
             class="logsignButton"
           >I Already Have a Reset Password Code</v-btn>
         </v-row>

@@ -47,7 +47,7 @@
         <v-row justify="center">
           <v-btn
             @click="signup(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup)"
-            color="green"
+            color="#40a0e0"
             class="logsignButton"
           >Sign Up</v-btn>
         </v-row>
@@ -55,7 +55,7 @@
         <v-row justify="center">
           <v-btn
             to="/verifyemail"
-            color="orange"
+            color="#40a0e0"
             class="logsignButton"
           >I Already Have a Verification Code</v-btn>
         </v-row>
