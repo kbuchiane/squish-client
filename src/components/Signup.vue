@@ -2,7 +2,7 @@
   <v-container>
     <v-row class="text-center">
       <v-col class="mb-5 logSignColumn" cols="12">
-        <h2 class="headline font-weight-bold mb-3 noselect">Sign Up</h2>
+        <h2 class="mb-3 noselect">Sign Up</h2>
         <p></p>
         <v-row justify="center">
           <input
@@ -47,7 +47,7 @@
         <v-row justify="center">
           <v-btn
             @click="signup(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup)"
-            color="green"
+            color="#40a0e0"
             class="logsignButton"
           >Sign Up</v-btn>
         </v-row>
@@ -55,7 +55,7 @@
         <v-row justify="center">
           <v-btn
             to="/verifyemail"
-            color="orange"
+            color="#40a0e0"
             class="logsignButton"
           >I Already Have a Verification Code</v-btn>
         </v-row>

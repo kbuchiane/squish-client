@@ -2,7 +2,7 @@
   <v-container>
     <v-row class="text-center">
       <v-col class="mb-5 logSignColumn" cols="12">
-        <h2 class="headline font-weight-bold mb-3 noselect">Reset Password</h2>
+        <h2 class="mb-3 noselect">Reset Password</h2>
         <p></p>
         <v-row justify="center">
           <input
@@ -47,7 +47,7 @@
         <v-row justify="center">
           <v-btn
             @click="confirmResetPassword(resetPassword.email, resetPasswordCode, newPassword, newPasswordConfirm)"
-            color="green"
+            color="#40a0e0"
             class="logsignButton"
           >Reset Password</v-btn>
         </v-row>
@@ -55,13 +55,13 @@
         <v-row justify="center">
           <v-btn
             @click="resendCode(resetPassword.email)"
-            color="orange"
+            color="#40a0e0"
             class="logsignButton"
           >Resend Code</v-btn>
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn @click="backToLogin()" color="blue" class="logsignButton">Back To Log In</v-btn>
+          <v-btn @click="backToLogin()" color="#40a0e0" class="logsignButton">Back To Log In</v-btn>
         </v-row>
         <p></p>
         <v-row justify="center">
