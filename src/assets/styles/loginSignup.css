@@ -12,7 +12,7 @@
 }
 
 .logSignTextBox:focus {
-    border: 2px solid green;
+    border: 2px solid #32cd32;
     height: 35px;
     border-radius: 20px;
     width: 450px;
@@ -26,7 +26,7 @@
 }
 
 .logSignMessage {
-    color: dodgerblue;
+    color: #40a0e0;
     width: 450px;
 }
 
