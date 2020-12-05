@@ -1,7 +1,13 @@
 <template>
-  <div>
-    <ClipPlayer :options="videoOptions"/>
-  </div>
+  <v-container>
+    <v-row class="text-center">
+      <v-col class="mb-5 clipColumn" cols="12">
+        <div>
+          <ClipPlayer :options="videoOptions"/>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
