@@ -1,6 +1,6 @@
 <template>
   <div>
-    <video ref="clipPlayer" class=""></video>
+    <video ref="clipPlayer" class="video-js"></video>
   </div>
 </template>
 
@@ -23,8 +23,8 @@ export default {
   mounted() {
     this.player = videojs(this.$refs.clipPlayer, this.options, 
       function onPlayerReady() {
-        console.log("onPlayerReady", this);
-    });
+        // When player is ready
+      });
   },
   beforeDestroy() {
     if (this.player) {
@@ -35,3 +35,4 @@ export default {
 </script>
 
 <style scoped src='../assets/styles/clipPlayer.css'></style>
+<style scoped src='../../node_modules/video.js/dist/video-js.css'></style>
