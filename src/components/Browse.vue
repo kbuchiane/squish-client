@@ -1,9 +1,7 @@
 <template>
-  <v-container>
-    <div>
-        <video :options="videoOptions"/>
-    </div>
-  </v-container>
+  <div>
+    <ClipPlayer :options="videoOptions"/>
+  </div>
 </template>
 
 <script>

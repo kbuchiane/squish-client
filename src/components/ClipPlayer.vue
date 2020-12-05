@@ -1,28 +1,29 @@
 <template>
-  <v-container>
-      <div>
-          <video ref="clipPlayer" class=""></video>
-      </div>
-  </v-container>
+  <div>
+    <video ref="clipPlayer" class=""></video>
+  </div>
 </template>
 
 <script>
-import videojs from 'video.js';
+import videojs from "video.js";
 
 export default {
   name: "ClipPlayer",
-  props: () => ({
+  props: {
     options: {
-      type: Object
+      type: Object,
+      default() {
+        return {};
+      }
     }
-  }),
+  },
   data: () => ({
     player: null
   }),
   mounted() {
-    this.player = videojs(this.$refs.videoPlayer, this.options, 
+    this.player = videojs(this.$refs.clipPlayer, this.options, 
       function onPlayerReady() {
-        console.log('onPlayerReady', this);
+        console.log("onPlayerReady", this);
     });
   },
   beforeDestroy() {
