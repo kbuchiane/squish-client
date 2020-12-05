@@ -7,14 +7,12 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
-  name: "Clip",
+  name: "ClipPlayer",
   data: () => ({
     //
   })
 };
 </script>
 
-<style scoped src='../assets/styles/clip.css'></style>
+<style scoped src='../assets/styles/clipPlayer.css'></style>

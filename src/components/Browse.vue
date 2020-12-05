@@ -1,19 +1,19 @@
 <template>
   <v-container>
-    <div id="clip">
-        <Clip/>
+    <div id="clipPlayer">
+        <ClipPlayer/>
     </div>
   </v-container>
 </template>
 
 <script>
-import Clip from "./Clip";
+import ClipPlayer from "./ClipPlayer";
 import axios from "axios";
 
 export default {
   name: "Browse",
   components: {
-    Clip
+    ClipPlayer
   },
   data: () => ({
     //
