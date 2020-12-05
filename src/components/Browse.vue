@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <div id="clipPlayer">
-        <ClipPlayer/>
+    <div>
+        <video :options="videoOptions"/>
     </div>
   </v-container>
 </template>
@@ -16,7 +16,16 @@ export default {
     ClipPlayer
   },
   data: () => ({
-    //
+    videoOptions: {
+      autoplay: true,
+      controls: true,
+      source: [
+        {
+          src: "../../media/clips/test.mp4",
+          type: "video/mp4"
+        }
+      ]
+    }
   })
 };
 </script>
