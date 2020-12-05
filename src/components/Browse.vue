@@ -23,9 +23,9 @@ export default {
     videoOptions: {
       autoplay: true,
       controls: true,
-      source: [
+      sources: [
         {
-          src: "../../media/clips/test.mp4",
+          src: "/../../media/clips/test.mp4",
           type: "video/mp4"
         }
       ]
