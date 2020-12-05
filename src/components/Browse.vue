@@ -25,7 +25,7 @@ export default {
       controls: true,
       sources: [
         {
-          src: "/../../media/clips/test.mp4",
+          src: "../../media/clips/test.mp4",
           type: "video/mp4"
         }
       ]
