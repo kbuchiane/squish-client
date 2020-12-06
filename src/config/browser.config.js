@@ -1,6 +1,6 @@
 
-module.exports = {
-    // Supported browsers and required minimum version
-    SUPPORTED: "Chrome,Edge,Firefox",
-    VERSIONS: "87,87,83"
+// Squish supported browsers and required minimum version
+module.exports = {   
+    SUPPORTED: "Chrome,Edge,Firefox,IE,Safari",
+    VERSIONS: "79,87,71,11,14"
 };
