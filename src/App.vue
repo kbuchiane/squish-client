@@ -1,22 +1,13 @@
 <template>
   <v-app>
-    <v-app-bar app color="green" dark>
+    <v-app-bar app color="black">
       <router-link to="/browse" class="d-flex align-center">
         <v-img
-          alt="Vuetify Logo"
+          alt="Squish Logo"
           class="shrink mr-2"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          src="./assets/images/logo.png"
           transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
           width="100"
         />
       </router-link>
@@ -24,11 +15,11 @@
       <v-spacer></v-spacer>
       <div v-if="user.loggedIn" class="bannerOptions">
         <p class="bannerUsername noselect">{{ user.username }}</p>
-        <v-btn @click="logout()" color="orange" class="bannerLogoutButton">Log Out</v-btn>
+        <v-btn @click="logout()" color="#32cd32" class="bannerLogoutButton">Log Out</v-btn>
       </div>
       <div v-if="!user.loggedIn" class="bannerOptions">
-        <v-btn to="/login" color="blue" class="bannerLoginButton">Log In</v-btn>
-        <v-btn to="/signup" color="orange" class="bannerSignupButton">Sign Up</v-btn>
+        <v-btn to="/login" color="#32cd32" class="bannerLoginButton">Log In</v-btn>
+        <v-btn to="/signup" color="#32cd32" class="bannerSignupButton">Sign Up</v-btn>
       </div>
     </v-app-bar>
 
