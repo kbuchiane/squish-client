@@ -1,3 +1,11 @@
+.clipPlayerDiv {
+    padding-bottom: 40px;
+}
+
+.clipPlayer {
+    width: 800px;
+}
+
 .noselect {
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */

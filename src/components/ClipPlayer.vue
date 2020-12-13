@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <video controls>
+  <div class="clipPlayerDiv">
+    <video controls class="clipPlayer">
       <source :src="clip.src" :type="clip.type">
     </video>
   </div>
