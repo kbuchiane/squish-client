@@ -1,11 +1,9 @@
 <template>
   <div>
-    <video 
-      ref="clipPlayer"
-      class=""
+    <video
       controls
-      :type="this.clips.type"
-      :src="this.clips.src">
+      :type="clip.type"
+      :src="clip.src">
     </video>
   </div>
 </template>
@@ -13,7 +11,7 @@
 <script>
 export default {
   name: "ClipPlayer",
-  props: ["clips"]
+  props: ["clip"]
 };
 </script>
 

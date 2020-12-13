@@ -2,8 +2,8 @@
   <v-container>
     <v-row class="text-center">
       <v-col class="mb-5 clipColumn" cols="12">
-        <div>
-          <ClipPlayer :clips="clips"/>
+        <div v-for="clip in clips">
+          <ClipPlayer :clip="clip"/>
         </div>
       </v-col>
     </v-row>
@@ -21,6 +21,10 @@ export default {
   },
   data: () => ({
     clips: [
+      {
+        type: "video/mp4",
+        src: "../assets/videos/test.mp4"
+      },
       {
         type: "video/mp4",
         src: "../assets/videos/test.mp4"
