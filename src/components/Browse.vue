@@ -3,7 +3,7 @@
     <v-row class="text-center">
       <v-col class="mb-5 clipColumn" cols="12">
         <div>
-          <ClipPlayer :options="videoOptions"/>
+          <ClipPlayer :clips="clips"/>
         </div>
       </v-col>
     </v-row>
@@ -20,16 +20,12 @@ export default {
     ClipPlayer
   },
   data: () => ({
-    videoOptions: {
-      autoplay: true,
-      controls: true,
-      sources: [
-        {
-          type: "video/mp4",
-          src: "../assets/videos/test.mp4"
-        }
-      ]
-    }
+    clips: [
+      {
+        type: "video/mp4",
+        src: "../assets/videos/test.mp4"
+      }
+    ]
   })
 };
 </script>
