@@ -1,17 +1,17 @@
 <template>
   <div>
-    <video
-      controls
-      :type="clip.type"
-      :src="clip.src">
-    </video>
+    <video controls :src="clip.src" :type="clip.type"></video>
   </div>
 </template>
 
 <script>
 export default {
   name: "ClipPlayer",
-  props: ["clip"]
+  props: ["clip"],
+  mounted: function() {
+    console.log(this.clip.src);
+    console.log(this.clip.type);
+  }
 };
 </script>
 

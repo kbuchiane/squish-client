@@ -2,7 +2,7 @@
   <v-container>
     <v-row class="text-center">
       <v-col class="mb-5 clipColumn" cols="12">
-        <div v-for="clip in clips">
+        <div v-for="clip in clips" :key="clip.src">
           <ClipPlayer :clip="clip"/>
         </div>
       </v-col>
@@ -27,7 +27,7 @@ export default {
       },
       {
         type: "video/mp4",
-        src: "../assets/videos/test.mp4"
+        src: "../assets/videos/test2.mp4"
       }
     ]
   })
