@@ -1,6 +1,10 @@
 <template>
   <div>
-    <video ref="clipPlayer" class="video-js vjs-default-skin vjs-big-play-centered"></video>
+    <video 
+      id="clipPlayer"
+      class="video-js"
+      controls>
+    </video>
   </div>
 </template>
 
@@ -21,9 +25,9 @@ export default {
     player: null
   }),
   mounted() {
-    this.player = videojs(this.$refs.clipPlayer, this.options, 
+    this.player = videojs("clipPlayer", this.options, 
       function onPlayerReady() {
-        // When player is ready
+        console.log('onPlayerReady', this);
       });
   },
   beforeDestroy() {
