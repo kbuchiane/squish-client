@@ -23,11 +23,11 @@ export default {
     clips: [
       {
         type: "video/mp4",
-        src: "../assets/videos/test.mp4"
+        src: require("../assets/videos/test.mp4")
       },
       {
         type: "video/mp4",
-        src: "../assets/videos/test2.mp4"
+        src: require("../assets/videos/test2.mp4")
       }
     ]
   })
