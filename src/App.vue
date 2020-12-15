@@ -41,6 +41,7 @@
       @setResetPasswordData="setResetPasswordData"
       @clearResetPasswordData="clearResetPasswordData"
       :resetPassword="resetPassword"
+      :user="user"
     />
   </v-app>
 </template>
@@ -110,6 +111,9 @@ export default {
     }
   }),
   methods: {
+    getUserData: function() {
+      return this.user.accessToken;
+    },
     setUserData: function(accessToken, username) {
       this.user.loggedIn = true;
       this.user.accessToken = accessToken;
