@@ -31,7 +31,6 @@ export default {
   props: ["user"],
   methods: {
     follow: function(followerUsername, followedUsername) {
-      console.log(this.user.accessToken);
       followerUsername = followerUsername.trim();
       followedUsername = followedUsername.trim();
 
@@ -47,31 +46,8 @@ export default {
         },
       })
       .then(function(response) {
-        console.log(response);
         return response;
       });
-
-      // return axios
-      //   .post(
-      //     this.serverUrl + "/followUser",
-      //     {
-      //       followerUsername: followerUsername,
-      //       followedUsername: followedUsername
-      //     },
-      //     {
-      //       auth: {
-      //         username: userId,
-      //         password: password
-      //       },
-      //       withCredentials: true
-      //     }
-      //   )
-      //   .then(function(response) {
-      //     return response;
-      //   })
-      //   .catch(error => {
-      //     return error.response;
-      //   });
     }
   },
   mounted: function() {

@@ -111,9 +111,6 @@ export default {
     }
   }),
   methods: {
-    getUserData: function() {
-      return this.user.accessToken;
-    },
     setUserData: function(accessToken, username) {
       this.user.loggedIn = true;
       this.user.accessToken = accessToken;
