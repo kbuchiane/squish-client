@@ -18,6 +18,11 @@
     margin: 0 auto;
     width: 75%;
     display: inline-block;
+    object-fit: fill;
+}
+
+.clipPlayer:focus {
+    outline: none;
 }
 
 .clipSideTab {
@@ -32,7 +37,7 @@
     margin: 0 auto;
     width: 75%;
     height: 40px;
-    margin-top: -5.7px;
+    margin-top: -5.5px;
     background-color: yellow;
 }
 
