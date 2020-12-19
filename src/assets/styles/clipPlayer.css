@@ -1,6 +1,7 @@
 .clipPlayerDiv {
     margin: 0 auto;
     width: 100%;
+    min-width: 800px;
     padding-bottom: 20px;
     padding-top: 20px;
     background-color: grey;
@@ -10,7 +11,6 @@
     margin: 0 auto;
     width: 75%;
     height: 60px;
-    border-bottom: thin solid black;
     background-color: salmon;
 }
 
@@ -22,10 +22,9 @@
 
 .clipSideTab {
     position: absolute;
-    width: 4%;
-    height: 300px;
+    width: 70px;
+    height: 250px;
     display: inline-block;
-    border-left: thin solid black;
     background-color: aqua;
 }
 
@@ -33,8 +32,7 @@
     margin: 0 auto;
     width: 75%;
     height: 40px;
-    margin-top: -6px;
-    border-top: thin solid black;
+    margin-top: -5.7px;
     background-color: yellow;
 }
 
