@@ -1,7 +1,7 @@
 <template>
   <div class="clipPlayerDiv">
     <div class="clipHeader"></div>
-    <video controls class="clipPlayer">
+    <video controls class="clipPlayer" :poster="clip.poster">
       <source :src="clip.src" :type="clip.type">
     </video>
     <div class="clipSideTab"></div>
