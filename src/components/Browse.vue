@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-row class="text-center">
-      <v-col class="mb-5 clipColumn" cols="12">
+    <v-row justify="center" class="text-center">
+      <v-col class="mb-5 clipColumn" cols="8">
         <div v-for="clip in clips" :key="clip.src">
           <ClipPlayer :clip="clip"/>
         </div>

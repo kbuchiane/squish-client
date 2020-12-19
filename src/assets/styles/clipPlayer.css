@@ -1,9 +1,41 @@
 .clipPlayerDiv {
-    padding-bottom: 40px;
+    margin: 0 auto;
+    width: 100%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    background-color: grey;
+}
+
+.clipHeader {
+    margin: 0 auto;
+    width: 75%;
+    height: 60px;
+    border-bottom: thin solid black;
+    background-color: salmon;
 }
 
 .clipPlayer {
-    width: 800px;
+    margin: 0 auto;
+    width: 75%;
+    display: inline-block;
+}
+
+.clipSideTab {
+    position: absolute;
+    width: 5%;
+    height: 20%;
+    display: inline-block;
+    border-left: thin solid black;
+    background-color: aqua;
+}
+
+.clipFooter {
+    margin: 0 auto;
+    width: 75%;
+    height: 40px;
+    margin-top: -5px;
+    border-top: thin solid black;
+    background-color: yellow;
 }
 
 .noselect {
