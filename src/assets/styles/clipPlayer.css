@@ -10,7 +10,6 @@
     margin: 0 auto;
     width: 75%;
     height: 100px;
-    background-color: salmon;
 }
 
 .clipUser {
@@ -23,14 +22,14 @@
 .clipUserBadges {
     height: 100%;
     width: 200px;
-    margin-left: 100px;
+    float: left;
     background-color: grey;
 }
 
 .clipUserActions {
     height: 100%;
-    width: 200px;
-    margin-left: 300px;
+    width: calc(100% - 300px);
+    float: left;
     background-color: red;
 }
 
