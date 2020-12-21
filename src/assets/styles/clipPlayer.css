@@ -16,21 +16,21 @@
     height: 100%;
     width: 100px;
     float: left;
-    background-color: blue;
+    background-color: black;
 }
 
 .clipUserBadges {
     height: 100%;
     width: 200px;
     float: left;
-    background-color: grey;
+    background-color: #32cd32;
 }
 
 .clipUserActions {
     height: 100%;
     width: calc(100% - 300px);
     float: left;
-    background-color: salmon;
+    background-color: #40a0e0;
 }
 
 .clipPlayer {
@@ -54,19 +54,19 @@
 .clipImpressive {
     height: calc(250px / 3);
     width: 100%;
-    background-color: blue;
+    background-color: black;
 }
 
 .clipFunny {
     height: calc(250px / 3);
     width: 100%;
-    background-color: grey;
+    background-color: #32cd32;
 }
 
 .clipDiscussion {
     height: calc(250px / 3);
     width: 100%;
-    background-color: salmon;
+    background-color: #40a0e0;
 }
 
 .clipFooter {
@@ -80,21 +80,21 @@
     height: 100%;
     width: calc(100% / 3);
     float: left;
-    background-color: blue;
+    background-color: black;
 }
 
 .clipLikes {
     height: 100%;
     width: calc(100% / 3);
     float: left;
-    background-color: grey;
+    background-color: #32cd32;
 }
 
 .clipComments {
     height: 100%;
     width: calc(100% / 3);
     float: left;
-    background-color: salmon;
+    background-color: #40a0e0;
 }
 
 .noselect {
