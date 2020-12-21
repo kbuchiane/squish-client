@@ -49,22 +49,21 @@
     width: 80px;
     height: 250px;
     display: inline-block;
-    background-color: aqua;
 }
 
-.clipImpressiveCount {
+.clipImpressive {
     height: calc(250px / 3);
     width: 100%;
     background-color: blue;
 }
 
-.clipFunnyCount {
+.clipFunny {
     height: calc(250px / 3);
     width: 100%;
     background-color: grey;
 }
 
-.clipDiscussionCount {
+.clipDiscussion {
     height: calc(250px / 3);
     width: 100%;
     background-color: salmon;
@@ -75,7 +74,27 @@
     width: 75%;
     height: 50px;
     margin-top: -6px;
-    background-color: yellow;
+}
+
+.clipViews {
+    height: 100%;
+    width: calc(100% / 3);
+    float: left;
+    background-color: blue;
+}
+
+.clipLikes {
+    height: 100%;
+    width: calc(100% / 3);
+    float: left;
+    background-color: grey;
+}
+
+.clipComments {
+    height: 100%;
+    width: calc(100% / 3);
+    float: left;
+    background-color: salmon;
 }
 
 .noselect {

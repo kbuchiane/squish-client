@@ -9,11 +9,15 @@
       <source :src="clip.src" :type="clip.type">
     </video>
     <div class="clipSideTab">
-      <div class="clipImpressiveCount"></div>
-      <div class="clipFunnyCount"></div>
-      <div class="clipDiscussionCount"></div>
+      <div class="clipImpressive"></div>
+      <div class="clipFunny"></div>
+      <div class="clipDiscussion"></div>
     </div>
-    <div class="clipFooter"></div>
+    <div class="clipFooter">
+      <div class="clipViews"></div>
+      <div class="clipLikes"></div>
+      <div class="clipComments"></div>
+    </div>
   </div>
 </template>
 
