@@ -9,8 +9,29 @@
 .clipHeader {
     margin: 0 auto;
     width: 75%;
-    height: 60px;
+    height: 100px;
     background-color: salmon;
+}
+
+.clipUser {
+    height: 100%;
+    width: 100px;
+    float: left;
+    background-color: blue;
+}
+
+.clipUserBadges {
+    height: 100%;
+    width: 200px;
+    margin-left: 100px;
+    background-color: grey;
+}
+
+.clipUserActions {
+    height: 100%;
+    width: 200px;
+    margin-left: 300px;
+    background-color: red;
 }
 
 .clipPlayer {

@@ -1,6 +1,10 @@
 <template>
   <div class="clipPlayerDiv">
-    <div class="clipHeader"></div>
+    <div class="clipHeader">
+      <div class="clipUser"></div>
+      <div class="clipUserBadges"></div>
+      <div class="clipUserActions"></div>
+    </div>
     <video controls class="clipPlayer" :poster="clip.poster">
       <source :src="clip.src" :type="clip.type">
     </video>
