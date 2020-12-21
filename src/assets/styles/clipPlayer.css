@@ -30,7 +30,7 @@
     height: 100%;
     width: calc(100% - 300px);
     float: left;
-    background-color: red;
+    background-color: salmon;
 }
 
 .clipPlayer {
@@ -46,10 +46,28 @@
 
 .clipSideTab {
     position: absolute;
-    width: 70px;
+    width: 80px;
     height: 250px;
     display: inline-block;
     background-color: aqua;
+}
+
+.clipImpressiveCount {
+    height: calc(250px / 3);
+    width: 100%;
+    background-color: blue;
+}
+
+.clipFunnyCount {
+    height: calc(250px / 3);
+    width: 100%;
+    background-color: grey;
+}
+
+.clipDiscussionCount {
+    height: calc(250px / 3);
+    width: 100%;
+    background-color: salmon;
 }
 
 .clipFooter {

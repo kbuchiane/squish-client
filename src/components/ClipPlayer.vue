@@ -8,7 +8,11 @@
     <video controls class="clipPlayer" :poster="clip.poster">
       <source :src="clip.src" :type="clip.type">
     </video>
-    <div class="clipSideTab"></div>
+    <div class="clipSideTab">
+      <div class="clipImpressiveCount"></div>
+      <div class="clipFunnyCount"></div>
+      <div class="clipDiscussionCount"></div>
+    </div>
     <div class="clipFooter"></div>
   </div>
 </template>
