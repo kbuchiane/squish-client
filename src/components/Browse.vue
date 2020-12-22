@@ -35,12 +35,12 @@ export default {
         badgeTwo: require("../assets/images/badge2.png"),
         badgeThree: require("../assets/images/badge3.png"),
         badgeFour: require("../assets/images/badge4.png"),
-        impressiveCount: "100.15M",
-        funnyCount: "100.15M",
-        discussionCount: "100.15M",
-        viewCount: "100.15M",
-        likeCount: "100.15M",
-        commentCount: "100.15M"
+        impressiveCount: "70.9k",
+        funnyCount: "12.4k",
+        discussionCount: "30.6k",
+        viewCount: "8.64M",
+        likeCount: "1.21M",
+        commentCount: "755.1k"
       },
       {
         type: "video/mp4",
@@ -54,12 +54,12 @@ export default {
         badgeTwo: require("../assets/images/badge2.png"),
         badgeThree: require("../assets/images/badge3.png"),
         badgeFour: require("../assets/images/badge4.png"),
-        impressiveCount: "100.15M",
-        funnyCount: "100.15M",
-        discussionCount: "100.15M",
-        viewCount: "100.15M",
-        likeCount: "100.15M",
-        commentCount: "100.15M"
+        impressiveCount: "10.8k",
+        funnyCount: "5005",
+        discussionCount: "36.3k",
+        viewCount: "903.23k",
+        likeCount: "133.7k",
+        commentCount: "98.9k"
       }
     ]
   })
