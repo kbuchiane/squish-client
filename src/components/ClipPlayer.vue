@@ -9,26 +9,18 @@
         <div class="bottomRightBadge"></div>
       </div>
       <div class="clipUserActions">
-        <v-row justify="center" class="userActionsRow">
-          <v-col class="mb-5" cols="3">
-            <v-btn
-              color="#32cd32"
-              class="clipPlayerButton"
-            >Follow</v-btn>
-          </v-col>
-          <v-col class="mb-5" cols="3">
-            <v-btn
-              color="#32cd32"
-              class="clipPlayerButton"
-            >Link Up</v-btn>
-          </v-col>
-          <v-col class="mb-5" cols="3">
-            <v-btn
-              color="#32cd32"
-              class="clipPlayerButton"
-            >Gift</v-btn>
-          </v-col>
-        </v-row>
+        <v-btn
+          color="#40a0e0"
+          class="userActionGift"
+        >Gift</v-btn>
+        <v-btn
+          color="#40a0e0"
+          class="userActionLinkUp"
+        >Link Up</v-btn>
+        <v-btn
+          color="#40a0e0"
+          class="userActionFollow"
+        >Follow</v-btn>
       </div>
     </div>
     <video controls class="clipPlayer" :poster="clip.poster">

@@ -6,12 +6,6 @@
     padding-top: 20px;
 }
 
-.clipPlayerButton {
-    width: 110px;
-    height: 35px;
-    border-radius: 20px;
-}
-
 .clipHeader {
     margin: 0 auto;
     width: 75%;
@@ -65,11 +59,33 @@
     height: 100%;
     width: calc(100% - 250px);
     float: left;
-    background-color: #40a0e0;
 }
 
-.userActionsRow {
-    margin-top: 20px;
+.userActionFollow {
+    width: 110px;
+    height: 35px;
+    top: 50%;
+    float: right;
+    margin-left: 5px;
+    border-radius: 20px;
+}
+
+.userActionLinkUp {
+    width: 110px;
+    height: 35px;
+    top: 50%;
+    float: right;
+    margin-left: 5px;
+    border-radius: 20px;
+}
+
+.userActionGift {
+    width: 110px;
+    height: 35px;
+    top: 50%;
+    float: right;
+    margin-left: 5px;
+    border-radius: 20px;
 }
 
 .clipPlayer {
