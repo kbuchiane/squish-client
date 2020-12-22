@@ -14,10 +14,38 @@
         </router-link>
       </div>
       <div class="clipUserBadges">
-        <div class="topLeftBadge"></div>
-        <div class="topRightBadge"></div>
-        <div class="bottomLeftBadge"></div>
-        <div class="bottomRightBadge"></div>
+        <div class="topLeftBadge">
+          <v-img
+            class="badgeImage"
+            contain
+            :src="clip.badgeOne"
+            width="100"
+          />
+        </div>
+        <div class="topRightBadge">
+          <v-img
+            class="badgeImage"
+            contain
+            :src="clip.badgeTwo"
+            width="100"
+          />
+        </div>
+        <div class="bottomLeftBadge">
+          <v-img
+            class="badgeImage"
+            contain
+            :src="clip.badgeThree"
+            width="100"
+          />
+        </div>
+        <div class="bottomRightBadge">
+          <v-img
+            class="badgeImage"
+            contain
+            :src="clip.badgeFour"
+            width="100"
+          />
+        </div>
       </div>
       <div class="clipUserActions">
         <v-btn

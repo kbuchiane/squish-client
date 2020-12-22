@@ -29,7 +29,11 @@ export default {
         poster: require("../assets/images/snipe1poster.png"),
         title: "Later, GrandpaGaming",
         username: "JackiePrince",
-        userImage: require("../assets/images/crown.png")
+        userImage: require("../assets/images/crown.png"),
+        badgeOne: require("../assets/images/badge1.png"),
+        badgeTwo: require("../assets/images/badge2.png"),
+        badgeThree: require("../assets/images/badge3.png"),
+        badgeFour: require("../assets/images/badge4.png")
       },
       {
         type: "video/mp4",
@@ -37,7 +41,11 @@ export default {
         poster: require("../assets/images/snipe2poster.png"),
         title: "Later, Bot",
         username: "JackiePrince",
-        userImage: require("../assets/images/crown.png")
+        userImage: require("../assets/images/crown.png"),
+        badgeOne: require("../assets/images/badge1.png"),
+        badgeTwo: require("../assets/images/badge2.png"),
+        badgeThree: require("../assets/images/badge3.png"),
+        badgeFour: require("../assets/images/badge4.png")
       }
     ]
   })

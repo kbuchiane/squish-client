@@ -54,14 +54,12 @@
     height: 50%;
     width: 50%;
     display: inline-block;
-    background-color: #32cd32;
 }
 
 .topRightBadge {
     height: 50%;
     width: 50%;
     display: inline-block;
-    background-color: black;
 }
 
 .bottomLeftBadge {
@@ -69,7 +67,6 @@
     width: 50%;
     margin-top: -5.6px;;
     display: inline-block;
-    background-color: #40a0e0;
 }
 
 .bottomRightBadge {
@@ -77,7 +74,12 @@
     width: 50%;
     margin-top: -5.6px;
     display: inline-block;
-    background-color: #32cd32;
+}
+
+.badgeImage {
+    position: absolute;
+    max-height: 40px;
+    max-width: 70px;
 }
 
 .clipUserActions {
