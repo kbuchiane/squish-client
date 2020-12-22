@@ -27,12 +27,16 @@ export default {
         type: "video/mp4",
         src: require("../assets/videos/snipe1.mp4"),
         poster: require("../assets/images/snipe1poster.png"),
+        title: "Later, GrandpaGaming",
+        username: "JackiePrince",
         userImage: require("../assets/images/crown.png")
       },
       {
         type: "video/mp4",
         src: require("../assets/videos/snipe2.mp4"),
         poster: require("../assets/images/snipe2poster.png"),
+        title: "Later, Bot",
+        username: "JackiePrince",
         userImage: require("../assets/images/crown.png")
       }
     ]

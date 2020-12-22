@@ -1,5 +1,7 @@
 <template>
   <div class="clipPlayerDiv">
+    <div class="clipTitle">{{ clip.title }}</div>
+    <div class="clipUsername">{{ clip.username }}</div>
     <div class="clipHeader">
       <div class="clipUser">
         <router-link to="" class="d-flex align-center">
