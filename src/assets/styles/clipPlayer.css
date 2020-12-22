@@ -240,42 +240,83 @@
 .clipFooter {
     margin: 0 auto;
     width: 75%;
-    height: 40px;
-    margin-top: -6px;
+    height: 50px;
+    margin-top: -4px;
 }
 
 .clipViews {
+    height: 100%;
+    width: calc((100% / 3) - 80px);
+    float: left;
+}
+
+.viewCount {
     margin: 0 auto;
     height: 100%;
-    width: calc(100% / 3);
-    float: left;
+    width: 100%;
     text-align: center;
     vertical-align: middle;
-    line-height: 40px;
+    line-height: 50px;
     font-size: 18px;
     font-weight: 500;
 }
 
 .clipLikes {
+    height: 100%;
+    width: calc((100% / 3) + 40px);
+    float: left;
+}
+
+.likeIconDiv {
+    height: 100%;
+    width: 60px;
+    float: left;
+}
+
+.likeIcon {
+    height: 100%;
+    width: 100%;
+}
+
+.likeCount {
     margin: 0 auto;
     height: 100%;
-    width: calc(100% / 3);
+    width: calc(100% - 60px);
     float: left;
     text-align: center;
+    padding-left: 10px;
     vertical-align: middle;
-    line-height: 40px;
+    line-height: 50px;
     font-size: 18px;
     font-weight: 500;
 }
 
 .clipComments {
+    height: 100%;
+    width: calc((100% / 3) + 40px);
+    float: left;
+}
+
+.commentIconDiv {
+    height: 100%;
+    width: 60px;
+    float: left;
+}
+
+.commentIcon {
+    height: 100%;
+    width: 100%;
+}
+
+.commentCount {
     margin: 0 auto;
     height: 100%;
-    width: calc(100% / 3);
+    width: calc(100% - 60px);
     float: left;
     text-align: center;
+    padding-left: 10px;
     vertical-align: middle;
-    line-height: 40px;
+    line-height: 50px;
     font-size: 18px;
     font-weight: 500;
 }

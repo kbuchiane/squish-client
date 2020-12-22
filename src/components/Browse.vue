@@ -38,9 +38,9 @@ export default {
         impressiveCount: "3.43M",
         funnyCount: "1.24k",
         discussionCount: "542",
-        views: "8.38M",
-        likes: "5.03M",
-        comments: "907k"
+        viewCount: "8.38M",
+        likeCount: "5.03M",
+        commentCount: "907k"
       },
       {
         type: "video/mp4",
@@ -57,9 +57,9 @@ export default {
         impressiveCount: "1.82M",
         funnyCount: "8.91k",
         discussionCount: "9837",
-        views: "6.04M",
-        likes: "2.17M",
-        comments: "434k"
+        viewCount: "6.04M",
+        likeCount: "2.17M",
+        commentCount: "434k"
       }
     ]
   })

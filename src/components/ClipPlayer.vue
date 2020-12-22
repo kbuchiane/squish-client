@@ -102,9 +102,31 @@
       </div>
     </div>
     <div class="clipFooter">
-      <div class="clipViews">{{ clip.views }} views</div>
-      <div class="clipLikes">{{ clip.likes }} likes</div>
-      <div class="clipComments">{{ clip.comments }} comments</div>
+      <div class="clipViews">
+        <div class="viewCount">{{ clip.viewCount }} views</div>
+      </div>
+      <div class="clipLikes">
+        <div class="likeCount">{{ clip.likeCount }} likes</div>
+        <div class="likeIconDiv">
+          <v-img
+            class="likeIcon"
+            contain
+            src="../assets/images/likeIcon.png"
+            width="100"
+          />
+        </div>
+      </div>
+      <div class="clipComments">
+        <div class="commentCount">{{ clip.commentCount }} comments</div>
+        <div class="commentIconDiv">
+          <v-img
+            class="commentIcon"
+            contain
+            src="../assets/images/commentIcon.png"
+            width="100"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>
