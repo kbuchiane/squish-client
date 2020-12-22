@@ -23,6 +23,35 @@
     height: 100%;
     width: 200px;
     float: left;
+}
+
+.topLeftBadge {
+    height: 50%;
+    width: 50%;
+    display: inline-block;
+    background-color: #32cd32;
+}
+
+.topRightBadge {
+    height: 50%;
+    width: 50%;
+    display: inline-block;
+    background-color: yellow;
+}
+
+.bottomLeftBadge {
+    height: 50%;
+    width: 50%;
+    margin-top: -5.6px;;
+    display: inline-block;
+    background-color: grey;
+}
+
+.bottomRightBadge {
+    height: 50%;
+    width: 50%;
+    margin-top: -5.6px;
+    display: inline-block;
     background-color: #32cd32;
 }
 

@@ -2,7 +2,12 @@
   <div class="clipPlayerDiv">
     <div class="clipHeader">
       <div class="clipUser"></div>
-      <div class="clipUserBadges"></div>
+      <div class="clipUserBadges">
+        <div class="topLeftBadge"></div>
+        <div class="topRightBadge"></div>
+        <div class="bottomLeftBadge"></div>
+        <div class="bottomRightBadge"></div>
+      </div>
       <div class="clipUserActions"></div>
     </div>
     <video controls class="clipPlayer" :poster="clip.poster">
