@@ -1,7 +1,16 @@
 <template>
   <div class="clipPlayerDiv">
     <div class="clipHeader">
-      <div class="clipUser"></div>
+      <div class="clipUser">
+        <router-link to="" class="d-flex align-center">
+          <v-img
+            class="shrink mr-2 userImage"
+            contain
+            :src="clip.userImage"
+            width="100"
+          />
+        </router-link>
+      </div>
       <div class="clipUserBadges">
         <div class="topLeftBadge"></div>
         <div class="topRightBadge"></div>

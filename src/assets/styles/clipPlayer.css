@@ -16,7 +16,10 @@
     height: 100%;
     width: 100px;
     float: left;
-    background-color: black;
+}
+
+.userImage {
+    border-radius: 30px;
 }
 
 .clipUserBadges {

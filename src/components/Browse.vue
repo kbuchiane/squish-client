@@ -26,12 +26,14 @@ export default {
       {
         type: "video/mp4",
         src: require("../assets/videos/snipe1.mp4"),
-        poster: require("../assets/images/snipe1poster.png")
+        poster: require("../assets/images/snipe1poster.png"),
+        userImage: require("../assets/images/crown.png")
       },
       {
         type: "video/mp4",
         src: require("../assets/videos/snipe2.mp4"),
-        poster: require("../assets/images/snipe2poster.png")
+        poster: require("../assets/images/snipe2poster.png"),
+        userImage: require("../assets/images/crown.png")
       }
     ]
   })
