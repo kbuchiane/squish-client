@@ -147,7 +147,7 @@
 
 .clipSideTab {
     position: absolute;
-    width: 80px;
+    width: 90px;
     height: 250px;
     margin-top: 44px;
     display: inline-block;
@@ -181,7 +181,7 @@
     text-align: center;
     vertical-align: middle;
     line-height: 25px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
 }
 
@@ -207,7 +207,7 @@
     text-align: center;
     vertical-align: middle;
     line-height: 25px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
 }
 
@@ -233,7 +233,7 @@
     text-align: center;
     vertical-align: middle;
     line-height: 25px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
 }
 
@@ -246,7 +246,7 @@
 
 .clipViews {
     height: 100%;
-    width: calc((100% / 3) - 80px);
+    width: 150px;
     float: left;
 }
 
@@ -257,13 +257,13 @@
     text-align: center;
     vertical-align: middle;
     line-height: 50px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
 }
 
 .clipLikes {
     height: 100%;
-    width: calc((100% / 3) + 40px);
+    width: 180px;
     float: left;
 }
 
@@ -283,17 +283,17 @@
     height: 100%;
     width: calc(100% - 60px);
     float: left;
-    text-align: right;
-    padding-left: 10px;
+    margin-left: -6px;
+    text-align: left;
     vertical-align: middle;
     line-height: 50px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
 }
 
 .clipComments {
     height: 100%;
-    width: calc((100% / 3) + 40px);
+    width: 250px;
     float: left;
 }
 
@@ -313,11 +313,11 @@
     height: 100%;
     width: calc(100% - 60px);
     float: left;
-    text-align: right;
-    padding-left: 10px;
+    margin-left: -6px;
+    text-align: left;
     vertical-align: middle;
     line-height: 50px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
 }
 
