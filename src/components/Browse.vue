@@ -27,7 +27,7 @@ export default {
         type: "video/mp4",
         src: require("../assets/videos/snipe1.mp4"),
         poster: require("../assets/images/snipe1poster.png"),
-        title: "Later, GrandpaGaming",
+        title: "Later, GrndpaGaming",
         datePosted: "Dec 22, 2020",
         username: "JackiePrince",
         userImage: require("../assets/images/crown.png"),
@@ -36,11 +36,11 @@ export default {
         badgeThree: require("../assets/images/badge3.png"),
         badgeFour: require("../assets/images/badge4.png"),
         impressiveCount: "3.43M",
-        funnyCount: "1.24K",
+        funnyCount: "1.24k",
         discussionCount: "542",
         views: "8.38M",
         likes: "5.03M",
-        comments: "907K"
+        comments: "907k"
       },
       {
         type: "video/mp4",
@@ -55,11 +55,11 @@ export default {
         badgeThree: require("../assets/images/badge3.png"),
         badgeFour: require("../assets/images/badge4.png"),
         impressiveCount: "1.82M",
-        funnyCount: "8.91K",
+        funnyCount: "8.91k",
         discussionCount: "9837",
         views: "6.04M",
         likes: "2.17M",
-        comments: "434K"
+        comments: "434k"
       }
     ]
   })
