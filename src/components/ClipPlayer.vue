@@ -102,9 +102,9 @@
       </div>
     </div>
     <div class="clipFooter">
-      <div class="clipViews"></div>
-      <div class="clipLikes"></div>
-      <div class="clipComments"></div>
+      <div class="clipViews">{{ clip.views }} views</div>
+      <div class="clipLikes">{{ clip.likes }} likes</div>
+      <div class="clipComments">{{ clip.comments }} comments</div>
     </div>
   </div>
 </template>
