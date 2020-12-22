@@ -37,7 +37,10 @@ export default {
         badgeFour: require("../assets/images/badge4.png"),
         impressiveCount: "3.43M",
         funnyCount: "1.24K",
-        discussionCount: "542"
+        discussionCount: "542",
+        views: "8.38M",
+        likes: "5.03M",
+        comments: "907K"
       },
       {
         type: "video/mp4",
@@ -53,7 +56,10 @@ export default {
         badgeFour: require("../assets/images/badge4.png"),
         impressiveCount: "1.82M",
         funnyCount: "8.91K",
-        discussionCount: "9837"
+        discussionCount: "9837",
+        views: "6.04M",
+        likes: "2.17M",
+        comments: "434K"
       }
     ]
   })
