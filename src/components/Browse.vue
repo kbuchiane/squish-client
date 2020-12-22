@@ -28,24 +28,32 @@ export default {
         src: require("../assets/videos/snipe1.mp4"),
         poster: require("../assets/images/snipe1poster.png"),
         title: "Later, GrandpaGaming",
+        datePosted: "Dec 22, 2020",
         username: "JackiePrince",
         userImage: require("../assets/images/crown.png"),
         badgeOne: require("../assets/images/badge1.png"),
         badgeTwo: require("../assets/images/badge2.png"),
         badgeThree: require("../assets/images/badge3.png"),
-        badgeFour: require("../assets/images/badge4.png")
+        badgeFour: require("../assets/images/badge4.png"),
+        impressiveCount: "3.43M",
+        funnyCount: "1.24K",
+        discussionCount: "542"
       },
       {
         type: "video/mp4",
         src: require("../assets/videos/snipe2.mp4"),
         poster: require("../assets/images/snipe2poster.png"),
         title: "Later, Bot",
+        datePosted: "Dec 20, 2020",
         username: "JackiePrince",
         userImage: require("../assets/images/crown.png"),
         badgeOne: require("../assets/images/badge1.png"),
         badgeTwo: require("../assets/images/badge2.png"),
         badgeThree: require("../assets/images/badge3.png"),
-        badgeFour: require("../assets/images/badge4.png")
+        badgeFour: require("../assets/images/badge4.png"),
+        impressiveCount: "1.82M",
+        funnyCount: "8.91K",
+        discussionCount: "9837"
       }
     ]
   })

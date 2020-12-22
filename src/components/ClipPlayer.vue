@@ -1,6 +1,7 @@
 <template>
   <div class="clipPlayerDiv">
     <div class="clipTitle">{{ clip.title }}</div>
+    <div class="clipDate">{{ clip.datePosted }}</div>
     <div class="clipUsername">{{ clip.username }}</div>
     <div class="clipHeader">
       <div class="clipUser">
@@ -16,7 +17,7 @@
       <div class="clipUserBadges">
         <div class="topLeftBadge">
           <v-img
-            class="badgeImage"
+            class="leftBadgeImage"
             contain
             :src="clip.badgeOne"
             width="100"
@@ -24,7 +25,7 @@
         </div>
         <div class="topRightBadge">
           <v-img
-            class="badgeImage"
+            class="rightBadgeImage"
             contain
             :src="clip.badgeTwo"
             width="100"
@@ -32,7 +33,7 @@
         </div>
         <div class="bottomLeftBadge">
           <v-img
-            class="badgeImage"
+            class="leftBadgeImage"
             contain
             :src="clip.badgeThree"
             width="100"
@@ -40,7 +41,7 @@
         </div>
         <div class="bottomRightBadge">
           <v-img
-            class="badgeImage"
+            class="rightBadgeImage"
             contain
             :src="clip.badgeFour"
             width="100"
@@ -66,9 +67,39 @@
       <source :src="clip.src" :type="clip.type">
     </video>
     <div class="clipSideTab">
-      <div class="clipImpressive"></div>
-      <div class="clipFunny"></div>
-      <div class="clipDiscussion"></div>
+      <div class="clipImpressive">
+        <div class="impressiveIconDiv">
+          <v-img
+            class="impressiveIcon"
+            contain
+            src="../assets/images/impressiveIcon.png"
+            width="100"
+          />
+        </div>
+        <div class="impressiveCount">{{ clip.impressiveCount }}</div>
+      </div>
+      <div class="clipFunny">
+        <div class="funnyIconDiv">
+          <v-img
+            class="funnyIcon"
+            contain
+            src="../assets/images/funnyIcon.png"
+            width="100"
+          />
+        </div>
+        <div class="funnyCount">{{ clip.funnyCount }}</div>
+      </div>
+      <div class="clipDiscussion">
+        <div class="discussionIconDiv">
+          <v-img
+            class="discussionIcon"
+            contain
+            src="../assets/images/discussionIcon.png"
+            width="100"
+          />
+        </div>
+        <div class="discussionCount">{{ clip.discussionCount }}</div>
+      </div>
     </div>
     <div class="clipFooter">
       <div class="clipViews"></div>

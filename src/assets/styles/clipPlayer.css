@@ -28,6 +28,17 @@
     font-weight: 500;
 }
 
+.clipDate {
+    margin: 0 auto;
+    height: 25px;
+    width: 75%;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight:500;
+}
+
 .clipHeader {
     margin: 0 auto;
     width: 75%;
@@ -76,7 +87,14 @@
     display: inline-block;
 }
 
-.badgeImage {
+.leftBadgeImage {
+    position: absolute;
+    max-height: 40px;
+    max-width: 70px;
+    margin-left: 8px;
+}
+
+.rightBadgeImage {
     position: absolute;
     max-height: 40px;
     max-width: 70px;
@@ -93,7 +111,7 @@
     height: 35px;
     top: 50%;
     float: right;
-    margin-left: 5px;
+    margin-left: 6px;
     border-radius: 20px;
 }
 
@@ -102,7 +120,7 @@
     height: 35px;
     top: 50%;
     float: right;
-    margin-left: 5px;
+    margin-left: 6px;
     border-radius: 20px;
 }
 
@@ -111,7 +129,7 @@
     height: 35px;
     top: 50%;
     float: right;
-    margin-left: 5px;
+    margin-left: 6px;
     border-radius: 20px;
 }
 
@@ -131,24 +149,90 @@
     width: 80px;
     height: 250px;
     display: inline-block;
+    border-top: 4px solid black;
+    border-right: 4px solid black;
+    border-bottom: 4px solid black;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .clipImpressive {
-    height: calc(250px / 3);
+    height: calc(240px / 3);
     width: 100%;
-    background-color: black;
+}
+
+.impressiveIconDiv {
+    height: 65%;
+    width: 100%;
+}
+
+.impressiveIcon {
+    height: 100%;
+    width: 100%;
+    margin-top: 4px;
+}
+
+.impressiveCount {
+    margin: 0 auto;
+    height: 35%;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 25px;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .clipFunny {
-    height: calc(250px / 3);
+    height: calc(240px / 3);
     width: 100%;
-    background-color: #32cd32;
+}
+
+.funnyIconDiv {
+    height: 65%;
+    width: 100%;
+}
+
+.funnyIcon {
+    height: 100%;
+    width: 100%;
+}
+
+.funnyCount {
+    margin: 0 auto;
+    height: 35%;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 25px;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .clipDiscussion {
-    height: calc(250px / 3);
+    height: calc(240px / 3);
     width: 100%;
-    background-color: #40a0e0;
+}
+
+.discussionIconDiv {
+    height: 65%;
+    width: 100%;
+}
+
+.discussionIcon {
+    height: 100%;
+    width: 100%;
+}
+
+.discussionCount {
+    margin: 0 auto;
+    height: 35%;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 25px;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .clipFooter {
