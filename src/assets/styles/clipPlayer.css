@@ -138,6 +138,7 @@
     width: 75%;
     display: inline-block;
     object-fit: fill;
+    border-radius: 20px;
 }
 
 .clipPlayer:focus {
@@ -148,6 +149,7 @@
     position: absolute;
     width: 80px;
     height: 250px;
+    margin-top: 44px;
     display: inline-block;
     border-top: 4px solid black;
     border-right: 4px solid black;
