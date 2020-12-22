@@ -1,6 +1,20 @@
 <template>
   <v-container>
     <div class="filter">
+      <div class="filterTitle">Filter Clips</div>
+      <v-img
+        class="filterIcon"
+        contain
+        src="../assets/images/filterIcon.png"
+      />
+      <div class="filterOptions">
+        <div class="filterOption">Most Popular</div>
+        <div class="filterOption">Followed Only</div>
+        <div class="filterOption">Game</div>
+        <div class="filterOption">Most Impressive</div>
+        <div class="filterOption">Funniest</div>
+        <div class="filterOption">Best Discussion</div>
+      </div>
     </div>
     <v-row justify="center" class="text-center">
       <v-col class="mb-5 clipColumn" cols="8">
@@ -46,7 +60,7 @@ export default {
         type: "video/mp4",
         src: require("../assets/videos/snipe2.mp4"),
         poster: require("../assets/images/snipe2poster.png"),
-        title: "Later, Bot",
+        title: "Destroying A Bot",
         datePosted: "Dec 20, 2020",
         username: "JackiePrince",
         userImage: require("../assets/images/crown.png"),

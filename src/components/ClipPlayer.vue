@@ -10,7 +10,6 @@
             class="shrink mr-2 userImage"
             contain
             :src="clip.userImage"
-            width="100"
           />
         </router-link>
       </div>
@@ -20,7 +19,6 @@
             class="leftBadgeImage"
             contain
             :src="clip.badgeOne"
-            width="100"
           />
         </div>
         <div class="topRightBadge">
@@ -28,7 +26,6 @@
             class="rightBadgeImage"
             contain
             :src="clip.badgeTwo"
-            width="100"
           />
         </div>
         <div class="bottomLeftBadge">
@@ -36,7 +33,6 @@
             class="leftBadgeImage"
             contain
             :src="clip.badgeThree"
-            width="100"
           />
         </div>
         <div class="bottomRightBadge">
@@ -44,7 +40,6 @@
             class="rightBadgeImage"
             contain
             :src="clip.badgeFour"
-            width="100"
           />
         </div>
       </div>
@@ -73,7 +68,6 @@
             class="impressiveIcon"
             contain
             src="../assets/images/impressiveIcon.png"
-            width="100"
           />
         </div>
         <div class="impressiveCount">{{ clip.impressiveCount }}</div>
@@ -84,7 +78,6 @@
             class="funnyIcon"
             contain
             src="../assets/images/funnyIcon.png"
-            width="100"
           />
         </div>
         <div class="funnyCount">{{ clip.funnyCount }}</div>
@@ -95,7 +88,6 @@
             class="discussionIcon"
             contain
             src="../assets/images/discussionIcon.png"
-            width="100"
           />
         </div>
         <div class="discussionCount">{{ clip.discussionCount }}</div>
@@ -111,7 +103,6 @@
             class="likeIcon"
             contain
             src="../assets/images/likeIcon.png"
-            width="100"
           />
         </div>
         <div class="likeCount">{{ clip.likeCount }} likes</div>
@@ -122,7 +113,6 @@
             class="commentIcon"
             contain
             src="../assets/images/commentIcon.png"
-            width="100"
           />
         </div>
         <div class="commentCount">{{ clip.commentCount }} comments</div>
