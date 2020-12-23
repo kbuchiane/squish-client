@@ -38,6 +38,7 @@
 <script>
 import ClipPlayer from "./ClipPlayer";
 import axios from "axios";
+import appConfig from "../config/app.config";
 
 export default {
   name: "Browse",
@@ -45,6 +46,12 @@ export default {
     ClipPlayer
   },
   data: () => ({
+    serverUrl: appConfig.SERVER_URL,
+    // followerUsername: "jon",
+    followedUsername: "jackie",
+    followerUsername: "jack",
+    followedGame: "frogger",
+    statusMessage: "",
     clips: [
       {
         type: "video/mp4",
@@ -85,7 +92,55 @@ export default {
         commentCount: "98.9k"
       }
     ]
-  })
+  }),
+  props: ["user"],
+  methods: {
+    followUser: function (followerUsername, followedUsername) {
+      followerUsername = followerUsername.trim();
+      followedUsername = followedUsername.trim();
+      return axios({
+        method: "post",
+        url: this.serverUrl + "/followUser",
+        headers: {
+          authorization: "Bearer " + this.user.accessToken,
+        },
+        data: {
+          followerUsername: followerUsername,
+          followedUsername: followedUsername,
+        },
+      }).then(function (response) {
+        this.statusMessage = response.data.message;
+        return response;
+      });
+    },
+    followGame: function (followerUsername, followedGame) {
+      followerUsername = followerUsername.trim();
+      followedGame = followedGame.trim();
+      return axios({
+        method: "post",
+        url: this.serverUrl + "/followGame",
+        headers: {
+          authorization: "Bearer " + this.user.accessToken,
+        },
+        data: {
+          followerUsername: followerUsername,
+          followedGame: followedGame,
+        },
+      })
+        .then(function (response) {
+          this.statusMessage = response.data.message;
+          return response;      
+        });
+    },
+  },
+  clearEntries: function () {
+    this.followedUsername = "";
+    this.followedGame = "";
+    this.statusMessage = "";
+  },
+  mounted: function () {
+    // this.$refs.usernameInput.focus();
+  }
 };
 </script>
 
