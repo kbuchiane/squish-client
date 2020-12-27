@@ -1,15 +1,75 @@
-
-.browseMessage {
-    color: #40a0e0;
-    width: 450px;
+.filter {
+    position: fixed;
+    width: 200px;
+    height: 600px;
+    left: 4%;
+    margin-top: 122px;
 }
 
-.noselect {
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently
-    supported by Chrome, Opera and Firefox */
+.filterTitleOne {
+    margin: 0 auto;
+    height: 60px;
+    width: 70%;
+    float: left;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 60px;
+    font-size: 20px;
+    font-weight: 600;
+    border-bottom: 2px solid #32cd32;
+}
+
+.filterIcon {
+    width: 60px;
+    height: 60px;
+    border-bottom: 2px solid #32cd32;
+}
+
+.filterOptionsSetOne {
+    width: 100%;
+    height: 240px;
+}
+
+.filterTitleTwo {
+    margin: 0 auto;
+    height:60px;
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 60px;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 2px solid #32cd32;
+}
+
+.filterOptionsSetTwo {
+    width: 100%;
+    height: 240px;
+}
+
+.filterOption {
+    width: 100%;
+    height: calc(100% / 6);
+    text-align: left;
+    vertical-align: middle;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px dashed black;
+}
+
+.selectedFilterOption {
+    width: 100%;
+    height: calc(100% / 6);
+    text-align: left;
+    vertical-align: middle;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px dashed black;
+    color: #32cd32;
+}
+
+.clipColumn {
+    margin-top: 90px;
 }
