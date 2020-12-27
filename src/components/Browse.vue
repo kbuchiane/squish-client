@@ -1,12 +1,7 @@
 <template>
   <v-container>
     <div class="filter">
-      <div class="filterTitleOne">Filter Clips</div>
-      <v-img
-        class="filterIcon"
-        contain
-        src="../assets/images/filterIcon.png"
-      />
+      <div class="filterTitle">Filter By</div>
       <div class="filterOptionsSetOne">
         <div class="selectedFilterOption">Most Popular</div>
         <div class="filterOption">Followed Only</div>
@@ -15,7 +10,7 @@
         <div class="filterOption">Funniest</div>
         <div class="filterOption">Best Discussion</div>
       </div>
-      <div class="filterTitleTwo">Timeframe</div>
+      <div class="filterTitle">Timeframe</div>
       <div class="filterOptionsSetTwo">
         <div class="selectedFilterOption">Default</div>
         <div class="filterOption">Past Day</div>
