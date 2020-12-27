@@ -1,0 +1,333 @@
+.clipPlayerDiv {
+    margin: 0 auto;
+    width: 100%;
+    min-width: 800px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.clipTitle {
+    margin: 0 auto;
+    height: 30px;
+    width: 75%;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 30px;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.clipUsername {
+    margin: 0 auto;
+    height: 30px;
+    width: 75%;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 25px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.clipDate {
+    margin: 0 auto;
+    height: 25px;
+    width: 75%;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight:500;
+}
+
+.clipHeader {
+    margin: 0 auto;
+    width: 75%;
+    height: 100px;
+}
+
+.clipUser {
+    height: 100%;
+    width: 100px;
+    float: left;
+}
+
+.userImage {
+    border-radius: 30px;
+}
+
+.clipUserBadges {
+    height: 100%;
+    width: 150px;
+    float: left;
+}
+
+.topLeftBadge {
+    height: 50%;
+    width: 50%;
+    display: inline-block;
+}
+
+.topRightBadge {
+    height: 50%;
+    width: 50%;
+    display: inline-block;
+}
+
+.bottomLeftBadge {
+    height: 50%;
+    width: 50%;
+    margin-top: -5.6px;;
+    display: inline-block;
+}
+
+.bottomRightBadge {
+    height: 50%;
+    width: 50%;
+    margin-top: -5.6px;
+    display: inline-block;
+}
+
+.leftBadgeImage {
+    position: absolute;
+    max-height: 40px;
+    max-width: 70px;
+    margin-left: 8px;
+}
+
+.rightBadgeImage {
+    position: absolute;
+    max-height: 40px;
+    max-width: 70px;
+}
+
+.clipUserActions {
+    height: 100%;
+    width: calc(100% - 250px);
+    float: left;
+}
+
+.userActionFollow {
+    width: 110px;
+    height: 35px;
+    top: 50%;
+    float: right;
+    margin-left: 6px;
+    border-radius: 20px;
+}
+
+.userActionLinkUp {
+    width: 110px;
+    height: 35px;
+    top: 50%;
+    float: right;
+    margin-left: 6px;
+    border-radius: 20px;
+}
+
+.userActionGift {
+    width: 110px;
+    height: 35px;
+    top: 50%;
+    float: right;
+    margin-left: 6px;
+    border-radius: 20px;
+}
+
+.clipPlayer {
+    margin: 0 auto;
+    width: 75%;
+    display: inline-block;
+    object-fit: fill;
+    border-radius: 20px;
+}
+
+.clipPlayer:focus {
+    outline: none;
+}
+
+.clipSideTab {
+    position: absolute;
+    width: 90px;
+    height: 250px;
+    margin-top: 44px;
+    display: inline-block;
+    border-top: 4px solid black;
+    border-right: 4px solid black;
+    border-bottom: 4px solid black;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.clipImpressive {
+    height: calc(240px / 3);
+    width: 100%;
+}
+
+.impressiveIconDiv {
+    height: 65%;
+    width: 100%;
+}
+
+.impressiveIcon {
+    height: 100%;
+    width: 100%;
+    margin-top: 4px;
+}
+
+.impressiveCount {
+    margin: 0 auto;
+    height: 35%;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 25px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.clipFunny {
+    height: calc(240px / 3);
+    width: 100%;
+}
+
+.funnyIconDiv {
+    height: 65%;
+    width: 100%;
+}
+
+.funnyIcon {
+    height: 100%;
+    width: 100%;
+}
+
+.funnyCount {
+    margin: 0 auto;
+    height: 35%;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 25px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.clipDiscussion {
+    height: calc(240px / 3);
+    width: 100%;
+}
+
+.discussionIconDiv {
+    height: 65%;
+    width: 100%;
+}
+
+.discussionIcon {
+    height: 100%;
+    width: 100%;
+}
+
+.discussionCount {
+    margin: 0 auto;
+    height: 35%;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 25px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.clipFooter {
+    margin: 0 auto;
+    width: 75%;
+    height: 50px;
+    margin-top: -4px;
+}
+
+.clipViews {
+    height: 100%;
+    width: 165px;
+    float: left;
+}
+
+.viewCount {
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    margin-left: 30px;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 50px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.clipLikes {
+    height: 100%;
+    width: 180px;
+    float: left;
+}
+
+.likeIconDiv {
+    height: 100%;
+    width: 60px;
+    float: left;
+}
+
+.likeIcon {
+    height: 100%;
+    width: 100%;
+}
+
+.likeCount {
+    margin: 0 auto;
+    height: 100%;
+    width: calc(100% - 60px);
+    float: left;
+    margin-left: -5px;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 50px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.clipComments {
+    height: 100%;
+    width: 225px;
+    float: left;
+}
+
+.commentIconDiv {
+    height: 100%;
+    width: 60px;
+    float: left;
+}
+
+.commentIcon {
+    height: 100%;
+    width: 100%;
+}
+
+.commentCount {
+    margin: 0 auto;
+    height: 100%;
+    width: calc(100% - 60px);
+    float: left;
+    margin-left: -5px;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 50px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+    supported by Chrome, Opera and Firefox */
+}

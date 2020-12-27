@@ -32,6 +32,7 @@
       @setResetPasswordData="setResetPasswordData"
       @clearResetPasswordData="clearResetPasswordData"
       :resetPassword="resetPassword"
+      :user="user"
     />
   </v-app>
 </template>
