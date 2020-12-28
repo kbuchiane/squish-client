@@ -39,6 +39,8 @@
 
 <script>
 import Browse from "./components/Browse";
+import BrowseGames from "./components/BrowseGames";
+import SingleClip from "./components/SingleClip";
 import Signup from "./components/Signup";
 import VerifyEmail from "./components/VerifyEmail";
 import Login from "./components/Login";
@@ -51,6 +53,8 @@ export default {
   name: "App",
   components: {
     Browse,
+    BrowseGames,
+    SingleClip,
     Signup,
     VerifyEmail,
     Login,
