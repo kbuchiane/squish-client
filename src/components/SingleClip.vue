@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div v-if="!clipId" class="notFoundDiv">
+    <div v-if="!clip" class="notFoundDiv">
         <p class="notFoundText">The clip could not be found.</p>
         <v-btn
             @click="$router.push('/browse')"
@@ -31,7 +31,7 @@
         </div>
     <v-row justify="center" class="text-center">
       <v-col class="mb-5 clipColumn" cols="8">
-        <div v-if="false">
+        <div>
           <ClipPlayer :clip="clip"/>
         </div>
       </v-col>
@@ -50,14 +50,7 @@ export default {
   components: {
     ClipPlayer
   },
-  props: ["id"],
-  data: () => ({
-    clipId: null,
-  }),
-  mounted() {
-      console.log("id: " + this.id);
-      this.clipId = this.id;
-  }
+  props: ["clip"]
 };
 </script>
 
