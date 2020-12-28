@@ -8,13 +8,24 @@
 
 .clipTitle {
     margin: 0 auto;
-    height: 30px;
+    height: auto;
     width: 75%;
     text-align: left;
     vertical-align: middle;
     line-height: 30px;
-    font-size: 25px;
+    font-size: 18px;
     font-weight: 600;
+}
+
+.clipDateAndGame {
+    margin: 0 auto;
+    height: 25px;
+    width: 75%;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight:500;
 }
 
 .clipUsername {
@@ -24,19 +35,8 @@
     text-align: left;
     vertical-align: middle;
     line-height: 25px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
-}
-
-.clipDate {
-    margin: 0 auto;
-    height: 25px;
-    width: 75%;
-    text-align: left;
-    vertical-align: middle;
-    line-height: 25px;
-    font-size: 14px;
-    font-weight:500;
 }
 
 .clipHeader {
