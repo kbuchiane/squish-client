@@ -49,6 +49,7 @@ export default {
     statusMessage: "",
     clips: [
       {
+        id: "1",
         type: "video/mp4",
         src: require("../assets/videos/snipe1.mp4"),
         poster: require("../assets/images/snipe1poster.png"),
@@ -69,6 +70,7 @@ export default {
         commentCount: "755.1k"
       },
       {
+        id: "2",
         type: "video/mp4",
         src: require("../assets/videos/snipe2.mp4"),
         poster: require("../assets/images/snipe2poster.png"),
