@@ -15,10 +15,16 @@
         </router-link>
       </p>
     </div>
-    <div class="clipUsername">{{ clip.username }}</div>
+    <div class="clipUsername">
+      <p class="clipUsernameText">
+        <router-link to="/profile" class="routerStyle">
+          {{ clip.username }}
+        </router-link>
+      </p>
+    </div>
     <div class="clipHeader">
       <div class="clipUser">
-        <router-link to="" class="d-flex align-center">
+        <router-link to="/profile" class="d-flex align-center">
           <v-img
             class="shrink mr-2 userImage"
             contain
