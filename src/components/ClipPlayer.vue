@@ -65,15 +65,15 @@
       <div class="clipUserActions">
         <v-btn
           color="#40a0e0"
-          class="userActionGift"
+          class="userActionButton"
         >Gift</v-btn>
         <v-btn
           color="#40a0e0"
-          class="userActionLinkUp"
+          class="userActionButton"
         >Link Up</v-btn>
         <v-btn
           color="#40a0e0"
-          class="userActionFollow"
+          class="userActionButton"
         >Follow</v-btn>
       </div>
     </div>
