@@ -34,7 +34,8 @@ export default new Router({
         {
             path: "/clip",
             name: "SingleClip",
-            component: SingleClip
+            component: SingleClip,
+            props: true
         },
         {
             path: "/game",

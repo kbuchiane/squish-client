@@ -1,0 +1,64 @@
+<template>
+  <v-container>
+    <div v-if="!clipId" class="notFoundDiv">
+        <p class="notFoundText">The clip could not be found.</p>
+        <v-btn
+            @click="$router.push('/browse')"
+            color="#40a0e0"
+            class="backButton"
+          >Back To Browse</v-btn>
+    </div>
+    <div v-else>
+        <div class="filter">
+            <div class="filterTitle">Filter By</div>
+            <div class="filterOptionsSetOne">
+                <div class="selectedFilterOption">Most Popular</div>
+                <div class="filterOption">Followed Only</div>
+                <div class="filterOption">Specific Games</div>
+                <div class="filterOption">Most Impressive</div>
+                <div class="filterOption">Funniest</div>
+                <div class="filterOption">Best Discussion</div>
+            </div>
+            <div class="filterTitle">Timeframe</div>
+            <div class="filterOptionsSetTwo">
+                <div class="selectedFilterOption">Default</div>
+                <div class="filterOption">Past Day</div>
+                <div class="filterOption">Past Week</div>
+                <div class="filterOption">Past Month</div>
+                <div class="filterOption">Past Year</div>
+                <div class="filterOption">All Time</div>
+            </div>
+        </div>
+    <v-row justify="center" class="text-center">
+      <v-col class="mb-5 clipColumn" cols="8">
+        <div v-if="false">
+          <ClipPlayer :clip="clip"/>
+        </div>
+      </v-col>
+    </v-row>
+    </div>
+  </v-container>
+</template>
+
+<script>
+import ClipPlayer from "./ClipPlayer";
+import axios from "axios";
+import appConfig from "../config/app.config";
+
+export default {
+  name: "SingleClip",
+  components: {
+    ClipPlayer
+  },
+  props: ["id"],
+  data: () => ({
+    clipId: null,
+  }),
+  mounted() {
+      console.log("id: " + this.id);
+      this.clipId = this.id;
+  }
+};
+</script>
+
+<style scoped src='../assets/styles/singleClip.css'></style>

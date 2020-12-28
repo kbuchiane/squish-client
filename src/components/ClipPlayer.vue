@@ -2,7 +2,7 @@
   <div class="clipPlayerDiv">
     <div class="clipTitle">
       <p class="clipTitleText">
-        <router-link to="/clip" class="routerStyle">
+        <router-link to="{ name: 'SingleClip', params: { clip.id } }" class="routerStyle">
           {{ clip.title }}
         </router-link>
       </p>
