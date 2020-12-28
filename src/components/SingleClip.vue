@@ -10,7 +10,7 @@
     </div>
     <div v-else>
         <div class="filter">
-            <div class="filterTitle">Filter By</div>
+            <div class="filterTitle">Filter Comments By</div>
             <div class="filterOptionsSetOne">
                 <div class="selectedFilterOption">Most Popular</div>
                 <div class="filterOption">Followed Only</div>

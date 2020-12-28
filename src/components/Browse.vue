@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div class="filter">
-      <div class="filterTitle">Filter By</div>
+      <div class="filterTitle">Filter Clips By</div>
       <div class="filterOptionsSetOne">
         <div class="selectedFilterOption">Most Popular</div>
         <div class="filterOption">Followed Only</div>

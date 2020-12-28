@@ -1,7 +1,10 @@
 <template>
   <div class="clipPlayerDiv">
     <div class="clipTitle">
-      <p class="clipTitleText">
+      <p v-if="this.$route.name === 'SingleClip'" class="clipTitleText">
+        {{ clip.title }}
+      </p>
+      <p v-else class="clipTitleText">
         <router-link :to="{ name: 'SingleClip', params: { clip: clip } }" class="routerStyle">
           {{ clip.title }}
         </router-link>
