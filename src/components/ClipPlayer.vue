@@ -1,7 +1,8 @@
 <template>
   <div class="clipPlayerDiv">
     <div class="clipTitle">{{ clip.title }}</div>
-    <div class="clipDate">{{ clip.datePosted }}</div>
+    <div class="clipDateAndGame">{{ clip.datePosted }}</div>
+    <div class="clipDateAndGame">{{ clip.game }}</div>
     <div class="clipUsername">{{ clip.username }}</div>
     <div class="clipHeader">
       <div class="clipUser">
