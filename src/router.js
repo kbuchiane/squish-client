@@ -27,7 +27,7 @@ export default new Router({
             component: Browse
         },
         {
-            path: "/browseGames",
+            path: "/browsegames",
             name: "BrowseGames",
             component: BrowseGames
         },
