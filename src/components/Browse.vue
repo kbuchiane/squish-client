@@ -5,7 +5,7 @@
       <div class="filterOptionsSetOne">
         <div class="selectedFilterOption">Most Popular</div>
         <div class="filterOption">Followed Only</div>
-        <div class="filterOption">Specific Game</div>
+        <div class="filterOption">Specific Games</div>
         <div class="filterOption">Most Impressive</div>
         <div class="filterOption">Funniest</div>
         <div class="filterOption">Best Discussion</div>

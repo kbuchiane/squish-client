@@ -10,7 +10,7 @@
     <div class="clipDate">{{ clip.datePosted }}</div>
     <div class="clipGame">
       <p class="clipGameText">
-        <router-link to="/browseGames" class="routerStyle">
+        <router-link to="/game" class="routerStyle">
           {{ clip.game }}
         </router-link>
       </p>

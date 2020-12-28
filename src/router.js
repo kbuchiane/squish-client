@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Browse from "./components/Browse";
 import BrowseGames from "./components/BrowseGames";
 import SingleClip from "./components/SingleClip";
+import SingleGame from "./components/SingleGame";
 import Profile from "./components/Profile";
 import Signup from "./components/Signup";
 import VerifyEmail from "./components/VerifyEmail";
@@ -34,6 +35,11 @@ export default new Router({
             path: "/clip",
             name: "SingleClip",
             component: SingleClip
+        },
+        {
+            path: "/game",
+            name: "SingleGame",
+            component: SingleGame
         },
         {
             path: "/profile",
