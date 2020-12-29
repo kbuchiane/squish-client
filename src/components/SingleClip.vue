@@ -21,6 +21,24 @@
         <div>
           <ClipPlayer :clip="clip"/>
         </div>
+        <div class="commentsSection">
+          <div class="commentsHeader">
+            <p class="commentsHeaderText">Comments ({{ clip.commentCount }})</p>
+          </div>
+          <div class="comments">
+            <div class="comment">
+              <div class="singleCommentHeader">
+                <div class="commentUsername">{{ clip.comments[0].username }}</div>
+                <div class="commentDate">{{ clip.comments[0].date }}</div>
+              </div>
+              <div class="singleCommentBody">
+                <div class="commentLikeIcon">LikeIcon</div>
+                <div class="commentLikes">{{ clip.comments[0].likes }}</div>
+                <p class="commentText">{{ clip.comments[0].text }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </v-col>
     </v-row>
     </div>

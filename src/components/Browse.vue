@@ -67,7 +67,51 @@ export default {
         discussionCount: "30.6k",
         viewCount: "8.64M",
         likeCount: "1.21M",
-        commentCount: "755.1k"
+        commentCount: "5",
+        comments: [
+          {
+            commentId: "1",
+            username: "JackiePrince",
+            text: "Wow, this is the best clip I've ever seen!",
+            date: "Dec 25, 2020",
+            likes: "203k",
+            replies: [
+              {
+                commentId: "2",
+                username: "Jon",
+                text: "You're a scrub.",
+                date: "Dec 25, 2020",
+                likes: "0",
+                replies: [
+                  {
+                    commentId: "3",
+                    username: "JackiePrince",
+                    text: "No u.",
+                    date: "Dec 25, 2020",
+                    likes: "5.2M",
+                    replies: []
+                  },
+                  {
+                    commentId: "4",
+                    username: "Shroud",
+                    text: "Harsh. Jackie would beat me in a 1v1 99 times out of 100.",
+                    date: "Dec 25, 2020",
+                    likes: "103.5k",
+                    replies: []
+                  }
+                ]
+              },
+              {
+                commentId: "5",
+                username: "Jack",
+                text: "Lame. Play Astrofire.",
+                date: "Dec 25, 2020",
+                likes: "1",
+                replies: []
+              }
+            ]
+          }
+        ]
       },
       {
         id: "2",
@@ -88,7 +132,8 @@ export default {
         discussionCount: "36.3k",
         viewCount: "903.23k",
         likeCount: "133.7k",
-        commentCount: "98.9k"
+        commentCount: "98.9k",
+        comments: []
       }
     ]
   }),
