@@ -88,6 +88,13 @@
     margin-bottom: 40px;
 }
 
+.newComment {
+    margin: 0 auto;
+    height: 100px;
+    width: 75%;
+    background-color: aqua;
+}
+
 .commentsHeader {
     margin: 0 auto;
     height: auto;
@@ -161,6 +168,25 @@
     height: 30px;
 }
 
+.commentText {
+    margin: 0 auto;
+    height: auto;
+    width: auto;
+    float: left;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.singleCommentFooter {
+    margin: 0 auto;
+    width: 100%;
+    height: 30px;
+    display: inline-block;
+}
+
 .commentLikeIconDiv {
     height: 100%;
     float: left;
@@ -170,6 +196,7 @@
 .commentLikeIcon {
     height: 100%;
     width: 31px;
+    margin-left: -1px;
 }
 
 .commentLikes {
@@ -185,7 +212,19 @@
     padding-right: 10px;
 }
 
-.commentText {
+.commentReplyIconDiv {
+    height: 100%;
+    float: left;
+    text-align: left;
+}
+
+.commentReplyIcon {
+    height: 100%;
+    width: 31px;
+    padding: 5px;
+}
+
+.commentReply {
     margin: 0 auto;
     height: 100%;
     width: auto;
@@ -193,7 +232,19 @@
     text-align: left;
     vertical-align: middle;
     line-height: 30px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     padding-left: 5px;
+    padding-right: 10px;
+}
+
+.routerStyle {
+    width: auto;
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+}
+
+.routerStyle:hover {
+    color: #40a0e0;
 }

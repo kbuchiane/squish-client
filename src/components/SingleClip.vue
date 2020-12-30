@@ -22,6 +22,8 @@
           <ClipPlayer :clip="clip"/>
         </div>
         <div class="commentsSection">
+          <div class="newComment">
+          </div>
           <div class="commentsHeader">
             <p class="commentsHeaderText">Comments ({{ clip.commentCount }})</p>
           </div>
@@ -30,7 +32,9 @@
               <div class="singleCommentHeader">
                 <div class="commentUsername">
                   <p class="commentUsernameText">
-                    {{ clip.comments[0].username }}
+                    <router-link to="/profile" class="routerStyle">
+                      {{ clip.comments[0].username }}
+                    </router-link>
                   </p>
                 </div>
                 <div class="commentDate">
@@ -40,6 +44,9 @@
                 </div>
               </div>
               <div class="singleCommentBody">
+                <p class="commentText">{{ clip.comments[0].text }}</p>
+              </div>
+              <div class="singleCommentFooter">
                 <div class="commentLikeIconDiv">
                   <v-img
                     class="commentLikeIcon"
@@ -48,8 +55,15 @@
                   />
                 </div>
                 <div class="commentLikes">{{ clip.comments[0].likes }}</div>
-                <p class="commentText">{{ clip.comments[0].text }}</p>
-              </div>
+                <div class="commentReplyIconDiv">
+                  <v-img
+                    class="commentReplyIcon"
+                    contain
+                    src="../assets/images/replyIcon.png"
+                  />
+                </div>
+                <div class="commentReply">reply</div>
+            </div>
             </div>
           </div>
         </div>
