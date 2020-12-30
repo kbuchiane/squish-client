@@ -90,13 +90,15 @@
 
 <script>
 import ClipPlayer from "./ClipPlayer";
+import CommentTree from "./CommentTree";
 import axios from "axios";
 import appConfig from "../config/app.config";
 
 export default {
   name: "SingleClip",
   components: {
-    ClipPlayer
+    ClipPlayer,
+    CommentTree
   },
   props: ["clip"],
   data: () => ({
