@@ -29,7 +29,8 @@
             @click="login(userIdLogin, passwordLogin)"
             color="#40a0e0"
             class="logsignButton"
-          >Log In</v-btn>
+            >Log In</v-btn
+          >
         </v-row>
         <p></p>
         <v-row justify="center">
@@ -37,15 +38,14 @@
             @click="resetPassword(userIdLogin)"
             color="#40a0e0"
             class="logsignButton"
-          >Forgot/Reset Password</v-btn>
+            >Forgot/Reset Password</v-btn
+          >
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn
-            to="/resetpassword"
-            color="#40a0e0"
-            class="logsignButton"
-          >I Already Have a Reset Password Code</v-btn>
+          <v-btn to="/resetpassword" color="#40a0e0" class="logsignButton"
+            >I Already Have a Reset Password Code</v-btn
+          >
         </v-row>
         <p></p>
         <v-row justify="center">
@@ -68,10 +68,10 @@ export default {
     serverUrl: appConfig.SERVER_URL,
     userIdLogin: "",
     passwordLogin: "",
-    loginMessage: ""
+    loginMessage: "",
   }),
   methods: {
-    login: function(userId, password) {
+    login: function (userId, password) {
       userId = userId.trim();
       let userIdMessage = userEntryUtil.checkUserId(userId);
       let passwordMessage = userEntryUtil.checkPassword(password);
@@ -81,7 +81,7 @@ export default {
       } else if (passwordMessage) {
         this.loginMessage = passwordMessage;
       } else {
-        this.serverLogin(userId, password).then(response => {
+        this.serverLogin(userId, password).then((response) => {
           if (response.status === 200) {
             if (response.data.accessToken) {
               this.clearEntries();
@@ -101,7 +101,7 @@ export default {
         });
       }
     },
-    serverLogin: function(userId, password) {
+    serverLogin: function (userId, password) {
       return axios
         .post(
           this.serverUrl + "/login",
@@ -109,32 +109,32 @@ export default {
           {
             auth: {
               username: userId,
-              password: password
+              password: password,
             },
-            withCredentials: true
+            withCredentials: true,
           }
         )
-        .then(function(response) {
+        .then(function (response) {
           return response;
         })
-        .catch(error => {
+        .catch((error) => {
           return error.response;
         });
     },
-    resetPassword: function(userId) {
+    resetPassword: function (userId) {
       userId = userId.trim();
       let userIdMessage = userEntryUtil.checkUserId(userId);
 
       if (userIdMessage) {
         this.loginMessage = userIdMessage;
       } else {
-        this.serverResetPassword(userId).then(response => {
+        this.serverResetPassword(userId).then((response) => {
           if (response.status === 200) {
             this.clearEntries();
 
             let resetPasswordData = {
               email: response.data.email,
-              message: response.data.message
+              message: response.data.message,
             };
 
             this.$emit("setResetPasswordData", resetPasswordData);
@@ -145,33 +145,33 @@ export default {
         });
       }
     },
-    serverResetPassword: function(userId) {
+    serverResetPassword: function (userId) {
       return axios
         .post(
           this.serverUrl + "/resetPassword",
           {},
           {
             auth: {
-              username: userId
-            }
+              username: userId,
+            },
           }
         )
-        .then(function(response) {
+        .then(function (response) {
           return response;
         })
-        .catch(error => {
+        .catch((error) => {
           return error.response;
         });
     },
-    clearEntries: function() {
+    clearEntries: function () {
       this.userIdLogin = "";
       this.passwordLogin = "";
       this.loginMessage = "";
-    }
+    },
   },
-  mounted: function() {
+  mounted: function () {
     this.$refs.userIdInput.focus();
-  }
+  },
 };
 </script>
 

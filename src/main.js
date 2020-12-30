@@ -3,8 +3,11 @@ import App from './App.vue';
 import vuetify from './plugins/vuetify';
 import router from './router';
 import BrowserUnsupported from './BrowserUnsupported';
+import TextareaAutosize from "vue-textarea-autosize";
 
 Vue.config.productionTip = false;
+
+Vue.use(TextareaAutosize);
 
 const browserCheck = require("./utils/browserCheck");
 var message = "";

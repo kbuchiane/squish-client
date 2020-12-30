@@ -1,6 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Browse from "./components/Browse";
+import BrowseGames from "./components/BrowseGames";
+import SingleClip from "./components/SingleClip";
+import SingleGame from "./components/SingleGame";
+import Profile from "./components/Profile";
 import Signup from "./components/Signup";
 import VerifyEmail from "./components/VerifyEmail";
 import Login from "./components/Login";
@@ -21,6 +25,27 @@ export default new Router({
             path: "/browse",
             name: "Browse",
             component: Browse
+        },
+        {
+            path: "/browsegames",
+            name: "BrowseGames",
+            component: BrowseGames
+        },
+        {
+            path: "/clip",
+            name: "SingleClip",
+            component: SingleClip,
+            props: true
+        },
+        {
+            path: "/game",
+            name: "SingleGame",
+            component: SingleGame
+        },
+        {
+            path: "/profile",
+            name: "Profile",
+            component: Profile
         },
         {
             path: "/signup",

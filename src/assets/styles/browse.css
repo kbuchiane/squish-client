@@ -3,7 +3,7 @@
     width: 200px;
     height: 600px;
     left: 4%;
-    margin-top: 122px;
+    margin-top: 107px;
 }
 
 .filterTitle {
@@ -15,13 +15,13 @@
     line-height: 60px;
     font-size: 18px;
     font-weight: 600;
-    border-bottom: 2px solid #32cd32;
+    border-bottom: 2px solid black;
 }
 
 .filterIcon {
     width: 60px;
     height: 60px;
-    border-bottom: 2px solid #32cd32;
+    border-bottom: 2px solid black;
 }
 
 .filterOptionsSetOne {

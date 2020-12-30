@@ -1,11 +1,11 @@
 <template>
   <v-container>
     <div class="filter">
-      <div class="filterTitle">Filter By</div>
+      <div class="filterTitle">Filter Clips By</div>
       <div class="filterOptionsSetOne">
         <div class="selectedFilterOption">Most Popular</div>
         <div class="filterOption">Followed Only</div>
-        <div class="filterOption">Specific Game</div>
+        <div class="filterOption">Specific Games</div>
         <div class="filterOption">Most Impressive</div>
         <div class="filterOption">Funniest</div>
         <div class="filterOption">Best Discussion</div>
@@ -23,7 +23,7 @@
     <v-row justify="center" class="text-center">
       <v-col class="mb-5 clipColumn" cols="8">
         <div v-for="clip in clips" :key="clip.src">
-          <ClipPlayer :clip="clip"/>
+          <ClipPlayer :clip="clip" />
         </div>
       </v-col>
     </v-row>
@@ -38,7 +38,7 @@ import appConfig from "../config/app.config";
 export default {
   name: "Browse",
   components: {
-    ClipPlayer
+    ClipPlayer,
   },
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
@@ -49,6 +49,7 @@ export default {
     statusMessage: "",
     clips: [
       {
+        id: "1",
         type: "video/mp4",
         src: require("../assets/videos/snipe1.mp4"),
         poster: require("../assets/images/snipe1poster.png"),
@@ -66,9 +67,71 @@ export default {
         discussionCount: "30.6k",
         viewCount: "8.64M",
         likeCount: "1.21M",
-        commentCount: "755.1k"
+        commentCount: "7",
+        comments: [
+          {
+            commentId: "1",
+            username: "JackiePrince",
+            text: "Wow, this is the best clip I've ever seen!",
+            date: "Dec 25, 2020",
+            likes: "203k",
+            comments: [
+              {
+                commentId: "2",
+                username: "Jon",
+                text: "You're a scrub.",
+                date: "Dec 25, 2020",
+                likes: "0",
+                comments: [
+                  {
+                    commentId: "3",
+                    username: "JackiePrince",
+                    text: "No u.",
+                    date: "Dec 25, 2020",
+                    likes: "5.2M",
+                    comments: [],
+                  },
+                  {
+                    commentId: "4",
+                    username: "shroud",
+                    text:
+                      "Harsh. Jackie would beat me in a 1v1 99 times out of 100.",
+                    date: "Dec 25, 2020",
+                    likes: "103.5k",
+                    comments: [],
+                  },
+                ],
+              },
+              {
+                commentId: "5",
+                username: "Jack",
+                text: "Lame. Play Astrofire.",
+                date: "Dec 25, 2020",
+                likes: "1",
+                comments: [],
+              },
+            ],
+          },
+          {
+            commentId: "6",
+            username: "chocoTaco",
+            text: "OMG",
+            date: "Dec 26, 2020",
+            likes: "17k",
+            comments: [],
+          },
+          {
+            commentId: "7",
+            username: "GrndpaGaming",
+            text: "Reported.",
+            date: "Dec 27, 2020",
+            likes: "0",
+            comments: [],
+          },
+        ],
       },
       {
+        id: "2",
         type: "video/mp4",
         src: require("../assets/videos/snipe2.mp4"),
         poster: require("../assets/images/snipe2poster.png"),
@@ -86,9 +149,10 @@ export default {
         discussionCount: "36.3k",
         viewCount: "903.23k",
         likeCount: "133.7k",
-        commentCount: "98.9k"
-      }
-    ]
+        commentCount: "98.9k",
+        comments: [],
+      },
+    ],
   }),
   props: ["user"],
   methods: {
@@ -123,11 +187,10 @@ export default {
           followerUsername: followerUsername,
           followedGame: followedGame,
         },
-      })
-        .then(function (response) {
-          this.statusMessage = response.data.message;
-          return response;      
-        });
+      }).then(function (response) {
+        this.statusMessage = response.data.message;
+        return response;
+      });
     },
   },
   clearEntries: function () {
@@ -137,7 +200,7 @@ export default {
   },
   mounted: function () {
     // this.$refs.usernameInput.focus();
-  }
+  },
 };
 </script>
 

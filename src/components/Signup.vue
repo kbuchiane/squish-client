@@ -7,7 +7,14 @@
         <v-row justify="center">
           <input
             v-model="usernameSignup"
-            v-on:keyup.enter="signup(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup)"
+            v-on:keyup.enter="
+              signup(
+                usernameSignup,
+                emailSignup,
+                passwordSignup,
+                passwordConfirmSignup
+              )
+            "
             placeholder="Username"
             class="logSignTextBox"
             ref="usernameInput"
@@ -17,7 +24,14 @@
         <v-row justify="center">
           <input
             v-model="emailSignup"
-            v-on:keyup.enter="signup(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup)"
+            v-on:keyup.enter="
+              signup(
+                usernameSignup,
+                emailSignup,
+                passwordSignup,
+                passwordConfirmSignup
+              )
+            "
             placeholder="Email"
             class="logSignTextBox"
             type="email"
@@ -27,7 +41,14 @@
         <v-row justify="center">
           <input
             v-model="passwordSignup"
-            v-on:keyup.enter="signup(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup)"
+            v-on:keyup.enter="
+              signup(
+                usernameSignup,
+                emailSignup,
+                passwordSignup,
+                passwordConfirmSignup
+              )
+            "
             placeholder="Password"
             class="logSignTextBox"
             type="password"
@@ -37,7 +58,14 @@
         <v-row justify="center">
           <input
             v-model="passwordConfirmSignup"
-            v-on:keyup.enter="signup(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup)"
+            v-on:keyup.enter="
+              signup(
+                usernameSignup,
+                emailSignup,
+                passwordSignup,
+                passwordConfirmSignup
+              )
+            "
             placeholder="Confirm Password"
             class="logSignTextBox"
             type="password"
@@ -46,18 +74,24 @@
         <p></p>
         <v-row justify="center">
           <v-btn
-            @click="signup(usernameSignup, emailSignup, passwordSignup, passwordConfirmSignup)"
+            @click="
+              signup(
+                usernameSignup,
+                emailSignup,
+                passwordSignup,
+                passwordConfirmSignup
+              )
+            "
             color="#40a0e0"
             class="logsignButton"
-          >Sign Up</v-btn>
+            >Sign Up</v-btn
+          >
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn
-            to="/verifyemail"
-            color="#40a0e0"
-            class="logsignButton"
-          >I Already Have a Verification Code</v-btn>
+          <v-btn to="/verifyemail" color="#40a0e0" class="logsignButton"
+            >I Already Have a Verification Code</v-btn
+          >
         </v-row>
         <p></p>
         <v-row justify="center">
@@ -81,10 +115,10 @@ export default {
     emailSignup: "",
     passwordSignup: "",
     passwordConfirmSignup: "",
-    signupMessage: ""
+    signupMessage: "",
   }),
   methods: {
-    signup: function(username, email, password, passwordConfirm) {
+    signup: function (username, email, password, passwordConfirm) {
       username = username.trim();
       email = email.trim();
       let usernameMessage = userEntryUtil.checkUsername(username);
@@ -100,13 +134,13 @@ export default {
       } else if (password !== passwordConfirm) {
         this.signupMessage = "Passwords do not match, please try again";
       } else {
-        this.serverSignup(username, email, password).then(response => {
+        this.serverSignup(username, email, password).then((response) => {
           if (response.status === 200) {
             this.clearEntries();
 
             let verifyData = {
               email: email,
-              message: response.data.message
+              message: response.data.message,
             };
 
             this.$emit("setVerifyData", verifyData);
@@ -117,38 +151,38 @@ export default {
         });
       }
     },
-    serverSignup: function(username, email, password) {
+    serverSignup: function (username, email, password) {
       return axios
         .post(
           this.serverUrl + "/signup",
           {
-            email: email
+            email: email,
           },
           {
             auth: {
               username: username,
-              password: password
-            }
+              password: password,
+            },
           }
         )
-        .then(function(response) {
+        .then(function (response) {
           return response;
         })
-        .catch(error => {
+        .catch((error) => {
           return error.response;
         });
     },
-    clearEntries: function() {
+    clearEntries: function () {
       this.usernameSignup = "";
       this.emailSignup = "";
       this.passwordSignup = "";
       this.passwordConfirmSignup = "";
       this.signupMessage = "";
-    }
+    },
   },
-  mounted: function() {
+  mounted: function () {
     this.$refs.usernameInput.focus();
-  }
+  },
 };
 </script>
 

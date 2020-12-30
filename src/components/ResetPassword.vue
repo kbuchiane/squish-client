@@ -7,7 +7,14 @@
         <v-row justify="center">
           <input
             v-model="resetPassword.email"
-            v-on:keyup.enter="confirmResetPassword(resetPassword.email, resetPasswordCode, newPassword, newPasswordConfirm)"
+            v-on:keyup.enter="
+              confirmResetPassword(
+                resetPassword.email,
+                resetPasswordCode,
+                newPassword,
+                newPasswordConfirm
+              )
+            "
             placeholder="Email"
             class="logSignTextBox"
             type="email"
@@ -18,7 +25,14 @@
         <v-row justify="center">
           <input
             v-model="resetPasswordCode"
-            v-on:keyup.enter="confirmResetPassword(resetPassword.email, resetPasswordCode, newPassword, newPasswordConfirm)"
+            v-on:keyup.enter="
+              confirmResetPassword(
+                resetPassword.email,
+                resetPasswordCode,
+                newPassword,
+                newPasswordConfirm
+              )
+            "
             placeholder="Reset Password Code"
             class="logSignTextBox"
           />
@@ -27,7 +41,14 @@
         <v-row justify="center">
           <input
             v-model="newPassword"
-            v-on:keyup.enter="confirmResetPassword(resetPassword.email, resetPasswordCode, newPassword, newPasswordConfirm)"
+            v-on:keyup.enter="
+              confirmResetPassword(
+                resetPassword.email,
+                resetPasswordCode,
+                newPassword,
+                newPasswordConfirm
+              )
+            "
             placeholder="New Password"
             class="logSignTextBox"
             type="password"
@@ -37,7 +58,14 @@
         <v-row justify="center">
           <input
             v-model="newPasswordConfirm"
-            v-on:keyup.enter="confirmResetPassword(resetPassword.email, resetPasswordCode, newPassword, newPasswordConfirm)"
+            v-on:keyup.enter="
+              confirmResetPassword(
+                resetPassword.email,
+                resetPasswordCode,
+                newPassword,
+                newPasswordConfirm
+              )
+            "
             placeholder="Confirm New Password"
             class="logSignTextBox"
             type="password"
@@ -46,10 +74,18 @@
         <p></p>
         <v-row justify="center">
           <v-btn
-            @click="confirmResetPassword(resetPassword.email, resetPasswordCode, newPassword, newPasswordConfirm)"
+            @click="
+              confirmResetPassword(
+                resetPassword.email,
+                resetPasswordCode,
+                newPassword,
+                newPasswordConfirm
+              )
+            "
             color="#40a0e0"
             class="logsignButton"
-          >Reset Password</v-btn>
+            >Reset Password</v-btn
+          >
         </v-row>
         <p></p>
         <v-row justify="center">
@@ -57,11 +93,14 @@
             @click="resendCode(resetPassword.email)"
             color="#40a0e0"
             class="logsignButton"
-          >Resend Code</v-btn>
+            >Resend Code</v-btn
+          >
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn @click="backToLogin()" color="#40a0e0" class="logsignButton">Back To Log In</v-btn>
+          <v-btn @click="backToLogin()" color="#40a0e0" class="logsignButton"
+            >Back To Log In</v-btn
+          >
         </v-row>
         <p></p>
         <v-row justify="center">
@@ -84,11 +123,11 @@ export default {
     serverUrl: appConfig.SERVER_URL,
     resetPasswordCode: "",
     newPassword: "",
-    newPasswordConfirm: ""
+    newPasswordConfirm: "",
   }),
   props: ["resetPassword"],
   methods: {
-    confirmResetPassword: function(
+    confirmResetPassword: function (
       email,
       resetPasswordCode,
       newPassword,
@@ -113,7 +152,7 @@ export default {
           email,
           resetPasswordCode,
           newPassword
-        ).then(response => {
+        ).then((response) => {
           if (response.status === 200) {
             this.clearEntries();
           }
@@ -122,7 +161,7 @@ export default {
         });
       }
     },
-    serverConfirmResetPassword: function(
+    serverConfirmResetPassword: function (
       email,
       resetPasswordCode,
       newPassword
@@ -131,67 +170,67 @@ export default {
         .post(
           this.serverUrl + "/resetPassword/confirmResetPassword",
           {
-            confirmId: resetPasswordCode
+            confirmId: resetPasswordCode,
           },
           {
             auth: {
               username: email,
-              password: newPassword
-            }
+              password: newPassword,
+            },
           }
         )
-        .then(function(response) {
+        .then(function (response) {
           return response;
         })
-        .catch(error => {
+        .catch((error) => {
           return error.response;
         });
     },
-    resendCode: function(email) {
+    resendCode: function (email) {
       email = email.trim();
       let emailMessage = userEntryUtil.checkEmail(email);
 
       if (emailMessage) {
         this.resetPassword.message = emailMessage;
       } else {
-        this.serverResendCode(email).then(response => {
+        this.serverResendCode(email).then((response) => {
           this.resetPassword.message = response.data.message;
         });
       }
     },
-    serverResendCode: function(email) {
+    serverResendCode: function (email) {
       return axios
         .post(
           this.serverUrl + "/resetPassword/resendResetCode",
           {},
           {
             auth: {
-              username: email
-            }
+              username: email,
+            },
           }
         )
-        .then(function(response) {
+        .then(function (response) {
           return response;
         })
-        .catch(error => {
+        .catch((error) => {
           return error.response;
         });
     },
-    clearEntries: function() {
+    clearEntries: function () {
       this.resetPasswordCode = "";
       this.newPassword = "";
       this.newPasswordConfirm = "";
       this.resetPassword.message = "";
       this.$emit("clearResetPasswordData");
     },
-    backToLogin: function() {
+    backToLogin: function () {
       this.clearEntries();
       this.$router.push("login");
-    }
+    },
   },
-  mounted: function() {
+  mounted: function () {
     this.$refs.emailInput.focus();
-  }
+  },
 };
 </script>
 

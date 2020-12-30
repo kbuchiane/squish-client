@@ -17,7 +17,7 @@ export default {
   props: ["reason"],
   methods: {
     getReason: function () {
-      return { data:this.reason };
+      return { data: this.reason };
     },
   },
 };
