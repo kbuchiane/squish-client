@@ -39,23 +39,27 @@
             <p class="commentsHeaderText">Comments ({{ clip.commentCount }})</p>
           </div>
           <div class="comments">
-            <div class="comment">
+            <div
+              v-for="comment in clip.comments"
+              :comments="comment.comments"
+              :key="comment.commentId"
+              class="comment">
               <div class="singleCommentHeader">
                 <div class="commentUsername">
                   <p class="commentUsernameText">
                     <router-link to="/profile" class="routerStyle">
-                      {{ clip.comments[0].username }}
+                      {{ comment.username }}
                     </router-link>
                   </p>
                 </div>
                 <div class="commentDate">
                   <p class="commentDateText">
-                    {{ clip.comments[0].date }}
+                    {{ comment.date }}
                   </p>
                 </div>
               </div>
               <div class="singleCommentBody">
-                <p class="commentText">{{ clip.comments[0].text }}</p>
+                <p class="commentText">{{ comment.text }}</p>
               </div>
               <div class="singleCommentFooter">
                 <div class="commentLikeIconDiv">
@@ -65,7 +69,7 @@
                     src="../assets/images/likeIcon.png"
                   />
                 </div>
-                <div class="commentLikes">{{ clip.comments[0].likes }}</div>
+                <div class="commentLikes">{{ comment.likes }}</div>
                 <div class="commentReplyIconDiv">
                   <v-img
                     class="commentReplyIcon"
@@ -74,7 +78,7 @@
                   />
                 </div>
                 <div class="commentReply">reply</div>
-            </div>
+              </div>
             </div>
           </div>
         </div>
