@@ -29,6 +29,11 @@
               class="newCommentTextBox"
               ref="newCommentInput"
             />
+            <v-btn
+              @click="postNewcomment()"
+              color="#40a0e0"
+              class="commentButton"
+            >Comment</v-btn>
           </div>
           <div class="commentsHeader">
             <p class="commentsHeaderText">Comments ({{ clip.commentCount }})</p>
