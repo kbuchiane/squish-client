@@ -98,7 +98,6 @@
 .commentsHeaderText {
     margin: 0 auto;
     width: 100%;
-    display: inline-block;
     text-align: left;
     vertical-align: middle;
     line-height: 30px;
@@ -122,65 +121,79 @@
     margin: 0 auto;
     width: 100%;
     height: 30px;
-    background-color: salmon;
 }
 
 .commentUsername {
+    height: 100%;
+    float: left;
+}
+
+.commentUsernameText {
     margin: 0 auto;
-    width: 300px;
-    display: inline-block;
+    width: auto;
     text-align: left;
     vertical-align: middle;
     line-height: 30px;
     font-size: 16px;
     font-weight: 500;
-    background-color: orange;
+    padding-right: 10px;
 }
 
 .commentDate {
+    height: 100%;
+    float: left;
+}
+
+.commentDateText {
     margin: 0 auto;
-    width: 120px;
-    display: inline-block;
+    width: auto;
     text-align: left;
     vertical-align: middle;
     line-height: 30px;
     font-size: 14px;
     font-weight: 500;
-    background-color: purple;
+    padding-left: 10px;
 }
 
 .singleCommentBody {
     margin: 0 auto;
     width: 100%;
     height: 30px;
-    background-color: green;
+}
+
+.commentLikeIconDiv {
+    height: 100%;
+    float: left;
+    text-align: left;
+}
+
+.commentLikeIcon {
+    height: 100%;
+    width: 31px;
 }
 
 .commentLikes {
     margin: 0 auto;
-    width: 25%;
-    display: inline-block;
+    height: 100%;
+    width: auto;
+    float: left;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    padding-right: 10px;
+}
+
+.commentText {
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+    float: left;
     text-align: left;
     vertical-align: middle;
     line-height: 30px;
     font-size: 16px;
     font-weight: 500;
-}
-
-.commentLikeIcon {
-    height: 100%;
-    width: 60px;
-    float: left;
-    background-color: cyan;
-}
-
-.commentText {
-    margin: 0 auto;
-    width: 50%;
-    display: inline-block;
-    text-align: left;
-    vertical-align: middle;
-    line-height: 30px;
-    font-size: 18px;
-    font-weight: 500;
+    padding-left: 5px;
 }

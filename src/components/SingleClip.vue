@@ -28,11 +28,25 @@
           <div class="comments">
             <div class="comment">
               <div class="singleCommentHeader">
-                <div class="commentUsername">{{ clip.comments[0].username }}</div>
-                <div class="commentDate">{{ clip.comments[0].date }}</div>
+                <div class="commentUsername">
+                  <p class="commentUsernameText">
+                    {{ clip.comments[0].username }}
+                  </p>
+                </div>
+                <div class="commentDate">
+                  <p class="commentDateText">
+                    {{ clip.comments[0].date }}
+                  </p>
+                </div>
               </div>
               <div class="singleCommentBody">
-                <div class="commentLikeIcon">LikeIcon</div>
+                <div class="commentLikeIconDiv">
+                  <v-img
+                    class="commentLikeIcon"
+                    contain
+                    src="../assets/images/likeIcon.png"
+                  />
+                </div>
                 <div class="commentLikes">{{ clip.comments[0].likes }}</div>
                 <p class="commentText">{{ clip.comments[0].text }}</p>
               </div>
