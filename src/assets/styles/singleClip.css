@@ -90,9 +90,33 @@
 
 .newComment {
     margin: 0 auto;
-    height: 100px;
+    min-height: 70px;
+    height: auto;
     width: 75%;
-    background-color: aqua;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.newCommentTextBox {
+    width: 100%;
+    min-height: 70px;
+    color: black;
+    text-align: left;
+    line-height: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    resize: none;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+.newCommentTextBox:focus {
+    border: 2px solid #40a0e0;
+    outline: none;
 }
 
 .commentsHeader {
@@ -171,7 +195,7 @@
 .commentText {
     margin: 0 auto;
     height: auto;
-    width: auto;
+    width: 100%;
     float: left;
     text-align: left;
     vertical-align: middle;

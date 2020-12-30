@@ -23,6 +23,13 @@
         </div>
         <div class="commentsSection">
           <div class="newComment">
+            <textarea
+              v-model="newComment"
+              v-on:keyup.enter="postNewcomment()"
+              placeholder="New comment"
+              class="newCommentTextBox"
+              ref="newCommentInput"
+            />
           </div>
           <div class="commentsHeader">
             <p class="commentsHeaderText">Comments ({{ clip.commentCount }})</p>
@@ -83,7 +90,16 @@ export default {
   components: {
     ClipPlayer
   },
-  props: ["clip"]
+  props: ["clip"],
+  data: () => ({
+    serverUrl: appConfig.SERVER_URL,
+    newComment: ""
+  }),
+  methods: {
+    postNewcomment: function() {
+      console.log("Posting new comment: " + this.newComment);
+    }
+  }
 };
 </script>
 
