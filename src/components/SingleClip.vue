@@ -23,10 +23,9 @@
         </div>
         <div class="commentsSection">
           <div class="newComment">
-            <textarea
+            <textarea-autosize
               v-model="newComment"
-              v-on:keyup.enter="postNewcomment()"
-              placeholder="New comment"
+              placeholder="Add a new comment"
               class="newCommentTextBox"
               ref="newCommentInput"
             />
