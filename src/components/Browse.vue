@@ -23,7 +23,7 @@
     <v-row justify="center" class="text-center">
       <v-col class="mb-5 clipColumn" cols="8">
         <div v-for="clip in clips" :key="clip.src">
-          <ClipPlayer :clip="clip"/>
+          <ClipPlayer :clip="clip" />
         </div>
       </v-col>
     </v-row>
@@ -38,7 +38,7 @@ import appConfig from "../config/app.config";
 export default {
   name: "Browse",
   components: {
-    ClipPlayer
+    ClipPlayer,
   },
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
@@ -89,17 +89,18 @@ export default {
                     text: "No u.",
                     date: "Dec 25, 2020",
                     likes: "5.2M",
-                    comments: []
+                    comments: [],
                   },
                   {
                     commentId: "4",
                     username: "Shroud",
-                    text: "Harsh. Jackie would beat me in a 1v1 99 times out of 100.",
+                    text:
+                      "Harsh. Jackie would beat me in a 1v1 99 times out of 100.",
                     date: "Dec 25, 2020",
                     likes: "103.5k",
-                    comments: []
-                  }
-                ]
+                    comments: [],
+                  },
+                ],
               },
               {
                 commentId: "5",
@@ -107,9 +108,9 @@ export default {
                 text: "Lame. Play Astrofire.",
                 date: "Dec 25, 2020",
                 likes: "1",
-                comments: []
-              }
-            ]
+                comments: [],
+              },
+            ],
           },
           {
             commentId: "6",
@@ -117,7 +118,7 @@ export default {
             text: "OMG",
             date: "Dec 26, 2020",
             likes: "17k",
-            comments: []
+            comments: [],
           },
           {
             commentId: "7",
@@ -125,9 +126,9 @@ export default {
             text: "Reported.",
             date: "Dec 27, 2020",
             likes: "0",
-            comments: []
-          }
-        ]
+            comments: [],
+          },
+        ],
       },
       {
         id: "2",
@@ -149,9 +150,9 @@ export default {
         viewCount: "903.23k",
         likeCount: "133.7k",
         commentCount: "98.9k",
-        comments: []
-      }
-    ]
+        comments: [],
+      },
+    ],
   }),
   props: ["user"],
   methods: {
@@ -186,11 +187,10 @@ export default {
           followerUsername: followerUsername,
           followedGame: followedGame,
         },
-      })
-        .then(function (response) {
-          this.statusMessage = response.data.message;
-          return response;      
-        });
+      }).then(function (response) {
+        this.statusMessage = response.data.message;
+        return response;
+      });
     },
   },
   clearEntries: function () {
@@ -200,7 +200,7 @@ export default {
   },
   mounted: function () {
     // this.$refs.usernameInput.focus();
-  }
+  },
 };
 </script>
 

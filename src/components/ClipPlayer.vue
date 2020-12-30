@@ -5,7 +5,10 @@
         {{ clip.title }}
       </p>
       <p v-else class="clipTitleText">
-        <router-link :to="{ name: 'SingleClip', params: { clip: clip } }" class="routerStyle">
+        <router-link
+          :to="{ name: 'SingleClip', params: { clip: clip } }"
+          class="routerStyle"
+        >
           {{ clip.title }}
         </router-link>
       </p>
@@ -28,60 +31,31 @@
     <div class="clipHeader">
       <div class="clipUser">
         <router-link to="/profile" class="d-flex align-center">
-          <v-img
-            class="shrink mr-2 userImage"
-            contain
-            :src="clip.userImage"
-          />
+          <v-img class="shrink mr-2 userImage" contain :src="clip.userImage" />
         </router-link>
       </div>
       <div class="clipUserBadges">
         <div class="topLeftBadge">
-          <v-img
-            class="leftBadgeImage"
-            contain
-            :src="clip.badgeOne"
-          />
+          <v-img class="leftBadgeImage" contain :src="clip.badgeOne" />
         </div>
         <div class="topRightBadge">
-          <v-img
-            class="rightBadgeImage"
-            contain
-            :src="clip.badgeTwo"
-          />
+          <v-img class="rightBadgeImage" contain :src="clip.badgeTwo" />
         </div>
         <div class="bottomLeftBadge">
-          <v-img
-            class="leftBadgeImage"
-            contain
-            :src="clip.badgeThree"
-          />
+          <v-img class="leftBadgeImage" contain :src="clip.badgeThree" />
         </div>
         <div class="bottomRightBadge">
-          <v-img
-            class="rightBadgeImage"
-            contain
-            :src="clip.badgeFour"
-          />
+          <v-img class="rightBadgeImage" contain :src="clip.badgeFour" />
         </div>
       </div>
       <div class="clipUserActions">
-        <v-btn
-          color="#40a0e0"
-          class="userActionButton"
-        >Gift</v-btn>
-        <v-btn
-          color="#40a0e0"
-          class="userActionButton"
-        >Link Up</v-btn>
-        <v-btn
-          color="#40a0e0"
-          class="userActionButton"
-        >Follow</v-btn>
+        <v-btn color="#40a0e0" class="userActionButton">Gift</v-btn>
+        <v-btn color="#40a0e0" class="userActionButton">Link Up</v-btn>
+        <v-btn color="#40a0e0" class="userActionButton">Follow</v-btn>
       </div>
     </div>
     <video controls class="clipPlayer" :poster="clip.poster">
-      <source :src="clip.src" :type="clip.type">
+      <source :src="clip.src" :type="clip.type" />
     </video>
     <div class="clipSideTab">
       <div class="clipImpressive">
@@ -121,11 +95,7 @@
       </div>
       <div class="clipLikes">
         <div class="likeIconDiv">
-          <v-img
-            class="likeIcon"
-            contain
-            src="../assets/images/likeIcon.png"
-          />
+          <v-img class="likeIcon" contain src="../assets/images/likeIcon.png" />
         </div>
         <div class="likeCount">{{ clip.likeCount }} likes</div>
       </div>
@@ -146,7 +116,7 @@
 <script>
 export default {
   name: "ClipPlayer",
-  props: ["clip"]
+  props: ["clip"],
 };
 </script>
 
