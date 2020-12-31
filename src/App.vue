@@ -17,7 +17,14 @@
       <router-link to="/browseGames" class="clipsRouterLink">
         <div class="appBarClips">Games</div>
       </router-link>
-
+      <input
+        v-model="searchTerm"
+        v-on:keyup.enter="search()"
+        placeholder="Search"
+        class="searchTextBox"
+        ref="searchBar"
+      />
+      <img @click="search()" class="searchImage" :src="searchIcon" />
       <v-spacer></v-spacer>
       <div v-if="user.loggedIn" class="bannerOptions">
         <p class="bannerUsername noselect">{{ user.username }}</p>
@@ -120,8 +127,16 @@ export default {
       title: "",
       icon: "",
     },
+    searchTerm: "",
+    searchIcon: require("./assets/images/searchIcon.png")
   }),
   methods: {
+    search: function () {
+      if (this.searchTerm) {
+        console.log("searching for: " + this.searchTerm);
+        this.searchTerm = "";
+      }
+    },
     setUserData: function (accessToken, username) {
       this.user.loggedIn = true;
       this.user.accessToken = accessToken;
@@ -192,6 +207,7 @@ export default {
       this.user.userIcon = "";
       this.usersFollowing = [];
       this.gamesFollowing = [];
+      this.searchTerm = "";
     },
   },
   mounted: function () {
