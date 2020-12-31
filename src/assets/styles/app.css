@@ -42,6 +42,17 @@
     outline: none;
 }
 
+.searchImage {
+    height: 30px;
+    width: 30px;
+    margin-top: 6px;
+    margin-left: 6px;
+}
+
+.searchImage:hover {
+    cursor: pointer;
+}
+
 .bannerOptions {
     height: 100%;
     width: 600px;

@@ -24,6 +24,7 @@
         class="searchTextBox"
         ref="searchBar"
       />
+      <img @click="search()" class="searchImage" :src="searchIcon" />
       <v-spacer></v-spacer>
       <div v-if="user.loggedIn" class="bannerOptions">
         <p class="bannerUsername noselect">{{ user.username }}</p>
@@ -127,11 +128,14 @@ export default {
       icon: "",
     },
     searchTerm: "",
+    searchIcon: require("./assets/images/searchIcon.png")
   }),
   methods: {
     search: function () {
-      console.log("searching for: " + this.searchTerm);
-      this.searchTerm = "";
+      if (this.searchTerm) {
+        console.log("searching for: " + this.searchTerm);
+        this.searchTerm = "";
+      }
     },
     setUserData: function (accessToken, username) {
       this.user.loggedIn = true;
