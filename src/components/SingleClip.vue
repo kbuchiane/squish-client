@@ -69,6 +69,7 @@ export default {
   methods: {
     postNewcomment: function () {
       console.log("Posting new comment: " + this.newComment);
+      this.newComment = "";
     },
   },
 };
