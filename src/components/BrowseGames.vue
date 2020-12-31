@@ -94,7 +94,7 @@ export default {
         followerCount: "23",
         clipsTodayCount: "1",
         clipsAllTimeCount: "14",
-        tags: ["Classic"],
+        tags: ["Classic", "Ancient"],
       },
     ],
   }),
