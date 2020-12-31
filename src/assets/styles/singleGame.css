@@ -1,0 +1,62 @@
+.filter {
+    position: fixed;
+    width: 200px;
+    height: 600px;
+    left: 4%;
+    margin-top: 107px;
+}
+
+.filterTitle {
+    margin: 0 auto;
+    height: 60px;
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 60px;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 2px solid black;
+}
+
+.filterIcon {
+    width: 60px;
+    height: 60px;
+    border-bottom: 2px solid black;
+}
+
+.filterOptionsSetOne {
+    width: 100%;
+    height: 240px;
+}
+
+.filterOptionsSetTwo {
+    width: 100%;
+    height: 240px;
+}
+
+.filterOption {
+    width: 100%;
+    height: calc(100% / 6);
+    text-align: left;
+    vertical-align: middle;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px dashed black;
+}
+
+.selectedFilterOption {
+    width: 100%;
+    height: calc(100% / 6);
+    text-align: left;
+    vertical-align: middle;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px dashed black;
+    color: #32cd32;
+}
+
+.clipColumn {
+    margin-top: 90px;
+}
