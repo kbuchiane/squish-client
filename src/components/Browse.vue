@@ -22,7 +22,7 @@
     </div>
     <v-row justify="center" class="text-center">
       <v-col class="mb-5 clipColumn" cols="8">
-        <div v-for="clip in clips" :key="clip.src">
+        <div v-for="clip in clips" :key="clip.id">
           <ClipPlayer :clip="clip" />
         </div>
       </v-col>
@@ -192,11 +192,11 @@ export default {
         return response;
       });
     },
-  },
-  clearEntries: function () {
-    this.followedUsername = "";
-    this.followedGame = "";
-    this.statusMessage = "";
+    clearEntries: function () {
+      this.followedUsername = "";
+      this.followedGame = "";
+      this.statusMessage = "";
+    },
   },
   mounted: function () {
     // this.$refs.usernameInput.focus();
