@@ -11,6 +11,12 @@
           width="100"
         />
       </router-link>
+      <router-link to="/browse" class="clipsRouterLink">
+        <div class="appBarClips">Clips</div>
+      </router-link>
+      <router-link to="/browseGames" class="clipsRouterLink">
+        <div class="appBarClips">Games</div>
+      </router-link>
 
       <v-spacer></v-spacer>
       <div v-if="user.loggedIn" class="bannerOptions">
