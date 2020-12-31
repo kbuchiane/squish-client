@@ -3,6 +3,27 @@
     --blue: #40a0e0;
 }
 
+.appBarClips {
+    height: 64px;
+    width: 100px;
+    margin: 0 auto;
+    text-align: left;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 70px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.clipsRouterLink {
+    text-decoration: none;
+    color: white;
+}
+
+.clipsRouterLink:hover {
+    color: #32cd32;
+}
+
 .bannerOptions {
     height: 100%;
     width: 600px;
@@ -12,13 +33,13 @@
     position: absolute;
     font-size: 20px;
     right: 150px;
-    margin-top: 14px;
+    margin-top: 12px;
     color: white;
 }
 
 .bannerLogoutButton {
     position: absolute;
-    margin-top: 11px;
+    margin-top: 9px;
     right: 20px;
     width: 110px;
     height: 35px;
@@ -27,7 +48,7 @@
 
 .bannerSignupButton {
     position: absolute;
-    margin-top: 11px;
+    margin-top: 9px;
     right: 20px;
     width: 110px;
     height: 35px;
@@ -36,7 +57,7 @@
 
 .bannerLoginButton {
     position: absolute;
-    margin-top: 11px;
+    margin-top: 9px;
     right: 150px;
     width: 110px;
     height: 35px;
