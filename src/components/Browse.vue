@@ -45,9 +45,6 @@ export default {
     followedUsername: "Freddy",
     followerUsername: "Andy",
     followedGame: "Frogger",
-    commenter: "Freddy",
-    comment: "Frogger is the BEST!",
-    liker: "Freddy",
     statusMessage: "",
     clips: [
       {
@@ -193,52 +190,12 @@ export default {
         this.statusMessage = response.data.message;
         return response;
       });
-    },
-    addComment: function (commenter, comment, clipId, parentCommentId) {
-      commenter = commenter.trim();
-      comment = comment.trim();
-
-      return axios({
-        method: "post",
-        url: this.serverUrl + "/addComment",
-        headers: {
-          authorization: "Bearer " + this.user.accessToken,
-        },
-        data: {
-          commenter: commenter,
-          comment: comment,
-          clipId: clipId,
-          parentCommentId: parentCommentId,
-        },
-      }).then(function (response) {
-        this.statusMessage = response.data.message;
-        return response;
-      });
-    },
-    addLikeComment: function (liker, commentId) {
-      liker = commenter.trim();
-    
-      return axios({
-        method: "post",
-        url: this.serverUrl + "/addLikeComment",
-        headers: {
-          authorization: "Bearer " + this.user.accessToken,
-        },
-        data: {
-          liker: liker,
-          CommentId: commentId
-        },
-      }).then(function (response) {
-        this.statusMessage = response.data.message;
-        return response;
-      });
-    },
+    }, 
     clearEntries: function () {
       this.followedUsername = "";
       this.followedGame = "";
       this.commenter = "";
       this.comment = "";
-      this.liker = "";
       this.statusMessage = "";
     },
   },
