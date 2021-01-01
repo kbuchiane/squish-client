@@ -65,12 +65,42 @@ export default {
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
     newComment: "",
+
+    // TEST data
+    commenter: "Freddy",
+    clipId: "1",
+    parentCommentId: "1",
+    user: "jack"
+
   }),
   methods: {
     postNewcomment: function () {
       if (this.newComment) {
         console.log("Posting new comment: " + this.newComment);
+        let comment = this.newComment.trim();
         this.newComment = "";
+
+
+        return axios({
+          method: "post",
+          url: this.serverUrl + "/addComment",
+          headers: {
+            authorization: "Bearer " + this.user.accessToken,
+          },
+          data: {
+            commenter: this.commenter,
+            comment: comment,
+            clipId: this.clipId,
+            parentCommentId: this.parentCommentId,
+          }
+        }).then(function (response) {
+
+          
+          this.statusMessage = response.data.message;
+console.log("RESP: " + this.statusMessage);
+
+          return response;
+        });
       }
     },
   },
