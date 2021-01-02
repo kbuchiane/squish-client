@@ -66,10 +66,10 @@ export default {
     serverUrl: appConfig.SERVER_URL,
     newComment: "",
 
-    // Used for testing
+    // Only used for test
     commenter: "Freddy",
     clipId: "1",
-    parentCommentId: "1",
+    parentCommentId: "1"
 
   }),
   methods: {
@@ -96,8 +96,6 @@ export default {
       }
     },
   },
-  mounted: function () {
-  }
 };
 </script>
 
