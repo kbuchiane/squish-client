@@ -66,7 +66,7 @@
     <v-row justify="center" class="text-center">
       <v-col class="mb-5 clipColumn" cols="8">
         <div v-for="clip in clips" :key="clip.id">
-          <ClipPlayer v-if="clip.game === filteredGame" :clip="clip" />
+          <ClipPlayer v-if="clip.game === selectedGame" :clip="clip" />
         </div>
       </v-col>
     </v-row>
@@ -96,7 +96,7 @@ export default {
         title: "Later, GrndpaGaming",
         datePosted: "Dec 22, 2020",
         username: "JackiePrince",
-        game: "PLAYERUNKNOWN's BATTLEGROUNDS",
+        game: {},
         userImage: require("../assets/images/crown.png"),
         badgeOne: require("../assets/images/badge1.png"),
         badgeTwo: require("../assets/images/badge2.png"),
@@ -178,7 +178,7 @@ export default {
         title: "Destroying A Bot",
         datePosted: "Dec 20, 2020",
         username: "JackiePrince",
-        game: "Astrofire",
+        game: {},
         userImage: require("../assets/images/crown.png"),
         badgeOne: require("../assets/images/badge1.png"),
         badgeTwo: require("../assets/images/badge2.png"),
@@ -194,6 +194,12 @@ export default {
       },
     ],
   }),
+  mounted: function () {
+    // Like many other things, this will be removed when we actually pull data
+    for (let i in this.clips) {
+      this.clips[i].game = this.selectedGame;
+    }
+  },
 };
 </script>
 
