@@ -61,16 +61,38 @@ export default {
     ClipPlayer,
     CommentTree,
   },
-  props: ["clip"],
+  props: ["clip", "user"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
     newComment: "",
+
+    // Only used for test
+    commenter: "Freddy",
+    clipId: "1",
+    parentCommentId: "1"
+
   }),
   methods: {
     postNewcomment: function () {
       if (this.newComment) {
-        console.log("Posting new comment: " + this.newComment);
+        let comment = this.newComment.trim();
         this.newComment = "";
+
+        return axios({
+          method: "post",
+          url: this.serverUrl + "/addComment",
+          headers: {
+            authorization: "Bearer " + this.user.accessToken,
+          },
+          data: {
+            commenter: this.commenter,
+            comment: comment,
+            clipId: this.clipId,
+            parentCommentId: this.parentCommentId,
+          }
+        }).then(function (response) {
+          return response;
+        });
       }
     },
   },

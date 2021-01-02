@@ -42,10 +42,9 @@ export default {
   },
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
-    // followerUsername: "jon",
-    followedUsername: "jackie",
-    followerUsername: "jack",
-    followedGame: "frogger",
+    followedUsername: "Freddy",
+    followerUsername: "Andy",
+    followedGame: "Frogger",
     statusMessage: "",
     clips: [
       {
@@ -235,10 +234,12 @@ export default {
         this.statusMessage = response.data.message;
         return response;
       });
-    },
+    }, 
     clearEntries: function () {
       this.followedUsername = "";
       this.followedGame = "";
+      this.commenter = "";
+      this.comment = "";
       this.statusMessage = "";
     },
   },
