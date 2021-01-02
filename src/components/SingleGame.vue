@@ -21,12 +21,56 @@
       </div>
     </div>
     <v-row justify="center" class="text-center">
+      <v-col class="mb-5 gameColumn" cols="6">
+        <div class="gameDiv">
+          <div class="gameTitle">
+            <p class="gameTitleText">
+              <router-link to="/game" class="routerStyle">
+                {{ selectedGame.title }}
+              </router-link>
+            </p>
+          </div>
+          <div class="gameReleaseDate">
+            Release Date: {{ selectedGame.releaseDate }}
+          </div>
+          <div class="gameHeader">
+            <div class="gameImageDiv">
+              <router-link to="/game">
+                <img class="gameImage" contain :src="selectedGame.icon" />
+              </router-link>
+            </div>
+            <div class="gameTags">
+              <p v-for="tag in selectedGame.tags" :key="tag" class="gameTag">
+                {{ tag }}
+              </p>
+            </div>
+            <div class="gameUserActions">
+              <v-btn color="#40a0e0" class="userActionButton">Follow</v-btn>
+            </div>
+          </div>
+          <div class="gameInfoDiv">
+            <div class="gameInfoSection">
+              {{ selectedGame.followerCount }} followers
+            </div>
+            <div class="gameInfoSection">
+              {{ selectedGame.clipsTodayCount }} new clips today
+            </div>
+            <div class="gameInfoSection">
+              {{ selectedGame.clipsAllTimeCount }} clips all time
+            </div>
+          </div>
+        </div>
+      </v-col>
+    </v-row>
+    <!--
+    <v-row justify="center" class="text-center">
       <v-col class="mb-5 clipColumn" cols="8">
         <div v-for="clip in clips" :key="clip.id">
           <ClipPlayer v-if="clip.game === filteredGame" :clip="clip" />
         </div>
       </v-col>
     </v-row>
+    -->
   </v-container>
 </template>
 
@@ -40,7 +84,7 @@ export default {
   components: {
     ClipPlayer,
   },
-  props: ["filteredGame"],
+  props: ["selectedGame"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
     clips: [

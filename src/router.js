@@ -40,7 +40,8 @@ export default new Router({
         {
             path: "/game",
             name: "SingleGame",
-            component: SingleGame
+            component: SingleGame,
+            props: true
         },
         {
             path: "/profile",

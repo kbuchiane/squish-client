@@ -57,6 +57,131 @@
     color: #32cd32;
 }
 
-.clipColumn {
+.gameColumn {
     margin-top: 90px;
+}
+
+.gameDiv {
+    margin: 0 auto;
+    width: 100%;
+    min-width: 800px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.gameTitle {
+    margin: 0 auto;
+    height: auto;
+    width: 75%;
+}
+
+.gameTitleText {
+    margin: 0 auto;
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 30px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.routerStyle {
+    width: auto;
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+}
+
+.routerStyle:hover {
+    color: #40a0e0;
+}
+
+.gameReleaseDate {
+    margin: 0 auto;
+    height: 25px;
+    width: 75%;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.gameHeader {
+    margin: 0 auto;
+    width: 75%;
+    height: 80px;
+}
+
+.gameImageDiv {
+    height: 100%;
+    width: 85px;
+    float: left;
+}
+
+.gameImage {
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.gameTags {
+    height: 100%;
+    width: auto;
+    max-width: calc(100% - 210px);
+    float: left;
+    margin-left: 10px;
+}
+
+.gameTag {
+    float: left;
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-top: 5px;
+    color: black;
+    background-color: #32cd32;
+}
+
+.gameTag:hover {
+    background-color: black;
+    color: #32cd32;
+    cursor: pointer;
+}
+
+.gameUserActions {
+    height: 100%;
+    width: 110px;
+    float: right;
+}
+
+.userActionButton {
+    width: 100px;
+    height: 35px;
+    top: 50%;
+    float: right;
+    margin-left: 6px;
+    border-radius: 20px;
+}
+
+.gameInfoDiv {
+    margin: 0 auto;
+    height: auto;
+    width: 75%;
+}
+
+.gameInfoSection {
+    margin: 0 auto;
+    height: 25px;
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 25px;
+    font-size: 16px;
+    font-weight: 500;
 }
