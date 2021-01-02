@@ -34,16 +34,32 @@
             </div>
             <div class="profileUserBadges">
               <div class="topLeftBadge">
-                <v-img class="leftBadgeImage" contain :src="userProfile.badges.badgeOne" />
+                <v-img
+                  class="leftBadgeImage"
+                  contain
+                  :src="userProfile.badges.badgeOne"
+                />
               </div>
               <div class="topRightBadge">
-                <v-img class="rightBadgeImage" contain :src="userProfile.badges.badgeTwo" />
+                <v-img
+                  class="rightBadgeImage"
+                  contain
+                  :src="userProfile.badges.badgeTwo"
+                />
               </div>
               <div class="bottomLeftBadge">
-                <v-img class="leftBadgeImage" contain :src="userProfile.badges.badgeThree" />
+                <v-img
+                  class="leftBadgeImage"
+                  contain
+                  :src="userProfile.badges.badgeThree"
+                />
               </div>
               <div class="bottomRightBadge">
-                <v-img class="rightBadgeImage" contain :src="userProfile.badges.badgeFour" />
+                <v-img
+                  class="rightBadgeImage"
+                  contain
+                  :src="userProfile.badges.badgeFour"
+                />
               </div>
             </div>
             <div class="profileUserActions">
@@ -66,15 +82,16 @@
         </div>
       </v-col>
     </v-row>
-    <!--
     <v-row justify="center" class="text-center">
       <v-col class="mb-5" cols="6">
         <div v-for="clip in clips" :key="clip.id">
-          <ClipPlayer v-if="clip.username === userProfile.username" :clip="clip" />
+          <ClipPlayer
+            v-if="clip.username === userProfile.username"
+            :clip="clip"
+          />
         </div>
       </v-col>
     </v-row>
-    -->
   </v-container>
 </template>
 
@@ -88,7 +105,147 @@ export default {
   components: {
     ClipPlayer,
   },
-  props: ["userProfile", "clips"],
+  props: ["userProfile"],
+  data: () => ({
+    serverUrl: appConfig.SERVER_URL,
+    clips: [
+      {
+        id: "1",
+        type: "video/mp4",
+        src: require("../assets/videos/snipe1.mp4"),
+        poster: require("../assets/images/snipe1poster.png"),
+        title: "Later, GrndpaGaming",
+        datePosted: "Dec 22, 2020",
+        userProfile: {
+          username: "JackiePrince",
+          joinedDate: "Dec 24, 2020",
+          image: require("../assets/images/crown.png"),
+          followerCount: "346M",
+          clipsCount: "54",
+          badges: {
+            badgeOne: require("../assets/images/badge1.png"),
+            badgeTwo: require("../assets/images/badge2.png"),
+            badgeThree: require("../assets/images/badge3.png"),
+            badgeFour: require("../assets/images/badge4.png"),
+          },
+        },
+        username: "JackiePrince",
+        game: {
+          id: "1",
+          title: "PLAYERUNKNOWN's BATTLEGROUNDS",
+          icon: require("../assets/images/pubg.png"),
+          releaseDate: "Dec 2017",
+          followerCount: "84k",
+          clipsTodayCount: "32k",
+          clipsAllTimeCount: "456k",
+          tags: ["Battle Royale", "Shooter"],
+        },
+        userImage: require("../assets/images/crown.png"),
+        badgeOne: require("../assets/images/badge1.png"),
+        badgeTwo: require("../assets/images/badge2.png"),
+        badgeThree: require("../assets/images/badge3.png"),
+        badgeFour: require("../assets/images/badge4.png"),
+        impressiveCount: "70.9k",
+        funnyCount: "12.4k",
+        discussionCount: "30.6k",
+        viewCount: "8.64M",
+        likeCount: "1.21M",
+        commentCount: "7",
+        comments: [
+          {
+            commentId: "1",
+            username: "JackiePrince",
+            text: "Wow, this is the best clip I've ever seen!",
+            date: "Dec 25, 2020",
+            likes: "203k",
+            comments: [
+              {
+                commentId: "2",
+                username: "Jon",
+                text: "You're a scrub.",
+                date: "Dec 25, 2020",
+                likes: "0",
+                comments: [
+                  {
+                    commentId: "3",
+                    username: "JackiePrince",
+                    text: "No u.",
+                    date: "Dec 25, 2020",
+                    likes: "5.2M",
+                    comments: [],
+                  },
+                  {
+                    commentId: "4",
+                    username: "shroud",
+                    text:
+                      "Harsh. Jackie would beat me in a 1v1 99 times out of 100.",
+                    date: "Dec 25, 2020",
+                    likes: "103.5k",
+                    comments: [],
+                  },
+                ],
+              },
+              {
+                commentId: "5",
+                username: "Jack",
+                text: "Lame. Play Astrofire.",
+                date: "Dec 25, 2020",
+                likes: "1",
+                comments: [],
+              },
+            ],
+          },
+          {
+            commentId: "6",
+            username: "chocoTaco",
+            text: "OMG",
+            date: "Dec 26, 2020",
+            likes: "17k",
+            comments: [],
+          },
+          {
+            commentId: "7",
+            username: "GrndpaGaming",
+            text: "Reported.",
+            date: "Dec 27, 2020",
+            likes: "0",
+            comments: [],
+          },
+        ],
+      },
+      {
+        id: "2",
+        type: "video/mp4",
+        src: require("../assets/videos/snipe2.mp4"),
+        poster: require("../assets/images/snipe2poster.png"),
+        title: "Destroying A Bot",
+        datePosted: "Dec 20, 2020",
+        username: "JackiePrince",
+        game: {
+          id: "1",
+          title: "PLAYERUNKNOWN's BATTLEGROUNDS",
+          icon: require("../assets/images/pubg.png"),
+          releaseDate: "Dec 2017",
+          followerCount: "84k",
+          clipsTodayCount: "32k",
+          clipsAllTimeCount: "456k",
+          tags: ["Battle Royale", "Shooter"],
+        },
+        userImage: require("../assets/images/crown.png"),
+        badgeOne: require("../assets/images/badge1.png"),
+        badgeTwo: require("../assets/images/badge2.png"),
+        badgeThree: require("../assets/images/badge3.png"),
+        badgeFour: require("../assets/images/badge4.png"),
+        impressiveCount: "10.8k",
+        funnyCount: "5005",
+        discussionCount: "36.3k",
+        viewCount: "903.23k",
+        likeCount: "133.7k",
+        commentCount: "98.9k",
+        comments: [],
+      },
+    ],
+  }),
 };
 </script>
 
