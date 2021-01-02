@@ -4,7 +4,6 @@
       <div class="filterTitle">Filter Clips By</div>
       <div class="filterOptionsSetOne">
         <div class="selectedFilterOption">Most Popular</div>
-        <div class="filterOption">Followed Users Only</div>
         <div class="filterOption">Specific Games</div>
         <div class="filterOption">Most Impressive</div>
         <div class="filterOption">Funniest</div>
@@ -12,12 +11,12 @@
       </div>
       <div class="filterTitle">Timeframe</div>
       <div class="filterOptionsSetTwo">
-        <div class="selectedFilterOption">Default</div>
-        <div class="filterOption">Past Day</div>
-        <div class="filterOption">Past Week</div>
-        <div class="filterOption">Past Month</div>
-        <div class="filterOption">Past Year</div>
-        <div class="filterOption">All Time</div>
+        <div class="selectedFilterOptionSetTwo">Default</div>
+        <div class="filterOptionSetTwo">Past Day</div>
+        <div class="filterOptionSetTwo">Past Week</div>
+        <div class="filterOptionSetTwo">Past Month</div>
+        <div class="filterOptionSetTwo">Past Year</div>
+        <div class="filterOptionSetTwo">All Time</div>
       </div>
     </div>
     <v-row justify="center" class="text-center">
