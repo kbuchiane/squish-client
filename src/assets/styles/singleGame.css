@@ -1,7 +1,7 @@
 .filter {
     position: fixed;
     width: 200px;
-    height: 600px;
+    height: 560px;
     left: 4%;
     margin-top: 107px;
 }
@@ -26,7 +26,7 @@
 
 .filterOptionsSetOne {
     width: 100%;
-    height: 240px;
+    height: 200px;
 }
 
 .filterOptionsSetTwo {
@@ -35,6 +35,29 @@
 }
 
 .filterOption {
+    width: 100%;
+    height: calc(100% / 5);
+    text-align: left;
+    vertical-align: middle;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px dashed black;
+}
+
+.selectedFilterOption {
+    width: 100%;
+    height: calc(100% / 5);
+    text-align: left;
+    vertical-align: middle;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px dashed black;
+    color: #32cd32;
+}
+
+.filterOptionSetTwo {
     width: 100%;
     height: calc(100% / 6);
     text-align: left;
@@ -45,7 +68,7 @@
     border-bottom: 2px dashed black;
 }
 
-.selectedFilterOption {
+.selectedFilterOptionSetTwo {
     width: 100%;
     height: calc(100% / 6);
     text-align: left;
