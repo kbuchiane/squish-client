@@ -36,7 +36,10 @@
     </div>
     <div class="clipHeader">
       <div class="clipUser">
-        <router-link to="/profile" class="d-flex align-center">
+        <router-link
+          :to="{ name: 'Profile', params: { userProfile: clip.userProfile } }"
+          class="d-flex align-center"
+        >
           <v-img class="shrink mr-2 userImage" contain :src="clip.userImage" />
         </router-link>
       </div>

@@ -61,6 +61,12 @@ export default {
           image: require("../assets/images/crown.png"),
           followerCount: "346M",
           clipsCount: "54",
+          badges: {
+            badgeOne: require("../assets/images/badge1.png"),
+            badgeTwo: require("../assets/images/badge2.png"),
+            badgeThree: require("../assets/images/badge3.png"),
+            badgeFour: require("../assets/images/badge4.png"),
+          },
         },
         username: "JackiePrince",
         game: {

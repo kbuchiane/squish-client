@@ -27,7 +27,9 @@
             </div>
             <div class="gameHeader">
               <div class="gameImageDiv">
-                <router-link to="/game">
+                <router-link
+                  :to="{ name: 'SingleGame', params: { selectedGame: game } }"
+                >
                   <img class="gameImage" contain :src="game.icon" />
                 </router-link>
               </div>

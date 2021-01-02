@@ -81,7 +81,7 @@
     text-align: left;
     vertical-align: middle;
     line-height: 30px;
-    font-size: 18px;
+    font-size: 26px;
     font-weight: 600;
 }
 
@@ -89,8 +89,14 @@
     margin: 0 auto;
     width: 75%;
     height: 80px;
-    margin-top: 2px;
-    margin-bottom: 6px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.profileUser {
+    height: 100%;
+    width: 85px;
+    float: left;
 }
 
 .userImageDiv {
@@ -108,8 +114,8 @@
 
 .profileUserActions {
     height: 100%;
-    width: 110px;
-    float: right;
+    width: calc(100% - 195px);
+    float: left;
 }
 
 .userActionButton {
@@ -136,4 +142,49 @@
     line-height: 25px;
     font-size: 16px;
     font-weight: 500;
+}
+
+.profileUserBadges {
+    height: 100%;
+    width: 110px;
+    float: left;
+}
+
+.topLeftBadge {
+    height: 50%;
+    width: 50%;
+    display: inline-block;
+}
+
+.topRightBadge {
+    height: 50%;
+    width: 50%;
+    display: inline-block;
+}
+
+.bottomLeftBadge {
+    height: 50%;
+    width: 50%;
+    margin-top: -5.6px;;
+    display: inline-block;
+}
+
+.bottomRightBadge {
+    height: 50%;
+    width: 50%;
+    margin-top: -5.6px;
+    display: inline-block;
+}
+
+.leftBadgeImage {
+    position: absolute;
+    max-height: 36px;
+    max-width: 70px;
+    margin-left: 8px;
+}
+
+.rightBadgeImage {
+    position: absolute;
+    max-height: 36px;
+    max-width: 70px;
 }

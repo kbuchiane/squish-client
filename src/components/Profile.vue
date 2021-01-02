@@ -29,8 +29,22 @@
             </p>
           </div>
           <div class="userHeader">
-            <div class="userImageDiv">
+            <div class="profileUser">
               <img class="userImage" contain :src="userProfile.image" />
+            </div>
+            <div class="profileUserBadges">
+              <div class="topLeftBadge">
+                <v-img class="leftBadgeImage" contain :src="userProfile.badges.badgeOne" />
+              </div>
+              <div class="topRightBadge">
+                <v-img class="rightBadgeImage" contain :src="userProfile.badges.badgeTwo" />
+              </div>
+              <div class="bottomLeftBadge">
+                <v-img class="leftBadgeImage" contain :src="userProfile.badges.badgeThree" />
+              </div>
+              <div class="bottomRightBadge">
+                <v-img class="rightBadgeImage" contain :src="userProfile.badges.badgeFour" />
+              </div>
             </div>
             <div class="profileUserActions">
               <v-btn color="#40a0e0" class="userActionButton">Gift</v-btn>
