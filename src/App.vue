@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="black">
+    <v-app-bar app flat color="black">
       <router-link to="/browse" class="d-flex align-center">
         <v-img
           alt="Squish Logo"
