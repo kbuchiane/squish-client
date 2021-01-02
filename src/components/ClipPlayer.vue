@@ -26,14 +26,20 @@
     </div>
     <div class="clipUsername">
       <p class="clipUsernameText">
-        <router-link to="/profile" class="routerStyle">
+        <router-link
+          :to="{ name: 'Profile', params: { userProfile: clip.userProfile } }"
+          class="routerStyle"
+        >
           {{ clip.username }}
         </router-link>
       </p>
     </div>
     <div class="clipHeader">
       <div class="clipUser">
-        <router-link to="/profile" class="d-flex align-center">
+        <router-link
+          :to="{ name: 'Profile', params: { userProfile: clip.userProfile } }"
+          class="d-flex align-center"
+        >
           <v-img class="shrink mr-2 userImage" contain :src="clip.userImage" />
         </router-link>
       </div>

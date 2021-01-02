@@ -55,6 +55,19 @@ export default {
         poster: require("../assets/images/snipe1poster.png"),
         title: "Later, GrndpaGaming",
         datePosted: "Dec 22, 2020",
+        userProfile: {
+          username: "JackiePrince",
+          joinedDate: "Dec 24, 2020",
+          image: require("../assets/images/crown.png"),
+          followerCount: "346M",
+          clipsCount: "54",
+          badges: {
+            badgeOne: require("../assets/images/badge1.png"),
+            badgeTwo: require("../assets/images/badge2.png"),
+            badgeThree: require("../assets/images/badge3.png"),
+            badgeFour: require("../assets/images/badge4.png"),
+          },
+        },
         username: "JackiePrince",
         game: {
           id: "1",
@@ -146,6 +159,19 @@ export default {
         poster: require("../assets/images/snipe2poster.png"),
         title: "Destroying A Bot",
         datePosted: "Dec 20, 2020",
+        userProfile: {
+          username: "JackiePrince",
+          joinedDate: "Dec 24, 2020",
+          image: require("../assets/images/crown.png"),
+          followerCount: "346M",
+          clipsCount: "54",
+          badges: {
+            badgeOne: require("../assets/images/badge1.png"),
+            badgeTwo: require("../assets/images/badge2.png"),
+            badgeThree: require("../assets/images/badge3.png"),
+            badgeFour: require("../assets/images/badge4.png"),
+          },
+        },
         username: "JackiePrince",
         game: {
           id: "1",

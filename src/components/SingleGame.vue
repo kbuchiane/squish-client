@@ -30,7 +30,7 @@
             </p>
           </div>
           <div class="gameReleaseDate">
-            Release Date: {{ selectedGame.releaseDate }}
+            Release Date {{ selectedGame.releaseDate }}
           </div>
           <div class="gameHeader">
             <div class="gameImageDiv">
@@ -62,9 +62,19 @@
       </v-col>
     </v-row>
     <v-row justify="center" class="text-center">
-      <v-col class="mb-5 clipColumn" cols="6">
+      <v-col class="mb-5" cols="6">
+        <div class="clipsSingleGame">
+          <p class="clipsSingleGameText">Clips from {{ selectedGame.title }}</p>
+        </div>
+      </v-col>
+    </v-row>
+    <v-row justify="center" class="text-center">
+      <v-col class="mb-5" cols="6">
         <div v-for="clip in clips" :key="clip.id">
-          <ClipPlayer v-if="clip.game.title === selectedGame.title" :clip="clip" />
+          <ClipPlayer
+            v-if="clip.game.title === selectedGame.title"
+            :clip="clip"
+          />
         </div>
       </v-col>
     </v-row>
@@ -92,6 +102,19 @@ export default {
         poster: require("../assets/images/snipe1poster.png"),
         title: "Later, GrndpaGaming",
         datePosted: "Dec 22, 2020",
+        userProfile: {
+          username: "JackiePrince",
+          joinedDate: "Dec 24, 2020",
+          image: require("../assets/images/crown.png"),
+          followerCount: "346M",
+          clipsCount: "54",
+          badges: {
+            badgeOne: require("../assets/images/badge1.png"),
+            badgeTwo: require("../assets/images/badge2.png"),
+            badgeThree: require("../assets/images/badge3.png"),
+            badgeFour: require("../assets/images/badge4.png"),
+          },
+        },
         username: "JackiePrince",
         game: {},
         userImage: require("../assets/images/crown.png"),
@@ -174,6 +197,19 @@ export default {
         poster: require("../assets/images/snipe2poster.png"),
         title: "Destroying A Bot",
         datePosted: "Dec 20, 2020",
+        userProfile: {
+          username: "JackiePrince",
+          joinedDate: "Dec 24, 2020",
+          image: require("../assets/images/crown.png"),
+          followerCount: "346M",
+          clipsCount: "54",
+          badges: {
+            badgeOne: require("../assets/images/badge1.png"),
+            badgeTwo: require("../assets/images/badge2.png"),
+            badgeThree: require("../assets/images/badge3.png"),
+            badgeFour: require("../assets/images/badge4.png"),
+          },
+        },
         username: "JackiePrince",
         game: {},
         userImage: require("../assets/images/crown.png"),
