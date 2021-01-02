@@ -23,7 +23,7 @@
               </p>
             </div>
             <div class="gameReleaseDate">
-              Release Date: {{ game.releaseDate }}
+              Release Date {{ game.releaseDate }}
             </div>
             <div class="gameHeader">
               <div class="gameImageDiv">

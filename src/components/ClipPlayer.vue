@@ -26,7 +26,10 @@
     </div>
     <div class="clipUsername">
       <p class="clipUsernameText">
-        <router-link to="/profile" class="routerStyle">
+        <router-link
+          :to="{ name: 'Profile', params: { userProfile: clip.userProfile } }"
+          class="routerStyle"
+        >
           {{ clip.username }}
         </router-link>
       </p>

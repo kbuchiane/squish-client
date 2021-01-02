@@ -55,6 +55,13 @@ export default {
         poster: require("../assets/images/snipe1poster.png"),
         title: "Later, GrndpaGaming",
         datePosted: "Dec 22, 2020",
+        userProfile: {
+          username: "JackiePrince",
+          joinedDate: "Dec 24, 2020",
+          image: require("../assets/images/crown.png"),
+          followerCount: "346M",
+          clipsCount: "54",
+        },
         username: "JackiePrince",
         game: {
           id: "1",

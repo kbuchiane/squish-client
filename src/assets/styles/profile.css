@@ -1,0 +1,139 @@
+.filter {
+    position: fixed;
+    width: 200px;
+    height: 600px;
+    left: 4%;
+    margin-top: 107px;
+}
+
+.filterTitle {
+    margin: 0 auto;
+    height: 60px;
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 60px;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 2px solid black;
+}
+
+.filterIcon {
+    width: 60px;
+    height: 60px;
+    border-bottom: 2px solid black;
+}
+
+.filterOptionsSetOne {
+    width: 100%;
+    height: 240px;
+}
+
+.filterOptionsSetTwo {
+    width: 100%;
+    height: 240px;
+}
+
+.filterOption {
+    width: 100%;
+    height: calc(100% / 6);
+    text-align: left;
+    vertical-align: middle;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px dashed black;
+}
+
+.selectedFilterOption {
+    width: 100%;
+    height: calc(100% / 6);
+    text-align: left;
+    vertical-align: middle;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px dashed black;
+    color: #32cd32;
+}
+
+.profileColumn {
+    margin-top: 90px;
+}
+
+.profileDiv {
+    margin: 0 auto;
+    width: 100%;
+    min-width: 800px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.profileUsername {
+    margin: 0 auto;
+    height: auto;
+    width: 75%;
+}
+
+.profileUsernameText {
+    margin: 0 auto;
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 30px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.userHeader {
+    margin: 0 auto;
+    width: 75%;
+    height: 80px;
+    margin-top: 2px;
+    margin-bottom: 6px;
+}
+
+.userImageDiv {
+    height: 100%;
+    width: 85px;
+    float: left;
+}
+
+.userImage {
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.profileUserActions {
+    height: 100%;
+    width: 110px;
+    float: right;
+}
+
+.userActionButton {
+    width: 100px;
+    height: 35px;
+    top: 50%;
+    float: right;
+    margin-left: 6px;
+    border-radius: 20px;
+}
+
+.userInfoDiv {
+    margin: 0 auto;
+    height: auto;
+    width: 75%;
+}
+
+.userInfoSection {
+    margin: 0 auto;
+    height: 25px;
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 25px;
+    font-size: 16px;
+    font-weight: 500;
+}

@@ -30,7 +30,7 @@
             </p>
           </div>
           <div class="gameReleaseDate">
-            Release Date: {{ selectedGame.releaseDate }}
+            Release Date {{ selectedGame.releaseDate }}
           </div>
           <div class="gameHeader">
             <div class="gameImageDiv">
@@ -62,9 +62,12 @@
       </v-col>
     </v-row>
     <v-row justify="center" class="text-center">
-      <v-col class="mb-5 clipColumn" cols="6">
+      <v-col class="mb-5" cols="6">
         <div v-for="clip in clips" :key="clip.id">
-          <ClipPlayer v-if="clip.game.title === selectedGame.title" :clip="clip" />
+          <ClipPlayer
+            v-if="clip.game.title === selectedGame.title"
+            :clip="clip"
+          />
         </div>
       </v-col>
     </v-row>
