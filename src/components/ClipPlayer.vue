@@ -16,8 +16,11 @@
     <div class="clipDate">{{ clip.datePosted }}</div>
     <div class="clipGame">
       <p class="clipGameText">
-        <router-link to="/game" class="routerStyle">
-          {{ clip.game }}
+        <router-link
+          :to="{ name: 'SingleGame', params: { selectedGame: clip.game } }"
+          class="routerStyle"
+        >
+          {{ clip.game.title }}
         </router-link>
       </p>
     </div>

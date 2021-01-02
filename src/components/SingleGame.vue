@@ -4,26 +4,67 @@
       <div class="filterTitle">Filter Clips By</div>
       <div class="filterOptionsSetOne">
         <div class="selectedFilterOption">Most Popular</div>
-        <div class="filterOption">Followed Only</div>
-        <div class="filterOption">Specific Games</div>
+        <div class="filterOption">Followed Users Only</div>
         <div class="filterOption">Most Impressive</div>
         <div class="filterOption">Funniest</div>
         <div class="filterOption">Best Discussion</div>
       </div>
       <div class="filterTitle">Timeframe</div>
       <div class="filterOptionsSetTwo">
-        <div class="selectedFilterOption">Default</div>
-        <div class="filterOption">Past Day</div>
-        <div class="filterOption">Past Week</div>
-        <div class="filterOption">Past Month</div>
-        <div class="filterOption">Past Year</div>
-        <div class="filterOption">All Time</div>
+        <div class="selectedFilterOptionSetTwo">Default</div>
+        <div class="filterOptionSetTwo">Past Day</div>
+        <div class="filterOptionSetTwo">Past Week</div>
+        <div class="filterOptionSetTwo">Past Month</div>
+        <div class="filterOptionSetTwo">Past Year</div>
+        <div class="filterOptionSetTwo">All Time</div>
       </div>
     </div>
     <v-row justify="center" class="text-center">
-      <v-col class="mb-5 clipColumn" cols="8">
+      <v-col class="mb-5 gameColumn" cols="6">
+        <div class="gameDiv">
+          <div class="gameTitle">
+            <p class="gameTitleText">
+              <router-link to="/game" class="routerStyle">
+                {{ selectedGame.title }}
+              </router-link>
+            </p>
+          </div>
+          <div class="gameReleaseDate">
+            Release Date: {{ selectedGame.releaseDate }}
+          </div>
+          <div class="gameHeader">
+            <div class="gameImageDiv">
+              <router-link to="/game">
+                <img class="gameImage" contain :src="selectedGame.icon" />
+              </router-link>
+            </div>
+            <div class="gameTags">
+              <p v-for="tag in selectedGame.tags" :key="tag" class="gameTag">
+                {{ tag }}
+              </p>
+            </div>
+            <div class="gameUserActions">
+              <v-btn color="#40a0e0" class="userActionButton">Follow</v-btn>
+            </div>
+          </div>
+          <div class="gameInfoDiv">
+            <div class="gameInfoSection">
+              {{ selectedGame.followerCount }} followers
+            </div>
+            <div class="gameInfoSection">
+              {{ selectedGame.clipsTodayCount }} new clips today
+            </div>
+            <div class="gameInfoSection">
+              {{ selectedGame.clipsAllTimeCount }} clips all time
+            </div>
+          </div>
+        </div>
+      </v-col>
+    </v-row>
+    <v-row justify="center" class="text-center">
+      <v-col class="mb-5 clipColumn" cols="6">
         <div v-for="clip in clips" :key="clip.id">
-          <ClipPlayer v-if="clip.game === filteredGame" :clip="clip" />
+          <ClipPlayer v-if="clip.game.title === selectedGame.title" :clip="clip" />
         </div>
       </v-col>
     </v-row>
@@ -40,7 +81,7 @@ export default {
   components: {
     ClipPlayer,
   },
-  props: ["filteredGame"],
+  props: ["selectedGame"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
     clips: [
@@ -52,7 +93,7 @@ export default {
         title: "Later, GrndpaGaming",
         datePosted: "Dec 22, 2020",
         username: "JackiePrince",
-        game: "PLAYERUNKNOWN's BATTLEGROUNDS",
+        game: {},
         userImage: require("../assets/images/crown.png"),
         badgeOne: require("../assets/images/badge1.png"),
         badgeTwo: require("../assets/images/badge2.png"),
@@ -134,7 +175,7 @@ export default {
         title: "Destroying A Bot",
         datePosted: "Dec 20, 2020",
         username: "JackiePrince",
-        game: "Astrofire",
+        game: {},
         userImage: require("../assets/images/crown.png"),
         badgeOne: require("../assets/images/badge1.png"),
         badgeTwo: require("../assets/images/badge2.png"),
@@ -150,6 +191,12 @@ export default {
       },
     ],
   }),
+  mounted: function () {
+    // Like many other things, this will be removed when we actually pull data
+    for (let i in this.clips) {
+      this.clips[i].game = this.selectedGame;
+    }
+  },
 };
 </script>
 

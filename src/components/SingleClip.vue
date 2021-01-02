@@ -15,7 +15,7 @@
         </div>
       </div>
       <v-row justify="center" class="text-center">
-        <v-col class="mb-5 clipColumn" cols="8">
+        <v-col class="mb-5 clipColumn" cols="6">
           <div>
             <ClipPlayer :clip="clip" />
           </div>

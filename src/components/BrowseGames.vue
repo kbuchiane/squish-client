@@ -14,7 +14,10 @@
           <div class="gameDiv">
             <div class="gameTitle">
               <p class="gameTitleText">
-                <router-link to="/game" class="routerStyle">
+                <router-link
+                  :to="{ name: 'SingleGame', params: { selectedGame: game } }"
+                  class="routerStyle"
+                >
                   {{ game.title }}
                 </router-link>
               </p>

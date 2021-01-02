@@ -4,7 +4,7 @@
       <div class="filterTitle">Filter Clips By</div>
       <div class="filterOptionsSetOne">
         <div class="selectedFilterOption">Most Popular</div>
-        <div class="filterOption">Followed Only</div>
+        <div class="filterOption">Followed Users Only</div>
         <div class="filterOption">Specific Games</div>
         <div class="filterOption">Most Impressive</div>
         <div class="filterOption">Funniest</div>
@@ -21,7 +21,7 @@
       </div>
     </div>
     <v-row justify="center" class="text-center">
-      <v-col class="mb-5 clipColumn" cols="8">
+      <v-col class="mb-5 clipColumn" cols="6">
         <div v-for="clip in clips" :key="clip.id">
           <ClipPlayer :clip="clip" />
         </div>
@@ -56,7 +56,16 @@ export default {
         title: "Later, GrndpaGaming",
         datePosted: "Dec 22, 2020",
         username: "JackiePrince",
-        game: "PLAYERUNKNOWN's BATTLEGROUNDS",
+        game: {
+          id: "1",
+          title: "PLAYERUNKNOWN's BATTLEGROUNDS",
+          icon: require("../assets/images/pubg.png"),
+          releaseDate: "Dec 2017",
+          followerCount: "84k",
+          clipsTodayCount: "32k",
+          clipsAllTimeCount: "456k",
+          tags: ["Battle Royale", "Shooter"],
+        },
         userImage: require("../assets/images/crown.png"),
         badgeOne: require("../assets/images/badge1.png"),
         badgeTwo: require("../assets/images/badge2.png"),
@@ -138,7 +147,16 @@ export default {
         title: "Destroying A Bot",
         datePosted: "Dec 20, 2020",
         username: "JackiePrince",
-        game: "PLAYERUNKNOWN's BATTLEGROUNDS",
+        game: {
+          id: "1",
+          title: "PLAYERUNKNOWN's BATTLEGROUNDS",
+          icon: require("../assets/images/pubg.png"),
+          releaseDate: "Dec 2017",
+          followerCount: "84k",
+          clipsTodayCount: "32k",
+          clipsAllTimeCount: "456k",
+          tags: ["Battle Royale", "Shooter"],
+        },
         userImage: require("../assets/images/crown.png"),
         badgeOne: require("../assets/images/badge1.png"),
         badgeTwo: require("../assets/images/badge2.png"),
