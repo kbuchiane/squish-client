@@ -84,6 +84,13 @@
     </v-row>
     <v-row justify="center" class="text-center">
       <v-col class="mb-5" cols="6">
+        <div class="clipsProfile">
+          <p class="clipsProfileText">Clips from {{ userProfile.username }}</p>
+        </div>
+      </v-col>
+    </v-row>
+    <v-row justify="center" class="text-center">
+      <v-col class="mb-5" cols="6">
         <div v-for="clip in clips" :key="clip.id">
           <ClipPlayer
             v-if="clip.username === userProfile.username"

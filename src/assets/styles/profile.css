@@ -188,3 +188,21 @@
     max-height: 36px;
     max-width: 70px;
 }
+
+.clipsProfile {
+    margin: 0 auto;
+    width: 75%;
+    margin-top: 10px;
+    margin-bottom: -40px;
+    border-bottom: 2px solid black;
+}
+
+.clipsProfileText {
+    margin: 0 auto;
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 30px;
+    font-size: 20px;
+    font-weight: 500;
+}
