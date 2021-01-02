@@ -1,0 +1,35 @@
+.postColumn {
+    margin-top: 90px;
+}
+
+.postDiv {
+    width: 100%;
+}
+
+.browseClipDiv {
+    margin: 0 auto;
+    height: auto;
+    width: 75%;
+    background-color: aqua;
+}
+
+.browsePosterDiv {
+    margin: 0 auto;
+    height: auto;
+    width: 75%;
+    background-color: grey;
+}
+
+.clipTitleDiv {
+    margin: 0 auto;
+    height: auto;
+    width: 75%;
+    background-color: red;
+}
+
+.gameTitleDiv {
+    margin: 0 auto;
+    height: auto;
+    width: 75%;
+    background-color: orange;
+}
