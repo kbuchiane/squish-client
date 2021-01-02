@@ -90,10 +90,12 @@
       </v-row>
       <v-row justify="center" class="text-center">
         <v-col class="mb-5" cols="6">
-          <div class="clipsProfile">
-            <p class="clipsProfileText">
-              Clips from {{ userProfile.username }}
-            </p>
+          <div class="clipsFromDiv">
+            <div class="clipsProfile">
+              <p class="clipsProfileText">
+                Clips from {{ userProfile.username }}
+              </p>
+            </div>
           </div>
         </v-col>
       </v-row>

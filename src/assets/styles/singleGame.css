@@ -233,6 +233,12 @@
     font-weight: 500;
 }
 
+.clipsFromDiv {
+    margin: 0 auto;
+    width: 100%;
+    min-width: 800px;
+}
+
 .clipsSingleGame {
     margin: 0 auto;
     width: 75%;

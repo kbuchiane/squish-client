@@ -70,10 +70,12 @@
       </v-row>
       <v-row justify="center" class="text-center">
         <v-col class="mb-5" cols="6">
-          <div class="clipsSingleGame">
-            <p class="clipsSingleGameText">
-              Clips from {{ selectedGame.title }}
-            </p>
+          <div class="clipsFromDiv">
+            <div class="clipsSingleGame">
+              <p class="clipsSingleGameText">
+                Clips from {{ selectedGame.title }}
+              </p>
+            </div>
           </div>
         </v-col>
       </v-row>

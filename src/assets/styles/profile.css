@@ -236,6 +236,12 @@
     max-width: 70px;
 }
 
+.clipsFromDiv {
+    margin: 0 auto;
+    width: 100%;
+    min-width: 800px;
+}
+
 .clipsProfile {
     margin: 0 auto;
     width: 75%;
