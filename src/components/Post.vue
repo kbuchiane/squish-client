@@ -15,7 +15,7 @@
               accept="*.mp4"
               @change="clipSelected"
             />
-            <p class="uploadClipFilename">somename.mp4 {{ newClipName }}</p>
+            <p v-if="clipFilename" class="uploadClipFilename">Clip Selected</p>
           </div>
           <div class="browsePosterDiv">
             <v-btn @click="uploadThumbnail()" color="#40a0e0" class="postButton"
@@ -28,9 +28,24 @@
               accept="image/*"
               @change="thumbnailSelected"
             />
+            <p v-if="thumbnailFilename" class="uploadClipFilename">
+              Thumbnail Selected
+            </p>
           </div>
           <div class="clipTitleDiv">Clip Title</div>
+          <textarea-autosize
+            v-model="title"
+            placeholder="Add a title"
+            class="postTextBox"
+            ref="titleInput"
+          />
           <div class="gameTitleDiv">Clip Game</div>
+          <textarea-autosize
+            v-model="game"
+            placeholder="Add a game"
+            class="postTextBox"
+            ref="gameInput"
+          />
         </div>
       </v-col>
     </v-row>
@@ -46,28 +61,42 @@ export default {
   props: ["user"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
-    newClip: "",
-    newClipName: "",
-    newClipPoster: "",
-    newClipTitle: "",
-    newClipGame: "",
+    clip: "",
+    clipFilename: "",
+    clipUrl: "",
+    thumbnail: "",
+    thumbnailFilename: "",
+    thumbnailUrl: "",
+    title: "",
+    game: "",
   }),
   methods: {
     uploadClip: function () {
-      console.log("uploading a clip");
       this.$refs.clipInput.click();
     },
-    clipSelected: function(event) {
-      console.log('a clip was selected');
+    clipSelected: function (event) {
       let files = event.target.files;
-      this.newClipName = files[0].name;
+      this.clipFilename = files[0].name;
       let fileReader = new FileReader();
       fileReader.addEventListener("load", () => {
         this.clipUrl = fileReader.result;
       });
       fileReader.readAsDataURL(files[0]);
-      this.newClip = files[0];
-    }
+      this.clip = files[0];
+    },
+    uploadThumbnail: function () {
+      this.$refs.thumbnailInput.click();
+    },
+    thumbnailSelected: function (event) {
+      let files = event.target.files;
+      this.thumbnailFilename = files[0].name;
+      let fileReader = new FileReader();
+      fileReader.addEventListener("load", () => {
+        this.thumbnailUrl = fileReader.result;
+      });
+      fileReader.readAsDataURL(files[0]);
+      this.thumbnail = files[0];
+    },
   },
 };
 </script>
