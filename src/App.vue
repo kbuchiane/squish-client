@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="black">
+    <v-app-bar app flat color="black">
       <router-link to="/browse" class="d-flex align-center">
         <v-img
           alt="Squish Logo"
@@ -16,6 +16,9 @@
       </router-link>
       <router-link to="/browseGames" class="clipsRouterLink">
         <div class="appBarClips">Games</div>
+      </router-link>
+      <router-link v-if="user.loggedIn" to="/post" class="clipsRouterLink">
+        <div class="appBarClips">Post</div>
       </router-link>
       <input
         v-model="searchTerm"
@@ -62,6 +65,7 @@ import BrowseGames from "./components/BrowseGames";
 import SingleClip from "./components/SingleClip";
 import SingleGame from "./components/SingleGame";
 import Profile from "./components/Profile";
+import Post from "./components/Post";
 import Signup from "./components/Signup";
 import VerifyEmail from "./components/VerifyEmail";
 import Login from "./components/Login";
@@ -78,6 +82,7 @@ export default {
     SingleClip,
     SingleGame,
     Profile,
+    Post,
     Signup,
     VerifyEmail,
     Login,
@@ -128,7 +133,7 @@ export default {
       icon: "",
     },
     searchTerm: "",
-    searchIcon: require("./assets/images/searchIcon.png")
+    searchIcon: require("./assets/images/searchIcon.png"),
   }),
   methods: {
     search: function () {
