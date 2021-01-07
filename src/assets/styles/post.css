@@ -74,10 +74,17 @@
     font-weight: 500;
 }
 
-.postButton {
+.postButtonLeft {
     width: 190px;
     height: 35px;
     float: left;
+    border-radius: 20px;
+}
+
+.postButtonRight {
+    width: 190px;
+    height: 35px;
+    float: right;
     border-radius: 20px;
 }
 
@@ -102,4 +109,20 @@
 .postTextBox:focus {
     border: 2px solid #40a0e0;
     outline: none;
+}
+
+.postActions {
+    margin: 0 auto;
+    height: 36px;
+    width: 75%;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.postMessage {
+    margin: 0 auto;
+    width: 75%;
+    margin-top: 10px;
+    color: #40a0e0;
 }
