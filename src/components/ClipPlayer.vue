@@ -60,7 +60,12 @@
       <div class="clipUserActions">
         <v-btn color="#40a0e0" class="userActionButton">Gift</v-btn>
         <v-btn color="#40a0e0" class="userActionButton">Link Up</v-btn>
-        <v-btn v-if="clip.userProfile.followed" color="#40a0e0" class="userActionButton">Unfollow</v-btn>
+        <v-btn
+          v-if="clip.userProfile.followed"
+          color="#40a0e0"
+          class="userActionButton"
+          >Unfollow</v-btn
+        >
         <v-btn v-else color="#40a0e0" class="userActionButton">Follow</v-btn>
       </div>
     </div>
@@ -71,6 +76,13 @@
       <div class="clipImpressive">
         <div class="impressiveIconDiv">
           <v-img
+            v-if="clip.impressiveLiked"
+            class="impressiveIcon"
+            contain
+            src="../assets/images/impressiveLikedIcon.png"
+          />
+          <v-img
+            v-else
             class="impressiveIcon"
             contain
             src="../assets/images/impressiveIcon.png"
@@ -81,6 +93,13 @@
       <div class="clipFunny">
         <div class="funnyIconDiv">
           <v-img
+            v-if="clip.funnyLiked"
+            class="funnyIcon"
+            contain
+            src="../assets/images/funnyLikedIcon.png"
+          />
+          <v-img
+            v-else
             class="funnyIcon"
             contain
             src="../assets/images/funnyIcon.png"
@@ -91,6 +110,13 @@
       <div class="clipDiscussion">
         <div class="discussionIconDiv">
           <v-img
+            v-if="clip.discussionLiked"
+            class="discussionIcon"
+            contain
+            src="../assets/images/discussionLikedIcon.png"
+          />
+          <v-img
+            v-else
             class="discussionIcon"
             contain
             src="../assets/images/discussionIcon.png"

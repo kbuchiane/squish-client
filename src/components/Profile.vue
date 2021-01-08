@@ -71,8 +71,15 @@
               <div class="profileUserActions">
                 <v-btn color="#40a0e0" class="userActionButton">Gift</v-btn>
                 <v-btn color="#40a0e0" class="userActionButton">Link Up</v-btn>
-                <v-btn v-if="userProfile.followed" color="#40a0e0" class="userActionButton">Unfollow</v-btn>
-                <v-btn v-else color="#40a0e0" class="userActionButton">Follow</v-btn>
+                <v-btn
+                  v-if="userProfile.followed"
+                  color="#40a0e0"
+                  class="userActionButton"
+                  >Unfollow</v-btn
+                >
+                <v-btn v-else color="#40a0e0" class="userActionButton"
+                  >Follow</v-btn
+                >
               </div>
             </div>
             <div class="userInfoDiv">
@@ -167,8 +174,11 @@ export default {
         badgeTwo: require("../assets/images/badge2.png"),
         badgeThree: require("../assets/images/badge3.png"),
         badgeFour: require("../assets/images/badge4.png"),
+        impressiveLiked: true,
         impressiveCount: "70.9k",
+        funnyLiked: false,
         funnyCount: "12.4k",
+        discussionLiked: true,
         discussionCount: "30.6k",
         viewCount: "8.64M",
         likeCount: "1.21M",
@@ -281,8 +291,11 @@ export default {
         badgeTwo: require("../assets/images/badge2.png"),
         badgeThree: require("../assets/images/badge3.png"),
         badgeFour: require("../assets/images/badge4.png"),
+        impressiveLiked: false,
         impressiveCount: "10.8k",
+        funnyLiked: true,
         funnyCount: "5005",
+        discussionLiked: false,
         discussionCount: "36.3k",
         viewCount: "903.23k",
         likeCount: "133.7k",
