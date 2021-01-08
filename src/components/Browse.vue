@@ -58,6 +58,7 @@ export default {
           username: "JackiePrince",
           joinedDate: "Dec 24, 2020",
           image: require("../assets/images/crown.png"),
+          followed: true,
           followerCount: "346M",
           clipsCount: "54",
           badges: {
@@ -73,6 +74,7 @@ export default {
           title: "PLAYERUNKNOWN's BATTLEGROUNDS",
           icon: require("../assets/images/pubg.png"),
           releaseDate: "Dec 2017",
+          followed: true,
           followerCount: "84k",
           clipsTodayCount: "32k",
           clipsAllTimeCount: "456k",
@@ -170,6 +172,7 @@ export default {
           username: "JackiePrince",
           joinedDate: "Dec 24, 2020",
           image: require("../assets/images/crown.png"),
+          followed: false,
           followerCount: "346M",
           clipsCount: "54",
           badges: {
@@ -185,6 +188,7 @@ export default {
           title: "PLAYERUNKNOWN's BATTLEGROUNDS",
           icon: require("../assets/images/pubg.png"),
           releaseDate: "Dec 2017",
+          followed: false,
           followerCount: "84k",
           clipsTodayCount: "32k",
           clipsAllTimeCount: "456k",

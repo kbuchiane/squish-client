@@ -51,7 +51,15 @@
                 </p>
               </div>
               <div class="gameUserActions">
-                <v-btn color="#40a0e0" class="userActionButton">Follow</v-btn>
+                <v-btn
+                  v-if="selectedGame.followed"
+                  color="#40a0e0"
+                  class="userActionButton"
+                  >Unfollow</v-btn
+                >
+                <v-btn v-else color="#40a0e0" class="userActionButton"
+                  >Follow</v-btn
+                >
               </div>
             </div>
             <div class="gameInfoDiv">
@@ -118,6 +126,7 @@ export default {
           username: "JackiePrince",
           joinedDate: "Dec 24, 2020",
           image: require("../assets/images/crown.png"),
+          followed: true,
           followerCount: "346M",
           clipsCount: "54",
           badges: {
@@ -220,6 +229,7 @@ export default {
           username: "JackiePrince",
           joinedDate: "Dec 24, 2020",
           image: require("../assets/images/crown.png"),
+          followed: false,
           followerCount: "346M",
           clipsCount: "54",
           badges: {

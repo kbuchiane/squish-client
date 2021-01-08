@@ -60,7 +60,8 @@
       <div class="clipUserActions">
         <v-btn color="#40a0e0" class="userActionButton">Gift</v-btn>
         <v-btn color="#40a0e0" class="userActionButton">Link Up</v-btn>
-        <v-btn color="#40a0e0" class="userActionButton">Follow</v-btn>
+        <v-btn v-if="clip.userProfile.followed" color="#40a0e0" class="userActionButton">Unfollow</v-btn>
+        <v-btn v-else color="#40a0e0" class="userActionButton">Follow</v-btn>
       </div>
     </div>
     <video controls class="clipPlayer" :poster="clip.poster">
