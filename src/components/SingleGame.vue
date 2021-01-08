@@ -51,7 +51,15 @@
                 </p>
               </div>
               <div class="gameUserActions">
-                <v-btn color="#40a0e0" class="userActionButton">Follow</v-btn>
+                <v-btn
+                  v-if="selectedGame.followed"
+                  color="#40a0e0"
+                  class="userActionButton"
+                  >Unfollow</v-btn
+                >
+                <v-btn v-else color="#40a0e0" class="userActionButton"
+                  >Follow</v-btn
+                >
               </div>
             </div>
             <div class="gameInfoDiv">
@@ -118,6 +126,7 @@ export default {
           username: "JackiePrince",
           joinedDate: "Dec 24, 2020",
           image: require("../assets/images/crown.png"),
+          followed: true,
           followerCount: "346M",
           clipsCount: "54",
           badges: {
@@ -129,6 +138,7 @@ export default {
         },
         username: "JackiePrince",
         game: {},
+        liked: true,
         userImage: require("../assets/images/crown.png"),
         badgeOne: require("../assets/images/badge1.png"),
         badgeTwo: require("../assets/images/badge2.png"),
@@ -153,6 +163,7 @@ export default {
                 username: "Jon",
                 text: "You're a scrub.",
                 date: "Dec 25, 2020",
+                liked: false,
                 likes: "0",
                 comments: [
                   {
@@ -160,6 +171,7 @@ export default {
                     username: "JackiePrince",
                     text: "No u.",
                     date: "Dec 25, 2020",
+                    liked: false,
                     likes: "5.2M",
                     comments: [],
                   },
@@ -169,6 +181,7 @@ export default {
                     text:
                       "Harsh. Jackie would beat me in a 1v1 99 times out of 100.",
                     date: "Dec 25, 2020",
+                    liked: false,
                     likes: "103.5k",
                     comments: [],
                   },
@@ -179,6 +192,7 @@ export default {
                 username: "Jack",
                 text: "Lame. Play Astrofire.",
                 date: "Dec 25, 2020",
+                liked: false,
                 likes: "1",
                 comments: [],
               },
@@ -189,6 +203,7 @@ export default {
             username: "chocoTaco",
             text: "OMG",
             date: "Dec 26, 2020",
+            liked: false,
             likes: "17k",
             comments: [],
           },
@@ -197,6 +212,7 @@ export default {
             username: "GrndpaGaming",
             text: "Reported.",
             date: "Dec 27, 2020",
+            liked: false,
             likes: "0",
             comments: [],
           },
@@ -213,6 +229,7 @@ export default {
           username: "JackiePrince",
           joinedDate: "Dec 24, 2020",
           image: require("../assets/images/crown.png"),
+          followed: false,
           followerCount: "346M",
           clipsCount: "54",
           badges: {
@@ -224,6 +241,7 @@ export default {
         },
         username: "JackiePrince",
         game: {},
+        liked: false,
         userImage: require("../assets/images/crown.png"),
         badgeOne: require("../assets/images/badge1.png"),
         badgeTwo: require("../assets/images/badge2.png"),

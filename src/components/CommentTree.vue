@@ -26,6 +26,13 @@
       <div class="singleCommentFooter">
         <div class="commentLikeIconDiv">
           <v-img
+            v-if="comment.liked"
+            class="commentLikeIcon"
+            contain
+            src="../assets/images/likedIcon.png"
+          />
+          <v-img
+            v-else
             class="commentLikeIcon"
             contain
             src="../assets/images/likeIcon.png"

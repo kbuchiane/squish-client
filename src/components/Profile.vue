@@ -71,7 +71,15 @@
               <div class="profileUserActions">
                 <v-btn color="#40a0e0" class="userActionButton">Gift</v-btn>
                 <v-btn color="#40a0e0" class="userActionButton">Link Up</v-btn>
-                <v-btn color="#40a0e0" class="userActionButton">Follow</v-btn>
+                <v-btn
+                  v-if="userProfile.followed"
+                  color="#40a0e0"
+                  class="userActionButton"
+                  >Unfollow</v-btn
+                >
+                <v-btn v-else color="#40a0e0" class="userActionButton"
+                  >Follow</v-btn
+                >
               </div>
             </div>
             <div class="userInfoDiv">
@@ -138,6 +146,7 @@ export default {
           username: "JackiePrince",
           joinedDate: "Dec 24, 2020",
           image: require("../assets/images/crown.png"),
+          followed: true,
           followerCount: "346M",
           clipsCount: "54",
           badges: {
@@ -153,18 +162,23 @@ export default {
           title: "PLAYERUNKNOWN's BATTLEGROUNDS",
           icon: require("../assets/images/pubg.png"),
           releaseDate: "Dec 2017",
+          followed: true,
           followerCount: "84k",
           clipsTodayCount: "32k",
           clipsAllTimeCount: "456k",
           tags: ["Battle Royale", "Shooter"],
         },
+        liked: true,
         userImage: require("../assets/images/crown.png"),
         badgeOne: require("../assets/images/badge1.png"),
         badgeTwo: require("../assets/images/badge2.png"),
         badgeThree: require("../assets/images/badge3.png"),
         badgeFour: require("../assets/images/badge4.png"),
+        impressiveLiked: true,
         impressiveCount: "70.9k",
+        funnyLiked: false,
         funnyCount: "12.4k",
+        discussionLiked: true,
         discussionCount: "30.6k",
         viewCount: "8.64M",
         likeCount: "1.21M",
@@ -175,6 +189,7 @@ export default {
             username: "JackiePrince",
             text: "Wow, this is the best clip I've ever seen!",
             date: "Dec 25, 2020",
+            liked: true,
             likes: "203k",
             comments: [
               {
@@ -182,6 +197,7 @@ export default {
                 username: "Jon",
                 text: "You're a scrub.",
                 date: "Dec 25, 2020",
+                liked: false,
                 likes: "0",
                 comments: [
                   {
@@ -189,6 +205,7 @@ export default {
                     username: "JackiePrince",
                     text: "No u.",
                     date: "Dec 25, 2020",
+                    liked: true,
                     likes: "5.2M",
                     comments: [],
                   },
@@ -198,6 +215,7 @@ export default {
                     text:
                       "Harsh. Jackie would beat me in a 1v1 99 times out of 100.",
                     date: "Dec 25, 2020",
+                    liked: true,
                     likes: "103.5k",
                     comments: [],
                   },
@@ -208,6 +226,7 @@ export default {
                 username: "Jack",
                 text: "Lame. Play Astrofire.",
                 date: "Dec 25, 2020",
+                liked: false,
                 likes: "1",
                 comments: [],
               },
@@ -218,6 +237,7 @@ export default {
             username: "chocoTaco",
             text: "OMG",
             date: "Dec 26, 2020",
+            liked: true,
             likes: "17k",
             comments: [],
           },
@@ -226,6 +246,7 @@ export default {
             username: "GrndpaGaming",
             text: "Reported.",
             date: "Dec 27, 2020",
+            liked: false,
             likes: "0",
             comments: [],
           },
@@ -238,24 +259,43 @@ export default {
         poster: require("../assets/images/snipe2poster.png"),
         title: "Destroying A Bot",
         datePosted: "Dec 20, 2020",
-        username: "JackiePrince",
+        userProfile: {
+          username: "JackiePrince",
+          joinedDate: "Dec 24, 2020",
+          image: require("../assets/images/crown.png"),
+          followed: false,
+          followerCount: "346M",
+          clipsCount: "54",
+          badges: {
+            badgeOne: require("../assets/images/badge1.png"),
+            badgeTwo: require("../assets/images/badge2.png"),
+            badgeThree: require("../assets/images/badge3.png"),
+            badgeFour: require("../assets/images/badge4.png"),
+          },
+        },
+        username: "SomeoneElse",
         game: {
           id: "1",
           title: "PLAYERUNKNOWN's BATTLEGROUNDS",
           icon: require("../assets/images/pubg.png"),
           releaseDate: "Dec 2017",
+          followed: false,
           followerCount: "84k",
           clipsTodayCount: "32k",
           clipsAllTimeCount: "456k",
           tags: ["Battle Royale", "Shooter"],
         },
+        liked: false,
         userImage: require("../assets/images/crown.png"),
         badgeOne: require("../assets/images/badge1.png"),
         badgeTwo: require("../assets/images/badge2.png"),
         badgeThree: require("../assets/images/badge3.png"),
         badgeFour: require("../assets/images/badge4.png"),
+        impressiveLiked: false,
         impressiveCount: "10.8k",
+        funnyLiked: true,
         funnyCount: "5005",
+        discussionLiked: false,
         discussionCount: "36.3k",
         viewCount: "903.23k",
         likeCount: "133.7k",

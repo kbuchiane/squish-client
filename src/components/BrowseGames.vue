@@ -39,7 +39,15 @@
                 </p>
               </div>
               <div class="gameUserActions">
-                <v-btn color="#40a0e0" class="userActionButton">Follow</v-btn>
+                <v-btn
+                  v-if="game.followed"
+                  color="#40a0e0"
+                  class="userActionButton"
+                  >Unfollow</v-btn
+                >
+                <v-btn v-else color="#40a0e0" class="userActionButton"
+                  >Follow</v-btn
+                >
               </div>
             </div>
             <div class="gameInfoDiv">
@@ -74,6 +82,7 @@ export default {
         title: "PLAYERUNKNOWN's BATTLEGROUNDS",
         icon: require("../assets/images/pubg.png"),
         releaseDate: "Dec 2017",
+        followed: true,
         followerCount: "84k",
         clipsTodayCount: "32k",
         clipsAllTimeCount: "456k",
@@ -84,6 +93,7 @@ export default {
         title: "Astrofire",
         icon: require("../assets/images/astrofire.png"),
         releaseDate: "1994",
+        followed: false,
         followerCount: "23",
         clipsTodayCount: "1",
         clipsAllTimeCount: "14",
