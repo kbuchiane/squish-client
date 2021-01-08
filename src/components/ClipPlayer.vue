@@ -104,7 +104,18 @@
       </div>
       <div class="clipLikes">
         <div class="likeIconDiv">
-          <v-img class="likeIcon" contain src="../assets/images/likeIcon.png" />
+          <v-img
+            v-if="clip.liked"
+            class="likeIcon"
+            contain
+            src="../assets/images/likedIcon.png"
+          />
+          <v-img
+            v-else
+            class="likeIcon"
+            contain
+            src="../assets/images/likeIcon.png"
+          />
         </div>
         <div class="likeCount">{{ clip.likeCount }} likes</div>
       </div>

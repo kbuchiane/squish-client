@@ -78,6 +78,7 @@ export default {
           clipsAllTimeCount: "456k",
           tags: ["Battle Royale", "Shooter"],
         },
+        liked: true,
         userImage: require("../assets/images/crown.png"),
         badgeOne: require("../assets/images/badge1.png"),
         badgeTwo: require("../assets/images/badge2.png"),
@@ -95,6 +96,7 @@ export default {
             username: "JackiePrince",
             text: "Wow, this is the best clip I've ever seen!",
             date: "Dec 25, 2020",
+            liked: true,
             likes: "203k",
             comments: [
               {
@@ -102,6 +104,7 @@ export default {
                 username: "Jon",
                 text: "You're a scrub.",
                 date: "Dec 25, 2020",
+                liked: false,
                 likes: "0",
                 comments: [
                   {
@@ -109,6 +112,7 @@ export default {
                     username: "JackiePrince",
                     text: "No u.",
                     date: "Dec 25, 2020",
+                    liked: true,
                     likes: "5.2M",
                     comments: [],
                   },
@@ -118,6 +122,7 @@ export default {
                     text:
                       "Harsh. Jackie would beat me in a 1v1 99 times out of 100.",
                     date: "Dec 25, 2020",
+                    liked: true,
                     likes: "103.5k",
                     comments: [],
                   },
@@ -128,6 +133,7 @@ export default {
                 username: "Jack",
                 text: "Lame. Play Astrofire.",
                 date: "Dec 25, 2020",
+                liked: false,
                 likes: "1",
                 comments: [],
               },
@@ -138,6 +144,7 @@ export default {
             username: "chocoTaco",
             text: "OMG",
             date: "Dec 26, 2020",
+            liked: true,
             likes: "17k",
             comments: [],
           },
@@ -146,6 +153,7 @@ export default {
             username: "GrndpaGaming",
             text: "Reported.",
             date: "Dec 27, 2020",
+            liked: false,
             likes: "0",
             comments: [],
           },
@@ -182,6 +190,7 @@ export default {
           clipsAllTimeCount: "456k",
           tags: ["Battle Royale", "Shooter"],
         },
+        liked: false,
         userImage: require("../assets/images/crown.png"),
         badgeOne: require("../assets/images/badge1.png"),
         badgeTwo: require("../assets/images/badge2.png"),
