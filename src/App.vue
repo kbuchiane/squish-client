@@ -143,7 +143,7 @@ export default {
       }
     },
     setUserData: function (accessToken, username) {
-      this.user.loggedIn = true; 
+      this.user.loggedIn = true;
       this.user.accessToken = accessToken;
       this.user.username = username;
     },
