@@ -73,6 +73,12 @@
           contain
           src="../assets/images/deleteIcon.png"
         />
+        <v-img
+          v-else
+          class="reportButton"
+          contain
+          src="../assets/images/reportIcon.png"
+        />
       </div>
     </div>
     <video controls class="clipPlayer" :poster="clip.poster">

@@ -130,19 +130,20 @@
     cursor: pointer;
 }
 
-.commentDeleteIconDiv {
+.commentDeleteReportIconDiv {
     height: 100%;
     float: left;
     text-align: left;
+    margin-left: -4px;
 }
 
-.commentDeleteIcon {
+.commentDeleteReportIcon {
     height: 100%;
     width: 24px;
     padding: 5px;
 }
 
-.commentDeleteIcon:hover {
+.commentDeleteReportIcon:hover {
     cursor: pointer;
 }
 
