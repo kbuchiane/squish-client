@@ -1,32 +1,103 @@
 <template>
   <v-container>
-    <div class="filter">
-      <div class="filterTitle">Filter Clips By</div>
-      <div class="filterOptionsSetOne">
-        <div class="selectedFilterOption">Most Popular</div>
-        <div class="filterOption">Followed Users Only</div>
-        <div class="filterOption">Specific Games</div>
-        <div class="filterOption">Most Impressive</div>
-        <div class="filterOption">Funniest</div>
-        <div class="filterOption">Best Discussion</div>
-      </div>
-      <div class="filterTitle">Timeframe</div>
-      <div class="filterOptionsSetTwo">
-        <div class="selectedFilterOption">Default</div>
-        <div class="filterOption">Past Day</div>
-        <div class="filterOption">Past Week</div>
-        <div class="filterOption">Past Month</div>
-        <div class="filterOption">Past Year</div>
-        <div class="filterOption">All Time</div>
-      </div>
+    <div v-if="!selectedGame" class="notFoundDiv">
+      <p class="notFoundText">The game could not be found.</p>
+      <v-btn @click="$router.push('/browse')" color="#40a0e0" class="backButton"
+        >Back To Browse</v-btn
+      >
     </div>
-    <v-row justify="center" class="text-center">
-      <v-col class="mb-5 clipColumn" cols="6">
-        <div v-for="clip in clips" :key="clip.id">
-          <ClipPlayer :clip="clip" />
+    <div v-else>
+      <div class="filter">
+        <div class="filterTitle">Filter Clips By</div>
+        <div class="filterOptionsSetOne">
+          <div class="selectedFilterOption">Most Popular</div>
+          <div class="filterOption">Followed Users Only</div>
+          <div class="filterOption">Most Impressive</div>
+          <div class="filterOption">Funniest</div>
+          <div class="filterOption">Best Discussion</div>
         </div>
-      </v-col>
-    </v-row>
+        <div class="filterTitle">Timeframe</div>
+        <div class="filterOptionsSetTwo">
+          <div class="selectedFilterOptionSetTwo">Default</div>
+          <div class="filterOptionSetTwo">Past Day</div>
+          <div class="filterOptionSetTwo">Past Week</div>
+          <div class="filterOptionSetTwo">Past Month</div>
+          <div class="filterOptionSetTwo">Past Year</div>
+          <div class="filterOptionSetTwo">All Time</div>
+        </div>
+      </div>
+      <v-row justify="center" class="text-center">
+        <v-col class="mb-5 gameColumn" cols="6">
+          <div class="gameDiv">
+            <div class="gameTitle">
+              <p class="gameTitleText">
+                <router-link to="/game" class="routerStyle">
+                  {{ selectedGame.title }}
+                </router-link>
+              </p>
+            </div>
+            <div class="gameReleaseDate">
+              Release Date {{ selectedGame.releaseDate }}
+            </div>
+            <div class="gameHeader">
+              <div class="gameImageDiv">
+                <router-link to="/game">
+                  <img class="gameImage" contain :src="selectedGame.icon" />
+                </router-link>
+              </div>
+              <div class="gameTags">
+                <p v-for="tag in selectedGame.tags" :key="tag" class="gameTag">
+                  {{ tag }}
+                </p>
+              </div>
+              <div class="gameUserActions">
+                <v-btn
+                  v-if="selectedGame.followed"
+                  color="#40a0e0"
+                  class="userActionButton"
+                  >Unfollow</v-btn
+                >
+                <v-btn v-else color="#40a0e0" class="userActionButton"
+                  >Follow</v-btn
+                >
+              </div>
+            </div>
+            <div class="gameInfoDiv">
+              <div class="gameInfoSection">
+                {{ selectedGame.followerCount }} followers
+              </div>
+              <div class="gameInfoSection">
+                {{ selectedGame.clipsTodayCount }} new clips today
+              </div>
+              <div class="gameInfoSection">
+                {{ selectedGame.clipsAllTimeCount }} clips all time
+              </div>
+            </div>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row justify="center" class="text-center">
+        <v-col class="mb-5" cols="6">
+          <div class="clipsFromDiv">
+            <div class="clipsSingleGame">
+              <p class="clipsSingleGameText">
+                Clips from {{ selectedGame.title }}
+              </p>
+            </div>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row justify="center" class="text-center">
+        <v-col class="mb-5" cols="6">
+          <div v-for="clip in clips" :key="clip.id">
+            <ClipPlayer
+              v-if="clip.game.title === selectedGame.title"
+              :clip="clip"
+            />
+          </div>
+        </v-col>
+      </v-row>
+    </div>
   </v-container>
 </template>
 
@@ -36,16 +107,13 @@ import axios from "axios";
 import appConfig from "../config/app.config";
 
 export default {
-  name: "Browse",
+  name: "BrowseGames",
   components: {
     ClipPlayer,
   },
+  props: ["selectedGame"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
-    followedUsername: "Freddy",
-    followerUsername: "Andy",
-    followedGame: "Frogger",
-    statusMessage: "",
     clips: [
       {
         id: "1",
@@ -68,17 +136,7 @@ export default {
             badgeFour: require("../assets/images/badge4.png"),
           },
         },
-        game: {
-          id: "1",
-          title: "PLAYERUNKNOWN's BATTLEGROUNDS",
-          icon: require("../assets/images/pubg.png"),
-          releaseDate: "Dec 2017",
-          followed: true,
-          followerCount: "84k",
-          clipsTodayCount: "32k",
-          clipsAllTimeCount: "456k",
-          tags: ["Battle Royale", "Shooter"],
-        },
+        game: {},
         liked: true,
         userImage: require("../assets/images/crown.png"),
         badgeOne: require("../assets/images/badge1.png"),
@@ -184,17 +242,7 @@ export default {
             badgeFour: require("../assets/images/badge4.png"),
           },
         },
-        game: {
-          id: "1",
-          title: "PLAYERUNKNOWN's BATTLEGROUNDS",
-          icon: require("../assets/images/pubg.png"),
-          releaseDate: "Dec 2017",
-          followed: false,
-          followerCount: "84k",
-          clipsTodayCount: "32k",
-          clipsAllTimeCount: "456k",
-          tags: ["Battle Royale", "Shooter"],
-        },
+        game: {},
         liked: false,
         userImage: require("../assets/images/crown.png"),
         badgeOne: require("../assets/images/badge1.png"),
@@ -214,56 +262,13 @@ export default {
       },
     ],
   }),
-  props: ["user"],
-  methods: {
-    followUser: function (followerUsername, followedUsername) {
-      followerUsername = followerUsername.trim();
-      followedUsername = followedUsername.trim();
-      return axios({
-        method: "post",
-        url: this.serverUrl + "/followUser",
-        headers: {
-          authorization: "Bearer " + this.user.accessToken,
-        },
-        data: {
-          followerUsername: followerUsername,
-          followedUsername: followedUsername,
-        },
-      }).then(function (response) {
-        this.statusMessage = response.data.message;
-        return response;
-      });
-    },
-    followGame: function (followerUsername, followedGame) {
-      followerUsername = followerUsername.trim();
-      followedGame = followedGame.trim();
-      return axios({
-        method: "post",
-        url: this.serverUrl + "/followGame",
-        headers: {
-          authorization: "Bearer " + this.user.accessToken,
-        },
-        data: {
-          followerUsername: followerUsername,
-          followedGame: followedGame,
-        },
-      }).then(function (response) {
-        this.statusMessage = response.data.message;
-        return response;
-      });
-    },
-    clearEntries: function () {
-      this.followedUsername = "";
-      this.followedGame = "";
-      this.commenter = "";
-      this.comment = "";
-      this.statusMessage = "";
-    },
-  },
   mounted: function () {
-    // this.$refs.usernameInput.focus();
+    // Like many other things, this will be removed when we actually pull data
+    for (let i in this.clips) {
+      this.clips[i].game = this.selectedGame;
+    }
   },
 };
 </script>
 
-<style scoped src='../assets/styles/browse.css'></style>
+<style scoped src='../assets/styles/singleGame.css'></style>

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="black">
+    <v-app-bar app flat color="black">
       <router-link to="/browse" class="d-flex align-center">
         <v-img
           alt="Squish Logo"
@@ -11,15 +11,37 @@
           width="100"
         />
       </router-link>
-
+      <router-link to="/browse" class="clipsRouterLink">
+        <div class="appBarClips">Clips</div>
+      </router-link>
+      <router-link to="/browseGames" class="clipsRouterLink">
+        <div class="appBarClips">Games</div>
+      </router-link>
+      <router-link v-if="user.loggedIn" to="/post" class="clipsRouterLink">
+        <div class="appBarClips">Post</div>
+      </router-link>
+      <input
+        v-model="searchTerm"
+        v-on:keyup.enter="search()"
+        placeholder="Search"
+        class="searchTextBox"
+        ref="searchBar"
+      />
+      <img @click="search()" class="searchImage" :src="searchIcon" />
       <v-spacer></v-spacer>
       <div v-if="user.loggedIn" class="bannerOptions">
         <p class="bannerUsername noselect">{{ user.username }}</p>
-        <v-btn @click="logout()" color="#32cd32" class="bannerLogoutButton">Log Out</v-btn>
+        <v-btn @click="logout()" color="#32cd32" class="bannerLogoutButton"
+          >Log Out</v-btn
+        >
       </div>
       <div v-if="!user.loggedIn" class="bannerOptions">
-        <v-btn to="/login" color="#32cd32" class="bannerLoginButton">Log In</v-btn>
-        <v-btn to="/signup" color="#32cd32" class="bannerSignupButton">Sign Up</v-btn>
+        <v-btn to="/login" color="#32cd32" class="bannerLoginButton"
+          >Log In</v-btn
+        >
+        <v-btn to="/signup" color="#32cd32" class="bannerSignupButton"
+          >Sign Up</v-btn
+        >
       </div>
     </v-app-bar>
 
@@ -39,6 +61,11 @@
 
 <script>
 import Browse from "./components/Browse";
+import BrowseGames from "./components/BrowseGames";
+import SingleClip from "./components/SingleClip";
+import SingleGame from "./components/SingleGame";
+import Profile from "./components/Profile";
+import Post from "./components/Post";
 import Signup from "./components/Signup";
 import VerifyEmail from "./components/VerifyEmail";
 import Login from "./components/Login";
@@ -51,10 +78,15 @@ export default {
   name: "App",
   components: {
     Browse,
+    BrowseGames,
+    SingleClip,
+    SingleGame,
+    Profile,
+    Post,
     Signup,
     VerifyEmail,
     Login,
-    ResetPassword
+    ResetPassword,
   },
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
@@ -64,15 +96,15 @@ export default {
       username: "",
       icon: "",
       usersFollowing: [],
-      gamesFollowing: []
+      gamesFollowing: [],
     },
     verify: {
       email: "",
-      message: ""
+      message: "",
     },
     resetPassword: {
       email: "",
-      message: ""
+      message: "",
     },
     clip: {
       username: "",
@@ -84,47 +116,55 @@ export default {
       thumbnail: "",
       viewCount: "",
       likes: [],
-      comments: []
+      comments: [],
     },
     comment: {
       username: "",
       text: "",
       dateCreated: "",
       likes: [],
-      comments: []
+      comments: [],
     },
     like: {
-      username: ""
+      username: "",
     },
     game: {
       title: "",
-      icon: ""
-    }
+      icon: "",
+    },
+    searchTerm: "",
+    searchIcon: require("./assets/images/searchIcon.png"),
   }),
   methods: {
-    setUserData: function(accessToken, username) {
+    search: function () {
+      if (this.searchTerm) {
+        console.log("searching for: " + this.searchTerm);
+        this.searchTerm = "";
+      }
+    },
+    setUserData: function (accessToken, username) {
       this.user.loggedIn = true;
       this.user.accessToken = accessToken;
       this.user.username = username;
     },
-    setVerifyData: function(verifyData) {
+    setVerifyData: function (verifyData) {
       this.verify.email = verifyData.email;
       this.verify.message = verifyData.message;
     },
-    clearVerifyData: function() {
+    clearVerifyData: function () {
       this.verify.email = "";
       this.verify.message = "";
     },
-    setResetPasswordData: function(resetPasswordData) {
+    setResetPasswordData: function (resetPasswordData) {
       this.resetPassword.email = resetPasswordData.email;
       this.resetPassword.message = resetPasswordData.message;
     },
-    clearResetPasswordData: function() {
+    clearResetPasswordData: function () {
       this.resetPassword.email = "";
       this.resetPassword.message = "";
     },
-    silentRefresh: function() {
-      this.serverSilentRefresh().then(response => {
+    silentRefresh: function () {
+      this.serverSilentRefresh().then((response) => {
         if (response.status === 200 && response.data.message != false) {
           this.setUserData(response.data.accessToken, response.data.username);
         } else {
@@ -132,52 +172,53 @@ export default {
         }
       });
     },
-    serverSilentRefresh: function() {
+    serverSilentRefresh: function () {
       return axios
         .get(this.serverUrl + "/refreshToken", {
-          withCredentials: true
+          withCredentials: true,
         })
-        .then(function(response) {
+        .then(function (response) {
           return response;
         })
-        .catch(error => {
+        .catch((error) => {
           return error.response;
         });
     },
-    logout: function() {
-      this.serverLogout().then(response => {
+    logout: function () {
+      this.serverLogout().then((response) => {
         this.clearUserData();
       });
     },
-    serverLogout: function() {
+    serverLogout: function () {
       return axios
         .post(
           this.serverUrl + "/logout",
           {},
           {
-            withCredentials: true
+            withCredentials: true,
           }
         )
-        .then(function(response) {
+        .then(function (response) {
           return response;
         })
-        .catch(error => {
+        .catch((error) => {
           return error.response;
         });
     },
-    clearUserData: function() {
+    clearUserData: function () {
       this.user.loggedIn = false;
       this.user.accessToken = "";
       this.user.username = "";
       this.user.userIcon = "";
       this.usersFollowing = [];
       this.gamesFollowing = [];
-    }
+      this.searchTerm = "";
+    },
   },
-  mounted: function() {
+  mounted: function () {
     this.silentRefresh();
     setInterval(this.silentRefresh, appConfig.REFRESH_INTERVAL);
-  }
+  },
 };
 </script>
 

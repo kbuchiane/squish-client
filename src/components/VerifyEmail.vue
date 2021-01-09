@@ -29,15 +29,23 @@
             @click="confirmUser(verify.email, verifyCode)"
             color="#40a0e0"
             class="logsignButton"
-          >Verify</v-btn>
+            >Verify</v-btn
+          >
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn @click="resendCode(verify.email)" color="#40a0e0" class="logsignButton">Resend Code</v-btn>
+          <v-btn
+            @click="resendCode(verify.email)"
+            color="#40a0e0"
+            class="logsignButton"
+            >Resend Code</v-btn
+          >
         </v-row>
         <p></p>
         <v-row justify="center">
-          <v-btn @click="backToSignup()" color="#40a0e0" class="logsignButton">Back To Sign Up</v-btn>
+          <v-btn @click="backToSignup()" color="#40a0e0" class="logsignButton"
+            >Back To Sign Up</v-btn
+          >
         </v-row>
         <p></p>
         <v-row justify="center">
@@ -58,11 +66,11 @@ export default {
   name: "VerifyEmail",
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
-    verifyCode: ""
+    verifyCode: "",
   }),
   props: ["verify"],
   methods: {
-    confirmUser: function(email, verifyCode) {
+    confirmUser: function (email, verifyCode) {
       email = email.trim();
       verifyCode = verifyCode.trim();
       let emailMessage = userEntryUtil.checkEmail(email);
@@ -73,7 +81,7 @@ export default {
       } else if (codeMessage) {
         this.verify.message = codeMessage;
       } else {
-        this.serverConfirmUser(email, verifyCode).then(response => {
+        this.serverConfirmUser(email, verifyCode).then((response) => {
           if (response.status === 200) {
             if (response.data.accessToken) {
               this.clearEntries();
@@ -93,70 +101,70 @@ export default {
         });
       }
     },
-    serverConfirmUser: function(email, verifyCode) {
+    serverConfirmUser: function (email, verifyCode) {
       return axios
         .post(
           this.serverUrl + "/signup/confirmUser",
           {
-            confirmId: verifyCode
+            confirmId: verifyCode,
           },
           {
             auth: {
-              username: email
+              username: email,
             },
-            withCredentials: true
+            withCredentials: true,
           }
         )
-        .then(function(response) {
+        .then(function (response) {
           return response;
         })
-        .catch(error => {
+        .catch((error) => {
           return error.response;
         });
     },
-    resendCode: function(email) {
+    resendCode: function (email) {
       email = email.trim();
       let emailMessage = userEntryUtil.checkEmail(email);
 
       if (emailMessage) {
         this.verify.message = emailMessage;
       } else {
-        this.serverResendCode(email).then(response => {
+        this.serverResendCode(email).then((response) => {
           this.verify.message = response.data.message;
         });
       }
     },
-    serverResendCode: function(email) {
+    serverResendCode: function (email) {
       return axios
         .post(
           this.serverUrl + "/signup/resendCode",
           {},
           {
             auth: {
-              username: email
-            }
+              username: email,
+            },
           }
         )
-        .then(function(response) {
+        .then(function (response) {
           return response;
         })
-        .catch(error => {
+        .catch((error) => {
           return error.response;
         });
     },
-    clearEntries: function() {
+    clearEntries: function () {
       this.verifyCode = "";
       this.verify.message = "";
       this.$emit("clearVerifyData");
     },
-    backToSignup: function() {
+    backToSignup: function () {
       this.clearEntries();
       this.$router.push("signup");
-    }
+    },
   },
-  mounted: function() {
+  mounted: function () {
     this.$refs.emailInput.focus();
-  }
+  },
 };
 </script>
 
