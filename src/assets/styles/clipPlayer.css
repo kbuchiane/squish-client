@@ -154,6 +154,16 @@
     border-radius: 20px;
 }
 
+.deleteButton {
+    height: 30px;
+    width: 30px;
+    margin-left: 91%;
+}
+
+.deleteButton:hover {
+    cursor: pointer;
+}
+
 .clipPlayer {
     margin: 0 auto;
     width: 75%;
@@ -195,6 +205,10 @@
     margin-top: 4px;
 }
 
+.impressiveIcon:hover {
+    cursor: pointer;
+}
+
 .impressiveCount {
     margin: 0 auto;
     height: 35%;
@@ -221,6 +235,10 @@
     width: 100%;
 }
 
+.funnyIcon:hover {
+    cursor: pointer;
+}
+
 .funnyCount {
     margin: 0 auto;
     height: 35%;
@@ -245,6 +263,10 @@
 .discussionIcon {
     height: 100%;
     width: 100%;
+}
+
+.discussionIcon:hover {
+    cursor: pointer;
 }
 
 .discussionCount {
@@ -300,6 +322,10 @@
     width: 100%;
 }
 
+.likeIcon:hover {
+    cursor: pointer;
+}
+
 .likeCount {
     margin: 0 auto;
     height: 100%;
@@ -317,6 +343,10 @@
     height: 100%;
     width: 225px;
     float: left;
+}
+
+.clipComments:hover {
+    cursor: pointer;
 }
 
 .commentIconDiv {

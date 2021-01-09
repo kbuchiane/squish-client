@@ -67,6 +67,12 @@
           >Unfollow</v-btn
         >
         <v-btn v-else color="#40a0e0" class="userActionButton">Follow</v-btn>
+        <v-img
+          v-if="loggedInUser === clip.userProfile.username"
+          class="deleteButton"
+          contain
+          src="../assets/images/deleteIcon.png"
+        />
       </div>
     </div>
     <video controls class="clipPlayer" :poster="clip.poster">
@@ -164,6 +170,9 @@
 export default {
   name: "ClipPlayer",
   props: ["clip"],
+  data: () => ({
+    loggedInUser: "JackiePrince",
+  }),
 };
 </script>
 
