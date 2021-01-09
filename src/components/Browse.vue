@@ -68,7 +68,6 @@ export default {
             badgeFour: require("../assets/images/badge4.png"),
           },
         },
-        username: "JackiePrince",
         game: {
           id: "1",
           title: "PLAYERUNKNOWN's BATTLEGROUNDS",
@@ -185,7 +184,6 @@ export default {
             badgeFour: require("../assets/images/badge4.png"),
           },
         },
-        username: "JackiePrince",
         game: {
           id: "1",
           title: "PLAYERUNKNOWN's BATTLEGROUNDS",

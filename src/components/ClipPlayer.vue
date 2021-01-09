@@ -30,7 +30,7 @@
           :to="{ name: 'Profile', params: { userProfile: clip.userProfile } }"
           class="routerStyle"
         >
-          {{ clip.username }}
+          {{ clip.userProfile.username }}
         </router-link>
       </p>
     </div>

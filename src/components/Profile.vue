@@ -111,7 +111,7 @@
         <v-col class="mb-5" cols="6">
           <div v-for="clip in clips" :key="clip.id">
             <ClipPlayer
-              v-if="clip.username === userProfile.username"
+              v-if="clip.userProfile.username === userProfile.username"
               :clip="clip"
             />
           </div>
@@ -156,7 +156,6 @@ export default {
             badgeFour: require("../assets/images/badge4.png"),
           },
         },
-        username: "JackiePrince",
         game: {
           id: "1",
           title: "PLAYERUNKNOWN's BATTLEGROUNDS",
@@ -260,7 +259,7 @@ export default {
         title: "Destroying A Bot",
         datePosted: "Dec 20, 2020",
         userProfile: {
-          username: "JackiePrince",
+          username: "SomeoneElse",
           joinedDate: "Dec 24, 2020",
           image: require("../assets/images/crown.png"),
           followed: false,
@@ -273,7 +272,6 @@ export default {
             badgeFour: require("../assets/images/badge4.png"),
           },
         },
-        username: "SomeoneElse",
         game: {
           id: "1",
           title: "PLAYERUNKNOWN's BATTLEGROUNDS",
