@@ -47,11 +47,18 @@
           />
         </div>
         <div class="commentReply">reply</div>
-        <div class="commentDeleteIconDiv">
+        <div class="commentDeleteReportIconDiv">
           <v-img
-            class="commentDeleteIcon"
+            v-if="loggedInUser === comment.username"
+            class="commentDeleteReportIcon"
             contain
             src="../assets/images/deleteIcon.png"
+          />
+          <v-img
+            v-else
+            class="commentDeleteReportIcon"
+            contain
+            src="../assets/images/reportIcon.png"
           />
         </div>
       </div>

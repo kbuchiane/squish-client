@@ -164,6 +164,16 @@
     cursor: pointer;
 }
 
+.reportButton {
+    height: 30px;
+    width: 30px;
+    margin-left: 91%;
+}
+
+.reportButton:hover {
+    cursor: pointer;
+}
+
 .clipPlayer {
     margin: 0 auto;
     width: 75%;
