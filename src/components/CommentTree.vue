@@ -47,6 +47,13 @@
           />
         </div>
         <div class="commentReply">reply</div>
+        <div class="commentDeleteIconDiv">
+          <v-img
+            class="commentDeleteIcon"
+            contain
+            src="../assets/images/deleteIcon.png"
+          />
+        </div>
       </div>
       <div v-if="comment.comments && comment.comments.length">
         <CommentTree :comments="comment.comments"></CommentTree>
@@ -59,6 +66,9 @@
 export default {
   name: "CommentTree",
   props: ["comments"],
+  data: () => ({
+    loggedInUser: "JackiePrince",
+  }),
 };
 </script>
 

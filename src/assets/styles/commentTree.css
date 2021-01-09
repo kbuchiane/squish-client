@@ -79,6 +79,10 @@
     margin-left: -1px;
 }
 
+.commentLikeIcon:hover {
+    cursor: pointer;
+}
+
 .commentLikes {
     margin: 0 auto;
     height: 100%;
@@ -104,6 +108,10 @@
     padding: 5px;
 }
 
+.commentReplyIcon:hover {
+    cursor: pointer;
+}
+
 .commentReply {
     margin: 0 auto;
     height: 100%;
@@ -116,6 +124,26 @@
     font-weight: 500;
     padding-left: 2px;
     padding-right: 10px;
+}
+
+.commentReply:hover {
+    cursor: pointer;
+}
+
+.commentDeleteIconDiv {
+    height: 100%;
+    float: left;
+    text-align: left;
+}
+
+.commentDeleteIcon {
+    height: 100%;
+    width: 24px;
+    padding: 5px;
+}
+
+.commentDeleteIcon:hover {
+    cursor: pointer;
 }
 
 .routerStyle {
