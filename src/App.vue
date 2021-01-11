@@ -12,10 +12,10 @@
         />
       </router-link>
       <router-link to="/browse" class="clipsRouterLink">
-        <div class="appBarClips">Clips</div>
+        <div @click="scrollToTop()" class="appBarClips">Clips</div>
       </router-link>
       <router-link to="/browseGames" class="clipsRouterLink">
-        <div class="appBarClips">Games</div>
+        <div @click="scrollToTop()" class="appBarClips">Games</div>
       </router-link>
       <router-link v-if="user.loggedIn" to="/post" class="clipsRouterLink">
         <div class="appBarClips">Post</div>
@@ -141,6 +141,9 @@ export default {
         console.log("searching for: " + this.searchTerm);
         this.searchTerm = "";
       }
+    },
+    scrollToTop: function () {
+      window.scrollTo(0, 0);
     },
     setUserData: function (accessToken, username) {
       this.user.loggedIn = true;

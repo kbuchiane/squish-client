@@ -15,7 +15,7 @@
     </div>
     <div class="clipDate">{{ clip.datePosted }}</div>
     <div class="clipGame">
-      <p class="clipGameText">
+      <p @click="scrollToTop()" class="clipGameText">
         <router-link
           :to="{ name: 'SingleGame', params: { selectedGame: clip.game } }"
           class="routerStyle"
@@ -25,7 +25,7 @@
       </p>
     </div>
     <div class="clipUsername">
-      <p class="clipUsernameText">
+      <p @click="scrollToTop()" class="clipUsernameText">
         <router-link
           :to="{ name: 'Profile', params: { userProfile: clip.userProfile } }"
           class="routerStyle"
@@ -179,6 +179,11 @@ export default {
   data: () => ({
     loggedInUser: "JackiePrince",
   }),
+  methods: {
+    scrollToTop: function () {
+      window.scrollTo(0, 0);
+    },
+  },
 };
 </script>
 
