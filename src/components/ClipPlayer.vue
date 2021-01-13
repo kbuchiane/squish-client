@@ -68,14 +68,22 @@
         >
         <v-btn v-else color="#40a0e0" class="userActionButton">Follow</v-btn>
         <v-img
-          v-if="loggedInUser === clip.userProfile.username"
-          class="deleteButton"
+          @click="toggleEllipsis()"
+          class="ellipsisButton"
+          contain
+          src="../assets/images/ellipsisIcon.png"
+        />
+        <v-img
+          v-if="ellipsisToggle && loggedInUser === clip.userProfile.username"
+          class="deleteReportButton"
           contain
           src="../assets/images/deleteIcon.png"
         />
         <v-img
-          v-else
-          class="reportButton"
+          v-else-if="
+            ellipsisToggle && loggedInUser !== clip.userProfile.username
+          "
+          class="deleteReportButton"
           contain
           src="../assets/images/reportIcon.png"
         />
@@ -178,10 +186,14 @@ export default {
   props: ["clip"],
   data: () => ({
     loggedInUser: "JackiePrince",
+    ellipsisToggle: false,
   }),
   methods: {
     scrollToTop: function () {
       window.scrollTo(0, 0);
+    },
+    toggleEllipsis: function () {
+      this.ellipsisToggle = !this.ellipsisToggle;
     },
   },
 };
