@@ -74,6 +74,7 @@
           src="../assets/images/ellipsisIcon.png"
         />
         <v-img
+          @click="deleteClip()"
           v-if="ellipsisToggle && loggedInUser === clip.userProfile.username"
           class="deleteReportButton"
           contain
@@ -194,6 +195,31 @@ export default {
     },
     toggleEllipsis: function () {
       this.ellipsisToggle = !this.ellipsisToggle;
+    },
+    deleteClip: function () {
+      let message = "Are you sure you want to delete this clip?";
+      let options = {
+        html: false,
+        loader: false,
+        reverse: true,
+        okText: "Yes",
+        cancelText: "No",
+        animation: "zoom",
+        type: "basic",
+        verification: "continue",
+        clicksCount: 1,
+        backdropClose: true,
+        customClass: "",
+      };
+
+      this.$dialog
+        .confirm(message, options)
+        .then(function () {
+          console.log("delete clip confirmed");
+        })
+        .catch(function () {
+          console.log("delete clip cancelled");
+        });
     },
   },
 };
