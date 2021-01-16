@@ -5,7 +5,6 @@ import router from './router';
 import BrowserUnsupported from './BrowserUnsupported';
 import TextareaAutosize from "vue-textarea-autosize";
 import VuejsDialog from "vuejs-dialog";
-import "vuejs-dialog/dist/vuejs-dialog.min.css"
 
 Vue.config.productionTip = false;
 

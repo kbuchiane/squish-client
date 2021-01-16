@@ -182,6 +182,8 @@
 </template>
 
 <script>
+import "vuejs-dialog/dist/vuejs-dialog.min.css";
+
 export default {
   name: "ClipPlayer",
   props: ["clip"],
@@ -201,7 +203,7 @@ export default {
       let options = {
         html: false,
         loader: false,
-        reverse: true,
+        reverse: false,
         okText: "Yes",
         cancelText: "No",
         animation: "zoom",
@@ -226,3 +228,4 @@ export default {
 </script>
 
 <style scoped src='../assets/styles/clipPlayer.css'></style>
+<style src='../assets/styles/confirmationPrompt.css'></style>
