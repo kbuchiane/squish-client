@@ -74,12 +74,14 @@
           src="../assets/images/ellipsisIcon.png"
         />
         <v-img
+          @click="deleteClip()"
           v-if="ellipsisToggle && loggedInUser === clip.userProfile.username"
           class="deleteReportButton"
           contain
           src="../assets/images/deleteIcon.png"
         />
         <v-img
+          @click="reportClip()"
           v-else-if="
             ellipsisToggle && loggedInUser !== clip.userProfile.username
           "
@@ -181,6 +183,8 @@
 </template>
 
 <script>
+import "vuejs-dialog/dist/vuejs-dialog.min.css";
+
 export default {
   name: "ClipPlayer",
   props: ["clip"],
@@ -195,8 +199,59 @@ export default {
     toggleEllipsis: function () {
       this.ellipsisToggle = !this.ellipsisToggle;
     },
+    deleteClip: function () {
+      let message = "Are you sure you want to delete this clip?";
+      let options = {
+        html: false,
+        loader: false,
+        reverse: false,
+        okText: "Yes",
+        cancelText: "No",
+        animation: "zoom",
+        type: "basic",
+        verification: "continue",
+        clicksCount: 1,
+        backdropClose: true,
+        customClass: "",
+      };
+
+      this.$dialog
+        .confirm(message, options)
+        .then(function () {
+          console.log("delete clip confirmed");
+        })
+        .catch(function () {
+          console.log("delete clip cancelled");
+        });
+    },
+    reportClip: function () {
+      let message = "Are you sure you want to report this clip?";
+      let options = {
+        html: false,
+        loader: false,
+        reverse: false,
+        okText: "Yes",
+        cancelText: "No",
+        animation: "zoom",
+        type: "basic",
+        verification: "continue",
+        clicksCount: 1,
+        backdropClose: true,
+        customClass: "",
+      };
+
+      this.$dialog
+        .confirm(message, options)
+        .then(function () {
+          console.log("report clip confirmed");
+        })
+        .catch(function () {
+          console.log("report clip cancelled");
+        });
+    },
   },
 };
 </script>
 
 <style scoped src='../assets/styles/clipPlayer.css'></style>
+<style src='../assets/styles/confirmationPrompt.css'></style>
