@@ -81,6 +81,7 @@
           src="../assets/images/deleteIcon.png"
         />
         <v-img
+          @click="reportClip()"
           v-else-if="
             ellipsisToggle && loggedInUser !== clip.userProfile.username
           "
@@ -221,6 +222,31 @@ export default {
         })
         .catch(function () {
           console.log("delete clip cancelled");
+        });
+    },
+    reportClip: function () {
+      let message = "Are you sure you want to report this clip?";
+      let options = {
+        html: false,
+        loader: false,
+        reverse: false,
+        okText: "Yes",
+        cancelText: "No",
+        animation: "zoom",
+        type: "basic",
+        verification: "continue",
+        clicksCount: 1,
+        backdropClose: true,
+        customClass: "",
+      };
+
+      this.$dialog
+        .confirm(message, options)
+        .then(function () {
+          console.log("report clip confirmed");
+        })
+        .catch(function () {
+          console.log("report clip cancelled");
         });
     },
   },

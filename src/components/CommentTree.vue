@@ -56,6 +56,7 @@
             src="../assets/images/deleteIcon.png"
           />
           <v-img
+            @click="deleteComment()"
             v-else
             class="commentDeleteReportIcon"
             contain
@@ -103,6 +104,31 @@ export default {
         })
         .catch(function () {
           console.log("delete comment cancelled");
+        });
+    },
+    reportComment: function () {
+      let message = "Are you sure you want to report this comment?";
+      let options = {
+        html: false,
+        loader: false,
+        reverse: false,
+        okText: "Yes",
+        cancelText: "No",
+        animation: "zoom",
+        type: "basic",
+        verification: "continue",
+        clicksCount: 1,
+        backdropClose: true,
+        customClass: "",
+      };
+
+      this.$dialog
+        .confirm(message, options)
+        .then(function () {
+          console.log("report comment confirmed");
+        })
+        .catch(function () {
+          console.log("report comment cancelled");
         });
     },
   },
