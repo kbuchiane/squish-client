@@ -49,6 +49,7 @@
         <div class="commentReply">reply</div>
         <div class="commentDeleteReportIconDiv">
           <v-img
+            @click="deleteComment()"
             v-if="loggedInUser === comment.username"
             class="commentDeleteReportIcon"
             contain
@@ -70,13 +71,43 @@
 </template>
 
 <script>
+import "vuejs-dialog/dist/vuejs-dialog.min.css";
+
 export default {
   name: "CommentTree",
   props: ["comments"],
   data: () => ({
     loggedInUser: "JackiePrince",
   }),
+  methods: {
+    deleteComment: function () {
+      let message = "Are you sure you want to delete this comment?";
+      let options = {
+        html: false,
+        loader: false,
+        reverse: false,
+        okText: "Yes",
+        cancelText: "No",
+        animation: "zoom",
+        type: "basic",
+        verification: "continue",
+        clicksCount: 1,
+        backdropClose: true,
+        customClass: "",
+      };
+
+      this.$dialog
+        .confirm(message, options)
+        .then(function () {
+          console.log("delete comment confirmed");
+        })
+        .catch(function () {
+          console.log("delete comment cancelled");
+        });
+    },
+  },
 };
 </script>
 
 <style scoped src='../assets/styles/commentTree.css'></style>
+<style src='../assets/styles/confirmationPrompt.css'></style>
