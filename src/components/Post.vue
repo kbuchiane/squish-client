@@ -122,8 +122,12 @@ export default {
         this.message = "Please select a thumbnail to upload";
       } else if (!this.title) {
         this.message = "Please enter a title for the clip";
+      } else if (this.title.length > 80) {
+        this.message = "The clip title must be 80 characters or less";
       } else if (!this.game) {
         this.message = "Please enter a game for the clip";
+      } else if (this.game.length > 50) {
+        this.message = "The game must be 80 characters or less";
       } else {
         // upload clip to server
         console.log("clip uploaded");
