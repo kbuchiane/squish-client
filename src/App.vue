@@ -30,7 +30,17 @@
       <img @click="search()" class="searchImage" :src="searchIcon" />
       <v-spacer></v-spacer>
       <div v-if="user.loggedIn" class="bannerOptions">
-        <p class="bannerUsername noselect">{{ user.username }}</p>
+        <router-link
+          :to="{ name: 'Profile', params: { userProfile: userProfile } }"
+          class="d-flex align-center"
+        >
+          <v-img
+            class="shrink mr-2 userImage"
+            contain
+            :src="userProfile.image"
+          />
+          <p class="bannerUsername noselect">{{ user.username }}</p>
+        </router-link>
         <v-btn @click="logout()" color="#32cd32" class="bannerLogoutButton"
           >Log Out</v-btn
         >
@@ -97,6 +107,20 @@ export default {
       icon: "",
       usersFollowing: [],
       gamesFollowing: [],
+    },
+    userProfile: {
+      username: "JackiePrince",
+      joinedDate: "Dec 24, 2020",
+      image: require("./assets/images/crown.png"),
+      followed: true,
+      followerCount: "346M",
+      clipsCount: "54",
+      badges: {
+        badgeOne: require("./assets/images/badge1.png"),
+        badgeTwo: require("./assets/images/badge2.png"),
+        badgeThree: require("./assets/images/badge3.png"),
+        badgeFour: require("./assets/images/badge4.png"),
+      },
     },
     verify: {
       email: "",
