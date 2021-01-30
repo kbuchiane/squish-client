@@ -35,11 +35,14 @@
           class="d-flex align-center"
         >
           <v-img
+            @click="scrollToTop()"
             class="shrink mr-2 userImage"
             contain
             :src="userProfile.image"
           />
-          <p class="bannerUsername noselect">{{ user.username }}</p>
+          <p @click="scrollToTop()" class="bannerUsername noselect">
+            {{ user.username }}
+          </p>
         </router-link>
         <v-btn @click="logout()" color="#32cd32" class="bannerLogoutButton"
           >Log Out</v-btn
