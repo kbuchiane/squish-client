@@ -260,8 +260,22 @@ export default {
       this.statusMessage = "";
     },
   },
+  // mounted: function () {
+  //   // this.$refs.usernameInput.focus();
+  // },
+  beforeCreate: function () {
+    // console.log("++  BEFORE created ");
+  },
+  created: function () {
+    // console.log("++ created ");
+  },
+  beforeMount: function () {
+    // console.log("++ BEFORE mounted ");
+    // console.log("User: " + this.user.username);
+  },
   mounted: function () {
-    // this.$refs.usernameInput.focus();
+    // console.log("++ mounted ");
+    // console.log("User: " + this.user.username);
   },
 };
 </script>
