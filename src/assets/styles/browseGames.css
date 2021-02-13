@@ -47,6 +47,11 @@
     border-bottom: 2px dashed black;
 }
 
+.filterOption:hover {
+    cursor: pointer;
+    color: #32cd32;
+}
+
 .selectedFilterOption {
     width: 100%;
     height: calc(100% / 3);
@@ -57,6 +62,10 @@
     font-weight: 500;
     border-bottom: 2px dashed black;
     color: #32cd32;
+}
+
+.selectedFilterOption:hover {
+    cursor: pointer;
 }
 
 .gameColumn {
