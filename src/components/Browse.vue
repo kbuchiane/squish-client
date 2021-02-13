@@ -56,12 +56,66 @@
       </div>
       <div class="filterTitle">Timeframe</div>
       <div class="filterOptionsSetTwo">
-        <div class="selectedFilterOptionTwo">Default</div>
-        <div class="filterOptionTwo">Past Day</div>
-        <div class="filterOptionTwo">Past Week</div>
-        <div class="filterOptionTwo">Past Month</div>
-        <div class="filterOptionTwo">Past Year</div>
-        <div class="filterOptionTwo">All Time</div>
+        <div
+          v-if="filterBy.default"
+          @click="defaultClick()"
+          class="selectedFilterOptionTwo"
+        >
+          Default
+        </div>
+        <div v-else @click="defaultClick()" class="filterOptionTwo">
+          Default
+        </div>
+        <div
+          v-if="filterBy.pastDay"
+          @click="pastDayClick()"
+          class="selectedFilterOptionTwo"
+        >
+          Past Day
+        </div>
+        <div v-else @click="pastDayClick()" class="filterOptionTwo">
+          Past Day
+        </div>
+        <div
+          v-if="filterBy.pastWeek"
+          @click="pastWeekClick()"
+          class="selectedFilterOptionTwo"
+        >
+          Past Week
+        </div>
+        <div v-else @click="pastWeekClick()" class="filterOptionTwo">
+          Past Week
+        </div>
+        <div
+          v-if="filterBy.pastMonth"
+          @click="pastMonthClick()"
+          class="selectedFilterOptionTwo"
+        >
+          Past Month
+        </div>
+        <div v-else @click="pastMonthClick()" class="filterOptionTwo">
+          Past Month
+        </div>
+        <div
+          v-if="filterBy.pastYear"
+          @click="pastYearClick()"
+          class="selectedFilterOptionTwo"
+        >
+          Past Year
+        </div>
+        <div v-else @click="pastYearClick()" class="filterOptionTwo">
+          Past Year
+        </div>
+        <div
+          v-if="filterBy.allTime"
+          @click="allTimeClick()"
+          class="selectedFilterOptionTwo"
+        >
+          All Time
+        </div>
+        <div v-else @click="allTimeClick()" class="filterOptionTwo">
+          All Time
+        </div>
       </div>
     </div>
     <v-row justify="center" class="text-center">
@@ -360,6 +414,42 @@ export default {
       this.filterBy.pastMonth = false;
       this.filterBy.pastYear = false;
       this.filterBy.allTime = false;
+    },
+    defaultClick: function () {
+      if (!this.filterBy.default) {
+        this.clearFilterByTimeframe();
+        this.filterBy.default = true;
+      }
+    },
+    pastDayClick: function () {
+      if (!this.filterBy.pastDay) {
+        this.clearFilterByTimeframe();
+        this.filterBy.pastDay = true;
+      }
+    },
+    pastWeekClick: function () {
+      if (!this.filterBy.pastWeek) {
+        this.clearFilterByTimeframe();
+        this.filterBy.pastWeek = true;
+      }
+    },
+    pastMonthClick: function () {
+      if (!this.filterBy.pastMonth) {
+        this.clearFilterByTimeframe();
+        this.filterBy.pastMonth = true;
+      }
+    },
+    pastYearClick: function () {
+      if (!this.filterBy.pastYear) {
+        this.clearFilterByTimeframe();
+        this.filterBy.pastYear = true;
+      }
+    },
+    allTimeClick: function () {
+      if (!this.filterBy.allTime) {
+        this.clearFilterByTimeframe();
+        this.filterBy.allTime = true;
+      }
     },
   },
   mounted: function () {
