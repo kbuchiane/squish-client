@@ -50,7 +50,7 @@
 
 .filterOptionsSetOne {
     width: 100%;
-    height: 200px;
+    height: 160px;
 }
 
 .filterOptionsSetTwo {
@@ -60,7 +60,7 @@
 
 .filterOption {
     width: 100%;
-    height: calc(100% / 5);
+    height: calc(100% / 4);
     text-align: left;
     vertical-align: middle;
     line-height: 40px;
@@ -71,7 +71,7 @@
 
 .selectedFilterOption {
     width: 100%;
-    height: calc(100% / 5);
+    height: calc(100% / 4);
     text-align: left;
     vertical-align: middle;
     line-height: 40px;

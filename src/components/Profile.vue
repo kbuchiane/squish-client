@@ -11,7 +11,6 @@
         <div class="filterTitle">Filter Clips By</div>
         <div class="filterOptionsSetOne">
           <div class="selectedFilterOption">Most Popular</div>
-          <div class="filterOption">Specific Games</div>
           <div class="filterOption">Most Impressive</div>
           <div class="filterOption">Funniest</div>
           <div class="filterOption">Best Discussion</div>
