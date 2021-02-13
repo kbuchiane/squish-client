@@ -3,11 +3,56 @@
     <div class="filter">
       <div class="filterTitle">Filter Clips By</div>
       <div class="filterOptionsSetOne">
-        <div class="selectedFilterOptionOne">Most Popular</div>
-        <div class="filterOptionOne">Followed Users Only</div>
-        <div class="filterOptionOne">Most Impressive</div>
-        <div class="filterOptionOne">Funniest</div>
-        <div class="filterOptionOne">Best Discussion</div>
+        <div
+          v-if="filterBy.mostPopular"
+          @click="mostPopularClick()"
+          class="selectedFilterOptionOne"
+        >
+          Most Popular
+        </div>
+        <div v-else @click="mostPopularClick()" class="filterOptionOne">
+          Most Popular
+        </div>
+        <div
+          v-if="filterBy.followedUsersOnly"
+          @click="followedUsersOnlyClick()"
+          class="selectedFilterOptionOne"
+        >
+          Followed Users Only
+        </div>
+        <div v-else @click="followedUsersOnlyClick()" class="filterOptionOne">
+          Followed Users Only
+        </div>
+        <div
+          v-if="filterBy.mostImpressive"
+          @click="mostImpressiveClick()"
+          class="selectedFilterOptionOne"
+        >
+          Most Impressive
+        </div>
+        <div v-else @click="mostImpressiveClick()" class="filterOptionOne">
+          Most Impressive
+        </div>
+        <div
+          v-if="filterBy.funniest"
+          @click="funniestClick()"
+          class="selectedFilterOptionOne"
+        >
+          Funniest
+        </div>
+        <div v-else @click="funniestClick()" class="filterOptionOne">
+          Funniest
+        </div>
+        <div
+          v-if="filterBy.bestDiscussion"
+          @click="bestDiscussionClick()"
+          class="selectedFilterOptionOne"
+        >
+          Best Discussion
+        </div>
+        <div v-else @click="bestDiscussionClick()" class="filterOptionOne">
+          Best Discussion
+        </div>
       </div>
       <div class="filterTitle">Timeframe</div>
       <div class="filterOptionsSetTwo">
@@ -212,6 +257,19 @@ export default {
         comments: [],
       },
     ],
+    filterBy: {
+      mostPopular: true,
+      followedUsersOnly: false,
+      mostImpressive: false,
+      funniest: false,
+      bestDiscussion: false,
+      default: true,
+      pastDay: false,
+      pastWeek: false,
+      pastMonth: false,
+      pastYear: false,
+      allTime: false,
+    },
   }),
   props: ["user"],
   methods: {
@@ -257,6 +315,51 @@ export default {
       this.commenter = "";
       this.comment = "";
       this.statusMessage = "";
+    },
+    clearFilterByType: function () {
+      this.filterBy.mostPopular = false;
+      this.filterBy.followedUsersOnly = false;
+      this.filterBy.mostImpressive = false;
+      this.filterBy.funniest = false;
+      this.filterBy.bestDiscussion = false;
+    },
+    mostPopularClick: function () {
+      if (!this.filterBy.mostPopular) {
+        this.clearFilterByType();
+        this.filterBy.mostPopular = true;
+      }
+    },
+    followedUsersOnlyClick: function () {
+      if (!this.filterBy.followedUsersOnly) {
+        this.clearFilterByType();
+        this.filterBy.followedUsersOnly = true;
+      }
+    },
+    mostImpressiveClick: function () {
+      if (!this.filterBy.mostImpressive) {
+        this.clearFilterByType();
+        this.filterBy.mostImpressive = true;
+      }
+    },
+    funniestClick: function () {
+      if (!this.filterBy.funniest) {
+        this.clearFilterByType();
+        this.filterBy.funniest = true;
+      }
+    },
+    bestDiscussionClick: function () {
+      if (!this.filterBy.bestDiscussion) {
+        this.clearFilterByType();
+        this.filterBy.bestDiscussion = true;
+      }
+    },
+    clearFilterByTimeframe: function () {
+      this.filterBy.default = false;
+      this.filterBy.pastDay = false;
+      this.filterBy.pastWeek = false;
+      this.filterBy.pastMonth = false;
+      this.filterBy.pastYear = false;
+      this.filterBy.allTime = false;
     },
   },
   mounted: function () {
