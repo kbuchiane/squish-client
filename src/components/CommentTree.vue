@@ -2,31 +2,31 @@
   <v-container>
     <div
       v-for="comment in comments"
-      :comments="comment.comments"
-      :key="comment.commentId"
+      :comments="comment.Comments"
+      :key="comment.CommentId"
       class="comment"
     >
       <div class="singleCommentHeader">
         <div class="commentUsername">
           <p class="commentUsernameText">
             <router-link to="/profile" class="routerStyle">
-              {{ comment.username }}
+              {{ comment.Username }}
             </router-link>
           </p>
         </div>
         <div class="commentDate">
           <p class="commentDateText">
-            {{ comment.date }}
+            {{ comment.DateCreated }}
           </p>
         </div>
       </div>
       <div class="singleCommentBody">
-        <p class="commentText">{{ comment.text }}</p>
+        <p class="commentText">{{ comment.Text }}</p>
       </div>
       <div class="singleCommentFooter">
         <div class="commentLikeIconDiv">
           <v-img
-            v-if="comment.liked"
+            v-if="comment.Liked"
             class="commentLikeIcon"
             contain
             src="../assets/images/likedIcon.png"
@@ -38,7 +38,7 @@
             src="../assets/images/likeIcon.png"
           />
         </div>
-        <div class="commentLikes">{{ comment.likes }}</div>
+        <div class="commentLikes">{{ comment.Likes }}</div>
         <div class="commentReplyIconDiv">
           <v-img
             class="commentReplyIcon"
@@ -50,7 +50,7 @@
         <div class="commentDeleteReportIconDiv">
           <v-img
             @click="deleteComment()"
-            v-if="loggedInUser === comment.username"
+            v-if="loggedInUser === comment.Username"
             class="commentDeleteReportIcon"
             contain
             src="../assets/images/deleteIcon.png"
@@ -64,8 +64,8 @@
           />
         </div>
       </div>
-      <div v-if="comment.comments && comment.comments.length">
-        <CommentTree :comments="comment.comments"></CommentTree>
+      <div v-if="comment.Comments && comment.Comments.length">
+        <CommentTree :comments="comment.Comments"></CommentTree>
       </div>
     </div>
   </v-container>
@@ -76,9 +76,9 @@ import "vuejs-dialog/dist/vuejs-dialog.min.css";
 
 export default {
   name: "CommentTree",
-  props: ["comments"],
+  props: ["user", "comments"],
   data: () => ({
-    loggedInUser: "JackiePrince",
+    loggedInUser: "",
   }),
   methods: {
     deleteComment: function () {
@@ -131,6 +131,20 @@ export default {
           console.log("report comment cancelled");
         });
     },
+  },
+  beforeMount: function () {
+    // console.log("-- BEFORE mounted ");
+    // FIXME user not defined??????
+    // loggedInUser = this.user.username;
+
+   // console.log("Comment Tree  User: " + this.user);
+  },
+
+  mounted: function () {
+    // console.log("-- mounted ");
+    // console.log("User: " + this.user);
+    //loggedInUser = this.user.username;
+    //console.log("logged in User: [" + this.loggedInUser + "]");
   },
 };
 </script>

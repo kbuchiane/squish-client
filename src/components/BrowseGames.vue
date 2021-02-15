@@ -84,40 +84,28 @@ export default {
   }),
   props: ["user"],
   methods: {
-    getGames: function () {
+    getPageContents: function () {
       var vm = this;
 
       return axios({
         method: "get",
         responseType: "json",
-        url: this.serverUrl + "/browseGames/browseGames",
+        url: vm.serverUrl + "/browseGames/browseGames",
         headers: {
-          authorization: "Bearer " + this.user.accessToken,
+          authorization: "Bearer " + vm.user.accessToken,
         },
         params: {
-          username: this.user.username,
+          username: vm.user.username,
         },
       }).then(function (response) {
-        let result = response.data;
-        vm.games = result;
+        vm.games = response.data;
       });
     },
   },
-  beforeCreate: function () {
-    // console.log("--  BEFORE created ");
-    // Data, Props and 'this' not yet available
-  },
-  created: function () {
-    // console.log("-- created ");
-  },
   beforeMount: function () {
-    // console.log("-- BEFORE mounted ");
-    // console.log("User: " + this.user.username);
+// console.log("BrowseGames    User: " + this.user.username);
 
-    this.getGames();
-  },
-  mounted: function () {
-    // console.log("-- mounted ");
+    this.getPageContents();
   },
 };
 </script>

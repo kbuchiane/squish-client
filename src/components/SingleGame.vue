@@ -32,27 +32,29 @@
             <div class="gameTitle">
               <p class="gameTitleText">
                 <router-link to="/game" class="routerStyle">
-                  {{ selectedGame.title }}
+                  {{ selectedGame.Title }}
                 </router-link>
               </p>
             </div>
             <div class="gameReleaseDate">
-              Release Date {{ selectedGame.releaseDate }}
+              Release Date {{ selectedGame.ReleaseDate }}
             </div>
             <div class="gameHeader">
               <div class="gameImageDiv">
                 <router-link to="/game">
-                  <img class="gameImage" contain :src="selectedGame.icon" />
+                  <img
+                    class="require(`../assets/images/${selectedGame.IconFilepath}`)"
+                  />
                 </router-link>
               </div>
               <div class="gameTags">
-                <p v-for="tag in selectedGame.tags" :key="tag" class="gameTag">
+                <p v-for="tag in selectedGame.Tags" :key="tag" class="gameTag">
                   {{ tag }}
                 </p>
               </div>
               <div class="gameUserActions">
                 <v-btn
-                  v-if="selectedGame.followed"
+                  v-if="selectedGame.Followed"
                   color="#40a0e0"
                   class="userActionButton"
                   >Unfollow</v-btn
@@ -64,13 +66,13 @@
             </div>
             <div class="gameInfoDiv">
               <div class="gameInfoSection">
-                {{ selectedGame.followerCount }} followers
+                {{ selectedGame.FollowerCount }} followers
               </div>
               <div class="gameInfoSection">
-                {{ selectedGame.clipsTodayCount }} new clips today
+                {{ selectedGame.ClipsTodayCount }} new clips today
               </div>
               <div class="gameInfoSection">
-                {{ selectedGame.clipsAllTimeCount }} clips all time
+                {{ selectedGame.ClipsAllTimeCount }} clips all time
               </div>
             </div>
           </div>
@@ -81,7 +83,7 @@
           <div class="clipsFromDiv">
             <div class="clipsSingleGame">
               <p class="clipsSingleGameText">
-                Clips from {{ selectedGame.title }}
+                {{ clipsForGame.length }} Clips from {{ selectedGame.Title }}
               </p>
             </div>
           </div>
@@ -89,11 +91,8 @@
       </v-row>
       <v-row justify="center" class="text-center">
         <v-col class="mb-5" cols="6">
-          <div v-for="clip in clips" :key="clip.id">
-            <ClipPlayer
-              v-if="clip.game.title === selectedGame.title"
-              :clip="clip"
-            />
+          <div v-for="clip in clipsForGame" :key="clip.clipId">
+            <ClipPlayer :clip="clip" />
           </div>
         </v-col>
       </v-row>
@@ -111,162 +110,68 @@ export default {
   components: {
     ClipPlayer,
   },
-  props: ["selectedGame"],
+  props: ["user", "selectedGame"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
-    clips: [
-      {
-        id: "1",
-        type: "video/mp4",
-        src: require("../assets/videos/snipe1.mp4"),
-        poster: require("../assets/images/snipe1poster.png"),
-        title: "Later, GrndpaGaming",
-        datePosted: "Dec 22, 2020",
-        userProfile: {
-          username: "JackiePrince",
-          joinedDate: "Dec 24, 2020",
-          image: require("../assets/images/crown.png"),
-          followed: true,
-          followerCount: "346M",
-          clipsCount: "54",
-          badges: {
-            badgeOne: require("../assets/images/badge1.png"),
-            badgeTwo: require("../assets/images/badge2.png"),
-            badgeThree: require("../assets/images/badge3.png"),
-            badgeFour: require("../assets/images/badge4.png"),
-          },
-        },
-        game: {},
-        liked: true,
-        userImage: require("../assets/images/crown.png"),
-        badgeOne: require("../assets/images/badge1.png"),
-        badgeTwo: require("../assets/images/badge2.png"),
-        badgeThree: require("../assets/images/badge3.png"),
-        badgeFour: require("../assets/images/badge4.png"),
-        impressiveLiked: true,
-        impressiveCount: "70.9k",
-        funnyLiked: false,
-        funnyCount: "12.4k",
-        discussionLiked: true,
-        discussionCount: "30.6k",
-        viewCount: "8.64M",
-        likeCount: "1.21M",
-        commentCount: "7",
-        comments: [
-          {
-            commentId: "1",
-            username: "JackiePrince",
-            text: "Wow, this is the best clip I've ever seen!",
-            date: "Dec 25, 2020",
-            liked: true,
-            likes: "203k",
-            comments: [
-              {
-                commentId: "2",
-                username: "Jon",
-                text: "You're a scrub.",
-                date: "Dec 25, 2020",
-                liked: false,
-                likes: "0",
-                comments: [
-                  {
-                    commentId: "3",
-                    username: "JackiePrince",
-                    text: "No u.",
-                    date: "Dec 25, 2020",
-                    liked: true,
-                    likes: "5.2M",
-                    comments: [],
-                  },
-                  {
-                    commentId: "4",
-                    username: "shroud",
-                    text:
-                      "Harsh. Jackie would beat me in a 1v1 99 times out of 100.",
-                    date: "Dec 25, 2020",
-                    liked: true,
-                    likes: "103.5k",
-                    comments: [],
-                  },
-                ],
-              },
-              {
-                commentId: "5",
-                username: "Jack",
-                text: "Lame. Play Astrofire.",
-                date: "Dec 25, 2020",
-                liked: false,
-                likes: "1",
-                comments: [],
-              },
-            ],
-          },
-          {
-            commentId: "6",
-            username: "chocoTaco",
-            text: "OMG",
-            date: "Dec 26, 2020",
-            liked: true,
-            likes: "17k",
-            comments: [],
-          },
-          {
-            commentId: "7",
-            username: "GrndpaGaming",
-            text: "Reported.",
-            date: "Dec 27, 2020",
-            liked: false,
-            likes: "0",
-            comments: [],
-          },
-        ],
-      },
-      {
-        id: "2",
-        type: "video/mp4",
-        src: require("../assets/videos/snipe2.mp4"),
-        poster: require("../assets/images/snipe2poster.png"),
-        title: "Destroying A Bot",
-        datePosted: "Dec 20, 2020",
-        userProfile: {
-          username: "JackiePrince",
-          joinedDate: "Dec 24, 2020",
-          image: require("../assets/images/crown.png"),
-          followed: false,
-          followerCount: "346M",
-          clipsCount: "54",
-          badges: {
-            badgeOne: require("../assets/images/badge1.png"),
-            badgeTwo: require("../assets/images/badge2.png"),
-            badgeThree: require("../assets/images/badge3.png"),
-            badgeFour: require("../assets/images/badge4.png"),
-          },
-        },
-        game: {},
-        liked: false,
-        userImage: require("../assets/images/crown.png"),
-        badgeOne: require("../assets/images/badge1.png"),
-        badgeTwo: require("../assets/images/badge2.png"),
-        badgeThree: require("../assets/images/badge3.png"),
-        badgeFour: require("../assets/images/badge4.png"),
-        impressiveLiked: false,
-        impressiveCount: "10.8k",
-        funnyLiked: true,
-        funnyCount: "5005",
-        discussionLiked: false,
-        discussionCount: "36.3k",
-        viewCount: "903.23k",
-        likeCount: "133.7k",
-        commentCount: "98.9k",
-        comments: [],
-      },
-    ],
+    clipsForGame: [],
+    //  clips: [],
   }),
+
+  methods: {
+    getPageContents: function () {
+      var vm = this;
+
+      return axios({
+        method: "get",
+        responseType: "json",
+        url: this.serverUrl + "/singleGame/singleGame",
+        headers: {
+          authorization: "Bearer " + vm.user.accessToken,
+        },
+        params: {
+          username: vm.user.username,
+          gameId: vm.selectedGame.GameId,
+        },
+      }).then(function (response) {
+        let result = response.data;
+
+        // TODO may want to do a similar thing for Profile
+        for (let i in result) {
+          result[i].Game = vm.selectedGame;
+        }
+        vm.clipsForGame = result;
+      });
+    },
+  },
+
+  /*
   mounted: function () {
     // Like many other things, this will be removed when we actually pull data
     for (let i in this.clips) {
       this.clips[i].game = this.selectedGame;
     }
+  },
+  */
+
+  beforeCreate: function () {
+    //  console.log("--  BEFORE created ");
+    // Data, Props and 'this' not yet available
+  },
+  created: function () {
+    // console.log("-- created ");
+  },
+  beforeMount: function () {
+    // console.log("-- BEFORE mounted ");
+    // console.log("User: " + this.user.username);
+    // console.log("---    Title:" + this.selectedGame.Title);
+    // console.log("--- clips   length:" + this.clips.length);
+
+    this.getPageContents();
+  },
+  mounted: function () {
+    //  console.log("-- mounted ");
+    // this.getPageContents();
+    // console.log("---    Title:" + this.selectedGame.Title);
   },
 };
 </script>
