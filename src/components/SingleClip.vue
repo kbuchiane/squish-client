@@ -52,11 +52,11 @@
             </div>
             <div class="commentsHeader">
               <p class="commentsHeaderText">
-                Comments ({{ clip.commentCount }})
+                Comments ({{ clip.CommentCount }})
               </p>
             </div>
             <div class="comments">
-              <CommentTree :comments="clip.comments"></CommentTree>
+              <CommentTree :comments="clip.Comments"></CommentTree>
             </div>
           </div>
         </v-col>
@@ -85,10 +85,6 @@ export default {
       mostLikes: true,
       newest: false,
     },
-    // Only used for test
-    commenter: "Freddy",
-    clipId: "1",
-    parentCommentId: "1",
   }),
   methods: {
     postNewcomment: function () {

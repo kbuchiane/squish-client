@@ -37,7 +37,7 @@
     </div>
     <v-row justify="center" class="text-center">
       <v-col class="mb-5 gameColumn" cols="6">
-        <div v-for="game in games" :key="game.id">
+        <div v-for="game in games" :key="game.GameId">
           <div class="gameDiv">
             <div class="gameTitle">
               <p class="gameTitleText">
@@ -45,29 +45,33 @@
                   :to="{ name: 'SingleGame', params: { selectedGame: game } }"
                   class="routerStyle"
                 >
-                  {{ game.title }}
+                  {{ game.Title }}
                 </router-link>
               </p>
             </div>
             <div class="gameReleaseDate">
-              Release Date {{ game.releaseDate }}
+              Release Date {{ game.ReleaseDate }}
             </div>
             <div class="gameHeader">
               <div class="gameImageDiv">
                 <router-link
                   :to="{ name: 'SingleGame', params: { selectedGame: game } }"
                 >
-                  <img class="gameImage" contain :src="game.icon" />
+                  <img
+                    class="gameImage"
+                    contain
+                    :src="require(`../assets/images/${game.IconFilepath}`)"
+                  />
                 </router-link>
               </div>
               <div class="gameTags">
-                <p v-for="tag in game.tags" :key="tag" class="gameTag">
+                <p v-for="tag in game.Tags" :key="tag" class="gameTag">
                   {{ tag }}
                 </p>
               </div>
               <div class="gameUserActions">
                 <v-btn
-                  v-if="game.followed"
+                  v-if="game.Followed"
                   color="#40a0e0"
                   class="userActionButton"
                   >Unfollow</v-btn
@@ -79,13 +83,13 @@
             </div>
             <div class="gameInfoDiv">
               <div class="gameInfoSection">
-                {{ game.followerCount }} followers
+                {{ game.FollowerCount }} followers
               </div>
               <div class="gameInfoSection">
-                {{ game.clipsTodayCount }} new clips today
+                {{ game.ClipsTodayCount }} new clips today
               </div>
               <div class="gameInfoSection">
-                {{ game.clipsAllTimeCount }} clips all time
+                {{ game.ClipsAllTimeCount }} clips all time
               </div>
             </div>
           </div>
@@ -103,36 +107,14 @@ export default {
   name: "BrowseGames",
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
-    games: [
-      {
-        id: "1",
-        title: "PLAYERUNKNOWN's BATTLEGROUNDS",
-        icon: require("../assets/images/pubg.png"),
-        releaseDate: "Dec 2017",
-        followed: true,
-        followerCount: "84k",
-        clipsTodayCount: "32k",
-        clipsAllTimeCount: "456k",
-        tags: ["Battle Royale", "Shooter"],
-      },
-      {
-        id: "2",
-        title: "Astrofire",
-        icon: require("../assets/images/astrofire.png"),
-        releaseDate: "1994",
-        followed: false,
-        followerCount: "23",
-        clipsTodayCount: "1",
-        clipsAllTimeCount: "14",
-        tags: ["Classic", "Ancient"],
-      },
-    ],
+    games: [],
     filterBy: {
       mostFollowed: true,
       mostClipsToday: false,
       mostClipsAllTime: false,
     },
   }),
+  props: ["user"],
   methods: {
     clearFilter: function () {
       this.filterBy.mostFollowed = false;
@@ -157,7 +139,27 @@ export default {
         this.filterBy.mostClipsAllTime = true;
       }
     },
+    getPageContents: function () {
+      var vm = this;
+
+      return axios({
+        method: "get",
+        responseType: "json",
+        url: vm.serverUrl + "/browseGames/browseGames",
+        headers: {
+          authorization: "Bearer " + vm.user.accessToken,
+        },
+        params: {
+          username: vm.user.username,
+        },
+      }).then(function (response) {
+        vm.games = response.data;
+      });
+    },
   },
+  beforeMount: function () {
+    this.getPageContents();  
+   },
 };
 </script>
 

@@ -120,40 +120,52 @@
           <div class="profileDiv">
             <div class="profileUsername">
               <p class="profileUsernameText">
-                {{ userProfile.username }}
+                {{ userProfile.Username }}
               </p>
             </div>
             <div class="userHeader">
               <div class="profileUser">
-                <img class="userImage" contain :src="userProfile.image" />
+                <img
+                  class="userImage"
+                  contain
+                  :src="require(`../assets/images/${userProfile.IconFilepath}`)"
+                />
               </div>
               <div class="profileUserBadges">
                 <div class="topLeftBadge">
                   <v-img
                     class="leftBadgeImage"
                     contain
-                    :src="userProfile.badges.badgeOne"
+                    :src="
+                      require(`../assets/images/${userProfile.Badges.BadgeOne}`)
+                    "
                   />
                 </div>
                 <div class="topRightBadge">
                   <v-img
                     class="rightBadgeImage"
                     contain
-                    :src="userProfile.badges.badgeTwo"
+                    :src="
+                      require(`../assets/images/${userProfile.Badges.BadgeTwo}`)
+                    "
                   />
                 </div>
                 <div class="bottomLeftBadge">
                   <v-img
                     class="leftBadgeImage"
                     contain
-                    :src="userProfile.badges.badgeThree"
+                    :src="
+                      require(`../assets/images/${userProfile.Badges.BadgeThree}`)
+                    "
                   />
                 </div>
                 <div class="bottomRightBadge">
                   <v-img
                     class="rightBadgeImage"
                     contain
-                    :src="userProfile.badges.badgeFour"
+                    :src="
+                      require(`../assets/images/${userProfile.Badges.BadgeFour}`)
+                    "
                   />
                 </div>
               </div>
@@ -161,7 +173,7 @@
                 <v-btn color="#40a0e0" class="userActionButton">Gift</v-btn>
                 <v-btn color="#40a0e0" class="userActionButton">Link Up</v-btn>
                 <v-btn
-                  v-if="userProfile.followed"
+                  v-if="userProfile.Followed"
                   color="#40a0e0"
                   class="userActionButton"
                   >Unfollow</v-btn
@@ -173,13 +185,13 @@
             </div>
             <div class="userInfoDiv">
               <div class="userInfoSection">
-                {{ userProfile.followerCount }} followers
+                {{ userProfile.FollowerCount }} followers
               </div>
               <div class="userInfoSection">
-                {{ userProfile.clipsCount }} clips
+                {{ userProfile.ClipsCount }} clips
               </div>
               <div class="userInfoSection">
-                Joined {{ userProfile.joinedDate }}
+                Joined {{ userProfile.DateCreated }}
               </div>
             </div>
           </div>
@@ -190,7 +202,7 @@
           <div class="clipsFromDiv">
             <div class="clipsProfile">
               <p class="clipsProfileText">
-                Clips from {{ userProfile.username }}
+                {{ clipsForUser.length }} Clips from {{ userProfile.Username }}
               </p>
             </div>
           </div>
@@ -198,11 +210,8 @@
       </v-row>
       <v-row justify="center" class="text-center">
         <v-col class="mb-5" cols="6">
-          <div v-for="clip in clips" :key="clip.id">
-            <ClipPlayer
-              v-if="clip.userProfile.username === userProfile.username"
-              :clip="clip"
-            />
+          <div v-for="clip in clipsForUser" :key="clip.ClipId">
+            <ClipPlayer :clip="clip" />
           </div>
         </v-col>
       </v-row>
@@ -220,176 +229,10 @@ export default {
   components: {
     ClipPlayer,
   },
-  props: ["userProfile"],
+  props: ["user", "userProfile"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
-    clips: [
-      {
-        id: "1",
-        type: "video/mp4",
-        src: require("../assets/videos/snipe1.mp4"),
-        poster: require("../assets/images/snipe1poster.png"),
-        title: "Later, GrndpaGaming",
-        datePosted: "Dec 22, 2020",
-        userProfile: {
-          username: "JackiePrince",
-          joinedDate: "Dec 24, 2020",
-          image: require("../assets/images/crown.png"),
-          followed: true,
-          followerCount: "346M",
-          clipsCount: "54",
-          badges: {
-            badgeOne: require("../assets/images/badge1.png"),
-            badgeTwo: require("../assets/images/badge2.png"),
-            badgeThree: require("../assets/images/badge3.png"),
-            badgeFour: require("../assets/images/badge4.png"),
-          },
-        },
-        game: {
-          id: "1",
-          title: "PLAYERUNKNOWN's BATTLEGROUNDS",
-          icon: require("../assets/images/pubg.png"),
-          releaseDate: "Dec 2017",
-          followed: true,
-          followerCount: "84k",
-          clipsTodayCount: "32k",
-          clipsAllTimeCount: "456k",
-          tags: ["Battle Royale", "Shooter"],
-        },
-        liked: true,
-        userImage: require("../assets/images/crown.png"),
-        badgeOne: require("../assets/images/badge1.png"),
-        badgeTwo: require("../assets/images/badge2.png"),
-        badgeThree: require("../assets/images/badge3.png"),
-        badgeFour: require("../assets/images/badge4.png"),
-        impressiveLiked: true,
-        impressiveCount: "70.9k",
-        funnyLiked: false,
-        funnyCount: "12.4k",
-        discussionLiked: true,
-        discussionCount: "30.6k",
-        viewCount: "8.64M",
-        likeCount: "1.21M",
-        commentCount: "7",
-        comments: [
-          {
-            commentId: "1",
-            username: "JackiePrince",
-            text: "Wow, this is the best clip I've ever seen!",
-            date: "Dec 25, 2020",
-            liked: true,
-            likes: "203k",
-            comments: [
-              {
-                commentId: "2",
-                username: "Jon",
-                text: "You're a scrub.",
-                date: "Dec 25, 2020",
-                liked: false,
-                likes: "0",
-                comments: [
-                  {
-                    commentId: "3",
-                    username: "JackiePrince",
-                    text: "No u.",
-                    date: "Dec 25, 2020",
-                    liked: true,
-                    likes: "5.2M",
-                    comments: [],
-                  },
-                  {
-                    commentId: "4",
-                    username: "shroud",
-                    text:
-                      "Harsh. Jackie would beat me in a 1v1 99 times out of 100.",
-                    date: "Dec 25, 2020",
-                    liked: true,
-                    likes: "103.5k",
-                    comments: [],
-                  },
-                ],
-              },
-              {
-                commentId: "5",
-                username: "Jack",
-                text: "Lame. Play Astrofire.",
-                date: "Dec 25, 2020",
-                liked: false,
-                likes: "1",
-                comments: [],
-              },
-            ],
-          },
-          {
-            commentId: "6",
-            username: "chocoTaco",
-            text: "OMG",
-            date: "Dec 26, 2020",
-            liked: true,
-            likes: "17k",
-            comments: [],
-          },
-          {
-            commentId: "7",
-            username: "GrndpaGaming",
-            text: "Reported.",
-            date: "Dec 27, 2020",
-            liked: false,
-            likes: "0",
-            comments: [],
-          },
-        ],
-      },
-      {
-        id: "2",
-        type: "video/mp4",
-        src: require("../assets/videos/snipe2.mp4"),
-        poster: require("../assets/images/snipe2poster.png"),
-        title: "Destroying A Bot",
-        datePosted: "Dec 20, 2020",
-        userProfile: {
-          username: "SomeoneElse",
-          joinedDate: "Dec 24, 2020",
-          image: require("../assets/images/crown.png"),
-          followed: false,
-          followerCount: "346M",
-          clipsCount: "54",
-          badges: {
-            badgeOne: require("../assets/images/badge1.png"),
-            badgeTwo: require("../assets/images/badge2.png"),
-            badgeThree: require("../assets/images/badge3.png"),
-            badgeFour: require("../assets/images/badge4.png"),
-          },
-        },
-        game: {
-          id: "1",
-          title: "PLAYERUNKNOWN's BATTLEGROUNDS",
-          icon: require("../assets/images/pubg.png"),
-          releaseDate: "Dec 2017",
-          followed: false,
-          followerCount: "84k",
-          clipsTodayCount: "32k",
-          clipsAllTimeCount: "456k",
-          tags: ["Battle Royale", "Shooter"],
-        },
-        liked: false,
-        userImage: require("../assets/images/crown.png"),
-        badgeOne: require("../assets/images/badge1.png"),
-        badgeTwo: require("../assets/images/badge2.png"),
-        badgeThree: require("../assets/images/badge3.png"),
-        badgeFour: require("../assets/images/badge4.png"),
-        impressiveLiked: false,
-        impressiveCount: "10.8k",
-        funnyLiked: true,
-        funnyCount: "5005",
-        discussionLiked: false,
-        discussionCount: "36.3k",
-        viewCount: "903.23k",
-        likeCount: "133.7k",
-        commentCount: "98.9k",
-        comments: [],
-      },
-    ],
+    clipsForUser: [],
     filterBy: {
       mostPopular: true,
       mostImpressive: false,
@@ -404,7 +247,7 @@ export default {
     },
   }),
   methods: {
-    clearFilterByType: function () {
+     clearFilterByType: function () {
       this.filterBy.mostPopular = false;
       this.filterBy.mostImpressive = false;
       this.filterBy.funniest = false;
@@ -478,6 +321,27 @@ export default {
         this.filterBy.allTime = true;
       }
     },
+    getPageContents: function () {
+      var vm = this;
+
+      return axios({
+        method: "get",
+        responseType: "json",
+        url: vm.serverUrl + "/profile/profile",
+        headers: {
+          authorization: "Bearer " + vm.user.accessToken,
+        },
+        params: {
+          username: vm.user.username,
+          profileName: vm.userProfile.Username,
+        },
+      }).then(function (response) {
+        vm.clipsForUser = response.data;
+      });
+    },
+  },
+  beforeMount: function () {
+    this.getPageContents();
   },
 };
 </script>
