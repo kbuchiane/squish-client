@@ -11,13 +11,34 @@
           width="100"
         />
       </router-link>
-      <router-link to="/browse" class="clipsRouterLink">
-        <div class="appBarClips">Clips</div>
+      <router-link
+        v-if="this.$route.name === 'Browse'"
+        to="/browse"
+        class="clipsRouterLinkSelected"
+      >
+        <div @click="scrollToTop()" class="appBarClips">Clips</div>
       </router-link>
-      <router-link to="/browseGames" class="clipsRouterLink">
-        <div class="appBarClips">Games</div>
+      <router-link v-else to="/browse" class="clipsRouterLink">
+        <div @click="scrollToTop()" class="appBarClips">Clips</div>
       </router-link>
-      <router-link v-if="user.loggedIn" to="/post" class="clipsRouterLink">
+      <router-link
+        v-if="this.$route.name === 'BrowseGames'"
+        to="/browseGames"
+        class="clipsRouterLinkSelected"
+      >
+        <div @click="scrollToTop()" class="appBarClips">Games</div>
+      </router-link>
+      <router-link v-else to="/browseGames" class="clipsRouterLink">
+        <div @click="scrollToTop()" class="appBarClips">Games</div>
+      </router-link>
+      <router-link
+        v-if="user.loggedIn && this.$route.name === 'Post'"
+        to="/post"
+        class="clipsRouterLinkSelected"
+      >
+        <div class="appBarClips">Post</div>
+      </router-link>
+      <router-link v-else-if="user.loggedIn" to="/post" class="clipsRouterLink">
         <div class="appBarClips">Post</div>
       </router-link>
       <input
@@ -30,7 +51,20 @@
       <img @click="search()" class="searchImage" :src="searchIcon" />
       <v-spacer></v-spacer>
       <div v-if="user.loggedIn" class="bannerOptions">
-        <p class="bannerUsername noselect">{{ user.username }}</p>
+        <router-link
+          :to="{ name: 'Profile', params: { userProfile: userProfile } }"
+          class="d-flex align-center"
+        >
+          <v-img
+            @click="scrollToTop()"
+            class="shrink mr-2 userImage"
+            contain
+            :src="userProfile.image"
+          />
+          <p @click="scrollToTop()" class="bannerUsername noselect">
+            {{ user.username }}
+          </p>
+        </router-link>
         <v-btn @click="logout()" color="#32cd32" class="bannerLogoutButton"
           >Log Out</v-btn
         >
@@ -98,6 +132,20 @@ export default {
       usersFollowing: [],
       gamesFollowing: [],
     },
+    userProfile: {
+      username: "JackiePrince",
+      joinedDate: "Dec 24, 2020",
+      image: require("./assets/images/crown.png"),
+      followed: true,
+      followerCount: "346M",
+      clipsCount: "54",
+      badges: {
+        badgeOne: require("./assets/images/badge1.png"),
+        badgeTwo: require("./assets/images/badge2.png"),
+        badgeThree: require("./assets/images/badge3.png"),
+        badgeFour: require("./assets/images/badge4.png"),
+      },
+    },
     verify: {
       email: "",
       message: "",
@@ -141,6 +189,9 @@ export default {
         console.log("searching for: " + this.searchTerm);
         this.searchTerm = "";
       }
+    },
+    scrollToTop: function () {
+      window.scrollTo(0, 0);
     },
     setUserData: function (accessToken, username) {
       this.user.loggedIn = true;

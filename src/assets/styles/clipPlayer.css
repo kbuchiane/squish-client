@@ -154,13 +154,24 @@
     border-radius: 20px;
 }
 
-.deleteButton {
+.ellipsisButton {
     height: 30px;
     width: 30px;
     margin-left: 91%;
 }
 
-.deleteButton:hover {
+.ellipsisButton:hover {
+    cursor: pointer;
+}
+
+.deleteReportButton {
+    height: 30px;
+    width: 30px;
+    margin-left: 83%;
+    margin-top: -30px;
+}
+
+.deleteReportButton:hover {
     cursor: pointer;
 }
 

@@ -15,7 +15,7 @@
     </div>
     <div class="clipDate">{{ clip.datePosted }}</div>
     <div class="clipGame">
-      <p class="clipGameText">
+      <p @click="scrollToTop()" class="clipGameText">
         <router-link
           :to="{ name: 'SingleGame', params: { selectedGame: clip.game } }"
           class="routerStyle"
@@ -25,7 +25,7 @@
       </p>
     </div>
     <div class="clipUsername">
-      <p class="clipUsernameText">
+      <p @click="scrollToTop()" class="clipUsernameText">
         <router-link
           :to="{ name: 'Profile', params: { userProfile: clip.userProfile } }"
           class="routerStyle"
@@ -68,10 +68,26 @@
         >
         <v-btn v-else color="#40a0e0" class="userActionButton">Follow</v-btn>
         <v-img
-          v-if="loggedInUser === clip.userProfile.username"
-          class="deleteButton"
+          @click="toggleEllipsis()"
+          class="ellipsisButton"
+          contain
+          src="../assets/images/ellipsisIcon.png"
+        />
+        <v-img
+          @click="deleteClip()"
+          v-if="ellipsisToggle && loggedInUser === clip.userProfile.username"
+          class="deleteReportButton"
           contain
           src="../assets/images/deleteIcon.png"
+        />
+        <v-img
+          @click="reportClip()"
+          v-else-if="
+            ellipsisToggle && loggedInUser !== clip.userProfile.username
+          "
+          class="deleteReportButton"
+          contain
+          src="../assets/images/reportIcon.png"
         />
       </div>
     </div>
@@ -167,13 +183,75 @@
 </template>
 
 <script>
+import "vuejs-dialog/dist/vuejs-dialog.min.css";
+
 export default {
   name: "ClipPlayer",
   props: ["clip"],
   data: () => ({
     loggedInUser: "JackiePrince",
+    ellipsisToggle: false,
   }),
+  methods: {
+    scrollToTop: function () {
+      window.scrollTo(0, 0);
+    },
+    toggleEllipsis: function () {
+      this.ellipsisToggle = !this.ellipsisToggle;
+    },
+    deleteClip: function () {
+      let message = "Are you sure you want to delete this clip?";
+      let options = {
+        html: false,
+        loader: false,
+        reverse: false,
+        okText: "Yes",
+        cancelText: "No",
+        animation: "zoom",
+        type: "basic",
+        verification: "continue",
+        clicksCount: 1,
+        backdropClose: true,
+        customClass: "",
+      };
+
+      this.$dialog
+        .confirm(message, options)
+        .then(function () {
+          console.log("delete clip confirmed");
+        })
+        .catch(function () {
+          console.log("delete clip cancelled");
+        });
+    },
+    reportClip: function () {
+      let message = "Are you sure you want to report this clip?";
+      let options = {
+        html: false,
+        loader: false,
+        reverse: false,
+        okText: "Yes",
+        cancelText: "No",
+        animation: "zoom",
+        type: "basic",
+        verification: "continue",
+        clicksCount: 1,
+        backdropClose: true,
+        customClass: "",
+      };
+
+      this.$dialog
+        .confirm(message, options)
+        .then(function () {
+          console.log("report clip confirmed");
+        })
+        .catch(function () {
+          console.log("report clip cancelled");
+        });
+    },
+  },
 };
 </script>
 
 <style scoped src='../assets/styles/clipPlayer.css'></style>
+<style src='../assets/styles/confirmationPrompt.css'></style>

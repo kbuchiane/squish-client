@@ -4,6 +4,13 @@
     height: 600px;
     left: 4%;
     margin-top: 107px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+    supported by Chrome, Opera and Firefox */
 }
 
 .filterTitle {
@@ -26,7 +33,39 @@
 
 .filterOptionsSetOne {
     width: 100%;
-    height: 240px;
+    height: 200px;
+}
+
+.filterOptionOne {
+    width: 100%;
+    height: calc(100% / 5);
+    text-align: left;
+    vertical-align: middle;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px dashed black;
+}
+
+.filterOptionOne:hover {
+    cursor: pointer;
+    color: #32cd32;
+}
+
+.selectedFilterOptionOne {
+    width: 100%;
+    height: calc(100% / 5);
+    text-align: left;
+    vertical-align: middle;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px dashed black;
+    color: #32cd32;
+}
+
+.selectedFilterOptionOne:hover {
+    cursor: pointer;
 }
 
 .filterOptionsSetTwo {
@@ -34,7 +73,7 @@
     height: 240px;
 }
 
-.filterOption {
+.filterOptionTwo {
     width: 100%;
     height: calc(100% / 6);
     text-align: left;
@@ -45,7 +84,12 @@
     border-bottom: 2px dashed black;
 }
 
-.selectedFilterOption {
+.filterOptionTwo:hover {
+    cursor: pointer;
+    color: #32cd32;
+}
+
+.selectedFilterOptionTwo {
     width: 100%;
     height: calc(100% / 6);
     text-align: left;
@@ -55,6 +99,10 @@
     font-weight: 500;
     border-bottom: 2px dashed black;
     color: #32cd32;
+}
+
+.selectedFilterOptionTwo:hover {
+    cursor: pointer;
 }
 
 .clipColumn {

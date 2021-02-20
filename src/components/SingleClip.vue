@@ -10,8 +10,24 @@
       <div class="filter">
         <div class="filterTitle">Filter Comments By</div>
         <div class="filterOptionsSetOne">
-          <div class="selectedFilterOption">Most Likes</div>
-          <div class="filterOption">Newest</div>
+          <div
+            v-if="filterBy.mostLikes"
+            @click="mostLikesClick()"
+            class="selectedFilterOption"
+          >
+            Most Likes
+          </div>
+          <div v-else @click="mostLikesClick()" class="filterOption">
+            Most Likes
+          </div>
+          <div
+            v-if="filterBy.newest"
+            @click="newestClick()"
+            class="selectedFilterOption"
+          >
+            Newest
+          </div>
+          <div v-else @click="newestClick()" class="filterOption">Newest</div>
         </div>
       </div>
       <v-row justify="center" class="text-center">
@@ -65,12 +81,14 @@ export default {
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
     newComment: "",
-
+    filterBy: {
+      mostLikes: true,
+      newest: false,
+    },
     // Only used for test
     commenter: "Freddy",
     clipId: "1",
-    parentCommentId: "1"
-
+    parentCommentId: "1",
   }),
   methods: {
     postNewcomment: function () {
@@ -89,10 +107,26 @@ export default {
             comment: comment,
             clipId: this.clipId,
             parentCommentId: this.parentCommentId,
-          }
+          },
         }).then(function (response) {
           return response;
         });
+      }
+    },
+    clearFilter: function () {
+      this.filterBy.mostLikes = false;
+      this.filterBy.newest = false;
+    },
+    mostLikesClick: function () {
+      if (!this.filterBy.mostLikes) {
+        this.clearFilter();
+        this.filterBy.mostLikes = true;
+      }
+    },
+    newestClick: function () {
+      if (!this.filterBy.newest) {
+        this.clearFilter();
+        this.filterBy.newest = true;
       }
     },
   },
