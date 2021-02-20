@@ -15,6 +15,11 @@
     font-weight: 500;
 }
 
+.clipsRouterLinkSelected {
+    text-decoration: none;
+    color: #32cd32;
+}
+
 .clipsRouterLink {
     text-decoration: none;
     color: white;

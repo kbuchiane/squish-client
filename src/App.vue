@@ -11,13 +11,34 @@
           width="100"
         />
       </router-link>
-      <router-link to="/browse" class="clipsRouterLink">
+      <router-link
+        v-if="this.$route.name === 'Browse'"
+        to="/browse"
+        class="clipsRouterLinkSelected"
+      >
         <div @click="scrollToTop()" class="appBarClips">Clips</div>
       </router-link>
-      <router-link to="/browseGames" class="clipsRouterLink">
+      <router-link v-else to="/browse" class="clipsRouterLink">
+        <div @click="scrollToTop()" class="appBarClips">Clips</div>
+      </router-link>
+      <router-link
+        v-if="this.$route.name === 'BrowseGames'"
+        to="/browseGames"
+        class="clipsRouterLinkSelected"
+      >
         <div @click="scrollToTop()" class="appBarClips">Games</div>
       </router-link>
-      <router-link v-if="user.loggedIn" to="/post" class="clipsRouterLink">
+      <router-link v-else to="/browseGames" class="clipsRouterLink">
+        <div @click="scrollToTop()" class="appBarClips">Games</div>
+      </router-link>
+      <router-link
+        v-if="user.loggedIn && this.$route.name === 'Post'"
+        to="/post"
+        class="clipsRouterLinkSelected"
+      >
+        <div class="appBarClips">Post</div>
+      </router-link>
+      <router-link v-else-if="user.loggedIn" to="/post" class="clipsRouterLink">
         <div class="appBarClips">Post</div>
       </router-link>
       <input
