@@ -96,6 +96,8 @@
 <script>
 import Browse from "./components/Browse";
 import BrowseGames from "./components/BrowseGames";
+import ClipPlayer from "./components/ClipPlayer";
+import CommentTree from "./components/CommentTree";
 import SingleClip from "./components/SingleClip";
 import SingleGame from "./components/SingleGame";
 import Profile from "./components/Profile";
@@ -113,6 +115,8 @@ export default {
   components: {
     Browse,
     BrowseGames,
+    ClipPlayer,
+    CommentTree,
     SingleClip,
     SingleGame,
     Profile,
@@ -153,32 +157,6 @@ export default {
     resetPassword: {
       email: "",
       message: "",
-    },
-    clip: {
-      username: "",
-      video: "",
-      title: "",
-      gameTitle: "",
-      duration: "",
-      dateCreated: "",
-      thumbnail: "",
-      viewCount: "",
-      likes: [],
-      comments: [],
-    },
-    comment: {
-      username: "",
-      text: "",
-      dateCreated: "",
-      likes: [],
-      comments: [],
-    },
-    like: {
-      username: "",
-    },
-    game: {
-      title: "",
-      icon: "",
     },
     searchTerm: "",
     searchIcon: require("./assets/images/searchIcon.png"),

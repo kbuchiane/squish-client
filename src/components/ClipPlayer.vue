@@ -2,66 +2,86 @@
   <div class="clipPlayerDiv">
     <div class="clipTitle">
       <p v-if="this.$route.name === 'SingleClip'" class="clipTitleText">
-        {{ clip.title }}
+        {{ clip.Title }}
       </p>
       <p v-else class="clipTitleText">
         <router-link
           :to="{ name: 'SingleClip', params: { clip: clip } }"
           class="routerStyle"
         >
-          {{ clip.title }}
+          {{ clip.Title }}
         </router-link>
       </p>
     </div>
-    <div class="clipDate">{{ clip.datePosted }}</div>
+    <div class="clipDate">{{ clip.DateCreated }}</div>
     <div class="clipGame">
       <p @click="scrollToTop()" class="clipGameText">
         <router-link
-          :to="{ name: 'SingleGame', params: { selectedGame: clip.game } }"
+          :to="{ name: 'SingleGame', params: { selectedGame: clip.Game } }"
           class="routerStyle"
         >
-          {{ clip.game.title }}
+          {{ clip.Game.Title }}
         </router-link>
       </p>
     </div>
     <div class="clipUsername">
       <p @click="scrollToTop()" class="clipUsernameText">
         <router-link
-          :to="{ name: 'Profile', params: { userProfile: clip.userProfile } }"
+          :to="{ name: 'Profile', params: { userProfile: clip.UserProfile } }"
           class="routerStyle"
         >
-          {{ clip.userProfile.username }}
+          {{ clip.UserProfile.Username }}
         </router-link>
       </p>
     </div>
     <div class="clipHeader">
       <div class="clipUser">
         <router-link
-          :to="{ name: 'Profile', params: { userProfile: clip.userProfile } }"
+          :to="{ name: 'Profile', params: { userProfile: clip.UserProfile } }"
           class="d-flex align-center"
         >
-          <v-img class="shrink mr-2 userImage" contain :src="clip.userImage" />
+          <v-img
+            class="shrink mr-2 userImage"
+            contain
+            :src="require(`../assets/images/${clip.Game.IconFilepath}`)"
+          />
         </router-link>
       </div>
       <div class="clipUserBadges">
         <div class="topLeftBadge">
-          <v-img class="leftBadgeImage" contain :src="clip.badgeOne" />
+          <v-img
+            class="leftBadgeImage"
+            contain
+            :src="require(`../assets/images/${clip.BadgeOne}`)"
+          />
         </div>
         <div class="topRightBadge">
-          <v-img class="rightBadgeImage" contain :src="clip.badgeTwo" />
+          <v-img
+            class="rightBadgeImage"
+            contain
+            :src="require(`../assets/images/${clip.BadgeTwo}`)"
+          />
         </div>
         <div class="bottomLeftBadge">
-          <v-img class="leftBadgeImage" contain :src="clip.badgeThree" />
+          <v-img
+            class="leftBadgeImage"
+            contain
+            :src="require(`../assets/images/${clip.BadgeThree}`)"
+          />
         </div>
         <div class="bottomRightBadge">
-          <v-img class="rightBadgeImage" contain :src="clip.badgeFour" />
+          <v-img
+            class="rightBadgeImage"
+            contain
+            :src="require(`../assets/images/${clip.BadgeFour}`)"
+          />
         </div>
       </div>
       <div class="clipUserActions">
         <v-btn color="#40a0e0" class="userActionButton">Gift</v-btn>
         <v-btn color="#40a0e0" class="userActionButton">Link Up</v-btn>
         <v-btn
-          v-if="clip.userProfile.followed"
+          v-if="clip.UserProfile.Followed"
           color="#40a0e0"
           class="userActionButton"
           >Unfollow</v-btn
@@ -75,7 +95,7 @@
         />
         <v-img
           @click="deleteClip()"
-          v-if="ellipsisToggle && loggedInUser === clip.userProfile.username"
+          v-if="ellipsisToggle && loggedInUser === clip.UserProfile.Username"
           class="deleteReportButton"
           contain
           src="../assets/images/deleteIcon.png"
@@ -83,7 +103,7 @@
         <v-img
           @click="reportClip()"
           v-else-if="
-            ellipsisToggle && loggedInUser !== clip.userProfile.username
+            ellipsisToggle && loggedInUser !== clip.UserProfile.Username
           "
           class="deleteReportButton"
           contain
@@ -91,14 +111,21 @@
         />
       </div>
     </div>
-    <video controls class="clipPlayer" :poster="clip.poster">
-      <source :src="clip.src" :type="clip.type" />
+    <video
+      controls
+      class="clipPlayer"
+      :poster="require(`../assets/images/${clip.Poster}`)"
+    >
+      <source
+        :src="require(`../assets/videos/${clip.VideoFilepath}`)"
+        :type="clip.Type"
+      />
     </video>
     <div class="clipSideTab">
       <div class="clipImpressive">
         <div class="impressiveIconDiv">
           <v-img
-            v-if="clip.impressiveLiked"
+            v-if="clip.ImpressiveLiked"
             class="impressiveIcon"
             contain
             src="../assets/images/impressiveLikedIcon.png"
@@ -110,12 +137,12 @@
             src="../assets/images/impressiveIcon.png"
           />
         </div>
-        <div class="impressiveCount">{{ clip.impressiveCount }}</div>
+        <div class="impressiveCount">{{ clip.ImpressiveCount }}</div>
       </div>
       <div class="clipFunny">
         <div class="funnyIconDiv">
           <v-img
-            v-if="clip.funnyLiked"
+            v-if="clip.FunnyLiked"
             class="funnyIcon"
             contain
             src="../assets/images/funnyLikedIcon.png"
@@ -127,12 +154,12 @@
             src="../assets/images/funnyIcon.png"
           />
         </div>
-        <div class="funnyCount">{{ clip.funnyCount }}</div>
+        <div class="funnyCount">{{ clip.FunnyCount }}</div>
       </div>
       <div class="clipDiscussion">
         <div class="discussionIconDiv">
           <v-img
-            v-if="clip.discussionLiked"
+            v-if="clip.DiscussionLiked"
             class="discussionIcon"
             contain
             src="../assets/images/discussionLikedIcon.png"
@@ -144,12 +171,12 @@
             src="../assets/images/discussionIcon.png"
           />
         </div>
-        <div class="discussionCount">{{ clip.discussionCount }}</div>
+        <div class="discussionCount">{{ clip.DiscussionCount }}</div>
       </div>
     </div>
     <div class="clipFooter">
       <div class="clipViews">
-        <div class="viewCount">{{ clip.viewCount }} views</div>
+        <div class="viewCount">{{ clip.ViewCount }} views</div>
       </div>
       <div class="clipLikes">
         <div class="likeIconDiv">
@@ -166,7 +193,7 @@
             src="../assets/images/likeIcon.png"
           />
         </div>
-        <div class="likeCount">{{ clip.likeCount }} likes</div>
+        <div class="likeCount">{{ clip.LikeCount }} likes</div>
       </div>
       <div class="clipComments">
         <div class="commentIconDiv">
@@ -176,7 +203,7 @@
             src="../assets/images/commentIcon.png"
           />
         </div>
-        <div class="commentCount">{{ clip.commentCount }} comments</div>
+        <div class="commentCount">{{ clip.CommentCount }} comments</div>
       </div>
     </div>
   </div>
@@ -187,9 +214,9 @@ import "vuejs-dialog/dist/vuejs-dialog.min.css";
 
 export default {
   name: "ClipPlayer",
-  props: ["clip"],
+  props: ["clip", "user"],
   data: () => ({
-    loggedInUser: "JackiePrince",
+    loggedInUser: "",
     ellipsisToggle: false,
   }),
   methods: {
@@ -249,6 +276,19 @@ export default {
           console.log("report clip cancelled");
         });
     },
+  },
+  beforeMount: function () {
+    //console.log("-- BEFORE mounted ");
+    // FIXME user not defined??????
+    // loggedInUser = this.user.username;
+    // console.log("ClipPlayer  User: " + this.user);
+  },
+
+  mounted: function () {
+    //  console.log("-- mounted ");
+    //  console.log("ClipPlayer     User: " + this.user);
+    //loggedInUser = this.user.username;
+    // console.log("logged in User: [" + this.loggedInUser + "]");
   },
 };
 </script>
