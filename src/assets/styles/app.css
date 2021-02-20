@@ -15,6 +15,11 @@
     font-weight: 500;
 }
 
+.clipsRouterLinkSelected {
+    text-decoration: none;
+    color: #32cd32;
+}
+
 .clipsRouterLink {
     text-decoration: none;
     color: white;
@@ -61,9 +66,18 @@
 .bannerUsername {
     position: absolute;
     font-size: 20px;
-    right: 150px;
-    margin-top: 13px;
+    right: 210px;
+    top: 16px;
     color: white;
+}
+
+.userImage {
+    position: absolute;
+    height: 45px;
+    width: 45px;
+    right: 142px;
+    top: 9px;
+    border-radius: 20px;
 }
 
 .bannerLogoutButton {

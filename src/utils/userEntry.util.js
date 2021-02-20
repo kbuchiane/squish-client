@@ -5,8 +5,8 @@ exports.checkUsername = (username) => {
         return "Username can not include spaces";
     } else if (!/^[a-z0-9]+$/i.test(username)) {
         return "Username can not include special characters";
-    } else if (username.length > 45) {
-        return "Username can not exceed 45 characters";
+    } else if (username.length > 30) {
+        return "Username can not exceed 30 characters";
     } else {
         return "";
     }

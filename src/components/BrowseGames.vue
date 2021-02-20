@@ -3,9 +3,36 @@
     <div class="filter">
       <div class="filterTitle">Filter Games By</div>
       <div class="filterOptionsSetOne">
-        <div class="selectedFilterOption">Most Followed</div>
-        <div class="filterOption">Most Clips Today</div>
-        <div class="filterOption">Specific Tags</div>
+        <div
+          v-if="filterBy.mostFollowed"
+          @click="mostFollowedClick()"
+          class="selectedFilterOption"
+        >
+          Most Followed
+        </div>
+        <div v-else @click="mostFollowedClick()" class="filterOption">
+          Most Followed
+        </div>
+        <div
+          v-if="filterBy.mostClipsToday"
+          @click="mostClipsTodayClick()"
+          class="selectedFilterOption"
+        >
+          Most Clips Today
+        </div>
+        <div v-else @click="mostClipsTodayClick()" class="filterOption">
+          Most Clips Today
+        </div>
+        <div
+          v-if="filterBy.mostClipsAllTime"
+          @click="mostClipsAllTimeClick()"
+          class="selectedFilterOption"
+        >
+          Most Clips All Time
+        </div>
+        <div v-else @click="mostClipsAllTimeClick()" class="filterOption">
+          Most Clips All Time
+        </div>
       </div>
     </div>
     <v-row justify="center" class="text-center">
@@ -81,9 +108,37 @@ export default {
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
     games: [],
+    filterBy: {
+      mostFollowed: true,
+      mostClipsToday: false,
+      mostClipsAllTime: false,
+    },
   }),
   props: ["user"],
   methods: {
+    clearFilter: function () {
+      this.filterBy.mostFollowed = false;
+      this.filterBy.mostClipsToday = false;
+      this.filterBy.mostClipsAllTime = false;
+    },
+    mostFollowedClick: function () {
+      if (!this.filterBy.mostFollowed) {
+        this.clearFilter();
+        this.filterBy.mostFollowed = true;
+      }
+    },
+    mostClipsTodayClick: function () {
+      if (!this.filterBy.mostClipsToday) {
+        this.clearFilter();
+        this.filterBy.mostClipsToday = true;
+      }
+    },
+    mostClipsAllTimeClick: function () {
+      if (!this.filterBy.mostClipsAllTime) {
+        this.clearFilter();
+        this.filterBy.mostClipsAllTime = true;
+      }
+    },
     getPageContents: function () {
       var vm = this;
 
@@ -103,10 +158,8 @@ export default {
     },
   },
   beforeMount: function () {
-// console.log("BrowseGames    User: " + this.user.username);
-
-    this.getPageContents();
-  },
+    this.getPageContents();  
+   },
 };
 </script>
 
