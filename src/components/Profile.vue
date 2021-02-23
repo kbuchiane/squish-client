@@ -191,7 +191,7 @@
                 {{ userProfile.ClipsCount }} clips
               </div>
               <div class="userInfoSection">
-                Joined {{ userProfile.DateCreated }}
+                Joined {{ userProfile.DisplayDate }}
               </div>
             </div>
           </div>
@@ -202,7 +202,7 @@
           <div class="clipsFromDiv">
             <div class="clipsProfile">
               <p class="clipsProfileText">
-                {{ clipsForUser.length }} Clips from {{ userProfile.Username }}
+                Clips from {{ userProfile.Username }}
               </p>
             </div>
           </div>
