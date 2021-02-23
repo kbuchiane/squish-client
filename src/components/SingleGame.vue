@@ -136,14 +136,12 @@
               </p>
             </div>
             <div class="gameReleaseDate">
-              Release Date {{ selectedGame.ReleaseDate }}
+              Release Date {{ selectedGame.DisplayDate }}
             </div>
             <div class="gameHeader">
               <div class="gameImageDiv">
                 <router-link to="/game">
-                  <img
-                    class="require(`../assets/images/${selectedGame.IconFilepath}`)"
-                  />
+                  <img class="gameImage" :src="require(`../assets/images/${selectedGame.IconFilepath}`)"/>
                 </router-link>
               </div>
               <div class="gameTags">
@@ -182,7 +180,7 @@
           <div class="clipsFromDiv">
             <div class="clipsSingleGame">
               <p class="clipsSingleGameText">
-                {{ clipsForGame.length }} Clips from {{ selectedGame.Title }}
+                Clips from {{ selectedGame.Title }}
               </p>
             </div>
           </div>

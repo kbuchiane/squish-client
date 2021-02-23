@@ -13,7 +13,7 @@
         </router-link>
       </p>
     </div>
-    <div class="clipDate">{{ clip.DateCreated }}</div>
+    <div class="clipDate">{{ clip.DisplayDate }}</div>
     <div class="clipGame">
       <p @click="scrollToTop()" class="clipGameText">
         <router-link
@@ -43,7 +43,7 @@
           <v-img
             class="shrink mr-2 userImage"
             contain
-            :src="require(`../assets/images/${clip.Game.IconFilepath}`)"
+            :src="require(`../assets/images/${clip.UserImage}`)"
           />
         </router-link>
       </div>
