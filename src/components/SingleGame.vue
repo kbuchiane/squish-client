@@ -207,6 +207,7 @@ export default {
   components: {
     ClipPlayer,
   },
+  // TODO update to only use gameId
   props: ["user", "selectedGame"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,

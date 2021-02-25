@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div v-if="!clip" class="notFoundDiv">
+    <div v-if="!clipId" class="notFoundDiv">
       <p class="notFoundText">The clip could not be found.</p>
       <v-btn @click="$router.push('/browse')" color="#40a0e0" class="backButton"
         >Back To Browse</v-btn
@@ -32,7 +32,7 @@
       </div>
       <v-row justify="center" class="text-center">
         <v-col class="mb-5 clipColumn" cols="6">
-          <div>
+          <div v-if="clip">
             <ClipPlayer :clip="clip" />
           </div>
           <div class="commentsSection">
@@ -50,12 +50,12 @@
                 >Comment</v-btn
               >
             </div>
-            <div class="commentsHeader">
+            <div v-if="clip" class="commentsHeader">
               <p class="commentsHeaderText">
                 Comments ({{ clip.CommentCount }})
               </p>
             </div>
-            <div class="comments">
+            <div v-if="clip" class="comments">
               <CommentTree :comments="clip.Comments"></CommentTree>
             </div>
           </div>
@@ -77,10 +77,11 @@ export default {
     ClipPlayer,
     CommentTree,
   },
-  props: ["clip", "user"],
+  props: ["clipId", "user"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
     newComment: "",
+    clip: "",
     filterBy: {
       mostLikes: true,
       newest: false,
@@ -125,6 +126,28 @@ export default {
         this.filterBy.newest = true;
       }
     },
+    getPageContents: function () {
+      var vm = this;
+
+      return axios({
+        method: "get",
+        responseType: "json",
+        url: this.serverUrl + "/singleClip/singleClip",
+        headers: {
+          authorization: "Bearer " + vm.user.accessToken,
+        },
+        params: {
+          username: vm.user.username,
+          clipId: vm.clipId,
+        },
+      }).then(function (response) {
+        let result = response.data;
+        vm.clip = result;
+      });
+    },
+  },
+  beforeMount: function () {
+    this.getPageContents();
   },
 };
 </script>
