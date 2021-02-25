@@ -6,7 +6,7 @@
       </p>
       <p v-else class="clipTitleText">
         <router-link
-          :to="{ name: 'SingleClip', params: { clip: clip } }"
+          :to="{ name: 'SingleClip', params: { clipId: clip.ClipId } }"
           class="routerStyle"
         >
           {{ clip.Title }}
@@ -276,19 +276,6 @@ export default {
           console.log("report clip cancelled");
         });
     },
-  },
-  beforeMount: function () {
-    //console.log("-- BEFORE mounted ");
-    // FIXME user not defined??????
-    // loggedInUser = this.user.username;
-    // console.log("ClipPlayer  User: " + this.user);
-  },
-
-  mounted: function () {
-    //  console.log("-- mounted ");
-    //  console.log("ClipPlayer     User: " + this.user);
-    //loggedInUser = this.user.username;
-    // console.log("logged in User: [" + this.loggedInUser + "]");
   },
 };
 </script>
