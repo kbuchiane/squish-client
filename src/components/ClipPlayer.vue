@@ -17,7 +17,7 @@
     <div class="clipGame">
       <p @click="scrollToTop()" class="clipGameText">
         <router-link
-          :to="{ name: 'SingleGame', params: { selectedGame: clip.Game } }"
+          :to="{ name: 'SingleGame', params: { gameId: clip.Game.GameId } }"
           class="routerStyle"
         >
           {{ clip.Game.Title }}
@@ -27,7 +27,7 @@
     <div class="clipUsername">
       <p @click="scrollToTop()" class="clipUsernameText">
         <router-link
-          :to="{ name: 'Profile', params: { userProfile: clip.UserProfile } }"
+          :to="{ name: 'Profile', params: { username: clip.UserProfile.Username } }"
           class="routerStyle"
         >
           {{ clip.UserProfile.Username }}
@@ -37,7 +37,7 @@
     <div class="clipHeader">
       <div class="clipUser">
         <router-link
-          :to="{ name: 'Profile', params: { userProfile: clip.UserProfile } }"
+          :to="{ name: 'Profile', params: { username: clip.UserProfile.Username } }"
           class="d-flex align-center"
         >
           <v-img

@@ -33,19 +33,19 @@ export default new Router({
             component: BrowseGames
         },
         {
-            path: "/clip",
+            path: "/clip/:clipId",
             name: "SingleClip",
             component: SingleClip,
             props: true
         },
         {
-            path: "/game",
+            path: "/game/:gameId",
             name: "SingleGame",
             component: SingleGame,
             props: true
         },
         {
-            path: "/profile",
+            path: "/profile/:username",
             name: "Profile",
             component: Profile,
             props: true
