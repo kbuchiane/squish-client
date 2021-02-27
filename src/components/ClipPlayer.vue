@@ -131,7 +131,7 @@
     <video
       controls
       class="clipPlayer"
-      :poster="require(`../assets/images/${clip.Poster}`)"
+      :poster="require(`../assets/images/${clip.Thumbnail}`)"
     >
       <source
         :src="require(`../assets/videos/${clip.VideoFilepath}`)"
