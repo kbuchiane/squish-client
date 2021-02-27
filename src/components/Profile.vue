@@ -170,15 +170,30 @@
                 </div>
               </div>
               <div class="profileUserActions">
-                <v-btn color="#40a0e0" class="userActionButton">Gift</v-btn>
-                <v-btn color="#40a0e0" class="userActionButton">Link Up</v-btn>
+                <v-btn
+                  @click="userLoggedInCheck()"
+                  color="#40a0e0"
+                  class="userActionButton"
+                  >Gift</v-btn
+                >
+                <v-btn
+                  @click="userLoggedInCheck()"
+                  color="#40a0e0"
+                  class="userActionButton"
+                  >Link Up</v-btn
+                >
                 <v-btn
                   v-if="userProfile.Followed"
+                  @click="userLoggedInCheck()"
                   color="#40a0e0"
                   class="userActionButton"
                   >Unfollow</v-btn
                 >
-                <v-btn v-else color="#40a0e0" class="userActionButton"
+                <v-btn
+                  v-else
+                  @click="userLoggedInCheck()"
+                  color="#40a0e0"
+                  class="userActionButton"
                   >Follow</v-btn
                 >
               </div>
@@ -232,6 +247,7 @@ export default {
   props: ["user", "userProfile"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
+    loggedInUser: "",
     clipsForUser: [],
     filterBy: {
       mostPopular: true,
@@ -247,7 +263,7 @@ export default {
     },
   }),
   methods: {
-     clearFilterByType: function () {
+    clearFilterByType: function () {
       this.filterBy.mostPopular = false;
       this.filterBy.mostImpressive = false;
       this.filterBy.funniest = false;
@@ -319,6 +335,38 @@ export default {
       if (!this.filterBy.allTime) {
         this.clearFilterByTimeframe();
         this.filterBy.allTime = true;
+      }
+    },
+    userLoggedInCheck: function () {
+      if (this.loggedInUser) {
+        return true;
+      } else {
+        let self = this;
+        let message = "You must be logged in to perform this action.";
+        let options = {
+          html: false,
+          loader: false,
+          reverse: false,
+          okText: "Log In",
+          cancelText: "OK",
+          animation: "zoom",
+          type: "basic",
+          verification: "continue",
+          clicksCount: 1,
+          backdropClose: true,
+          customClass: "",
+        };
+
+        this.$dialog
+          .confirm(message, options)
+          .then(function () {
+            self.$router.push("Login");
+          })
+          .catch(function () {
+            // Placeholder
+          });
+
+        return false;
       }
     },
     getPageContents: function () {
