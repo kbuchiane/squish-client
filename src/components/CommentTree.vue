@@ -27,12 +27,14 @@
         <div class="commentLikeIconDiv">
           <v-img
             v-if="comment.Liked"
+            @click="userLoggedInCheck()"
             class="commentLikeIcon"
             contain
             src="../assets/images/likedIcon.png"
           />
           <v-img
             v-else
+            @click="userLoggedInCheck()"
             class="commentLikeIcon"
             contain
             src="../assets/images/likeIcon.png"
@@ -41,6 +43,7 @@
         <div class="commentLikes">{{ comment.Likes }}</div>
         <div class="commentReplyIconDiv">
           <v-img
+            @click="userLoggedInCheck()"
             class="commentReplyIcon"
             contain
             src="../assets/images/replyIcon.png"
@@ -56,7 +59,7 @@
             src="../assets/images/deleteIcon.png"
           />
           <v-img
-            @click="deleteComment()"
+            @click="reportComment()"
             v-else
             class="commentDeleteReportIcon"
             contain
@@ -82,62 +85,97 @@ export default {
   }),
   methods: {
     deleteComment: function () {
-      let message = "Are you sure you want to delete this comment?";
-      let options = {
-        html: false,
-        loader: false,
-        reverse: false,
-        okText: "Yes",
-        cancelText: "No",
-        animation: "zoom",
-        type: "basic",
-        verification: "continue",
-        clicksCount: 1,
-        backdropClose: true,
-        customClass: "",
-      };
+      if (this.userLoggedInCheck()) {
+        let message = "Are you sure you want to delete this comment?";
+        let options = {
+          html: false,
+          loader: false,
+          reverse: false,
+          okText: "Yes",
+          cancelText: "No",
+          animation: "zoom",
+          type: "basic",
+          verification: "continue",
+          clicksCount: 1,
+          backdropClose: true,
+          customClass: "",
+        };
 
-      this.$dialog
-        .confirm(message, options)
-        .then(function () {
-          console.log("delete comment confirmed");
-        })
-        .catch(function () {
-          console.log("delete comment cancelled");
-        });
+        this.$dialog
+          .confirm(message, options)
+          .then(function () {
+            console.log("delete comment confirmed");
+          })
+          .catch(function () {
+            console.log("delete comment cancelled");
+          });
+      }
     },
     reportComment: function () {
-      let message = "Are you sure you want to report this comment?";
-      let options = {
-        html: false,
-        loader: false,
-        reverse: false,
-        okText: "Yes",
-        cancelText: "No",
-        animation: "zoom",
-        type: "basic",
-        verification: "continue",
-        clicksCount: 1,
-        backdropClose: true,
-        customClass: "",
-      };
+      if (this.userLoggedInCheck()) {
+        let message = "Are you sure you want to report this comment?";
+        let options = {
+          html: false,
+          loader: false,
+          reverse: false,
+          okText: "Yes",
+          cancelText: "No",
+          animation: "zoom",
+          type: "basic",
+          verification: "continue",
+          clicksCount: 1,
+          backdropClose: true,
+          customClass: "",
+        };
 
-      this.$dialog
-        .confirm(message, options)
-        .then(function () {
-          console.log("report comment confirmed");
-        })
-        .catch(function () {
-          console.log("report comment cancelled");
-        });
+        this.$dialog
+          .confirm(message, options)
+          .then(function () {
+            console.log("report comment confirmed");
+          })
+          .catch(function () {
+            console.log("report comment cancelled");
+          });
+      }
+    },
+    userLoggedInCheck: function () {
+      if (this.loggedInUser) {
+        return true;
+      } else {
+        let self = this;
+        let message = "You must be logged in to perform this action.";
+        let options = {
+          html: false,
+          loader: false,
+          reverse: false,
+          okText: "Log In",
+          cancelText: "OK",
+          animation: "zoom",
+          type: "basic",
+          verification: "continue",
+          clicksCount: 1,
+          backdropClose: true,
+          customClass: "",
+        };
+
+        this.$dialog
+          .confirm(message, options)
+          .then(function () {
+            self.$router.push("Login");
+          })
+          .catch(function () {
+            // Placeholder
+          });
+
+        return false;
+      }
     },
   },
   beforeMount: function () {
     // console.log("-- BEFORE mounted ");
     // FIXME user not defined??????
     // loggedInUser = this.user.username;
-
-   // console.log("Comment Tree  User: " + this.user);
+    // console.log("Comment Tree  User: " + this.user);
   },
 
   mounted: function () {
