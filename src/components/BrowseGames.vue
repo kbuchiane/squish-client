@@ -42,7 +42,7 @@
             <div class="gameTitle">
               <p class="gameTitleText">
                 <router-link
-                  :to="{ name: 'SingleGame', params: { selectedGame: game } }"
+                  :to="{ name: 'SingleGame', params: { gameId: game.GameId } }"
                   class="routerStyle"
                 >
                   {{ game.Title }}
@@ -55,7 +55,7 @@
             <div class="gameHeader">
               <div class="gameImageDiv">
                 <router-link
-                  :to="{ name: 'SingleGame', params: { selectedGame: game } }"
+                  :to="{ name: 'SingleGame', params: { gameId: game.GameId } }"
                 >
                   <img
                     class="gameImage"

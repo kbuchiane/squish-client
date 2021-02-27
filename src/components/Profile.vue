@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div v-if="!userProfile" class="notFoundDiv">
+    <div v-if="!username" class="notFoundDiv">
       <p class="notFoundText">The profile could not be found.</p>
       <v-btn @click="$router.push('/browse')" color="#40a0e0" class="backButton"
         >Back To Browse</v-btn
@@ -118,20 +118,20 @@
       <v-row justify="center" class="text-center">
         <v-col class="mb-5 profileColumn" cols="6">
           <div class="profileDiv">
-            <div class="profileUsername">
+            <div v-if="userProfile" class="profileUsername">
               <p class="profileUsernameText">
                 {{ userProfile.Username }}
               </p>
             </div>
             <div class="userHeader">
-              <div class="profileUser">
+              <div v-if="userProfile" class="profileUser">
                 <img
                   class="userImage"
                   contain
                   :src="require(`../assets/images/${userProfile.IconFilepath}`)"
                 />
               </div>
-              <div class="profileUserBadges">
+              <div v-if="userProfile" class="profileUserBadges">
                 <div class="topLeftBadge">
                   <v-img
                     class="leftBadgeImage"
@@ -198,7 +198,7 @@
                 >
               </div>
             </div>
-            <div class="userInfoDiv">
+            <div v-if="userProfile" class="userInfoDiv">
               <div class="userInfoSection">
                 {{ userProfile.FollowerCount }} followers
               </div>
@@ -215,7 +215,7 @@
       <v-row justify="center" class="text-center">
         <v-col class="mb-5" cols="6">
           <div class="clipsFromDiv">
-            <div class="clipsProfile">
+            <div v-if="userProfile" class="clipsProfile">
               <p class="clipsProfileText">
                 Clips from {{ userProfile.Username }}
               </p>
@@ -244,11 +244,12 @@ export default {
   components: {
     ClipPlayer,
   },
-  props: ["user", "userProfile"],
+  props: ["user", "username"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
     loggedInUser: "",
     clipsForUser: [],
+    userProfile: "",
     filterBy: {
       mostPopular: true,
       mostImpressive: false,
@@ -381,10 +382,11 @@ export default {
         },
         params: {
           username: vm.user.username,
-          profileName: vm.userProfile.Username,
+          profileName: vm.username,
         },
       }).then(function (response) {
         vm.clipsForUser = response.data;
+        vm.userProfile = response.data[0].UserProfile;
       });
     },
   },
