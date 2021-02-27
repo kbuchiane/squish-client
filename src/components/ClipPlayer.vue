@@ -97,7 +97,13 @@
           class="userActionButton"
           >Unfollow</v-btn
         >
-        <v-btn v-else color="#40a0e0" class="userActionButton">Follow</v-btn>
+        <v-btn
+          v-else
+          @click="userLoggedInCheck()"
+          color="#40a0e0"
+          class="userActionButton"
+          >Follow</v-btn
+        >
         <v-img
           @click="toggleEllipsis()"
           class="ellipsisButton"
