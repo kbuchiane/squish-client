@@ -78,15 +78,32 @@
         </div>
       </div>
       <div class="clipUserActions">
-        <v-btn color="#40a0e0" class="userActionButton">Gift</v-btn>
-        <v-btn color="#40a0e0" class="userActionButton">Link Up</v-btn>
+        <v-btn
+          @click="userLoggedInCheck()"
+          color="#40a0e0"
+          class="userActionButton"
+          >Gift</v-btn
+        >
+        <v-btn
+          @click="userLoggedInCheck()"
+          color="#40a0e0"
+          class="userActionButton"
+          >Link Up</v-btn
+        >
         <v-btn
           v-if="clip.UserProfile.Followed"
+          @click="userLoggedInCheck()"
           color="#40a0e0"
           class="userActionButton"
           >Unfollow</v-btn
         >
-        <v-btn v-else color="#40a0e0" class="userActionButton">Follow</v-btn>
+        <v-btn
+          v-else
+          @click="userLoggedInCheck()"
+          color="#40a0e0"
+          class="userActionButton"
+          >Follow</v-btn
+        >
         <v-img
           @click="toggleEllipsis()"
           class="ellipsisButton"
@@ -123,7 +140,7 @@
     </video>
     <div class="clipSideTab">
       <div class="clipImpressive">
-        <div class="impressiveIconDiv">
+        <div @click="userLoggedInCheck()" class="impressiveIconDiv">
           <v-img
             v-if="clip.ImpressiveLiked"
             class="impressiveIcon"
@@ -140,7 +157,7 @@
         <div class="impressiveCount">{{ clip.ImpressiveCount }}</div>
       </div>
       <div class="clipFunny">
-        <div class="funnyIconDiv">
+        <div @click="userLoggedInCheck()" class="funnyIconDiv">
           <v-img
             v-if="clip.FunnyLiked"
             class="funnyIcon"
@@ -157,7 +174,7 @@
         <div class="funnyCount">{{ clip.FunnyCount }}</div>
       </div>
       <div class="clipDiscussion">
-        <div class="discussionIconDiv">
+        <div @click="userLoggedInCheck()" class="discussionIconDiv">
           <v-img
             v-if="clip.DiscussionLiked"
             class="discussionIcon"
@@ -179,7 +196,7 @@
         <div class="viewCount">{{ clip.ViewCount }} views</div>
       </div>
       <div class="clipLikes">
-        <div class="likeIconDiv">
+        <div @click="userLoggedInCheck()" class="likeIconDiv">
           <v-img
             v-if="clip.liked"
             class="likeIcon"
@@ -275,6 +292,38 @@ export default {
         .catch(function () {
           console.log("report clip cancelled");
         });
+    },
+    userLoggedInCheck: function () {
+      if (this.loggedInUser) {
+        return true;
+      } else {
+        let self = this;
+        let message = "You must be logged in to perform this action.";
+        let options = {
+          html: false,
+          loader: false,
+          reverse: false,
+          okText: "Log In",
+          cancelText: "OK",
+          animation: "zoom",
+          type: "basic",
+          verification: "continue",
+          clicksCount: 1,
+          backdropClose: true,
+          customClass: "",
+        };
+
+        this.$dialog
+          .confirm(message, options)
+          .then(function () {
+            self.$router.push("Login");
+          })
+          .catch(function () {
+            // Placeholder
+          });
+
+        return false;
+      }
     },
   },
 };

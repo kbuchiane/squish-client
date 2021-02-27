@@ -80,6 +80,7 @@ export default {
   props: ["clipId", "user"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
+    loggedInUser: "",
     newComment: "",
     clip: "",
     filterBy: {
@@ -89,25 +90,27 @@ export default {
   }),
   methods: {
     postNewcomment: function () {
-      if (this.newComment) {
-        let comment = this.newComment.trim();
-        this.newComment = "";
+      if (this.userLoggedInCheck()) {
+        if (this.newComment) {
+          let comment = this.newComment.trim();
+          this.newComment = "";
 
-        return axios({
-          method: "post",
-          url: this.serverUrl + "/addComment",
-          headers: {
-            authorization: "Bearer " + this.user.accessToken,
-          },
-          data: {
-            commenter: this.commenter,
-            comment: comment,
-            clipId: this.clipId,
-            parentCommentId: this.parentCommentId,
-          },
-        }).then(function (response) {
-          return response;
-        });
+          return axios({
+            method: "post",
+            url: this.serverUrl + "/addComment",
+            headers: {
+              authorization: "Bearer " + this.user.accessToken,
+            },
+            data: {
+              commenter: this.commenter,
+              comment: comment,
+              clipId: this.clipId,
+              parentCommentId: this.parentCommentId,
+            },
+          }).then(function (response) {
+            return response;
+          });
+        }
       }
     },
     clearFilter: function () {
@@ -124,6 +127,38 @@ export default {
       if (!this.filterBy.newest) {
         this.clearFilter();
         this.filterBy.newest = true;
+      }
+    },
+    userLoggedInCheck: function () {
+      if (this.loggedInUser) {
+        return true;
+      } else {
+        let self = this;
+        let message = "You must be logged in to perform this action.";
+        let options = {
+          html: false,
+          loader: false,
+          reverse: false,
+          okText: "Log In",
+          cancelText: "OK",
+          animation: "zoom",
+          type: "basic",
+          verification: "continue",
+          clicksCount: 1,
+          backdropClose: true,
+          customClass: "",
+        };
+
+        this.$dialog
+          .confirm(message, options)
+          .then(function () {
+            self.$router.push("Login");
+          })
+          .catch(function () {
+            // Placeholder
+          });
+
+        return false;
       }
     },
     getPageContents: function () {

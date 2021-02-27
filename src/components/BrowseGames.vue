@@ -72,11 +72,16 @@
               <div class="gameUserActions">
                 <v-btn
                   v-if="game.Followed"
+                  @click="userLoggedInCheck()"
                   color="#40a0e0"
                   class="userActionButton"
                   >Unfollow</v-btn
                 >
-                <v-btn v-else color="#40a0e0" class="userActionButton"
+                <v-btn
+                  v-else
+                  @click="userLoggedInCheck()"
+                  color="#40a0e0"
+                  class="userActionButton"
                   >Follow</v-btn
                 >
               </div>
@@ -107,6 +112,7 @@ export default {
   name: "BrowseGames",
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
+    loggedInUser: "",
     games: [],
     filterBy: {
       mostFollowed: true,
@@ -139,6 +145,38 @@ export default {
         this.filterBy.mostClipsAllTime = true;
       }
     },
+    userLoggedInCheck: function () {
+      if (this.loggedInUser) {
+        return true;
+      } else {
+        let self = this;
+        let message = "You must be logged in to perform this action.";
+        let options = {
+          html: false,
+          loader: false,
+          reverse: false,
+          okText: "Log In",
+          cancelText: "OK",
+          animation: "zoom",
+          type: "basic",
+          verification: "continue",
+          clicksCount: 1,
+          backdropClose: true,
+          customClass: "",
+        };
+
+        this.$dialog
+          .confirm(message, options)
+          .then(function () {
+            self.$router.push("Login");
+          })
+          .catch(function () {
+            // Placeholder
+          });
+
+        return false;
+      }
+    },
     getPageContents: function () {
       var vm = this;
 
@@ -158,8 +196,8 @@ export default {
     },
   },
   beforeMount: function () {
-    this.getPageContents();  
-   },
+    this.getPageContents();
+  },
 };
 </script>
 
