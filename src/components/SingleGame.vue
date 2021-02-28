@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div v-if="!selectedGame" class="notFoundDiv">
+    <div v-if="!gameId" class="notFoundDiv">
       <p class="notFoundText">The game could not be found.</p>
       <v-btn @click="$router.push('/browse')" color="#40a0e0" class="backButton"
         >Back To Browse</v-btn
@@ -128,50 +128,56 @@
       <v-row justify="center" class="text-center">
         <v-col class="mb-5 gameColumn" cols="6">
           <div class="gameDiv">
-            <div class="gameTitle">
+            <div v-if="game" class="gameTitle">
               <p class="gameTitleText">
                 <router-link to="/game" class="routerStyle">
-                  {{ selectedGame.Title }}
+                  {{ game.Title }}
                 </router-link>
               </p>
             </div>
-            <div class="gameReleaseDate">
-              Release Date {{ selectedGame.ReleaseDate }}
+            <div v-if="game" class="gameReleaseDate">
+              Release Date {{ game.DisplayDate }}
             </div>
-            <div class="gameHeader">
+            <div v-if="game" class="gameHeader">
               <div class="gameImageDiv">
                 <router-link to="/game">
                   <img
-                    class="require(`../assets/images/${selectedGame.IconFilepath}`)"
+                    class="gameImage"
+                    :src="require(`../assets/images/${game.IconFilepath}`)"
                   />
                 </router-link>
               </div>
-              <div class="gameTags">
-                <p v-for="tag in selectedGame.Tags" :key="tag" class="gameTag">
+              <div v-if="game" class="gameTags">
+                <p v-for="tag in game.Tags" :key="tag" class="gameTag">
                   {{ tag }}
                 </p>
               </div>
-              <div class="gameUserActions">
+              <div v-if="game" class="gameUserActions">
                 <v-btn
-                  v-if="selectedGame.Followed"
+                  v-if="game.Followed"
+                  @click="userLoggedInCheck()"
                   color="#40a0e0"
                   class="userActionButton"
                   >Unfollow</v-btn
                 >
-                <v-btn v-else color="#40a0e0" class="userActionButton"
+                <v-btn
+                  v-else
+                  @click="userLoggedInCheck()"
+                  color="#40a0e0"
+                  class="userActionButton"
                   >Follow</v-btn
                 >
               </div>
             </div>
-            <div class="gameInfoDiv">
+            <div v-if="game" class="gameInfoDiv">
               <div class="gameInfoSection">
-                {{ selectedGame.FollowerCount }} followers
+                {{ game.FollowerCount }} followers
               </div>
               <div class="gameInfoSection">
-                {{ selectedGame.ClipsTodayCount }} new clips today
+                {{ game.ClipsTodayCount }} new clips today
               </div>
               <div class="gameInfoSection">
-                {{ selectedGame.ClipsAllTimeCount }} clips all time
+                {{ game.ClipsAllTimeCount }} clips all time
               </div>
             </div>
           </div>
@@ -180,10 +186,8 @@
       <v-row justify="center" class="text-center">
         <v-col class="mb-5" cols="6">
           <div class="clipsFromDiv">
-            <div class="clipsSingleGame">
-              <p class="clipsSingleGameText">
-                {{ clipsForGame.length }} Clips from {{ selectedGame.Title }}
-              </p>
+            <div v-if="game" class="clipsSingleGame">
+              <p class="clipsSingleGameText">Clips from {{ game.Title }}</p>
             </div>
           </div>
         </v-col>
@@ -209,10 +213,12 @@ export default {
   components: {
     ClipPlayer,
   },
-  props: ["user", "selectedGame"],
+  props: ["user", "gameId"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
+    loggedInUser: "",
     clipsForGame: [],
+    game: "",
     filterBy: {
       mostPopular: true,
       followedUsersOnly: false,
@@ -227,9 +233,8 @@ export default {
       allTime: false,
     },
   }),
-
   methods: {
-     clearFilterByType: function () {
+    clearFilterByType: function () {
       this.filterBy.mostPopular = false;
       this.filterBy.followedUsersOnly = false;
       this.filterBy.mostImpressive = false;
@@ -310,6 +315,38 @@ export default {
         this.filterBy.allTime = true;
       }
     },
+    userLoggedInCheck: function () {
+      if (this.loggedInUser) {
+        return true;
+      } else {
+        let self = this;
+        let message = "You must be logged in to perform this action.";
+        let options = {
+          html: false,
+          loader: false,
+          reverse: false,
+          okText: "Log In",
+          cancelText: "OK",
+          animation: "zoom",
+          type: "basic",
+          verification: "continue",
+          clicksCount: 1,
+          backdropClose: true,
+          customClass: "",
+        };
+
+        this.$dialog
+          .confirm(message, options)
+          .then(function () {
+            self.$router.push("Login");
+          })
+          .catch(function () {
+            // Placeholder
+          });
+
+        return false;
+      }
+    },
     getPageContents: function () {
       var vm = this;
 
@@ -322,20 +359,15 @@ export default {
         },
         params: {
           username: vm.user.username,
-          gameId: vm.selectedGame.GameId,
+          gameId: vm.gameId,
         },
       }).then(function (response) {
         let result = response.data;
-
-        // TODO may want to do a similar thing for Profile
-        for (let i in result) {
-          result[i].Game = vm.selectedGame;
-        }
         vm.clipsForGame = result;
+        vm.game = result[0].Game;
       });
     },
   },
-  
   beforeMount: function () {
     this.getPageContents();
   },

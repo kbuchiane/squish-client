@@ -85,12 +85,15 @@
 }
 
 .clipUser {
-    height: 100%;
+    height: 76px;
     width: 85px;
     float: left;
 }
 
 .userImage {
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
     border-radius: 20px;
 }
 

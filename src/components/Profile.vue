@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div v-if="!userProfile" class="notFoundDiv">
+    <div v-if="!username" class="notFoundDiv">
       <p class="notFoundText">The profile could not be found.</p>
       <v-btn @click="$router.push('/browse')" color="#40a0e0" class="backButton"
         >Back To Browse</v-btn
@@ -118,20 +118,20 @@
       <v-row justify="center" class="text-center">
         <v-col class="mb-5 profileColumn" cols="6">
           <div class="profileDiv">
-            <div class="profileUsername">
+            <div v-if="userProfile" class="profileUsername">
               <p class="profileUsernameText">
                 {{ userProfile.Username }}
               </p>
             </div>
             <div class="userHeader">
-              <div class="profileUser">
+              <div v-if="userProfile" class="profileUser">
                 <img
                   class="userImage"
                   contain
                   :src="require(`../assets/images/${userProfile.IconFilepath}`)"
                 />
               </div>
-              <div class="profileUserBadges">
+              <div v-if="userProfile" class="profileUserBadges">
                 <div class="topLeftBadge">
                   <v-img
                     class="leftBadgeImage"
@@ -170,20 +170,35 @@
                 </div>
               </div>
               <div class="profileUserActions">
-                <v-btn color="#40a0e0" class="userActionButton">Gift</v-btn>
-                <v-btn color="#40a0e0" class="userActionButton">Link Up</v-btn>
+                <v-btn
+                  @click="userLoggedInCheck()"
+                  color="#40a0e0"
+                  class="userActionButton"
+                  >Gift</v-btn
+                >
+                <v-btn
+                  @click="userLoggedInCheck()"
+                  color="#40a0e0"
+                  class="userActionButton"
+                  >Link Up</v-btn
+                >
                 <v-btn
                   v-if="userProfile.Followed"
+                  @click="userLoggedInCheck()"
                   color="#40a0e0"
                   class="userActionButton"
                   >Unfollow</v-btn
                 >
-                <v-btn v-else color="#40a0e0" class="userActionButton"
+                <v-btn
+                  v-else
+                  @click="userLoggedInCheck()"
+                  color="#40a0e0"
+                  class="userActionButton"
                   >Follow</v-btn
                 >
               </div>
             </div>
-            <div class="userInfoDiv">
+            <div v-if="userProfile" class="userInfoDiv">
               <div class="userInfoSection">
                 {{ userProfile.FollowerCount }} followers
               </div>
@@ -191,7 +206,7 @@
                 {{ userProfile.ClipsCount }} clips
               </div>
               <div class="userInfoSection">
-                Joined {{ userProfile.DateCreated }}
+                Joined {{ userProfile.DisplayDate }}
               </div>
             </div>
           </div>
@@ -200,9 +215,9 @@
       <v-row justify="center" class="text-center">
         <v-col class="mb-5" cols="6">
           <div class="clipsFromDiv">
-            <div class="clipsProfile">
+            <div v-if="userProfile" class="clipsProfile">
               <p class="clipsProfileText">
-                {{ clipsForUser.length }} Clips from {{ userProfile.Username }}
+                Clips from {{ userProfile.Username }}
               </p>
             </div>
           </div>
@@ -229,10 +244,12 @@ export default {
   components: {
     ClipPlayer,
   },
-  props: ["user", "userProfile"],
+  props: ["user", "username"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
+    loggedInUser: "",
     clipsForUser: [],
+    userProfile: "",
     filterBy: {
       mostPopular: true,
       mostImpressive: false,
@@ -247,7 +264,7 @@ export default {
     },
   }),
   methods: {
-     clearFilterByType: function () {
+    clearFilterByType: function () {
       this.filterBy.mostPopular = false;
       this.filterBy.mostImpressive = false;
       this.filterBy.funniest = false;
@@ -321,6 +338,38 @@ export default {
         this.filterBy.allTime = true;
       }
     },
+    userLoggedInCheck: function () {
+      if (this.loggedInUser) {
+        return true;
+      } else {
+        let self = this;
+        let message = "You must be logged in to perform this action.";
+        let options = {
+          html: false,
+          loader: false,
+          reverse: false,
+          okText: "Log In",
+          cancelText: "OK",
+          animation: "zoom",
+          type: "basic",
+          verification: "continue",
+          clicksCount: 1,
+          backdropClose: true,
+          customClass: "",
+        };
+
+        this.$dialog
+          .confirm(message, options)
+          .then(function () {
+            self.$router.push("Login");
+          })
+          .catch(function () {
+            // Placeholder
+          });
+
+        return false;
+      }
+    },
     getPageContents: function () {
       var vm = this;
 
@@ -333,10 +382,11 @@ export default {
         },
         params: {
           username: vm.user.username,
-          profileName: vm.userProfile.Username,
+          profileName: vm.username,
         },
       }).then(function (response) {
         vm.clipsForUser = response.data;
+        vm.userProfile = response.data[0].UserProfile;
       });
     },
   },

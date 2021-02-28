@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div v-if="!clip" class="notFoundDiv">
+    <div v-if="!clipId" class="notFoundDiv">
       <p class="notFoundText">The clip could not be found.</p>
       <v-btn @click="$router.push('/browse')" color="#40a0e0" class="backButton"
         >Back To Browse</v-btn
@@ -32,7 +32,7 @@
       </div>
       <v-row justify="center" class="text-center">
         <v-col class="mb-5 clipColumn" cols="6">
-          <div>
+          <div v-if="clip">
             <ClipPlayer :clip="clip" />
           </div>
           <div class="commentsSection">
@@ -50,12 +50,12 @@
                 >Comment</v-btn
               >
             </div>
-            <div class="commentsHeader">
+            <div v-if="clip" class="commentsHeader">
               <p class="commentsHeaderText">
                 Comments ({{ clip.CommentCount }})
               </p>
             </div>
-            <div class="comments">
+            <div v-if="clip" class="comments">
               <CommentTree :comments="clip.Comments"></CommentTree>
             </div>
           </div>
@@ -77,10 +77,12 @@ export default {
     ClipPlayer,
     CommentTree,
   },
-  props: ["clip", "user"],
+  props: ["clipId", "user"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
+    loggedInUser: "",
     newComment: "",
+    clip: "",
     filterBy: {
       mostLikes: true,
       newest: false,
@@ -88,25 +90,27 @@ export default {
   }),
   methods: {
     postNewcomment: function () {
-      if (this.newComment) {
-        let comment = this.newComment.trim();
-        this.newComment = "";
+      if (this.userLoggedInCheck()) {
+        if (this.newComment) {
+          let comment = this.newComment.trim();
+          this.newComment = "";
 
-        return axios({
-          method: "post",
-          url: this.serverUrl + "/addComment",
-          headers: {
-            authorization: "Bearer " + this.user.accessToken,
-          },
-          data: {
-            commenter: this.commenter,
-            comment: comment,
-            clipId: this.clipId,
-            parentCommentId: this.parentCommentId,
-          },
-        }).then(function (response) {
-          return response;
-        });
+          return axios({
+            method: "post",
+            url: this.serverUrl + "/addComment",
+            headers: {
+              authorization: "Bearer " + this.user.accessToken,
+            },
+            data: {
+              commenter: this.commenter,
+              comment: comment,
+              clipId: this.clipId,
+              parentCommentId: this.parentCommentId,
+            },
+          }).then(function (response) {
+            return response;
+          });
+        }
       }
     },
     clearFilter: function () {
@@ -125,6 +129,60 @@ export default {
         this.filterBy.newest = true;
       }
     },
+    userLoggedInCheck: function () {
+      if (this.loggedInUser) {
+        return true;
+      } else {
+        let self = this;
+        let message = "You must be logged in to perform this action.";
+        let options = {
+          html: false,
+          loader: false,
+          reverse: false,
+          okText: "Log In",
+          cancelText: "OK",
+          animation: "zoom",
+          type: "basic",
+          verification: "continue",
+          clicksCount: 1,
+          backdropClose: true,
+          customClass: "",
+        };
+
+        this.$dialog
+          .confirm(message, options)
+          .then(function () {
+            self.$router.push("Login");
+          })
+          .catch(function () {
+            // Placeholder
+          });
+
+        return false;
+      }
+    },
+    getPageContents: function () {
+      var vm = this;
+
+      return axios({
+        method: "get",
+        responseType: "json",
+        url: this.serverUrl + "/singleClip/singleClip",
+        headers: {
+          authorization: "Bearer " + vm.user.accessToken,
+        },
+        params: {
+          username: vm.user.username,
+          clipId: vm.clipId,
+        },
+      }).then(function (response) {
+        let result = response.data;
+        vm.clip = result;
+      });
+    },
+  },
+  beforeMount: function () {
+    this.getPageContents();
   },
 };
 </script>
