@@ -38,10 +38,9 @@
       <div class="clipUser">
         <router-link
           :to="{ name: 'Profile', params: { username: clip.UserProfile.Username } }"
-          class="d-flex align-center"
         >
-          <v-img
-            class="shrink mr-2 userImage"
+          <img
+            class="userImage"
             contain
             :src="require(`../assets/images/${clip.UserImage}`)"
           />
