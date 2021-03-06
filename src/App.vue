@@ -52,14 +52,17 @@
       <v-spacer></v-spacer>
       <div v-if="user.loggedIn" class="bannerOptions">
         <router-link
-          :to="{ name: 'Profile', params: { userProfile: userProfile } }"
+          :to="{
+            name: 'Profile',
+            params: { username: user.username },
+          }"
           class="d-flex align-center"
         >
           <v-img
             @click="scrollToTop()"
             class="shrink mr-2 userImage"
             contain
-            :src="userProfile.image"
+            :src="user.icon"
           />
           <p @click="scrollToTop()" class="bannerUsername noselect">
             {{ user.username }}
@@ -135,20 +138,6 @@ export default {
       icon: "",
       usersFollowing: [],
       gamesFollowing: [],
-    },
-    userProfile: {
-      username: "JackiePrince",
-      joinedDate: "Dec 24, 2020",
-      image: require("./assets/images/crown.png"),
-      followed: true,
-      followerCount: "346M",
-      clipsCount: "54",
-      badges: {
-        badgeOne: require("./assets/images/badge1.png"),
-        badgeTwo: require("./assets/images/badge2.png"),
-        badgeThree: require("./assets/images/badge3.png"),
-        badgeFour: require("./assets/images/badge4.png"),
-      },
     },
     verify: {
       email: "",
