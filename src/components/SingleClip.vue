@@ -155,7 +155,7 @@ export default {
         this.$dialog
           .confirm(message, options)
           .then(function () {
-            self.$router.push("Login");
+            self.$router.push({ path: "/login" });
           })
           .catch(function () {
             // Placeholder
