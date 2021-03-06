@@ -195,7 +195,7 @@
       <v-row justify="center" class="text-center">
         <v-col class="mb-5" cols="6">
           <div v-for="clip in clipsForGame" :key="clip.clipId">
-            <ClipPlayer :clip="clip" />
+            <ClipPlayer :clip="clip" :userData="userData" />
           </div>
         </v-col>
       </v-row>
@@ -216,7 +216,7 @@ export default {
   props: ["user", "gameId"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
-    loggedInUser: "",
+    userData: undefined,
     clipsForGame: [],
     game: "",
     filterBy: {
@@ -316,7 +316,7 @@ export default {
       }
     },
     userLoggedInCheck: function () {
-      if (this.loggedInUser) {
+      if (this.user.loggedIn) {
         return true;
       } else {
         let self = this;
@@ -338,7 +338,7 @@ export default {
         this.$dialog
           .confirm(message, options)
           .then(function () {
-            self.$router.push("Login");
+            self.$router.push({ path: "/login" });
           })
           .catch(function () {
             // Placeholder
@@ -370,6 +370,9 @@ export default {
   },
   beforeMount: function () {
     this.getPageContents();
+  },
+  mounted: function () {
+    this.userData = this.user;
   },
 };
 </script>

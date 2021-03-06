@@ -27,7 +27,10 @@
     <div class="clipUsername">
       <p @click="scrollToTop()" class="clipUsernameText">
         <router-link
-          :to="{ name: 'Profile', params: { username: clip.UserProfile.Username } }"
+          :to="{
+            name: 'Profile',
+            params: { username: clip.UserProfile.Username },
+          }"
           class="routerStyle"
         >
           {{ clip.UserProfile.Username }}
@@ -37,7 +40,10 @@
     <div class="clipHeader">
       <div class="clipUser">
         <router-link
-          :to="{ name: 'Profile', params: { username: clip.UserProfile.Username } }"
+          :to="{
+            name: 'Profile',
+            params: { username: clip.UserProfile.Username },
+          }"
         >
           <img
             class="userImage"
@@ -111,7 +117,9 @@
         />
         <v-img
           @click="deleteClip()"
-          v-if="ellipsisToggle && loggedInUser === clip.UserProfile.Username"
+          v-if="
+            ellipsisToggle && userData.loggedIn === clip.UserProfile.Username
+          "
           class="deleteReportButton"
           contain
           src="../assets/images/deleteIcon.png"
@@ -119,7 +127,7 @@
         <v-img
           @click="reportClip()"
           v-else-if="
-            ellipsisToggle && loggedInUser !== clip.UserProfile.Username
+            ellipsisToggle && userData.loggedIn !== clip.UserProfile.Username
           "
           class="deleteReportButton"
           contain
@@ -230,9 +238,8 @@ import "vuejs-dialog/dist/vuejs-dialog.min.css";
 
 export default {
   name: "ClipPlayer",
-  props: ["clip", "user"],
+  props: ["clip", "userData"],
   data: () => ({
-    loggedInUser: "",
     ellipsisToggle: false,
   }),
   methods: {
@@ -293,7 +300,7 @@ export default {
         });
     },
     userLoggedInCheck: function () {
-      if (this.loggedInUser) {
+      if (this.userData.loggedIn) {
         return true;
       } else {
         let self = this;
@@ -315,7 +322,7 @@ export default {
         this.$dialog
           .confirm(message, options)
           .then(function () {
-            self.$router.push("Login");
+            self.$router.push({ path: "/login" });
           })
           .catch(function () {
             // Placeholder

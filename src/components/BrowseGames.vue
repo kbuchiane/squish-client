@@ -110,9 +110,9 @@ import appConfig from "../config/app.config";
 
 export default {
   name: "BrowseGames",
+  props: ["user"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
-    loggedInUser: "",
     games: [],
     filterBy: {
       mostFollowed: true,
@@ -120,7 +120,6 @@ export default {
       mostClipsAllTime: false,
     },
   }),
-  props: ["user"],
   methods: {
     clearFilter: function () {
       this.filterBy.mostFollowed = false;
@@ -146,7 +145,7 @@ export default {
       }
     },
     userLoggedInCheck: function () {
-      if (this.loggedInUser) {
+      if (this.user.loggedIn) {
         return true;
       } else {
         let self = this;
