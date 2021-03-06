@@ -64,11 +64,11 @@ import userEntryUtil from "../utils/userEntry.util";
 
 export default {
   name: "VerifyEmail",
+  props: ["verify"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
     verifyCode: "",
   }),
-  props: ["verify"],
   methods: {
     confirmUser: function (email, verifyCode) {
       email = email.trim();

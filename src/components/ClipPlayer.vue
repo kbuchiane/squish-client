@@ -27,7 +27,10 @@
     <div class="clipUsername">
       <p @click="scrollToTop()" class="clipUsernameText">
         <router-link
-          :to="{ name: 'Profile', params: { username: clip.UserProfile.Username } }"
+          :to="{
+            name: 'Profile',
+            params: { username: clip.UserProfile.Username },
+          }"
           class="routerStyle"
         >
           {{ clip.UserProfile.Username }}
@@ -37,7 +40,10 @@
     <div class="clipHeader">
       <div class="clipUser">
         <router-link
-          :to="{ name: 'Profile', params: { username: clip.UserProfile.Username } }"
+          :to="{
+            name: 'Profile',
+            params: { username: clip.UserProfile.Username },
+          }"
         >
           <img
             class="userImage"
@@ -111,7 +117,7 @@
         />
         <v-img
           @click="deleteClip()"
-          v-if="ellipsisToggle && loggedInUser === clip.UserProfile.Username"
+          v-if="ellipsisToggle && user.loggedIn === clip.UserProfile.Username"
           class="deleteReportButton"
           contain
           src="../assets/images/deleteIcon.png"
@@ -119,7 +125,7 @@
         <v-img
           @click="reportClip()"
           v-else-if="
-            ellipsisToggle && loggedInUser !== clip.UserProfile.Username
+            ellipsisToggle && user.loggedIn !== clip.UserProfile.Username
           "
           class="deleteReportButton"
           contain
@@ -232,7 +238,6 @@ export default {
   name: "ClipPlayer",
   props: ["clip", "user"],
   data: () => ({
-    loggedInUser: "",
     ellipsisToggle: false,
   }),
   methods: {
@@ -293,7 +298,7 @@ export default {
         });
     },
     userLoggedInCheck: function () {
-      if (this.loggedInUser) {
+      if (this.user.loggedIn) {
         return true;
       } else {
         let self = this;

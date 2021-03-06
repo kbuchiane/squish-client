@@ -138,6 +138,7 @@ export default {
   components: {
     ClipPlayer,
   },
+  props: ["user"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
     statusMessage: "",
@@ -156,7 +157,6 @@ export default {
       allTime: false,
     },
   }),
-  props: ["user"],
   methods: {
     followUser: function (followerUsername, followedUsername) {
       followerUsername = followerUsername.trim();
