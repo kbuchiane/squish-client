@@ -136,8 +136,6 @@ export default {
       accessToken: "",
       username: "",
       icon: "",
-      usersFollowing: [],
-      gamesFollowing: [],
     },
     verify: {
       email: "",
@@ -228,8 +226,6 @@ export default {
       this.user.accessToken = "";
       this.user.username = "";
       this.user.userIcon = "";
-      this.usersFollowing = [];
-      this.gamesFollowing = [];
       this.searchTerm = "";
     },
   },
