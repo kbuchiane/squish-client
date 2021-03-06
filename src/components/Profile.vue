@@ -226,7 +226,7 @@
       <v-row justify="center" class="text-center">
         <v-col class="mb-5" cols="6">
           <div v-for="clip in clipsForUser" :key="clip.ClipId">
-            <ClipPlayer :clip="clip" />
+            <ClipPlayer :clip="clip" :userData="userData" />
           </div>
         </v-col>
       </v-row>
@@ -247,7 +247,7 @@ export default {
   props: ["user", "username"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
-    loggedInUser: "",
+    userData: undefined,
     clipsForUser: [],
     userProfile: "",
     filterBy: {
@@ -339,7 +339,7 @@ export default {
       }
     },
     userLoggedInCheck: function () {
-      if (this.loggedInUser) {
+      if (this.user.loggedIn) {
         return true;
       } else {
         let self = this;
@@ -392,6 +392,9 @@ export default {
   },
   beforeMount: function () {
     this.getPageContents();
+  },
+  mounted: function () {
+    this.userData = this.user;
   },
 };
 </script>

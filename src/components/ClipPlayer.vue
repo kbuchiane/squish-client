@@ -117,7 +117,9 @@
         />
         <v-img
           @click="deleteClip()"
-          v-if="ellipsisToggle && user.loggedIn === clip.UserProfile.Username"
+          v-if="
+            ellipsisToggle && userData.loggedIn === clip.UserProfile.Username
+          "
           class="deleteReportButton"
           contain
           src="../assets/images/deleteIcon.png"
@@ -125,7 +127,7 @@
         <v-img
           @click="reportClip()"
           v-else-if="
-            ellipsisToggle && user.loggedIn !== clip.UserProfile.Username
+            ellipsisToggle && userData.loggedIn !== clip.UserProfile.Username
           "
           class="deleteReportButton"
           contain
@@ -236,7 +238,7 @@ import "vuejs-dialog/dist/vuejs-dialog.min.css";
 
 export default {
   name: "ClipPlayer",
-  props: ["clip", "user"],
+  props: ["clip", "userData"],
   data: () => ({
     ellipsisToggle: false,
   }),
@@ -298,7 +300,7 @@ export default {
         });
     },
     userLoggedInCheck: function () {
-      if (this.user.loggedIn) {
+      if (this.userData.loggedIn) {
         return true;
       } else {
         let self = this;

@@ -53,7 +53,7 @@
         <div class="commentDeleteReportIconDiv">
           <v-img
             @click="deleteComment()"
-            v-if="loggedInUser === comment.Username"
+            v-if="user.loggedIn === comment.Username"
             class="commentDeleteReportIcon"
             contain
             src="../assets/images/deleteIcon.png"
@@ -68,7 +68,10 @@
         </div>
       </div>
       <div v-if="comment.Comments && comment.Comments.length">
-        <CommentTree :comments="comment.Comments"></CommentTree>
+        <CommentTree
+          :comments="comment.Comments"
+          :userData="user"
+        ></CommentTree>
       </div>
     </div>
   </v-container>
@@ -79,9 +82,9 @@ import "vuejs-dialog/dist/vuejs-dialog.min.css";
 
 export default {
   name: "CommentTree",
-  props: ["user", "comments"],
+  props: ["userData", "comments"],
   data: () => ({
-    loggedInUser: "",
+    user: "",
   }),
   methods: {
     deleteComment: function () {
@@ -139,7 +142,7 @@ export default {
       }
     },
     userLoggedInCheck: function () {
-      if (this.loggedInUser) {
+      if (this.user.loggedIn) {
         return true;
       } else {
         let self = this;
@@ -171,13 +174,15 @@ export default {
       }
     },
   },
+  created: function () {
+    this.user = this.userData;
+  },
   beforeMount: function () {
     // console.log("-- BEFORE mounted ");
     // FIXME user not defined??????
     // loggedInUser = this.user.username;
     // console.log("Comment Tree  User: " + this.user);
   },
-
   mounted: function () {
     // console.log("-- mounted ");
     // console.log("User: " + this.user);

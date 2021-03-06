@@ -121,7 +121,7 @@
     <v-row justify="center" class="text-center">
       <v-col class="mb-5 clipColumn" cols="6">
         <div v-for="clip in clips" :key="clip.ClipId">
-          <ClipPlayer :clip="clip" />
+          <ClipPlayer :clip="clip" :userData="userData" />
         </div>
       </v-col>
     </v-row>
@@ -141,6 +141,7 @@ export default {
   props: ["user"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
+    userData: undefined,
     statusMessage: "",
     clips: [],
     filterBy: {
@@ -308,6 +309,9 @@ export default {
   },
   beforeMount: function () {
     this.getPageContents();
+  },
+  mounted: function () {
+    this.userData = this.user;
   },
 };
 </script>
