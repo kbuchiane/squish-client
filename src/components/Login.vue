@@ -88,7 +88,8 @@ export default {
               this.$emit(
                 "setUserData",
                 response.data.accessToken,
-                response.data.username
+                response.data.username,
+                response.data.icon
               );
 
               this.$router.push("browse");

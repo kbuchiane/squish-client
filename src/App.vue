@@ -58,11 +58,11 @@
           }"
           class="d-flex align-center"
         >
-          <v-img
+          <v-img v-if="user.icon"
             @click="scrollToTop()"
             class="shrink mr-2 userImage"
             contain
-            :src="user.icon"
+            :src="require(`./assets/images/${user.icon}`)"
           />
           <p @click="scrollToTop()" class="bannerUsername noselect">
             {{ user.username }}
@@ -158,10 +158,11 @@ export default {
     scrollToTop: function () {
       window.scrollTo(0, 0);
     },
-    setUserData: function (accessToken, username) {
+    setUserData: function (accessToken, username, icon) {
       this.user.loggedIn = true;
       this.user.accessToken = accessToken;
       this.user.username = username;
+      this.user.icon = icon;
     },
     setVerifyData: function (verifyData) {
       this.verify.email = verifyData.email;
@@ -182,7 +183,7 @@ export default {
     silentRefresh: function () {
       this.serverSilentRefresh().then((response) => {
         if (response.status === 200 && response.data.message != false) {
-          this.setUserData(response.data.accessToken, response.data.username);
+          this.setUserData(response.data.accessToken, response.data.username, response.data.icon);
         } else {
           this.logout();
         }
