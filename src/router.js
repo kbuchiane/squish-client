@@ -45,6 +45,7 @@ export default new Router({
             props: true
         },
         {
+            // TODO: track down missing username warning in console
             path: "/profile/:username",
             name: "Profile",
             component: Profile,

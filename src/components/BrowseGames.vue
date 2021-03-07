@@ -37,41 +37,41 @@
     </div>
     <v-row justify="center" class="text-center">
       <v-col class="mb-5 gameColumn" cols="6">
-        <div v-for="game in games" :key="game.GameId">
+        <div v-for="game in games" :key="game.Game.GameId">
           <div class="gameDiv">
             <div class="gameTitle">
               <p class="gameTitleText">
                 <router-link
-                  :to="{ name: 'SingleGame', params: { gameId: game.GameId } }"
+                  :to="{ name: 'SingleGame', params: { gameId: game.Game.GameId } }"
                   class="routerStyle"
                 >
-                  {{ game.Title }}
+                  {{ game.Game.Title }}
                 </router-link>
               </p>
             </div>
             <div class="gameReleaseDate">
-              Release Date {{ game.DisplayDate }}
+              Release Date {{ game.Game.DisplayDate }}
             </div>
             <div class="gameHeader">
               <div class="gameImageDiv">
                 <router-link
-                  :to="{ name: 'SingleGame', params: { gameId: game.GameId } }"
+                  :to="{ name: 'SingleGame', params: { gameId: game.Game.GameId } }"
                 >
                   <img
                     class="gameImage"
                     contain
-                    :src="require(`../assets/images/${game.IconFilepath}`)"
+                    :src="require(`../assets/images/${game.Game.IconFilepath}`)"
                   />
                 </router-link>
               </div>
               <div class="gameTags">
-                <p v-for="tag in game.Tags" :key="tag" class="gameTag">
+                <p v-for="tag in game.Game.Tags" :key="tag" class="gameTag">
                   {{ tag }}
                 </p>
               </div>
               <div class="gameUserActions">
                 <v-btn
-                  v-if="game.Followed"
+                  v-if="game.Game.Followed"
                   @click="userLoggedInCheck()"
                   color="#40a0e0"
                   class="userActionButton"
@@ -88,13 +88,13 @@
             </div>
             <div class="gameInfoDiv">
               <div class="gameInfoSection">
-                {{ game.FollowerCount }} followers
+                {{ game.Game.FollowerCount }} followers
               </div>
               <div class="gameInfoSection">
-                {{ game.ClipsTodayCount }} new clips today
+                {{ game.Game.ClipsTodayCount }} new clips today
               </div>
               <div class="gameInfoSection">
-                {{ game.ClipsAllTimeCount }} clips all time
+                {{ game.Game.ClipsAllTimeCount }} clips all time
               </div>
             </div>
           </div>
@@ -110,9 +110,9 @@ import appConfig from "../config/app.config";
 
 export default {
   name: "BrowseGames",
+  props: ["user"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
-    loggedInUser: "",
     games: [],
     filterBy: {
       mostFollowed: true,
@@ -120,7 +120,6 @@ export default {
       mostClipsAllTime: false,
     },
   }),
-  props: ["user"],
   methods: {
     clearFilter: function () {
       this.filterBy.mostFollowed = false;
@@ -146,7 +145,7 @@ export default {
       }
     },
     userLoggedInCheck: function () {
-      if (this.loggedInUser) {
+      if (this.user.loggedIn) {
         return true;
       } else {
         let self = this;

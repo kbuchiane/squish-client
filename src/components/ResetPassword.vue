@@ -119,13 +119,13 @@ import userEntryUtil from "../utils/userEntry.util";
 
 export default {
   name: "ResetPassword",
+  props: ["resetPassword"],
   data: () => ({
     serverUrl: appConfig.SERVER_URL,
     resetPasswordCode: "",
     newPassword: "",
     newPasswordConfirm: "",
   }),
-  props: ["resetPassword"],
   methods: {
     confirmResetPassword: function (
       email,
