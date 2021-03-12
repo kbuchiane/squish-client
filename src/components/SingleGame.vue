@@ -11,7 +11,7 @@
         <div class="filterTitle">Filter Clips By</div>
         <div class="filterOptionsSetOne">
           <div
-            v-if="filterBy.mostPopular"
+            v-if="filters.MostPopular"
             @click="mostPopularClick()"
             class="selectedFilterOptionOne"
           >
@@ -21,7 +21,7 @@
             Most Popular
           </div>
           <div
-            v-if="filterBy.followedUsersOnly"
+            v-if="filters.FollowedUsersOnly"
             @click="followedUsersOnlyClick()"
             class="selectedFilterOptionOne"
           >
@@ -31,7 +31,7 @@
             Followed Users Only
           </div>
           <div
-            v-if="filterBy.mostImpressive"
+            v-if="filters.MostImpressive"
             @click="mostImpressiveClick()"
             class="selectedFilterOptionOne"
           >
@@ -41,7 +41,7 @@
             Most Impressive
           </div>
           <div
-            v-if="filterBy.funniest"
+            v-if="filters.Funniest"
             @click="funniestClick()"
             class="selectedFilterOptionOne"
           >
@@ -51,7 +51,7 @@
             Funniest
           </div>
           <div
-            v-if="filterBy.bestDiscussion"
+            v-if="filters.BestDiscussion"
             @click="bestDiscussionClick()"
             class="selectedFilterOptionOne"
           >
@@ -64,17 +64,7 @@
         <div class="filterTitle">Timeframe</div>
         <div class="filterOptionsSetTwo">
           <div
-            v-if="filterBy.default"
-            @click="defaultClick()"
-            class="selectedFilterOptionTwo"
-          >
-            Default
-          </div>
-          <div v-else @click="defaultClick()" class="filterOptionTwo">
-            Default
-          </div>
-          <div
-            v-if="filterBy.pastDay"
+            v-if="timeframes.Day"
             @click="pastDayClick()"
             class="selectedFilterOptionTwo"
           >
@@ -84,7 +74,7 @@
             Past Day
           </div>
           <div
-            v-if="filterBy.pastWeek"
+            v-if="timeframes.Week"
             @click="pastWeekClick()"
             class="selectedFilterOptionTwo"
           >
@@ -94,7 +84,7 @@
             Past Week
           </div>
           <div
-            v-if="filterBy.pastMonth"
+            v-if="timeframes.Month"
             @click="pastMonthClick()"
             class="selectedFilterOptionTwo"
           >
@@ -104,7 +94,7 @@
             Past Month
           </div>
           <div
-            v-if="filterBy.pastYear"
+            v-if="timeframes.Year"
             @click="pastYearClick()"
             class="selectedFilterOptionTwo"
           >
@@ -114,7 +104,7 @@
             Past Year
           </div>
           <div
-            v-if="filterBy.allTime"
+            v-if="timeframes.All"
             @click="allTimeClick()"
             class="selectedFilterOptionTwo"
           >
@@ -219,100 +209,105 @@ export default {
     userData: undefined,
     clipsForGame: [],
     game: "",
-    filterBy: {
-      mostPopular: true,
-      followedUsersOnly: false,
-      mostImpressive: false,
-      funniest: false,
-      bestDiscussion: false,
-      default: true,
-      pastDay: false,
-      pastWeek: false,
-      pastMonth: false,
-      pastYear: false,
-      allTime: false,
+    filters: {
+      MostPopular: true,
+      FollowedUsersOnly: false,
+      MostImpressive: false,
+      Funniest: false,
+      BestDiscussion: false,
+    },
+    timeframes: {
+      Day: false,
+      Week: false,
+      Month: false,
+      Year: false,
+      All: true,
     },
   }),
   methods: {
-    clearFilterByType: function () {
-      this.filterBy.mostPopular = false;
-      this.filterBy.followedUsersOnly = false;
-      this.filterBy.mostImpressive = false;
-      this.filterBy.funniest = false;
-      this.filterBy.bestDiscussion = false;
+    clearFilters: function () {
+      this.filters.MostPopular = false;
+      this.filters.FollowedUsersOnly = false;
+      this.filters.MostImpressive = false;
+      this.filters.Funniest = false;
+      this.filters.BestDiscussion = false;
     },
+    clearTimeframes: function () {
+      this.timeframes.Day = false;
+      this.timeframes.Week = false;
+      this.timeframes.Month = false;
+      this.timeframes.Year = false;
+      this.timeframes.All = false;
+    },
+
     mostPopularClick: function () {
-      if (!this.filterBy.mostPopular) {
-        this.clearFilterByType();
-        this.filterBy.mostPopular = true;
+      if (!this.filters.MostPopular) {
+        this.clearFilters();
+        this.filters.MostPopular = true;
+        this.getPageContents();
       }
     },
     followedUsersOnlyClick: function () {
-      if (!this.filterBy.followedUsersOnly) {
-        this.clearFilterByType();
-        this.filterBy.followedUsersOnly = true;
+      if (!this.filters.FollowedUsersOnly) {
+        this.clearFilters();
+        this.filters.FollowedUsersOnly = true;
+        this.getPageContents();
       }
     },
     mostImpressiveClick: function () {
-      if (!this.filterBy.mostImpressive) {
-        this.clearFilterByType();
-        this.filterBy.mostImpressive = true;
+      if (!this.filters.MostImpressive) {
+        this.clearFilters();
+        this.filters.MostImpressive = true;
+        this.getPageContents();
       }
     },
     funniestClick: function () {
-      if (!this.filterBy.funniest) {
-        this.clearFilterByType();
-        this.filterBy.funniest = true;
+      if (!this.filters.Funniest) {
+        this.clearFilters();
+        this.filters.Funniest = true;
+        this.getPageContents();
       }
     },
     bestDiscussionClick: function () {
-      if (!this.filterBy.bestDiscussion) {
-        this.clearFilterByType();
-        this.filterBy.bestDiscussion = true;
-      }
-    },
-    clearFilterByTimeframe: function () {
-      this.filterBy.default = false;
-      this.filterBy.pastDay = false;
-      this.filterBy.pastWeek = false;
-      this.filterBy.pastMonth = false;
-      this.filterBy.pastYear = false;
-      this.filterBy.allTime = false;
-    },
-    defaultClick: function () {
-      if (!this.filterBy.default) {
-        this.clearFilterByTimeframe();
-        this.filterBy.default = true;
+      if (!this.filters.BestDiscussion) {
+        this.clearFilters();
+        this.filters.BestDiscussion = true;
+        this.getPageContents();
       }
     },
     pastDayClick: function () {
-      if (!this.filterBy.pastDay) {
-        this.clearFilterByTimeframe();
-        this.filterBy.pastDay = true;
+      if (!this.filters.Day) {
+        this.clearTimeframes();
+        this.timeframes.Day = true;
+        this.getPageContents();
       }
     },
     pastWeekClick: function () {
-      if (!this.filterBy.pastWeek) {
-        this.clearFilterByTimeframe();
-        this.filterBy.pastWeek = true;
+      if (!this.filters.Week) {
+        this.clearTimeframes();
+        this.timeframes.Week = true;
+        this.getPageContents();
       }
     },
     pastMonthClick: function () {
-      if (!this.filterBy.pastMonth) {
-        this.clearFilterByTimeframe();
-        this.filterBy.pastMonth = true;
+      if (!this.filters.Month) {
+        this.clearTimeframes();
+        this.timeframes.Month = true;
+        this.getPageContents();
       }
     },
     pastYearClick: function () {
-      if (!this.filterBy.pastYear) {
-        this.clearFilterByTimeframe();
-        this.filterBy.pastYear = true;
+      if (!this.filters.Year) {
+        this.clearTimeframes();
+        this.timeframes.Year = true;
+        this.getPageContents();
       }
     },
     allTimeClick: function () {
-      if (!this.filterBy.allTime) {
-        this.clearFilterByTimeframe();
-        this.filterBy.allTime = true;
+      if (!this.filters.All) {
+        this.clearTimeframes();
+        this.timeframes.All = true;
+        this.getPageContents();
       }
     },
     userLoggedInCheck: function () {
@@ -349,6 +344,8 @@ export default {
     },
     getPageContents: function () {
       var vm = this;
+      let filter = this.getFilter();
+      let timeframe = this.getTimeframe();
 
       return axios({
         method: "get",
@@ -360,12 +357,44 @@ export default {
         params: {
           username: vm.user.username,
           gameId: vm.gameId,
+          filter: filter,
+          timeframe: timeframe,
         },
       }).then(function (response) {
         let result = response.data;
         vm.clipsForGame = result;
         vm.game = result[0].Game;
       });
+    },
+    getFilter: function () {
+      let filter = "MostPopular";
+
+      if (this.filters.FollowedUsersOnly) {
+        filter = "FollowedUsersOnly";
+      } else if (this.filters.MostImpressive) {
+        filter = "MostImpressive";
+      } else if (this.filters.Funniest) {
+        filter = "Funniest";
+      } else if (this.filters.BestDiscussion) {
+        filter = "BestDiscussion";
+      }
+
+      return filter;
+    },
+    getTimeframe: function () {
+      let timeframe = "All";
+
+      if (this.timeframes.Day) {
+        timeframe = "Day";
+      } else if (this.timeframes.Week) {
+        timeframe = "Week";
+      } else if (this.timeframes.Month) {
+        timeframe = "Month";
+      } else if (this.timeframes.Year) {
+        timeframe = "Year";
+      }
+
+      return timeframe;
     },
   },
   beforeMount: function () {
