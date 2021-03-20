@@ -42,7 +42,10 @@
             <div class="gameTitle">
               <p class="gameTitleText">
                 <router-link
-                  :to="{ name: 'SingleGame', params: { gameId: game.Game.GameId } }"
+                  :to="{
+                    name: 'SingleGame',
+                    params: { gameId: game.Game.GameId },
+                  }"
                   class="routerStyle"
                 >
                   {{ game.Game.Title }}
@@ -55,7 +58,10 @@
             <div class="gameHeader">
               <div class="gameImageDiv">
                 <router-link
-                  :to="{ name: 'SingleGame', params: { gameId: game.Game.GameId } }"
+                  :to="{
+                    name: 'SingleGame',
+                    params: { gameId: game.Game.GameId },
+                  }"
                 >
                   <img
                     class="gameImage"
@@ -130,18 +136,21 @@ export default {
       if (!this.filterBy.mostFollowed) {
         this.clearFilter();
         this.filterBy.mostFollowed = true;
+        this.getPageContents();
       }
     },
     mostClipsTodayClick: function () {
       if (!this.filterBy.mostClipsToday) {
         this.clearFilter();
         this.filterBy.mostClipsToday = true;
+        this.getPageContents();
       }
     },
     mostClipsAllTimeClick: function () {
       if (!this.filterBy.mostClipsAllTime) {
         this.clearFilter();
         this.filterBy.mostClipsAllTime = true;
+        this.getPageContents();
       }
     },
     userLoggedInCheck: function () {
@@ -178,6 +187,7 @@ export default {
     },
     getPageContents: function () {
       var vm = this;
+      let filter = this.getFilter();
 
       return axios({
         method: "get",
@@ -188,10 +198,23 @@ export default {
         },
         params: {
           username: vm.user.username,
+          filter: filter,
         },
       }).then(function (response) {
         vm.games = response.data;
       });
+    },
+
+    getFilter: function () {
+      let filter = "MostFollowed";
+
+      if (this.filterBy.mostClipsToday) {
+        filter = "MostClipsToday";
+      } else if (this.filterBy.mostClipsAllTime) {
+        filter = "MostClipsAllTime";
+      }
+
+      return filter;
     },
   },
   beforeMount: function () {

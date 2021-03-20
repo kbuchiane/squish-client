@@ -124,12 +124,14 @@ export default {
       if (!this.filterBy.mostLikes) {
         this.clearFilter();
         this.filterBy.mostLikes = true;
+        this.getPageContents();
       }
     },
     newestClick: function () {
       if (!this.filterBy.newest) {
         this.clearFilter();
         this.filterBy.newest = true;
+        this.getPageContents();
       }
     },
     userLoggedInCheck: function () {
@@ -166,6 +168,7 @@ export default {
     },
     getPageContents: function () {
       var vm = this;
+      let filter = this.getFilter();
 
       return axios({
         method: "get",
@@ -177,11 +180,21 @@ export default {
         params: {
           username: vm.user.username,
           clipId: vm.clipId,
+          filter: filter,
         },
       }).then(function (response) {
         let result = response.data;
         vm.clip = result;
       });
+    },
+    getFilter: function () {
+      let filter = "MostLikes";
+
+      if (this.filterBy.newest) {
+        filter = "Newest";
+      }
+
+      return filter;
     },
   },
   beforeMount: function () {
